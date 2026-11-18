@@ -1,0 +1,50 @@
+AVOCADO FARMERS NJOMBE · ENGLISH ADAPTATION
+The six exported slides and Reel narration are in Kiswahili. This is the separate English copy pack, with a timed English SRT supplied alongside it.
+
+INSTAGRAM · CAROUSEL CAPTION
+We build software for businesses. Avocado Farmers Njombe is our demo for organizing harvest details and buyer requests.
+
+When avocado variety, district, and harvest status live in separate chats, buyers ask the same questions before making an offer. In the demo, those details appear together in a farm record. Buyers can filter by variety and district, check the harvest status, then sign in to prepare a request with the quantity in kilos, a proposed price, and a pickup or delivery city.
+
+A detailed request starts a conversation. It doesn't confirm a sale. That distinction is part of the software design.
+
+Comment “PARACHICHI” and I’ll send you the demo link. 🥑
+
+#ParachichiLaNjombe #AgriTechTanzania #AltrawareTechnology
+
+INSTAGRAM · REEL CAPTION
+What does software for an avocado business look like? Our Njombe demo brings farm records, searchable harvest details, and a structured buyer request into one workflow.
+
+Comment “PARACHICHI” and I’ll send you the demo link.
+
+ENGLISH SLIDE COPY
+01 · SOFTWARE FOR AVOCADO BUSINESSES
+We built the Avocado Farmers Njombe demo to organize harvest details and buyer requests. Farm record → Search → Request
+
+02 · A CHAT ISN'T A HARVEST RECORD
+When details are scattered across chats, buyers have to ask again about the variety, location, and harvest timing before making an offer.
+
+03 · ONE RECORD FOR EACH FARM
+The demo brings variety, district, and harvest status together in one place. Illustrated example: Hass · Wanging’ombe · Ready to harvest.
+
+04 · FIND A HARVEST THAT FITS
+Filter by variety and district, then check the harvest status before preparing a request. Example UI, not actual inventory.
+
+05 · A REQUEST WITH THE DETAILS INCLUDED
+A signed-in buyer enters kilos, an offer price per kilo, and a pickup or delivery city. This is an unsent example. A request starts a conversation; it doesn't confirm a sale.
+
+06 · COMMENT “PARACHICHI”
+I’ll send you the demo link. Software for agricultural businesses, built by Altraware.
+
+MANUAL DM REPLY
+Thanks for commenting PARACHICHI! Here’s our Avocado Farmers Njombe software demo: https://mwijay.ct.ws/marketplace.php
+Try the variety and district filters and check the harvest status. This demonstrates the workflow; it isn’t an offer to sell avocados.
+
+LINKEDIN · FOUNDER ADAPTATION
+Before you build a Buy button, decide what a buyer needs to know to make an offer.
+
+For the Avocado Farmers Njombe demo, we started with variety, district, and harvest status. A buyer can use those details to find a suitable listing, then sign in and prepare a request that specifies kilos, an offer price, and the pickup or delivery city.
+
+The design decision: keep a farm record, a purchase request, and a completed sale distinct. A listing describes potential supply; a request gives the grower a specific offer to discuss. Neither confirms a transaction. That distinction helps the software reflect how the business actually works.
+
+Comment “PARACHICHI” if you’d like the demo link.

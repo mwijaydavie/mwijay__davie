@@ -1,0 +1,14 @@
+{
+  "name": "Avocado Farmers Njombe",
+  "builder": "Altraware Technology",
+  "demoUrl": "https://mwijay.ct.ws/marketplace.php",
+  "keyword": "PARACHICHI",
+  "palette": {
+    "primary": "#1b7a36",
+    "gold": "#d9b000",
+    "white": "#ffffff",
+    "ink": "#0c2918",
+    "paper": "#f8faf2"
+  },
+  "slideFiles": ["01-software-ya-parachichi", "02-changamoto", "03-rekodi", "04-filters-na-mavuno", "05-ombi", "06-comment-PARACHICHI"]
+}

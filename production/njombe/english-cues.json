@@ -1,0 +1,11 @@
+{
+  "hook": ["We built software for avocado", "businesses. What does it do?"],
+  "problem": ["When details get scattered in chats,", "the same questions keep coming up."],
+  "friction": ["Which variety, where is the farm,", "and when will the harvest be ready?"],
+  "record": ["In our Njombe demo, those details", "go into one farm record."],
+  "filter": ["Buyers filter by variety and district", "instead of asking farm by farm."],
+  "harvest": ["Then they check the harvest status", "before sending a request."],
+  "request": ["After sign-in: kilos, an offer price,", "and a pickup or delivery city."],
+  "not-sale": ["A detailed request starts a conversation.", "It doesn't confirm a sale."],
+  "cta": ["Comment “PARACHICHI”", "and I'll send you the demo link."]
+}

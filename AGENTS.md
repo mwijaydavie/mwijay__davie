@@ -1,0 +1,7 @@
+# Working in the content studio
+
+- Start with `content/strategy.md`, `content/projects.md`, and the [project content playbook](content/project-content-playbook.md). Market Altraware's software, show a concrete business workflow, use the verified product palette and sector-specific visuals, and carry the approved keyword through copy and exports. The project register is not evidence that every listed feature is deployed; keep editorial status and public release status separate.
+- For every draft, identify one audience, one provable claim, one visible artifact and one CTA. Check the exact build or public page before making a new claim. Label demo, illustrative and in-development material on screen as needed. Never infer sales, impact, affiliation or earnings from a screenshot or landing page.
+- For timed technical videos, use `.agents/skills/tech-video-motion-graphics/SKILL.md`. The [existing IG kit](https://github.com/mwijaydavie/instagram-agent-skill/tree/main/content-kit) owns brand tokens and Instagram copy workflows; use the content here for the bilingual editorial queue, evidence and render handoff.
+- The Drive reference is for analysis only. Keep private media, customer/student/child data, farm identifiers, and large exports outside Git. Only use cleared captures or clearly labelled illustrations with public-safe data.
+- Research and prepare drafts; do not post, schedule, change social accounts, share private files or deploy without an explicit user request. Keep a dated link for each externally sourced fact. Leave unknown metrics blank.
