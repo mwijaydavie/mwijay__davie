@@ -14,8 +14,10 @@ const raw=(await promisify(execFile)(ff,['-nostdin','-v','error','-i',input,'-ac
 assert.equal(raw.length,tl.frames/tl.fps*rate*2);
 const at=f=>Math.round(f/tl.fps*rate)*2;
 const frames=Array(tl.frames).fill('X');const counts=[];const rawCues={};
+const portraits=tl.portraitShots||['link','own','close'];
+assert(portraits.length&&new Set(portraits).size===portraits.length&&portraits.every(id=>tl.shots.some(s=>s.shot===id)));
 for(const s of tl.shots){
- if(!['link','own','close'].includes(s.shot))continue;
+ if(!portraits.includes(s.shot))continue;
  const wav=raw.subarray(at(s.start),at(s.end));
  // This port recognizes phones without an English transcript. Approximate visemes; not SW ASR.
  const {mouthCues:cues}=await Rhubarb.getLipSync(wav);assert(cues?.length>15);

@@ -4,11 +4,11 @@
 
 | Draft | Hook | Demo in Chrome | Windows / Linux | Mac |
 | --- | --- | --- | --- | --- |
-| 01 · Rudisha tab | “Umefunga tab muhimu? Irudishe.” | Close one sample tab → key chord → same page returns. | Ctrl + Shift + T | ⌘ + Shift + T |
+| 01 · [Rudisha tab](pilots/16-restore-tab.md) · card for review | “Umefunga tab muhimu? Irudishe.” | Close one sample tab → key chord → same page returns. | Ctrl + Shift + T | ⌘ + Shift + T |
 | 02 · Tafuta ndani ya page | “Bei iko wapi? Acha ku-scroll.” | Open Find, type `bei` in a demo page, highlight one match. | Ctrl + F | ⌘ + F |
 | 03 · Ruka kwenye address bar | “Unaweza ku-search bila kugusa mouse.” | Focus address bar → type a safe query → Enter. | Ctrl + L | ⌘ + L |
 | 04 · Pakua, halafu iko wapi? | “File imeshuka. Uko wapi kuitafuta?” | Reveal Downloads with a harmless sample file. | Ctrl + J | ⌘ + Shift + J |
 
 **Start with 01.** Suggested script: “Umefunga tab muhimu? Kwenye Chrome, Control Shift T inairudisha. Kwa Mac, tumia Command badala ya Control.” Keep both keys on screen during the restored-tab hold. One light click when the tab returns. No broad tricks that reset accounts, delete content or need real private history.
 
-Source checked 18 Nov 2026: [Chrome keyboard shortcuts — Windows/Linux and Mac](https://support.google.com/chrome/answer/157179). These are sketches, not exported videos or a posting plan. Verify the actual browser/version before recording. Keep one free-resource CTA only if there is a useful shortcut card to deliver.
+Source checked 18 Nov 2026: [Chrome keyboard shortcuts — Windows/Linux and Mac](https://support.google.com/chrome/answer/157179). The illustrated card for 01 is exported for review; the video and the other ideas are still sketches. Verify the actual browser/version before recording. No posting plan or automation.

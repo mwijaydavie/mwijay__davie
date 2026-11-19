@@ -1,0 +1,11 @@
+{
+  "width":1080,"height":1920,"fps":60,"frames":2340,
+  "beats":{
+    "hook":{"add":65,"fee":156,"total":284},
+    "basket":{"basket":12,"fee":165,"total":281},
+    "unlock":{"threshold":14,"add":180,"fee":299,"total":399},
+    "compare":{"a":6,"b":28,"delta":73,"item":127,"ask":240},
+    "close":{"limit":88,"total":205,"cta":290}
+  },
+  "review":{"hook":50,"hookMath":335,"checkoutBefore":580,"beforeDone":796,"threshold":900,"addition":1045,"afterDone":1301,"delta":1490,"decision":1660,"seller":1962,"cta":2130,"hold":2290}
+}

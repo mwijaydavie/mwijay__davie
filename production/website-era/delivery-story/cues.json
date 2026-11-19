@@ -1,0 +1,24 @@
+[
+  {"shot":"hook","end":366,"trim":[0.243,6.228],"joins":[[2.069,2.205],[4.642,4.962]],"lead":5,"parts":[
+    {"at":0.272,"sw":["Uongeze elfu sita"],"en":["Add six thousand"]},
+    {"at":2.314,"sw":["ili usilipe delivery ya elfu tano?"],"en":["to skip a five-thousand delivery fee?"]},
+    {"at":5.162,"sw":["Angalia total."],"en":["Look at the total."]}]},
+  {"shot":"basket","end":810,"trim":[0.261,7.782],"joins":[[2.818,3.114],[5.041,5.434]],"lead":6,"parts":[
+    {"at":0.294,"sw":["Basket ni elfu ishirini na nne."],"en":["The basket is 24,000 shillings."]},
+    {"at":3.233,"sw":["Delivery ni elfu tano."],"en":["Delivery is 5,000."]},
+    {"at":5.546,"sw":["Unalipa elfu ishirini na tisa."],"en":["You pay 29,000 in total."]}]},
+  {"shot":"unlock","end":1332,"trim":[0.25,9.35],"joins":[[3.023,3.35],[5.369,5.623],[7.1,7.35],[8.019,8.141]],"lead":7,"parts":[
+    {"at":0.282,"sw":["Free delivery inaanza", "elfu thelathini."],"en":["Free delivery starts at 30,000."]},
+    {"at":3.491,"sw":["Unaongeza bidhaa ya elfu sita."],"en":["You add a 6,000-shilling item."]},
+    {"at":5.747,"sw":["Delivery inakuwa zero."],"en":["The delivery fee drops to zero."]},
+    {"at":7.477,"sw":["Jumla, elfu thelathini."],"en":["The total is 30,000."]}]},
+  {"shot":"compare","end":1740,"trim":[0.263,6.997],"joins":[[2.087,2.24],[4.088,4.355],[5.166,5.366]],"lead":6,"parts":[
+    {"at":0.294,"sw":["Umetoa elfu moja zaidi,"],"en":["You paid 1,000 more,"]},
+    {"at":2.345,"sw":["na umepata bidhaa ya ziada."],"en":["and got one extra item."]},
+    {"at":4.467,"sw":["Swali ni, ulikuwa unaihitaji?"],"en":["The question is: did you need it?"]}]},
+  {"shot":"close","end":2340,"trim":[0.274,8.64],"joins":[[1.476,1.707],[5.111,5.446]],"lead":6,"parts":[
+    {"at":0.310,"sw":["Unauza online?"],"en":["Sell online?"]},
+    {"at":1.814,"sw":["Onyesha limit ya free delivery", "na total mapema."],"en":["Show the free delivery threshold", "and the total early."]},
+    {"at":5.576,"sw":["Comment TOTAL,"],"en":["Comment TOTAL"]},
+    {"at":6.588,"sw":["nikutumie worksheet", "ya kulinganisha."],"en":["and I’ll send you a worksheet", "to compare the totals."]}]}
+]
