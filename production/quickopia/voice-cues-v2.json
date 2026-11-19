@@ -1,0 +1,7 @@
+[
+  {"shot":"hook","sw":["Kikapu si oda.","Hii ni Quickopia."],"en":["A cart is not an order.","This is Quickopia."]},
+  {"shot":"catalog","sw":["Anza kwa kuchagua kategoria."],"en":["Start by choosing a category."]},
+  {"shot":"cart","sw":["Huu ni mfano wa kubadili idadi."],"en":["Here’s an example of changing quantity."]},
+  {"shot":"gate","sw":["Hatua ya kutuma oda", "bado haijafunguliwa."],"en":["You can’t submit an order yet."]},
+  {"shot":"cta","sw":["Andika Quickopia kwenye maoni.","Nitakutumia kiungo cha kuona mfumo."],"en":["Comment Quickopia.","I’ll send you a link to see the software."]}
+]

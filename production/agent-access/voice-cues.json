@@ -1,0 +1,32 @@
+[
+  {
+    "scene": "swali",
+    "spoken": "Ei ai isome stoo. Lakini nani ameruhusu ibadilishe bei?",
+    "sw": ["AI isome stoo.", "Lakini nani ameruhusu ibadilishe bei?"],
+    "en": ["Let AI check stock.", "But who said it could change the price?"]
+  },
+  {
+    "scene": "mcp",
+    "spoken": "Em si pi huunganisha ei ai na zana za mfumo. Ruhusa unaweka wewe.",
+    "sw": ["MCP huunganisha AI na zana za mfumo.", "Ruhusa unaweka wewe."],
+    "en": ["MCP connects AI to your system’s tools.", "You decide what it can access."]
+  },
+  {
+    "scene": "soma",
+    "spoken": "Kwenye jaribio letu, ombi la kusoma stoo linapita.",
+    "sw": ["Kwenye jaribio letu,", "ombi la kusoma stoo linapita."],
+    "en": ["In our test, the stock read", "is allowed."]
+  },
+  {
+    "scene": "zuia",
+    "spoken": "Ombi la kubadili bei linazuiwa. Bei inabaki ileile.",
+    "sw": ["Ombi la kubadili bei linazuiwa.", "Bei inabaki ileile."],
+    "en": ["The price-change request is denied.", "The price stays the same."]
+  },
+  {
+    "scene": "idhini",
+    "spoken": "Anza na kusoma tu. Mabadiliko yapitie idhini ya mtu.",
+    "sw": ["Anza na kusoma tu.", "Mabadiliko yapitie idhini ya mtu."],
+    "en": ["Start with read-only access.", "Require human approval for changes."]
+  }
+]

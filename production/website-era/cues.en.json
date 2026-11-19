@@ -1,0 +1,24 @@
+[
+  {"shot":"search","end":360,"trim":[0.126,4.728],"lead":6,"parts":[
+    {"at":0.154,"en":["Say a customer asks", "ChatGPT or Gemini:"]},
+    {"at":3.558,"en":["Where’s the lunch menu?"]}]},
+  {"shot":"link","end":708,"trim":[0.141,4.217],"lead":10,"parts":[
+    {"at":0.177,"en":["AI can point them to a link."]},
+    {"at":2.039,"en":["But what do they find", "when they click?"]}]},
+  {"shot":"own","end":1176,"trim":[0.140,6.499],"lead":8,"parts":[
+    {"at":0.173,"en":["On your website, you decide", "what customers see:"]},
+    {"at":3.252,"en":["your services,"]},
+    {"at":4.334,"en":["today’s prices,"]},
+    {"at":5.458,"en":["and how to reach you."]}]},
+  {"shot":"work","end":1656,"trim":[0.090,5.291],"lead":9,"parts":[
+    {"at":0.121,"en":["Here are two sites we built:"]},
+    {"at":1.693,"en":["a searchable menu,"]},
+    {"at":2.830,"en":["and a product page with", "the specs right there."]}]},
+  {"shot":"offer","end":2256,"trim":[0.140,7.748],"lead":10,"parts":[
+    {"at":0.176,"en":["At Altraware, we build fast,", "mobile-friendly sites."]},
+    {"at":3.792,"en":["Clear pages help search engines", "and AI tools"]},
+    {"at":6.378,"en":["understand what you offer."]}]},
+  {"shot":"close","end":2700,"trim":[0.062,3.932],"lead":9,"parts":[
+    {"at":0.095,"en":["Comment WEB"]},
+    {"at":0.993,"en":["and I’ll send you a free checklist", "to test your site."]}]}
+]

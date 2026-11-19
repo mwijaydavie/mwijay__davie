@@ -1,0 +1,9 @@
+[
+  {"shot":"hook","sw":["Kuweka item kwenye cart si kutuma oda.","Angalia mfumo wa Quickopia."],"en":["Adding an item to a cart isn’t an order.","Here’s how Quickopia’s software works."]},
+  {"shot":"catalog","sw":["Kwenye preview, catalog imepangwa kwa","kategoria. Hapa, Zote imechaguliwa."],"en":["The preview organizes the catalog","by category. All is selected here."]},
+  {"shot":"locale","sw":["Navigesheni ina vitufe vya Kiingereza na","Kiswahili. Hapa, tupo kwenye Kiswahili."],"en":["Navigation has English and Swahili controls.","This preview is in Swahili."]},
+  {"shot":"cart","sw":["Kikapu ni cha kukusanya chaguo. Kwenye","mfano huu, tunabadilisha idadi."],"en":["The cart holds selections. In this example,","we change the quantity."]},
+  {"shot":"gate","sw":["Lakini oda haijatumwa. Preview inaonyesha","kuwa checkout ya website bado imefungwa."],"en":["No order was submitted. The preview says","website checkout is still closed."]},
+  {"shot":"help","sw":["Paneli ya msaada ina mada za kuchagua,","na inaeleza kuwa si AI."],"en":["The help panel offers topics to choose from","and makes clear it isn’t using AI."]},
+  {"shot":"cta","sw":["Andika QUICKOPIA kwenye comment,","nikutumie link ya kuangalia mfumo."],"en":["Comment QUICKOPIA and I’ll send you","a link to the software walkthrough."]}
+]

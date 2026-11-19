@@ -1,0 +1,25 @@
+[
+  {"shot":"search","end":360,"trim":[0.245,6.265],"joins":[[1.66,1.92],[4.83,5.09]],"lead":7,"parts":[
+    {"at":0.292,"sw":["Mteja anauliza ChatGPT", "au Gemini."],"en":["A customer asks ChatGPT", "or Gemini."]},
+    {"at":5.262,"sw":["Menyu iko wapi?"],"en":["Where's the menu?"]}]},
+  {"shot":"link","end":708,"trim":[0.245,5.562],"lead":7,"parts":[
+    {"at":0.292,"sw":["AI inaweza kumpa jibu."],"en":["AI can give them an answer."]},
+    {"at":2.608,"sw":["Lakini akifungua link,"],"en":["But when they open the link,"]},
+    {"at":4.645,"sw":["anakuta nini?"],"en":["what do they find?"]}]},
+  {"shot":"own","end":1176,"trim":[0.291,7.69],"joins":[[3.29,3.52]],"lead":7,"parts":[
+    {"at":0.337,"sw":["Website yako ndiyo sehemu", "unayodhibiti."],"en":["Your website is a place", "you control."]},
+    {"at":3.654,"sw":["Weka huduma, bei za sasa,"],"en":["Show your services, current prices,"]},
+    {"at":6.216,"sw":["na jinsi ya kuwasiliana."],"en":["and how to get in touch."]}]},
+  {"shot":"work","end":1656,"trim":[0.151,7.166],"joins":[[5.57,5.796]],"lead":8,"parts":[
+    {"at":0.203,"sw":["Kwa mifano yetu,"],"en":["In our examples,"]},
+    {"at":1.734,"sw":["mteja anaona menyu hapa,"],"en":["customers can see the menu here,"]},
+    {"at":3.858,"sw":["na specs za bidhaa hapa."],"en":["and product specs here."]},
+    {"at":5.93,"sw":["Bila kuuliza tena."],"en":["No need to ask again."]}]},
+  {"shot":"offer","end":2256,"trim":[0.215,8.414],"lead":9,"parts":[
+    {"at":0.268,"sw":["Altraware tunajenga site", "nyepesi kwa simu,"],"en":["At Altraware we build lightweight", "sites for phones,"]},
+    {"at":3.1,"sw":["yenye content wazi", "kwa search na AI."],"en":["with clear content", "for search and AI."]},
+    {"at":6.467,"sw":["Kuonekana si guarantee."],"en":["Visibility isn't guaranteed."]}]},
+  {"shot":"close","end":2700,"trim":[0.315,4.391],"lead":10,"parts":[
+    {"at":0.369,"sw":["Comment WEB,"],"en":["Comment WEB,"]},
+    {"at":1.947,"sw":["nikutumie checklist", "ya website yako."],"en":["and I'll send you", "a website checklist."]}]}
+]

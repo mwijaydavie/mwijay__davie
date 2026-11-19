@@ -1,0 +1,7 @@
+{
+  "label":"MFANO WA SEARCH",
+  "query":"Menyu ya lunch iko wapi?",
+  "resultKind":"fictional",
+  "domain":"menyu.example",
+  "beats":{"typing":19,"typed":108,"submit":119,"ready":166,"hover":243,"click":312,"open":324,"end":360}
+}

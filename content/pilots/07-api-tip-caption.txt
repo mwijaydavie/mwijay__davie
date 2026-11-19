@@ -1,0 +1,18 @@
+INSTAGRAM • TECH TIP 01
+
+Una API. Kwa nini uongeze MCP?
+
+App moja ikijua iulize wapi, inaweza kuita API moja kwa moja. MCP inaweka namna ya kawaida kwa app ya AI kugundua na kutumia zana. Zana hizo zinaweza kutumia API ileile; huna haja ya kuitupa.
+
+Kwenye jaribio letu la ndani, GET ya stoo na zana read_stock zilirudisha rekodi ileile: vipande 12. Data ni ya mfano; si integration ya FaidaHQ.
+
+Comment API nikutumie PDF ya bure: unaanza wapi, mifano ya request na response, checklist ya ruhusa na links rasmi za model providers. Episode inayofuata: stoo ikikosa jibu, AI iandike sifuri?
+
+#VibeCoding #MCP #APIs #TechTip #SoftwareTanzania
+
+B-roll: Tima Miroshnichenko na Erkan Avanoğlu / Pexels; picha za kielelezo, si duka au wateja wetu.
+
+EN • LINKEDIN
+MCP doesn't replace your API. If a single app knows exactly where to query stock, a direct call is a practical starting point. When compatible AI hosts need to discover a shared set of tools, expose a narrow MCP adapter over that same service. Our in-memory fixture returned the same stock record through both paths; no provider or live shop was connected. I put the decision tree, sample results and official model docs in a free guide.
+
+POST CHECK (not public copy): Only promise the PDF once a logged-out mobile test passes and comment delivery is confirmed. Don't send the owner review folder. Use the Manychat draft or manual reply for this Reel; no automation has been activated.

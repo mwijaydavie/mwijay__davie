@@ -1,0 +1,17 @@
+@font-face{font-family:Inter;src:url('/font/inter.woff2') format('woff2');font-weight:100 900;font-display:block}
+@font-face{font-family:JetBrains;src:url('/font/jetbrains.woff2') format('woff2');font-weight:100 800;font-display:block}
+:root{
+  color-scheme:light;
+  --ink:#11142a;--night:#111429;--tile:#1d2140;--line:#373b5c;
+  --violet:#b8a5ff;--purple:#4e31b9;--lime:#d9fd92;--warm:#fff1d9;
+  --paper:#f8f7fd;--paper-edge:#e1dcef;--body:#484965;--dim:#bec1d7;
+  --mono:JetBrains,monospace;--sans:Inter,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{padding:0;margin:0;color:var(--ink);font-family:var(--sans)}
+button,input,textarea{font:inherit}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+img,svg{display:block}
+.brand{display:flex;align-items:center;gap:14px;font-weight:700;letter-spacing:-.025em}
+.brand img{width:55px;height:55px;object-fit:contain;background:#fff;border-radius:13px;padding:5px}
+strong{font-weight:720}

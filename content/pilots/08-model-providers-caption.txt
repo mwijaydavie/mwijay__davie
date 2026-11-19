@@ -1,0 +1,22 @@
+INSTAGRAM · SWANGLISH
+
+Free API key ≠ unlimited usage.
+
+Kabla huja-connect model kwa app au coding tool yako, check vitu vitatu: exact model ID, rate limit, na nani analipa. DeepSeek kupitia provider mmoja si lazima iwe bei ileile kwenye official API yake. Na free chat si free API.
+
+Kwenye demo tumetumia mock, si live provider: 200 → 429 → wait → 200. Key ibaki upande wa server, na test ya kwanza itumie dummy data.
+
+Comment MODEL nikutumie guide ya bure (Swanglish au English): routes 16, official docs, setup moja ya hosted na moja ya local, pamoja na checklist ya billing na data policy. Hakuna API key inayogawiwa.
+
+#VibeCoding #AIDev #APIs #TechTip #SoftwareTanzania
+
+Inspired by CodeWithUsman (YouTube, 16 Nov 2026). Provider names/logos identify the products; independent explainer, no sponsorship. Docs checked 18 Nov 2026; confirm on your account.
+
+ENGLISH · LINKEDIN
+
+A free API key is not unlimited inference. Before choosing a model provider, check the exact model ID, rate limits, who pays and what happens to your prompts. A free chat plan, a trial credit, a free model variant and an open-weight local runtime are different offers.
+
+For this Tech Tip we simulated a short 429 in a local mock: one request accepted, one limited, then one successful retry after the advertised wait. No provider was called. The guide compares sixteen documented routes and includes an OpenRouter smoke test, a local Ollama example and a practical budget/privacy checklist. I'll share the guide once the download is approved and tested.
+
+RELEASE NOTE · NOT PUBLIC COPY
+Use owner VO + retimed captions for the final version, or owner-approved reference. Recheck offers/links the day of posting. Only use the comment CTA after the audience URL opens logged out and a test DM succeeds. This is a guide, not a giveaway of credentials. Do not use the owner-only Drive link in an audience DM.

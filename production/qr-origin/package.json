@@ -1,0 +1,23 @@
+{
+  "name": "altraware-qr-origin",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "proof": "node proof.mjs",
+    "reel": "node render.mjs",
+    "verify:qr": "node verify-encoded.mjs"
+  },
+  "devDependencies": {
+    "@fontsource-variable/fraunces": "5.3.0",
+    "@fontsource-variable/inter": "5.3.0",
+    "@fontsource-variable/jetbrains-mono": "5.3.0",
+    "@remotion/bundler": "4.0.544",
+    "@remotion/renderer": "4.0.544",
+    "jsqr": "1.4.0",
+    "pngjs": "7.0.0",
+    "qrcode": "1.5.4",
+    "react": "19.2.9",
+    "react-dom": "19.2.9",
+    "remotion": "4.0.544"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "UAUT Connect",
+  "url": "https://www.uautconnect.com/",
+  "programsUrl": "https://www.uautconnect.com/programs",
+  "palette": {"white":"#FFFFFF","navy":"#102441","blue":"#2563EB","blueInk":"#1947AF","gold":"#DBA72B"},
+  "slides": [
+    {"shot":"fursa","file":"01-Tulipata-nafasi"},
+    {"shot":"lengo","file":"02-Mwanafunzi-aanzie-wapi"},
+    {"shot":"masomo","file":"03-Programu-za-masomo"},
+    {"shot":"hatua","file":"04-Hatua-za-maombi"},
+    {"shot":"live","file":"05-Tovuti-iko-hewani"}
+  ],
+  "programs": ["BSc. Business Information Technology", "BSc. Computer Engineering & IT", "Bachelor of Business Administration"]
+}

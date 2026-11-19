@@ -1,0 +1,7 @@
+{
+  "width": 1080,
+  "height": 1920,
+  "fps": 60,
+  "frames": 2820,
+  "review": {"waveA": 38, "waveB": 62, "open": 124, "blink": 132, "reopen": 139, "point": 730, "two": 922, "three": 1367}
+}

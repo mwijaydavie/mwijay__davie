@@ -1,0 +1,27 @@
+[
+  {"shot":"hook","end":438,"trim":[0.19,6.9],"lead":6,"parts":[
+    {"at":0.19,"sw":["Bei ileile."],"en":["Same price."]},
+    {"at":1.45,"sw":["Lakini elfu tano sasa inaonekana","kama chaguo la kati."],"en":["But five thousand now looks","like the middle option."]},
+    {"at":5.96,"sw":["Imefanyikaje?"],"en":["How did that happen?"]}]},
+  {"shot":"two","end":966,"trim":[0.23,8.5],"lead":6,"parts":[
+    {"at":0.23,"sw":["Una size mbili za juice."],"en":["You have two sizes of juice."]},
+    {"at":2.5,"sw":["Ndogo ni elfu tatu."],"en":["The small one is three thousand."]},
+    {"at":4.69,"sw":["Nusu lita ni elfu tano."],"en":["Half a litre is five thousand."]},
+    {"at":7.12,"sw":["Hiyo ndiyo ya bei ya juu."],"en":["That's the higher-priced option."]}]},
+  {"shot":"three","end":1422,"trim":[0.23,7.34],"lead":6,"parts":[
+    {"at":0.23,"sw":["Sasa ongeza lita moja,","kwa elfu tisa."],"en":["Now add a one-litre bottle","at nine thousand."]},
+    {"at":3.78,"sw":["Nusu lita bado ni elfu tano,"],"en":["Half a litre is still five thousand,"]},
+    {"at":5.83,"sw":["ila sasa iko katikati."],"en":["but now it's in the middle."]}]},
+  {"shot":"why","end":1884,"trim":[0.26,7.42],"lead":6,"parts":[
+    {"at":0.26,"sw":["Chaguo la kati linaweza kuonekana","kama balance ya bei na kiasi."],"en":["The middle can feel like a balance","between price and quantity."]},
+    {"at":5.58,"sw":["Hiyo ndiyo compromise effect."],"en":["That's the compromise effect."]}]},
+  {"shot":"use","end":2382,"trim":[0.24,8.04],"lead":6,"parts":[
+    {"at":0.24,"sw":["Lakini kati si bora kwa kila mtu."],"en":["But the middle isn't best for everyone."]},
+    {"at":2.95,"sw":["Ndogo ya kujaribu."],"en":["Small, for a taste."]},
+    {"at":4.71,"sw":["Ya kati ya mtu mmoja."],"en":["Medium, for one person."]},
+    {"at":6.79,"sw":["Kubwa ya kushare."],"en":["Large, to share."]}]},
+  {"shot":"close","end":2820,"trim":[0.23,6.44],"lead":6,"parts":[
+    {"at":0.23,"sw":["Usiongeze size ya tatu kama mtego."],"en":["Don't add a third size as a trap."]},
+    {"at":2.89,"sw":["Ipe kazi."],"en":["Give it a purpose."]},
+    {"at":4.24,"sw":["Size yako ya tatu inamfaa nani?"],"en":["Who is your third size for?"]}]}
+]

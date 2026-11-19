@@ -1,0 +1,16 @@
+[
+  {"shot":"hook","end":270,"trim":[0.23,4.13],"lead":6,"parts":[
+    {"at":0.23,"sw":["Headphones zimekaa poa."],"en":["The headphones look good."]},
+    {"at":2.32,"sw":["Ila battery inakaa muda gani?"],"en":["But how long does the battery last?"]}]},
+  {"shot":"scroll","end":552,"trim":[0.25,4.44],"lead":6,"parts":[
+    {"at":0.25,"sw":["Fungua product page ya Audenic."],"en":["Open the Audenic product page."]},
+    {"at":3.17,"sw":["Shuka kwenye specs."],"en":["Scroll down to the specs."]}]},
+  {"shot":"proof","end":849,"trim":[0.23,4.58],"lead":6,"parts":[
+    {"at":0.23,"sw":["Battery na uzito viko wazi."],"en":["Battery life and weight are easy to find."]},
+    {"at":2.96,"sw":["Hizi ni specs za demo."],"en":["These are demo specs."]}]},
+  {"shot":"design","end":1266,"trim":[0.24,6.56],"lead":7,"parts":[
+    {"at":0.24,"sw":["Altraware, tunadesign", "ili picha ivutie,"],"en":["At Altraware, we use images", "to catch your eye,"]},
+    {"at":4.19,"sw":["na details zikusaidie kuchagua."],"en":["and details to help you choose."]}]},
+  {"shot":"cta","end":1560,"trim":[0.25,2.83],"lead":6,"parts":[
+    {"at":0.25,"sw":["Comment SPECS,", "nikutumie link uicheki."],"en":["Comment SPECS", "and I'll send you the link."]}]}
+]

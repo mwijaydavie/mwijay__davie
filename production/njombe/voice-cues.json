@@ -1,0 +1,11 @@
+[
+  {"shot":"hook", "lines":["Tumejenga software kwa biashara", "ya parachichi. Inafanya nini?"]},
+  {"shot":"problem", "lines":["Taarifa zikitawanyika kwenye chat,", "maswali yale yale yanarudi."]},
+  {"shot":"friction", "lines":["Ni aina gani, shamba liko wapi,", "na mavuno yako tayari lini?"]},
+  {"shot":"record", "lines":["Kwenye demo ya Njombe, tunaweka", "taarifa hizo kwenye rekodi ya shamba."]},
+  {"shot":"filter", "lines":["Mnunuzi anachuja kwa aina na wilaya,", "badala ya kuulizia shamba moja moja."]},
+  {"shot":"harvest", "lines":["Halafu anaangalia hali ya mavuno", "kabla ya kutuma ombi."]},
+  {"shot":"request", "lines":["Akiingia, anajaza kilo, bei ya ofa", "na mji wa kuchukulia au kuletewa."]},
+  {"shot":"not-sale", "lines":["Ombi lenye maelezo linaanzisha", "mazungumzo. Halithibitishi mauzo."]},
+  {"shot":"cta", "lines":["Andika PARACHICHI kwenye comment,", "nikutumie link ya demo."]}
+]

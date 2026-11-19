@@ -1,0 +1,10 @@
+# Private inputs and render outputs
+/google_drive/
+/private-media/
+/out/
+/.cache/
+.env
+.env.*
+!.env.example
+node_modules/
+__pycache__/

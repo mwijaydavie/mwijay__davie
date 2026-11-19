@@ -1,0 +1,27 @@
+[
+  {"shot":"hook","end":405,"trim":[0.19,6.32],"lead":6,"tts":"Free ei ai ei pi ai key? Key ya bure haimaanishi usage unlimited.","parts":[
+    {"at":0.19,"sw":["Free AI API key?"],"en":["A free AI API key?"]},
+    {"at":3.27,"sw":["Key ya bure haimaanishi","usage unlimited."],"en":["A free key doesn't mean","unlimited usage."]}]},
+  {"shot":"checks","end":866,"trim":[0.20,7.13],"lead":8,"tts":"Kabla ya ku connect, check vitu vitatu. Model gani? Rate limit gani? Nani analipa?","parts":[
+    {"at":0.20,"sw":["Kabla ya ku-connect,","check vitu vitatu."],"en":["Before you connect,","check three things."]},
+    {"at":3.04,"sw":["Model gani? Rate limit gani?","Nani analipa?"],"en":["Which model? What rate limit?","Who pays?"]}]},
+  {"shot":"pricing","end":1349,"trim":[0.18,7.56],"lead":8,"tts":"Diip Siik na Klod zina token pricing kwenye official ei pi ai zao. Free chat si free ei pi ai.","parts":[
+    {"at":0.18,"sw":["DeepSeek na Claude zina token pricing","kwenye official API zao."],"en":["DeepSeek and Claude have token pricing","on their official APIs."]},
+    {"at":5.21,"sw":["Free chat si free API."],"en":["Free chat isn't a free API."]}]},
+  {"shot":"glm","end":1715,"trim":[0.14,5.31],"lead":8,"tts":"Zed dot ei ai ina ji el em za free. Check variant, si jina tu.","parts":[
+    {"at":0.14,"sw":["Z.AI ina GLM za free."],"en":["Z.AI lists some free GLM variants."]},
+    {"at":3.53,"sw":["Check variant, si jina tu."],"en":["Check the variant, not just the name."]}]},
+  {"shot":"local","end":2171,"trim":[0.21,6.83],"lead":8,"tts":"Kwen? Tumia hosted ei pi ai, au run variant inayofaa laptop yako kupitia Olama.","parts":[
+    {"at":0.21,"sw":["Qwen? Tumia hosted API,"],"en":["Qwen? Use a hosted API,"]},
+    {"at":3.34,"sw":["au run variant inayofaa laptop yako","kupitia Ollama."],"en":["or run a variant that fits your laptop","with Ollama."]}]},
+  {"shot":"start","end":2628,"trim":[0.21,6.87],"lead":8,"tts":"Anza na Jemini au Open Rauta kwa demo. Check free model, rate limits na data policy.","parts":[
+    {"at":0.21,"sw":["Anza na Gemini au OpenRouter","kwa demo."],"en":["Try Gemini or OpenRouter","for a demo."]},
+    {"at":3.44,"sw":["Check free model, rate limits","na data policy."],"en":["Check the free model, rate limits","and data policy."]}]},
+  {"shot":"demo","end":3172,"trim":[0.16,8.15],"lead":9,"tts":"Kwenye demo, tume simulate four two nine. App inasubiri, si kuspam. Key ibaki upande wa server.","parts":[
+    {"at":0.16,"sw":["Kwenye demo, tume-simulate 429."],"en":["In our demo, we simulated 429."]},
+    {"at":3.47,"sw":["App inasubiri, si kuspam."],"en":["The app waits instead of spamming."]},
+    {"at":6.09,"sw":["Key ibaki upande wa server."],"en":["Keep the key server-side."]}]},
+  {"shot":"cta","end":3600,"trim":[0.18,4.72],"lead":11,"tts":"Comment model. Guide ina provider links na checklist ya kuanza.","parts":[
+    {"at":0.18,"sw":["Comment MODEL."],"en":["Comment MODEL."]},
+    {"at":1.68,"sw":["Guide ina provider links","na checklist ya kuanza."],"en":["The guide has provider links","and a setup checklist."]}]}
+]

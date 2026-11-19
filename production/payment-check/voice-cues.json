@@ -1,0 +1,22 @@
+[
+  {
+    "shot": "swali",
+    "sw": ["Uthibitisho wa malipo ukifika mara mbili,", "mfumo wako utatoa risiti ngapi?"],
+    "en": ["If the same confirmation arrives twice,", "how many receipts will you issue?"]
+  },
+  {
+    "shot": "kwanza",
+    "sw": ["Kwenye mfano wetu, taarifa ya kwanza", "inatoa risiti moja."],
+    "en": ["In our simulation, the first confirmation", "creates one receipt."]
+  },
+  {
+    "shot": "rudia",
+    "sw": ["Taarifa ileile ikirudi, mfumo unabaki", "na risiti ileile."],
+    "en": ["The same confirmation arrives again.", "The receipt stays the same."]
+  },
+  {
+    "shot": "mwongozo",
+    "sw": ["Andika MALIPO kwenye komenti.", "Nitakutumia mwongozo wa majaribio matano."],
+    "en": ["Comment MALIPO for a guide", "with five payment tests."]
+  }
+]

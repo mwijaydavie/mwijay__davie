@@ -1,0 +1,58 @@
+[
+  {
+    "shot": "hook",
+    "sw": [
+      "Maboksi mangapi yamebaki stoo?",
+      "App iulizeje?"
+    ],
+    "en": [
+      "How many boxes are left in stock?",
+      "How should the app ask?"
+    ],
+    "tts": "Maboksi mangapi yamebaki stoo? App iulizeje?"
+  },
+  {
+    "shot": "direct",
+    "sw": [
+      "App ikijua pa kuuliza,",
+      "itumie API moja kwa moja."
+    ],
+    "en": [
+      "If the app knows where to ask,",
+      "use the API directly."
+    ],
+    "tts": "App ikijua pa kuuliza, itumie ei pi ai moja kwa moja."
+  },
+  {
+    "shot": "mcp",
+    "sw": [
+      "Kwa MCP, app ya AI inaweza",
+      "kugundua na kuita zana."
+    ],
+    "en": [
+      "With MCP, an AI app can",
+      "discover and call tools."
+    ],
+    "tts": "Kwa em si pi, app ya akili bandia inaweza kugundua na kuita zana."
+  },
+  {
+    "shot": "merge",
+    "sw": [
+      "Zana hiyo inaweza kuita API ileile."
+    ],
+    "en": [
+      "That tool can call the same API."
+    ],
+    "tts": "Zana hiyo inaweza kuita ei pi ai ileile."
+  },
+  {
+    "shot": "cta",
+    "sw": [
+      "Andika API. Mwongozo ni wa bure."
+    ],
+    "en": [
+      "Comment API. The guide is free."
+    ],
+    "tts": "Andika ei pi ai. Mwongozo ni wa bure."
+  }
+]

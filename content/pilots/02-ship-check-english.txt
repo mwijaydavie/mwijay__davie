@@ -1,0 +1,31 @@
+SHIP CHECK · ENGLISH ADAPTATION
+
+IG CAPTION
+Your app says “Saved.” Refresh. Is the note still there?
+
+In a local teaching lab, both versions showed the same toast. After reload, version A had zero notes; version B still had one. This is a controlled example, not a bug report about a client app or proof that AI caused a bug.
+
+If you build apps with AI, check the result outside the happy path: reload after a save, try a network interruption, and submit twice in staging. Look at the persisted record, not just the toast.
+
+Comment “TEST” and I’ll send the Ship Check PDF: seven checks, what a pass looks like, and a release log you can reuse.
+
+SLIDE COPY
+01 · BUILDING WITH AI? Your app says “Saved.” Does the note survive reload?
+02 · SAME TOAST. DIFFERENT RESULT. Both showed Saved. After reload: A has 0 notes; B has 1. A kept the note only in memory; B wrote it to browser storage. Test data in a local lab.
+03 · RUN IT, DON’T JUST READ IT. 76.5% of respondents to this optional Stack Overflow 2026 question selected “Run it locally” (n=13,162, multi-select, ODbL 1.0). Chart source: https://survey.stackoverflow.co/2026/ai/data/ai-work-next
+04 · TEST 01 / SAVE & RELOAD. Save QA-01. Reload. Verify one record with the same data.
+05 · TEST 02 / LOSE THE CONNECTION. Test in staging. Show offline or pending, not a false sync confirmation. Check a normal retry after reconnecting.
+06 · TEST 03 / DOUBLE TAP. In staging, tap submit twice. Expect one record, not two. Use dummy data and no real payments.
+07 · COMMENT TEST. Get the Ship Check PDF: seven tests, expected outcomes, and a release log.
+
+DM · INSERT AND VERIFY PDF LINK BEFORE SENDING
+Thanks for commenting TEST! Here’s the Ship Check PDF: [ENGLISH PDF LINK]. Start with save → reload → check the record. Use page three to record the result and your evidence.
+
+LINKEDIN · FOUNDER ADAPTATION
+A success toast is an assertion. A persisted record is evidence.
+
+In our browser lab, saving the same note in two versions produced the same “Saved” toast. After reload, one had no note and the other had one. It wasn’t a model benchmark. It was a useful reminder to turn “done” into something you can inspect after the screen has changed.
+
+Before handing a build to a client, I’d ask: What survives reload? What happens when a request is interrupted? Can one intent become two records? Record the expected outcome and the actual evidence. If a critical flow fails, hold the release and retest the fix.
+
+Comment “TEST” if you’d like the seven-check worksheet.

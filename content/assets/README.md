@@ -1,0 +1,6 @@
+# Asset notes
+
+- `altraware-mark.png` — original 256×256 transparent logo provided by Mwijay as `final_poster_1.png`. Keep proportions and colours; remove transparent padding for placement, not from the source file. No generative recreation.
+- [Njombe render assets](../../production/njombe/public/njombe/) — `homepage.jpg` and `harvest.jpg` are cropped from the owner's Avocado Farmers homepage screenshot. The fruit photo is decorative, not proof of an actual farm or harvest. The product palette is sampled from that screenshot. The avocado and field vectors are original illustrations in `production/njombe/src/illustrations.tsx`. Rendered slides live in ignored `out/`, not in Git. Confirm asset clearance before posting. Fraunces, Inter and JetBrains Mono are self-hosted via Fontsource.
+- Other provided screenshots are references, not stored here: `2026-10-02 113003` Nike Tz concept, `2026-10-05 124753` UAUT Connect, `2026-10-09 004416` AYMI Africa, `2026-10-09 005344` Mwijay Studio, `2026-10-09 005445` FaidaHQ, `2026-10-09 010507` Mwijay portfolio. Use only relevant, cleared crops; mask demo figures/claims and private data.
+- The private Drive video was reviewed for pacing and visual structure. It is not an asset for distribution or a source of revenue claims.

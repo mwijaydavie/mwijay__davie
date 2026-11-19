@@ -1,0 +1,9 @@
+{
+  "currency": "TSh",
+  "unitMl": 100,
+  "tiers": [
+    {"id": "small", "ml": 250, "price": 3000, "size": "250 mL", "for": "Kujaribu"},
+    {"id": "half", "ml": 500, "price": 5000, "size": "500 mL", "for": "Mtu mmoja"},
+    {"id": "large", "ml": 1000, "price": 9000, "size": "1 L", "for": "Kushare"}
+  ]
+}

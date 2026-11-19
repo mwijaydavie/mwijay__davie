@@ -1,0 +1,18 @@
+{
+  "width":1080,"height":1920,"fps":60,"frames":2700,
+  "workSwap":230,
+  "workBongoChange":127,
+  "workSpecsChange":77,
+  "ownRows":[191,244,349],
+  "offerNotes":[24,182,272,393],
+  "closeHold":333,
+  "review":{"type":81,"searchResult":226,"click":316,"open":340,"link":455,"own":1087,"bongo":1361,"audenic":1564,"offer":2087,"close":2400,"hold":2640},
+  "english": {
+    "workSwap":173,
+    "workBongoChange":121,
+    "workSpecsChange":96,
+    "ownRows":[195,260,328],
+    "offerNotes":[84,230,294,432],
+    "review":{"type":81,"searchResult":223,"click":314,"open":341,"link":460,"own":1055,"bongo":1330,"audenic":1515,"offer":2115,"close":2388,"hold":2640}
+  }
+}
