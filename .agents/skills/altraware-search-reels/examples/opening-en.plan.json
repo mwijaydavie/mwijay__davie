@@ -1,0 +1,7 @@
+{
+  "label":"SEARCH DEMO",
+  "query":"Where’s the lunch menu?",
+  "resultKind":"fictional",
+  "domain":"menu.example",
+  "beats":{"typing":17,"typed":112,"submit":123,"ready":168,"hover":240,"click":310,"open":324,"end":360}
+}

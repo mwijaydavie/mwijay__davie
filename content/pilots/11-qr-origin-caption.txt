@@ -1,0 +1,9 @@
+Kabla ya camera ya simu, QR code ilikuwa ya kiwandani.
+
+Kwenye line ya magari, barcode moja haikutosha. Mwaka 1994, Denso ikatoa QR Code: data inapangwa kwa upana na urefu. Zile square tatu zinasaidia scanner kuipata na kujua imekaaje.
+
+Kwenye demo hii nimeizungusha 90°. Ujumbe bado ni ule ule: HABARI DAR.
+
+QR ya mwisho uliyoscan ilikuwa ya nini?
+
+Chanzo cha historia: DENSO WAVE, qrcode.com/en/history/. Picha ni za mfano.

@@ -1,0 +1,23 @@
+[
+  {"shot":"hook","end":378,"trim":[0.235,5.965],"lead":6,"parts":[
+    {"at":0.235,"sw":["Umeandika chai."],"en":["You typed chai."]},
+    {"at":1.76,"sw":["Mbona pilau imerudi?"],"en":["Why did pilau come back?"]},
+    {"at":3.69,"sw":["Hii ni bug ya timing, si typo."],"en":["It's a timing bug, not a typo."]}]},
+  {"shot":"race","end":906,"trim":[0.245,8.51],"lead":6,"parts":[
+    {"at":0.245,"sw":["Request ya pilau ilianza kwanza."],"en":["The pilau request started first."]},
+    {"at":3.96,"sw":["Ya chai ikajibu kwanza."],"en":["The chai request answered first."]},
+    {"at":5.39,"sw":["Halafu pilau ikafika late,"],"en":["Then pilau arrived late"]},
+    {"at":7.47,"sw":["ikaondoa chai."],"en":["and replaced chai."]}]},
+  {"shot":"fix","end":1398,"trim":[0.255,7.89],"lead":6,"parts":[
+    {"at":0.255,"sw":["Fix ni hii."],"en":["Here's the fix."]},
+    {"at":1.66,"sw":["Kila search ipe ID."],"en":["Give each search request an ID."]},
+    {"at":3.8,"sw":["Jibu likirudi, kama si la request", "ya mwisho,"],"en":["When a response comes back,", "if it's not the latest request,"]},
+    {"at":6.81,"sw":["usibadili screen."],"en":["don't update the screen."]}]},
+  {"shot":"repeat","end":1848,"trim":[0.225,7.205],"lead":6,"parts":[
+    {"at":0.225,"sw":["Rudia test ileile."],"en":["Run the same test again."]},
+    {"at":2.07,"sw":["Pilau imechelewa tena,", "lakini screen imebaki na chai."],"en":["Pilau is late again,", "but the screen still shows chai."]},
+    {"at":4.83,"sw":["Error ya zamani nayo isiifute."],"en":["An old error shouldn't wipe it either."]}]},
+  {"shot":"cta","end":2220,"trim":[0.24,3.75],"lead":6,"parts":[
+    {"at":0.24,"sw":["Comment SEARCH,"],"en":["Comment SEARCH,"]},
+    {"at":1.38,"sw":["nikutumie mfano wa code", "ya kuzuia hii."],"en":["and I'll send you a code example", "that prevents this."]}]}
+]

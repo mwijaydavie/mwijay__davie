@@ -1,0 +1,40 @@
+CAPTION YA INSTAGRAM · SHIP CHECK
+
+App inasema “Saved”. Ukirefresh, note ipo?
+
+Kwenye local lab yetu, tulibonyeza Save kwenye mifano miwili. Zote ziliandika “Saved”. Baada ya refresh, A ilikuwa na note 0; B bado ilikuwa na QA-01. Tofauti? A iliweka note kwenye memory tu. B iliiandika kwenye storage ya browser. Huu ni mfano wa kujifunza, si matokeo ya app ya mteja.
+
+Ukiwa umejenga app kwa AI, usiangalie toast tu. Jaribu Save → refresh, kata net katikati ya hatua, kisha angalia kama kubonyeza mara mbili kunazalisha rekodi mbili. Fanya hizi kwenye test environment na data ya mfano.
+
+Comment “TEST” nikutumie Ship Check PDF: test 7, jinsi ya kujua kila test imepita, na sehemu ya kurekodi matokeo kabla ya kumpa client app.
+
+Chanzo cha slide 03: Stack Overflow Developer Survey 2026, “Next steps after receiving an AI prompt response,” n=13,162, swali la hiari la majibu mengi, ODbL 1.0: https://survey.stackoverflow.co/2026/ai/data/ai-work-next
+
+#VibeCoding #SoftwareTesting #BuildInTanzania #AltrawareTechnology
+
+CAPTION YA REEL
+
+App inasema “Saved”. Ukirefresh, note ipo?
+
+Kwenye test ya browser, mifano miwili ilisema “Saved”. Baada ya refresh: A → note 0. B → QA-01 bado ipo. Ni data ya mfano kwenye local lab; hapa hatujapima cloud sync.
+
+Kabla ya kukabidhi app, jaribu save na refresh, kata net kwenye staging, na hakiki kwamba kubonyeza mara mbili hakutengenezi rekodi mbili.
+
+Comment “TEST” nikutumie Ship Check PDF: test 7, matokeo yanayotarajiwa, na ukurasa wa kuandika PASS/FAIL.
+
+#VibeCoding #SoftwareTesting #BuildInTanzania #AltrawareTechnology
+
+JIBU LA COMMENT · BAADA YA KUTUMA DM TU
+Asante! Nimekutumia Ship Check PDF kwenye DM.
+
+DM · WEKA LINK YA PDF BAADA YA KUHAKIKI ACCESS
+Asante kwa kucomment TEST! Hii hapa Ship Check: [LINK YA PDF YA KISWAHILI]. Anza na test 01: Save, refresh, kisha hakiki kama rekodi yenyewe imesalia. Ukimaliza, tumia ukurasa wa 3 kuandika PASS/FAIL na ushahidi wako.
+
+ALT TEXT
+01 · App inasema Saved. Swali: ukirefresh, note ipo?
+02 · Picha kutoka browser test ya local lab. Baada ya refresh, mfano A una note 0, B una note 1, QA-01. Zote zilionyesha Saved kabla ya refresh. A iliweka note kwenye memory tu; B iliiandika kwenye storage ya browser.
+03 · Asilimia 76.5 ya watu 13,162 waliojibu swali la hiari la Stack Overflow 2026 walichagua ku-run jibu la AI locally kabla ya kulitumia. Waliruhusiwa kuchagua zaidi ya jibu moja.
+04 · Test 01. Weka QA-01, bonyeza Save, refresh, hakiki note moja yenye data ileile.
+05 · Test 02. Ukiwa kwenye test environment, kata net wakati wa kutuma data. App itofautishe draft, pending na synced kulingana na feature yake.
+06 · Test 03. Bonyeza kitufe mara mbili kwenye staging; hakiki kuwa kuna rekodi moja tu, si mbili. Usitumie malipo halisi.
+07 · Comment TEST kupata Ship Check PDF yenye test 7, matokeo yanayotarajiwa na test log.

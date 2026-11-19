@@ -1,0 +1,2 @@
+.th-person,.th-layer,.th-torso,.th-cast,.th-contact{position:absolute;display:block;pointer-events:none}
+.th-person{z-index:4}.th-torso{left:0;top:0}.th-cast{border-radius:50%;background:radial-gradient(ellipse,#18375d58 6%,#18375d28 54%,transparent 76%);transform:skewX(-13deg)}.th-contact{border-radius:50%;background:#22263b69;filter:blur(3px)}.th-mark{object-fit:contain;mix-blend-mode:multiply;transform:rotate(1deg)}

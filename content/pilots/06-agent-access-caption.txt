@@ -1,0 +1,21 @@
+INSTAGRAM · REEL
+
+AI isome stoo. Bei ibaki.
+
+MCP inaunganisha AI na zana za mfumo wako. Haipangii AI ruhusa zote. Kwenye jaribio letu la ndani, ombi la kusoma stoo lilipita. Ombi la kubadili bei lilikataliwa; bei ya mfano ilibaki ileile.
+
+Kwa nini sasa? Tarehe 18 Novemba 2026, Proof ilitangaza MCP yake ndani ya ChatGPT, ikianzia uthibitishaji wa nani aliidhinisha kitendo maalumu kupitia x401. Na ajenda ya APICon Tanzania, 21 Novemba, Dar es Salaam, ina AI Agents & MCP.
+
+Kama unajenga kwa kutumia AI, anzia ruhusa ya kusoma tu. Mabadiliko ya bei yapitie idhini ya mtu. Hifadhi Reel hii kabla ya kuunganisha agent yako.
+
+#VibeCoding #MCP #SoftwareTanzania #AIAgents #AltrawareTechnology
+
+VYANZO / NOTES
+• Proof, 18 Nov 2026: https://www.proof.com/blog/proof-launches-its-mcp-in-chatgpt-starting-with-x401
+• APICon Tanzania, 21 Nov 2026, Confucius UDSM: https://apicon.or.tz/
+• MCP 2026-07-28 specification / Tools: https://modelcontextprotocol.io/specification/2026-07-28/server/tools
+• FaidaHQ: screenshot ya preview ya website, si ushahidi wa kuunganishwa na MCP. Demo ilitumia bidhaa na hesabu za mfano. Picha za kaunta na mkono ni vielelezo vilivyozalishwa.
+• Ukitumia caption baada ya tukio, sema “AI Agents & MCP ilikuwa kwenye ajenda iliyotangazwa”; usidai tukio lilifanyika au tulihudhuria bila kuhakiki.
+
+ENGLISH · LINKEDIN ADAPTATION
+The first question for a retail AI feature isn’t “Which model?” It’s “Which actions are allowed?” Our local MCP test advertises a stock-read tool, does not expose a price-write tool, and verifies that a denied write leaves the fixture price unchanged. The FaidaHQ capture illustrates the retail context; it is not an integration test. Give the agent the minimum tools it needs, and keep consequential changes in an approval flow your backend enforces.

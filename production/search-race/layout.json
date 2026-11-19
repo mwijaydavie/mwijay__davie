@@ -1,0 +1,10 @@
+{
+  "width": 1080,
+  "height": 1920,
+  "fps": 60,
+  "frames": 2220,
+  "race": [39, 174, 246, 362],
+  "repeat": [18, 44, 113, 201],
+  "oldError": 292,
+  "review": {"waveA":40,"waveB":65,"open":96,"blink":102,"reopen":111,"point":827,"before":864,"guard":1294,"after":1664,"oldError":1740,"cta":2156}
+}

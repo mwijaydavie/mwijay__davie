@@ -1,0 +1,24 @@
+{
+  "sw": {
+    "slug": "website-era",
+    "plan": "opening.plan.json",
+    "cues": "cues.json",
+    "preview": "Website-Yako-AI-Era-Reel.mp4",
+    "master": "Website-Yako-VO-Master.mp4",
+    "cover": "Cover-Website-Yako.png",
+    "pdf": "WEB-Checklist-ya-Website.pdf",
+    "kit": "Website-Yako-Owner-Kit.zip",
+    "sidecars": {"sw": "Website-Yako-Swanglish.srt", "en": "Website-Yako-English.srt"}
+  },
+  "en": {
+    "slug": "website-era-en",
+    "plan": "opening-en.plan.json",
+    "cues": "cues.en.json",
+    "preview": "Why-Your-Website-Matters-EN-Reel.mp4",
+    "master": "Why-Your-Website-Matters-EN-VO-Master.mp4",
+    "cover": "Cover-Why-Your-Website-Matters-EN.png",
+    "pdf": "WEB-Website-Checklist-EN.pdf",
+    "kit": "Website-Era-English-Owner-Kit.zip",
+    "sidecars": {"en": "Why-Your-Website-Matters-EN.srt"}
+  }
+}

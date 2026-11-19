@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Save check · local QA lab</title>
+<link rel="stylesheet" href="/theme.css">
+<style>
+  body{background:var(--night);color:#fff;padding:42px 37px}
+  main{max-width:572px;margin:0 auto}
+  .top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:24px;color:var(--violet);font:600 18px var(--mono)}
+  .local{padding:7px 12px;border:1px solid #67608c;border-radius:99px}
+  form{padding:22px;border:2px solid var(--line);background:var(--tile);border-radius:18px;display:grid;gap:13px}
+  label{font-size:26px;font-weight:720}
+  input{width:100%;background:#10132b;color:#fff;border:1px solid #676e95;border-radius:10px;padding:12px;font-size:24px}
+  .actions{display:flex;align-items:center;gap:25px;min-height:52px}
+  button{background:var(--violet);border:0;color:var(--ink);padding:11px 18px;border-radius:9px;font-weight:760;font-size:23px;cursor:pointer}
+  button:focus-visible,input:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
+  output{font:650 23px var(--mono);color:var(--lime)}
+  .ledger{margin-top:23px;background:var(--paper);color:var(--ink);border:2px solid var(--paper-edge);border-radius:22px;padding:25px 29px 30px}
+  .ledger-head{display:flex;justify-content:space-between;align-items:center;gap:15px;border-bottom:2px solid var(--paper-edge);padding-bottom:16px}
+  h1{font-size:28px;margin:0;font-weight:820;letter-spacing:-.04em}
+  .ledger-mode{font:690 20px var(--mono);color:var(--purple)}
+  #count{font:750 86px/.98 var(--mono);letter-spacing:-.095em;margin:17px 0 11px;color:var(--purple)}
+  #record{margin:0;font-size:28px;font-weight:650;min-height:37px;overflow-wrap:anywhere}
+  @media(max-width:470px){body{padding:18px 14px}.top{font-size:13px}.ledger{padding:22px}}
+</style>
+<main>
+  <div class="top"><span>ALTRAWARE · SAVE CHECK</span><span class="local">LOCAL LAB</span></div>
+  <form id="form">
+    <label for="title">Test note</label>
+    <input id="title" required maxlength="36" autocomplete="off" placeholder="QA-01">
+    <div class="actions"><button>Save</button><output id="feedback" role="status" aria-live="polite"></output></div>
+  </form>
+  <section class="ledger" aria-labelledby="ledger-title">
+    <div class="ledger-head"><h1 id="ledger-title">Saved notes</h1><span class="ledger-mode" id="variant-label"></span></div>
+    <p id="count" aria-label="Number of saved notes">0</p>
+    <p id="record">No notes</p>
+  </section>
+</main>
+<script type="module">
+  // Deliberately contrasting normal UI flows in a one-record, network-free teaching lab.
+  // Variant A is intentionally wrong: its “Saved” label only describes in-memory UI state.
+  const durable = new URL(location.href).searchParams.get('variant') === 'B';
+  const key = 'ship-check:demo-note:v1';
+  const title = document.getElementById('title');
+  const feedback = document.getElementById('feedback');
+  let value = durable ? localStorage.getItem(key) : null;
+  document.getElementById('variant-label').textContent = durable ? 'BUILD B' : 'BUILD A';
+  function draw() {
+    document.getElementById('count').textContent = value ? '1' : '0';
+    document.getElementById('record').textContent = value ? value : 'No notes';
+  }
+  document.getElementById('form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const next = title.value.trim();
+    if (!next) { feedback.textContent = 'Add a title'; return; }
+    try {
+      if (durable) localStorage.setItem(key, next);
+      value = next;
+      draw();
+      feedback.textContent = 'Saved';
+    } catch {
+      feedback.textContent = 'Not saved';
+    }
+  });
+  draw();
+</script>
+</html>

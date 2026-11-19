@@ -29,6 +29,8 @@ Choose real voice or audition and approve TTS by language before generating full
 
 For the first vertical preview keep all critical text in the conservative working box `x: 80..940, y: 360..1420`; verify against current platform UI before final. Background imagery may fill bleed. Preview at about 360 px wide, muted and with sound.
 
+**Altraware voice and visual direction:** see the [owner playbook](../../../content/creative-direction.md). Check the last two episodes before choosing the background. For stock video, verify the specific clip license and record author, source, cut/crop and consent context. Deliver an optional clean picture track plus read-aloud cue sheet for a founder VO when requested; do not use a caption-timed synthetic take as proof of human pronunciation.
+
 ## 4. Render and release gate
 
 With a pinned Remotion project and an approved composition (replace these example paths/IDs with the actual ones):

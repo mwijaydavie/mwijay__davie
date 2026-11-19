@@ -1,0 +1,10 @@
+[
+  {"shot":"hook","sw":["Umejenga app kwa AI. Inasema","note imehifadhiwa. Ukirefresh, bado ipo?"],"en":["You built an app with AI. It says saved.","Refresh: is the note still there?"]},
+  {"shot":"before","sw":["Kwenye jaribio hili, mifano yote miwili","ilionyesha ujumbe uleule."],"en":["In this test, both builds showed","the same message."]},
+  {"shot":"proof","sw":["Tuliporefresh, A ilikuwa na note sifuri.","B ilibaki na ileile."],"en":["After reload, A had zero notes.","B kept the same note."]},
+  {"shot":"why","sw":["A iliweka note kwenye memory tu.","B ilihifadhi kwenye browser."],"en":["A only held the note in memory.","B saved it in the browser."]},
+  {"shot":"save","sw":["Anza na save, refresh, kisha","hakiki rekodi yenyewe."],"en":["Start with save, reload,","and check the record itself."]},
+  {"shot":"net","sw":["Kata net kwenye staging. App isiseme","imesync mpaka ithibitishe."],"en":["Disconnect in staging. Show synced","only after confirmation."]},
+  {"shot":"retry","sw":["Bonyeza submit mara mbili.","Kwa ombi moja, tarajia rekodi moja."],"en":["Tap Submit twice. One intent","should create one record."]},
+  {"shot":"cta","sw":["Comment TEST nikutumie PDF ya test saba,","na sehemu ya kuandika matokeo."],"en":["Comment TEST for the seven-check PDF","and a log to record the results."]}
+]

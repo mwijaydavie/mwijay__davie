@@ -1,0 +1,22 @@
+[
+  {"shot":"hook","end":258,"trim":[0.26,3.98],"lead":6,"parts":[
+    {"at":0.26,"sw":["Kabla ya camera ya simu,"],"en":["Before phone cameras," ]},
+    {"at":1.96,"sw":["QR code ilikuwa ya kiwandani."],"en":["the QR Code belonged on factory floors."]}]},
+  {"shot":"factory","end":648,"trim":[0.24,6.24],"lead":6,"parts":[
+    {"at":0.24,"sw":["Kwenye line ya magari,"],"en":["On automotive production lines,"]},
+    {"at":1.81,"sw":["barcode moja haikutosha."],"en":["one barcode wasn't enough."]},
+    {"at":4.20,"sw":["Wafanyakazi wakascan kadhaa."],"en":["Workers had to scan several."]}]},
+  {"shot":"invention","end":1100,"trim":[0.21,7.19],"lead":6,"parts":[
+    {"at":0.21,"sw":["Mwaka 1994, Denso ikatoa","QR code."],"en":["In 1994, Denso released","the QR Code."]},
+    {"at":4.69,"sw":["Ilibeba data kwa upana na urefu."],"en":["It stored data across and down."]}]},
+  {"shot":"finders","end":1436,"trim":[0.24,5.32],"lead":6,"parts":[
+    {"at":0.24,"sw":["Unaona zile square tatu?"],"en":["See those three squares?"]},
+    {"at":2.33,"sw":["Zinaisaidia scanner","kujua code imekaaje."],"en":["They help the scanner work out","which way the code is facing."]}]},
+  {"shot":"test","end":1752,"trim":[0.28,4.96],"lead":6,"parts":[
+    {"at":0.28,"sw":["Nimeizungusha."],"en":["I turned it sideways."]},
+    {"at":1.87,"sw":["Ujumbe bado ni ule ule."],"en":["The message is still the same."]},
+    {"at":3.89,"sw":["Habari Dar."],"en":["Hello, Dar."]}]},
+  {"shot":"close","end":2160,"trim":[0.24,5.94],"lead":6,"parts":[
+    {"at":0.24,"sw":["Kutoka kiwandani hadi mfukoni."],"en":["From the factory to your pocket."]},
+    {"at":3.24,"sw":["QR ya mwisho uliyoscan","ilikuwa ya nini?"],"en":["What was the last QR Code","you scanned for?"]}]}
+]

@@ -29,11 +29,11 @@ Hii inatokana na [portfolio yako](https://mwijayportfolio.vercel.app/about), [wa
 | 1 | **Built in Tanzania** · Avocado Farmers | “Tumejenga software kwa biashara ya parachichi. Inafanya nini?” Onyesha screenshot ya demo na mfano wa filters, hali na ombi. | Changamoto ya taarifa kutawanyika → software ya Njombe → ombi lenye maelezo, slide 6. | Why we put harvest status before the buy request. |
 | 2 | **Systems under pressure** · Faida POS | “Wi-Fi ikikatika, rekodi ya mauzo inakuwaje?” Checkout simulation au build iliyojaribiwa, si ahadi ya malipo offline. | Checklist kwa mwenye duka: sale saved vs payment confirmed. | The difference between saving a sale and confirming a payment. |
 | 3 | **Vibe coding, with receipts** · MwijayNote | “App inasema ime-save. Sasa tuizime internet.” Onyesha save → reload kwenye build au mfano ulioandikwa `DEMO`; rekodi diff ya AI-assisted ikiwa tumeifanya. | Mambo 3 ya kukagua kabla ya kumpa client prototype. | Show a small diff, its verification test and one remaining trade-off. |
-| 4 | **Tech skills → paid work** · AYMI au mfano wa biashara | “Kabla hujatoza bei, client anataka ajue atapata nini?” | Paid pilot: scope, delivery, test na support. Tumia UI ya AYMI tu baada ya kibali. | How to scope one business workflow instead of selling a list of features. |
+| 4 | **Tech skills → paid work** · AYMI au mfano wa biashara | “Kabla hujatoza bei, client anataka ajue atapata nini?” | Pilot ya kulipiwa: kazi zitakazofanywa, kukabidhi, kupima na msaada. Tumia UI ya AYMI tu baada ya kibali. | How to scope one business workflow instead of selling a list of features. |
 
 Hizo ni **draft tatu kwa wiki kutoka story moja**, si story 12 tofauti. Tengeneza kwa mpangilio **brief → Reel → carousel → LinkedIn**, kisha toa nafasi tofauti (mfano Jumanne/Jumatano/Ijumaa EAT baada ya approval). Tarehe na saa si ahadi ya reach. Usipost clip ileile kwa akaunti zote.
 
-**Money making online:** anza na njia inayolingana na kazi yako: tafuta tatizo linalojirudia → onyesha demo → pendekeza paid pilot yenye scope ndogo → toa matengenezo kama yanafaa. Tufundishe namna ya kufafanua kazi na kupata mazungumzo ya kweli; hakuna “utapata TSh X kwa siku,” screenshots za mapato yasiyothibitishwa, au ROI ya kubuni.
+**Money making online:** anza na njia inayolingana na kazi yako: tafuta tatizo linalojirudia → onyesha demo → pendekeza pilot ya kulipiwa yenye kazi chache zilizo wazi → toa matengenezo kama yanafaa. Tufundishe namna ya kufafanua kazi na kupata mazungumzo ya kweli; hakuna “utapata TSh X kwa siku,” screenshots za mapato yasiyothibitishwa, au ROI ya kubuni.
 
 ## 3 · Kutafuta trend bila kuandika habari za kubahatisha
 
@@ -56,3 +56,5 @@ Wiki ya kwanza inaanzisha baseline; hakuna target ya followers ya kubuni. Jaza [
 Mwisho wa mwezi: chagua series moja inayopata replays/shares na moja inayoleta inquiries zenye maana. Badilisha kitu **kimoja** kwenye batch inayofuata: hook, brief, au CTA. Usipime mafanikio ya carousel kwa likes pekee.
 
 **Pilot ya kwanza:** [Parachichi la Njombe](pilots/01-njombe.md), carousel na Reel. CTA ya batch hii ni comment **PARACHICHI** ili upate link ya demo. Baada ya review yako, tumia caption na DM copy zilizo kwenye pack; rekodi metrics baada ya kupost.
+
+**Tech Tip pilot:** [Tech Tip: AI Inafanya Kazi?](tech-tip-series.md) ina Reel ya kutofautisha MCP na API, PDF ya bure, roadmap na test ya saa mbili za posting kwa EAT. Comment **API** ilete resource kwanza; follow/email si gate ya default.

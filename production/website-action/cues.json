@@ -1,0 +1,16 @@
+[
+  {"shot":"hook","end":366,"trim":[0.25,5.84],"lead":5,"parts":[
+    {"at":0.25,"sw":["Mteja akiuliza, menu iko wapi?"],"en":["When a customer asks, ‘Where's the menu?’"]},
+    {"at":3.15,"sw":["Website yako ijibu kabla ya DM."],"en":["Let your website answer before the DM."]}]},
+  {"shot":"open","end":766,"trim":[0.32,6.40],"lead":6,"parts":[
+    {"at":0.32,"sw":["Hii ni Bongo Foodie,","demo tuliyojenga."],"en":["This is Bongo Foodie, a demo we built."]},
+    {"at":3.71,"sw":["Kwa simu, gusa Explore the Menu."],"en":["On your phone, tap Explore the menu."]}]},
+  {"shot":"search","end":1176,"trim":[0.24,6.42],"lead":6,"parts":[
+    {"at":0.24,"sw":["Tafuta pilau."],"en":["Search for pilau."]},
+    {"at":1.84,"sw":["Unaona picha, jina na bei,","kwenye screen moja."],"en":["See the photo, name and price","on the same screen."]}]},
+  {"shot":"design","end":1632,"trim":[0.25,7.27],"lead":7,"parts":[
+    {"at":0.25,"sw":["Altraware, tunaanza","na action ya mteja."],"en":["At Altraware, we start with","what the customer needs to do."]},
+    {"at":3.93,"sw":["Halafu tunadesign page","inayomfikisha hapo."],"en":["Then we design the page","that gets them there."]}]},
+  {"shot":"cta","end":1920,"trim":[0.23,3.20],"lead":7,"parts":[
+    {"at":0.23,"sw":["Comment LINK,","nikutumie demo ujionee."],"en":["Comment LINK and I'll send you the demo."]}]}
+]

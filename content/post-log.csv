@@ -1,1 +1,1 @@
-post_id,project_id,channel,format,language,hook,cta,published_at_eat,post_url,measurement_hours,duration_seconds,reach,views,average_watch_seconds,shares,saves,profile_visits,qualified_inquiries,notes
+post_id,project_id,channel,format,language,hook,cta,published_at_eat,post_url,measurement_hours,duration_seconds,reach,views,average_watch_seconds,shares,saves,profile_visits,qualified_inquiries,unique_keyword_commenters,dm_sent,dm_delivered,resource_link_clicks,notes

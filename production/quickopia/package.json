@@ -1,0 +1,19 @@
+{
+  "name": "altraware-quickopia-motion",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "motion-proof": "node render-motion-proof.mjs",
+    "render": "node scripts/render.mjs"
+  },
+  "devDependencies": {
+    "@fontsource-variable/inter": "5.3.0",
+    "@fontsource-variable/jetbrains-mono": "5.3.0",
+    "@remotion/bundler": "4.0.544",
+    "@remotion/renderer": "4.0.544",
+    "@resvg/resvg-js": "2.6.2",
+    "react": "19.2.9",
+    "react-dom": "19.2.9",
+    "remotion": "4.0.544"
+  }
+}

@@ -1,0 +1,9 @@
+Umeandika chai. Mbona pilau imerudi?
+
+Kwenye demo hii, request ya pilau ilianza kwanza. Chai ikajibu kwanza, halafu pilau ikafika late na kuifuta kwenye results.
+
+Fix: ipe kila request ID. Jibu likirudi, angalia kama ID bado ndiyo ya request mpya zaidi. Ya zamani isi-update screen, hata ikirudisha error.
+
+Comment SEARCH nikutumie mfano wa JavaScript wa ku-run na tests zake.
+
+Hii ni demo ya local, si test ya app au API halisi.
