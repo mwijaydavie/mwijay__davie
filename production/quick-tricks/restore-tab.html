@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="sw"><meta charset="utf-8"><title>Quick Tricks 01 · Rudisha tab</title>
+<style>
+/* The still renderer supplies the two pinned local fonts and the maker mark. */
+:root{--navy:#222342;--white:#faf8ee;--lime:#def59c;--lavender:#e2d8fc;--faint:#aeb0d8;--ink:#232341;--head:Bricolage,Arial,sans-serif;--body:Inter,Arial,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:#111125}
+.art{position:relative;isolation:isolate;overflow:hidden;width:1080px;height:1350px;background:radial-gradient(ellipse at 102% 0,#443d65 4%,#292a51 45%,#222342 74%);color:var(--white);padding:68px 75px;font:500 32px/1.25 var(--body)}
+.grid{position:absolute;inset:0;z-index:-2;background-image:linear-gradient(90deg,#a6a7d822 1px,transparent 1px),linear-gradient(#a6a7d822 1px,transparent 1px);background-size:40px 40px;mask-image:linear-gradient(115deg,transparent 26%,#000 92%)}
+.rings{position:absolute;z-index:-1;width:630px;height:630px;right:-305px;top:-188px;border:2px solid #ad9bd069;border-radius:50%;box-shadow:0 0 0 32px #a894c820,0 0 0 86px #a894c822,0 0 0 88px #a894c844}
+header,footer{display:flex;align-items:center;justify-content:space-between;gap:18px}header{font:790 23px/1 var(--body);letter-spacing:.09em}
+header div{display:flex;align-items:center;gap:14px}header img{background:#f8f3ea;width:52px;height:52px;padding:8px;object-fit:contain;border-radius:13px}
+header span{padding:10px 15px;border-radius:3px;border:1px solid #c1b3dc;color:#e8dafa;font-size:22px;letter-spacing:.06em}
+main{margin-top:78px}.index{display:inline-flex;align-items:center;gap:12px;font:790 24px/1 var(--body);letter-spacing:.105em;color:#e2def8}
+.index i{width:12px;height:12px;background:var(--lime);border-radius:50%}
+h1,p{margin:0}h1{font:861 143px/.86 var(--head);letter-spacing:-.078em;margin:23px 0 18px;white-space:nowrap}h1 em{font-style:normal;color:var(--lime)}
+.lead{font:575 35px/1.15 var(--body);letter-spacing:-.028em;color:#e0ddf1}
+figure{margin:48px 0 39px;position:relative;padding:19px 20px 15px;background:#1b1c35;border:1px solid #8377a8;border-radius:9px}
+figcaption{color:#cec2e1;font:750 18px/1 var(--body);letter-spacing:.12em;margin-bottom:13px}
+.demo{display:grid;grid-template-columns:1fr 69px 1fr;align-items:center;gap:7px}.demo .arrow{display:grid;place-items:center;color:var(--lime);font:800 45px/1 var(--body)}
+.tab{position:relative;min-height:126px;padding:16px 14px 14px;background:#333653;border:1px dashed #a3a0c3;border-radius:7px}
+.tab.done{background:#f7f8e9;color:#252743;border:1px solid #d5eaaa;box-shadow:0 -3px 0 var(--lime)}
+.tab small{display:block;font:760 16px/1 var(--body);letter-spacing:.078em;margin-bottom:9px;color:#e5d7f1}.tab.done small{color:#496637}
+.tab b{font:775 36px/1 var(--head);letter-spacing:-.043em;white-space:nowrap}.tab:not(.done) b{text-decoration:line-through;color:#dedbec}.tab i{position:absolute;right:14px;bottom:16px;font:810 27px/1 var(--body);font-style:normal}
+.keys{color:var(--ink);border-radius:8px;background:var(--white);box-shadow:9px 11px #15152d;padding:0 19px}
+.keyrow{min-height:144px;display:grid;grid-template-columns:208px 1fr;align-items:center;gap:4px;padding:11px 9px}
+.keyrow+.keyrow{border-top:1px solid #bcb9d7}.os b{display:block;font:810 28px/1 var(--head);letter-spacing:-.034em}.os small{font:750 17px/1 var(--body);color:#5d527a}.chord{display:flex;align-items:center;gap:13px;font:770 37px/1 var(--body);white-space:nowrap}
+kbd{border-radius:8px;background:var(--lavender);border:1px solid #9988bc;border-bottom:5px solid #9d86bb;display:inline-grid;place-items:center;min-width:86px;padding:12px 16px;font:810 43px/1 var(--body);letter-spacing:-.045em}
+kbd:first-child{background:var(--lime);border-color:#819358;min-width:132px}.cmd{font-family:Inter,'DejaVu Sans',sans-serif}kbd:last-child{min-width:78px}
+.note{margin:37px 0 0;padding:19px 18px;min-height:71px;border-left:4px solid #a9bb84;background:#363855;color:#eae2fa;font:580 27px/1.2 var(--body);letter-spacing:-.028em}.note b{color:var(--lime)}
+footer{position:absolute;bottom:58px;left:75px;right:75px;padding-top:18px;border-top:1px solid #9188a9;color:#ddd5f0;font:750 21px/1 var(--body);letter-spacing:.075em}
+footer a{color:inherit;text-decoration:none}footer b{color:var(--lime)}
+</style><body><article class="art">
+<div class="grid" aria-hidden="true"></div><div class="rings" aria-hidden="true"></div>
+<header><div><img alt="" src="@@LOGO@@"><b>ALTRAWARE</b></div><span>QUICK TRICKS / 01</span></header>
+<main><div class="index"><i></i>CHROME · DESKTOP</div>
+<h1>Rudisha <em>tab.</em></h1><p class="lead">Umefunga tab kwa bahati mbaya?</p>
+<figure><figcaption>MFANO · TAB ILEILE</figcaption><div class="demo">
+<div class="tab"><small>IMEFUNGWA</small><b>Menu ya leo</b><i aria-hidden="true">×</i></div>
+<div class="arrow" aria-hidden="true">→</div><div class="tab done"><small>IMERUDI</small><b>Menu ya leo</b><i aria-hidden="true">✓</i></div>
+</div></figure>
+<div class="keys" aria-label="Njia mbili za kurudisha tab kulingana na computer">
+<div class="keyrow"><div class="os"><b>Windows / Linux</b></div><div class="chord"><kbd>Ctrl</kbd><span>+</span><kbd>Shift</kbd><span>+</span><kbd>T</kbd></div></div>
+<div class="keyrow"><div class="os"><b>Mac</b><small>⌘ = Command</small></div><div class="chord"><kbd class="cmd" aria-label="Command">⌘</kbd><span>+</span><kbd>Shift</kbd><span>+</span><kbd>T</kbd></div></div>
+</div><p class="note">Bonyeza keys pamoja. Tumia window ya kawaida, <b>si Incognito.</b></p></main>
+<footer><a href="https://support.google.com/chrome/answer/157179">SOURCE: GOOGLE CHROME HELP</a><b>HIFADHI TIP HII</b></footer>
+</article></body></html>

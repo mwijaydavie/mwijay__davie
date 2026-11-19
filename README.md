@@ -20,7 +20,8 @@ Content studio ya Kiswahili na English: tunachukua build halisi, tunaonyesha jin
 | [Business Story 01 · Bei ileile](content/pilots/12-price-story.md) · [series](content/business-story-series.md) | Pricing ya chaguo 2 → 3, 47s Reel, `SIZE` worksheet draft |
 | [Code Story 01 · Mbona pilau imerudi?](content/pilots/13-search-race.md) | 37s male host pilot, request-ID lab na `SEARCH` example |
 | Business Story 02 · [Website Yako](content/pilots/14-website-era.md) · [English cut](content/pilots/14-website-era-en.md) · [search-led Reel skill](.agents/skills/altraware-search-reels/SKILL.md) | 45s Reel, mfano wa search, builds mbili, mouth rig na `WEB` checklists za kila lugha |
-| [Tech Tip series](content/tech-tip-series.md) · [Quick Tricks](content/quick-tricks-series.md) · [creative direction](content/creative-direction.md) | Shortcuts, visual rotation, voice na posting experiment (EAT) |
+| [Business Story 03 · Free delivery?](content/pilots/15-free-delivery.md) | 39s Swanglish Reel, close-up ya host, receipts mbili na `TOTAL` worksheet |
+| [Tech Tip series](content/tech-tip-series.md) · [Quick Tricks](content/quick-tricks-series.md) · [creative direction](content/creative-direction.md) | Kadi ya kurudisha tab, visual rotation, voice na posting experiment (EAT) |
 | [Mada zinazofuata](content/research/2026-11-18-content-runway.md) | Primary sources, proof ya kuonyesha na mzunguko wa kuandaa post |
 | [Project register](content/projects.md) | Miradi 15, status, post history, ushahidi na angle inayofuata |
 | [Research notes](content/research/2026-11-18.md) | Site/repo findings, uchambuzi wa video ya Drive na vyanzo vya data |
@@ -28,6 +29,6 @@ Content studio ya Kiswahili na English: tunachukua build halisi, tunaonyesha jin
 | [Tech video skill](.agents/skills/tech-video-motion-graphics/SKILL.md) | Kanuni za frame-driven motion, TTS, captions, render na QA |
 | [Post log](content/post-log.csv) | Metrics halisi baada ya wewe kupost; hakuna baseline ya kubuni |
 
-**Hali:** Bei ileile na Website Yako (Business), pamoja na Mbona pilau imerudi? (Coding), ziko kwa owner review. Hakuna post iliyopublish au kupangiwa muda.
+**Hali:** Bei ileile, Website Yako, Free delivery?, Mbona pilau imerudi?, na kadi ya Rudisha tab ziko kwa owner review. Hakuna post iliyopublish au kupangiwa muda.
 
 **Update ijayo:** taja project, kilichobadilika, toleo au link ya umma, na kitu kinachoruhusiwa kuonyeshwa. Tutarekebisha register na copy husika bila kupoteza history ya posts.
