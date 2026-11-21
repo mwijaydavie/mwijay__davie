@@ -1,0 +1,2 @@
+# Rendered output lives outside Git (see repo .gitignore: /out/)
+node_modules/

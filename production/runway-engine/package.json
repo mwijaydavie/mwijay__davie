@@ -1,0 +1,24 @@
+{
+  "name": "altraware-runway-engine",
+  "private": true,
+  "type": "module",
+  "description": "Deterministic 1080x1920 / 60fps motion-graphics engine for the 3-track runway (AI systems, business stories, tool showdowns)",
+  "scripts": {
+    "check": "node src/cli.mjs check",
+    "list": "node src/cli.mjs list",
+    "stills": "node src/cli.mjs stills",
+    "video": "node src/cli.mjs video",
+    "carousel": "node src/cli.mjs carousel",
+    "test": "node --test test/engine.test.mjs",
+    "sheet": "node src/cli.mjs sheet"
+  },
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "1.1.0",
+    "@fontsource/fraunces": "5.3.0",
+    "@fontsource/inter": "5.3.0",
+    "@fontsource/jetbrains-mono": "5.3.0",
+    "@fontsource/space-grotesk": "5.3.0",
+    "@resvg/resvg-js": "2.6.2",
+    "fontkit": "2.0.4"
+  }
+}
