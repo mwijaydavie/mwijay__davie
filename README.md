@@ -27,8 +27,10 @@ Content studio ya Kiswahili na English: tunachukua build halisi, tunaonyesha jin
 | [Research notes](content/research/2026-11-18.md) | Site/repo findings, uchambuzi wa video ya Drive na vyanzo vya data |
 | [Tool shortlist](content/tools.md) | Repos zilizopitiwa, kila tool inatumika lini, na nini cha kuahirisha |
 | [Tech video skill](.agents/skills/tech-video-motion-graphics/SKILL.md) | Kanuni za frame-driven motion, TTS, captions, render na QA |
+| [Runway ya akaunti 3](content/runway/README.md) | Akaunti 3 tofauti (AI systems EN · Stories EN · Tools SW), posts 63 kwa siku 21, engine moja ya motion graphics |
+| [Files za runway](content/runway/files/README.md) | Lead magnets 5 za PDF (A5, fonts embedded) zinazolingana na keyword za DM; rejista ya CTA ambazo bado hazina file |
 | [Post log](content/post-log.csv) | Metrics halisi baada ya wewe kupost; hakuna baseline ya kubuni |
 
-**Hali:** Bei ileile, Website Yako, Free delivery?, Mbona pilau imerudi?, na kadi ya Rudisha tab ziko kwa owner review. Hakuna post iliyopublish au kupangiwa muda.
+**Hali:** Bei ileile, Website Yako, Free delivery?, Mbona pilau imerudi?, na kadi ya Rudisha tab ziko kwa owner review. Hakuna post iliyopublish au kupangiwa muda. **Runway mpya:** posts 3 za mwanzo ziko tayari kama spec + rendered Reel (`content/runway/`), posts 60 ziko kama brief; lead magnets 5 ziko tayari (`content/runway/files/`) — nyingine 58 za CTA bado zinahitaji file au CTA mbadala; akaunti hazijafunguliwa.
 
 **Update ijayo:** taja project, kilichobadilika, toleo au link ya umma, na kitu kinachoruhusiwa kuonyeshwa. Tutarekebisha register na copy husika bila kupoteza history ya posts.
