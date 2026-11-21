@@ -1,0 +1,77 @@
+{
+  "slug": "t1-01-invoice-twice",
+  "track": 1,
+  "tag": "AI SYSTEMS",
+  "keyword": "STACK",
+  "footerLine": "Free checklist in DM.",
+  "footerNote": "Sample data. No client records on screen.",
+  "caption": "Your invoice already exists in a chat, a notebook and a receipt. You retype it for the PDF.\n\nCollect 6 fields once — who, what, how many, how much, when, paid or not — and the second copy writes itself.\n\nComment STACK and I'll send the 6-field checklist plus the 3-step flow. No new software needed.",
+  "cta": "ManyChat: STACK → Invoice-Flow-Checklist.pdf (verify delivery before posting)",
+  "scenes": [
+    {
+      "type": "cover",
+      "eyebrow": "AI WORKFLOWS",
+      "kicker": "INVOICING",
+      "headline": "You already wrote the invoice. Why are you typing it twice?",
+      "sub": "Six fields, collected once.",
+      "cues": [
+        {"in": 10, "out": 118, "text": "You already wrote this invoice."},
+        {"in": 128, "out": 250, "text": "Then you typed it again for the PDF."}
+      ]
+    },
+    {
+      "type": "workflow",
+      "kicker": "THE FLOW",
+      "headline": "Three steps, one afternoon.",
+      "nodes": [
+        {"title": "Capture", "detail": "Order lands in one sheet, not four chats", "badge": "1 SHEET"},
+        {"title": "Draft", "detail": "Template fills the six fields you already collect", "badge": "AUTO"},
+        {"title": "Approve", "detail": "You tap send. Nothing leaves without you.", "badge": "HUMAN"}
+      ],
+      "caption": "No step here sends anything on its own.",
+      "cues": [
+        {"in": 8, "out": 96, "text": "Capture once, in one sheet."},
+        {"in": 104, "out": 196, "text": "Draft from the fields you trust."},
+        {"in": 204, "out": 300, "text": "Approve every send, by hand."}
+      ]
+    },
+    {
+      "type": "checklist",
+      "kicker": "THE SIX FIELDS",
+      "headline": "If you cannot name these, software will not fix it.",
+      "items": [
+        {"title": "Who is paying", "detail": "Registered name, not the chat nickname"},
+        {"title": "What and how many", "detail": "Item, unit, quantity — one line each"},
+        {"title": "Amount and date", "detail": "Price agreed, and the day it was agreed"}
+      ],
+      "cues": [
+        {"in": 8, "out": 104, "text": "Who is paying."},
+        {"in": 112, "out": 208, "text": "What, and how many."},
+        {"in": 216, "out": 312, "text": "How much, and which day."}
+      ]
+    },
+    {
+      "type": "stat",
+      "kicker": "WHAT IT SAVES",
+      "value": 6,
+      "suffix": " fields",
+      "line": "Six fields, written once, reuse every invoice.",
+      "note": "Counted from one sample workflow. This is not a measured customer result.",
+      "source": "Own sample workflow, 20 Nov 2026",
+      "cues": [
+        {"in": 8, "out": 150, "text": "Six fields. Written once."},
+        {"in": 160, "out": 300, "text": "Every invoice after that starts here."}
+      ]
+    },
+    {
+      "type": "cta",
+      "kicker": "FREE",
+      "headline": "The six fields, plus the three-step flow.",
+      "line": "One page. Copy it into your own sheet tonight.",
+      "cues": [
+        {"in": 8, "out": 120, "text": "Comment STACK."},
+        {"in": 128, "out": 280, "text": "I'll send the checklist, free."}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "slug": "t2-01-netflix-50m",
+  "track": 2,
+  "tag": "THE DECISION FILE",
+  "series": "THE DECISION FILE",
+  "episodeNo": "01",
+  "docType": "MEMO",
+  "docRef": "OFFER · 2000",
+  "chartNote": "Illustrative, not data",
+  "keyword": "FILE",
+  "footerLine": "Full source list in DM.",
+  "footerNote": "Illustration only. No archival footage used.",
+  "caption": "In 2000, Netflix was losing money and offered to sell itself to Blockbuster for $50 million.\n\nBlockbuster declined. Twenty-six years later the company that said no is gone and the one that asked is worth hundreds of billions.\n\nThe decision was not stupid at the time. That is the part worth studying.\n\nSources: Newsweek fact check, 11 Mar 2021, citing Reed Hastings and Marc Randolph's accounts; Blockbuster's then-CEO disputes that serious talks happened.\n\nTomorrow: the camera Kodak invented and then hid.",
+  "cta": "No DM keyword on episodes 1–20. Episode 21 roundup: FILE → PDF with all sources.",
+  "sources": [
+    {
+      "name": "Newsweek fact check",
+      "url": "https://www.newsweek.com/fact-check-did-blockbuster-turn-down-chance-buy-netflix-50-million-1575557",
+      "date": "2021-03-11"
+    },
+    {
+      "name": "John Antioco (Blockbuster CEO) statement, via Newsweek",
+      "url": "https://www.newsweek.com/fact-check-did-blockbuster-turn-down-chance-buy-netflix-50-million-1575557",
+      "date": "2021-03-11"
+    }
+  ],
+  "scenes": [
+    {
+      "type": "cover",
+      "eyebrow": "THE DECISION FILE · EP 01",
+      "kicker": "2000",
+      "headline": "They offered Netflix for $50 million. The answer was no.",
+      "sub": "Blockbuster declined. Netflix kept going.",
+      "cues": [
+        {
+          "in": 10,
+          "out": 130,
+          "text": "Two thousand. Netflix is losing money."
+        },
+        {
+          "in": 140,
+          "out": 300,
+          "text": "They fly to Blockbuster. Fifty million."
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "kicker": "THE OFFER",
+      "value": 50,
+      "prefix": "$",
+      "suffix": "M",
+      "line": "What Netflix asked Blockbuster to pay for the whole company.",
+      "note": "Both Netflix co-founders describe this offer. Blockbuster's then-CEO disputes that serious talks took place.",
+      "source": "Newsweek fact check, 11 Mar 2021",
+      "cues": [
+        {
+          "in": 8,
+          "out": 140,
+          "text": "Fifty million dollars."
+        },
+        {
+          "in": 150,
+          "out": 310,
+          "text": "That was the entire company."
+        }
+      ]
+    },
+    {
+      "type": "quote",
+      "kicker": "THE MEETING",
+      "text": "They were not interested in the business.",
+      "attrib": "Reported accounts, 2000 meeting",
+      "source": "Paraphrase — see caption for the full quotes and the dispute.",
+      "cues": [
+        {
+          "in": 8,
+          "out": 150,
+          "text": "The offer was declined."
+        },
+        {
+          "in": 160,
+          "out": 300,
+          "text": "Not a negotiation. A no."
+        }
+      ]
+    },
+    {
+      "type": "timeline",
+      "kicker": "WHAT FOLLOWED",
+      "headline": "Twenty-one years later.",
+      "events": [
+        {
+          "year": "2000",
+          "title": "Netflix offers itself for $50M",
+          "note": "Blockbuster declines"
+        },
+        {
+          "year": "2010",
+          "title": "Blockbuster files for bankruptcy",
+          "note": "Dish buys the brand in 2011"
+        },
+        {
+          "year": "2021",
+          "title": "Netflix reports 200M+ members",
+          "note": "Figure from Netflix's own shareholder letter"
+        }
+      ],
+      "cues": [
+        {
+          "in": 8,
+          "out": 96,
+          "text": "Two thousand: the offer."
+        },
+        {
+          "in": 104,
+          "out": 200,
+          "text": "Two thousand ten: bankruptcy."
+        },
+        {
+          "in": 208,
+          "out": 310,
+          "text": "Twenty twenty-one: the other side."
+        }
+      ]
+    },
+    {
+      "type": "article",
+      "kicker": "THE RECORD",
+      "masthead": "THE BUSINESS DAILY",
+      "date": "MARCH 2021",
+      "headline": "Blockbuster turned down a $50 million offer for Netflix",
+      "dek": "Both Netflix founders describe the 2000 pitch. The retailer's CEO says no serious talks happened.",
+      "source": "ILLUSTRATION — type set for this episode, not a real clipping",
+      "mark": "the $50 million offer",
+      "line": "Two accounts of the same meeting.",
+      "note": "When the people in the room disagree, say so on screen.",
+      "cues": [
+        {
+          "in": 8,
+          "out": 110,
+          "text": "Two accounts. One meeting."
+        },
+        {
+          "in": 120,
+          "out": 240,
+          "text": "The founders say they offered."
+        },
+        {
+          "in": 244,
+          "out": 318,
+          "text": "The CEO says no talks."
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "headline": "Tomorrow: the camera Kodak invented, then hid.",
+      "line": "1975. A working prototype. A company that chose film.",
+      "note": "Follow for the next episode.",
+      "cues": [
+        {
+          "in": 8,
+          "out": 130,
+          "text": "Tomorrow: the camera Kodak hid."
+        },
+        {
+          "in": 140,
+          "out": 300,
+          "text": "The Decision File. Episode two."
+        }
+      ],
+      "next": "TOMORROW · 20:00 EAT",
+      "source": "Sources in caption"
+    }
+  ]
+}

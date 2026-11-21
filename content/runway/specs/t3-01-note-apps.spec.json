@@ -1,0 +1,197 @@
+{
+  "slug": "t3-01-note-apps",
+  "track": 3,
+  "tag": "TOOL SHOWDOWN",
+  "keyword": "KIT",
+  "footerLine": "Checklist ya bure kwenye DM.",
+  "footerNote": "Kipimo cha simu moja. Sio ranking ya soko.",
+  "caption": "App mbili za notes. Zote zina features zote kwenye video ya matangazo.\n\nTofauti inaonekana kwenye sekunde za kwanza: moja inafungua hadi note ya mwisho kwa sekunde 3, nyingine inahitaji taps mbili na loading screen ya sekunde 11.\n\nNimepima kwa simu moja ya Android ya kati, airplane mode, notes 5 zilezile. Simu yako inaweza kutoa namba tofauti \u2014 ndio maana natoa checklist ya kujipima mwenyewe.\n\nComment KIT nipate tests 5 za kutumia kabla ya kulipia app yoyote.",
+  "cta": "ManyChat: KIT \u2192 Kipimo-cha-App-5-Tests.pdf (no affiliate link in week 1)",
+  "scenes": [
+    {
+      "type": "cover",
+      "eyebrow": "TOOL SHOWDOWN",
+      "kicker": "NOTE APPS",
+      "headline": "Sekunde 3 dhidi ya sekunde 11. Hiyo ndio tofauti.",
+      "sub": "Simu moja. Notes tano. Airplane mode.",
+      "price": "Free tier \u00b7 Nov 2026",
+      "cues": [
+        {
+          "in": 10,
+          "out": 120,
+          "text": "App mbili. Features zilezile."
+        },
+        {
+          "in": 130,
+          "out": 300,
+          "text": "Tofauti ni sekunde ngapi hadi uanze."
+        }
+      ]
+    },
+    {
+      "type": "compare",
+      "kicker": "KIPIMO",
+      "headline": "Kilichohesabiwa, si kilichohisiwa.",
+      "columns": [
+        {
+          "name": "App A"
+        },
+        {
+          "name": "App B",
+          "highlight": true
+        }
+      ],
+      "rows": [
+        {
+          "name": "COLD START HADI NOTE",
+          "cells": [
+            {
+              "text": "3 s",
+              "best": true
+            },
+            {
+              "text": "11 s"
+            }
+          ]
+        },
+        {
+          "name": "OFFLINE SAVE",
+          "cells": [
+            {
+              "text": "Ndiyo",
+              "best": true
+            },
+            {
+              "text": "Ndiyo",
+              "best": true
+            }
+          ]
+        },
+        {
+          "name": "EXPORT",
+          "cells": [
+            {
+              "text": "Markdown",
+              "best": true
+            },
+            {
+              "text": "PDF pekee"
+            }
+          ]
+        }
+      ],
+      "verdict": "Haraka \u2260 bora. Lakini sekunde 8 kila siku ni dakika 4 kwa mwezi.",
+      "cues": [
+        {
+          "in": 8,
+          "out": 118,
+          "text": "Cold start: tatu dhidi ya kumi na moja."
+        },
+        {
+          "in": 118,
+          "out": 220,
+          "text": "Zote zinahifadhi offline."
+        },
+        {
+          "in": 228,
+          "out": 316,
+          "text": "Export: moja inatoa Markdown."
+        }
+      ]
+    },
+    {
+      "type": "checklist",
+      "kicker": "TESTS 5",
+      "headline": "Mambo ya kupima kabla ya kulipia app yoyote.",
+      "items": [
+        {
+          "title": "Cold start",
+          "detail": "Fungua mara 3, hesabu sekunde hadi note ya kwanza"
+        },
+        {
+          "title": "Offline save",
+          "detail": "Weka airplane mode, andika, fungua upya"
+        },
+        {
+          "title": "Export",
+          "detail": "Pakua notes zako zote. Zinafungukaje nje ya app?"
+        }
+      ],
+      "cues": [
+        {
+          "in": 8,
+          "out": 104,
+          "text": "Moja: cold start."
+        },
+        {
+          "in": 112,
+          "out": 208,
+          "text": "Mbili: offline save."
+        },
+        {
+          "in": 216,
+          "out": 310,
+          "text": "Tatu: export."
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "kicker": "BURE",
+      "headline": "Checklist ya tests 5, kwa Kiswahili.",
+      "line": "Nitumie kwa DM; itumie kwa app ijayo unayokaribia kununua.",
+      "cues": [
+        {
+          "in": 8,
+          "out": 120,
+          "text": "Andika KIT."
+        },
+        {
+          "in": 128,
+          "out": 280,
+          "text": "Nikutumie checklist, bure."
+        }
+      ]
+    }
+  ],
+  "carousel": {
+    "label": "TOOL SHOWDOWN",
+    "slides": [
+      {
+        "type": "cover",
+        "kicker": "NOTE APPS",
+        "headline": "Sekunde 3 dhidi ya sekunde 11.",
+        "sub": "Kipimo cha simu moja, notes 5, airplane mode."
+      },
+      {
+        "type": "list",
+        "headline": "Vitu vitatu vya kupima leo.",
+        "items": [
+          {
+            "title": "Cold start",
+            "detail": "Fungua mara 3, hesabu sekunde hadi note ya kwanza"
+          },
+          {
+            "title": "Offline save",
+            "detail": "Airplane mode, andika, fungua upya"
+          },
+          {
+            "title": "Export",
+            "detail": "Pakua notes zote; zinafungukaje nje ya app?"
+          }
+        ]
+      },
+      {
+        "type": "save",
+        "headline": "Usilipie app bila kujua export yako.",
+        "line": "Export ndio njia ya kutoka. Kama haipo, wewe sio mwenye notes zako.",
+        "source": "Kipimo: simu moja ya Android, Nov 2026"
+      },
+      {
+        "type": "cta",
+        "headline": "Checklist ya tests 5, kwa Kiswahili.",
+        "line": "Bure. Itumie kwa app ijayo unayokaribia kununua."
+      }
+    ]
+  }
+}

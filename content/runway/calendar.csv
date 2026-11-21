@@ -1,0 +1,64 @@
+week,date_eat,weekday,account,post_no,working_title,state
+W1,2026-11-23,Mon,A1-systems,01,"Invoice twice, STACK",pending-spec
+W1,2026-11-23,Mon,A2-stories,01,Blockbuster vs Netflix $50M,research-needed
+W1,2026-11-23,Mon,A3-tools,01,Note apps 3s vs 11s,pending-spec
+W1,2026-11-24,Tue,A1-systems,02,"API vs MCP, WIRE",pending-spec
+W1,2026-11-24,Tue,A2-stories,02,Kodak's own camera,research-needed
+W1,2026-11-24,Tue,A3-tools,02,PDF open vs tap,pending-spec
+W1,2026-11-25,Wed,A1-systems,03,"Fields before automation, FIELDS",pending-spec
+W1,2026-11-25,Wed,A2-stories,03,Nokia and the keyboard,research-needed
+W1,2026-11-25,Wed,A3-tools,03,WhatsApp Business vs app,pending-spec
+W1,2026-11-26,Thu,A1-systems,04,"Zero isn't unknown, ZERO",pending-spec
+W1,2026-11-26,Thu,A2-stories,04,BlackBerry keyboard lead,research-needed
+W1,2026-11-26,Thu,A3-tools,04,Simu ya laki moja,pending-spec
+W1,2026-11-27,Fri,A1-systems,05,"One approval logged, LOG",pending-spec
+W1,2026-11-27,Fri,A2-stories,05,Yahoo and the $44.6bn offer,research-needed
+W1,2026-11-27,Fri,A3-tools,05,Data: kazi inaisha,pending-spec
+W1,2026-11-28,Sat,A1-systems,06,"Tool bridge, BRIDGE",pending-spec
+W1,2026-11-28,Sat,A2-stories,06,Nakumatt administration,research-needed
+W1,2026-11-28,Sat,A3-tools,06,Laptop 700k vs 1.5M,pending-spec
+W1,2026-11-29,Sun,A1-systems,07,"Guard checklist, GUARD",pending-spec
+W1,2026-11-29,Sun,A2-stories,07,Webvan,research-needed
+W1,2026-11-29,Sun,A3-tools,07,Free vs paid design,pending-spec
+W2,2026-11-30,Mon,A1-systems,08,"Read-only first, READ",pending-spec
+W2,2026-11-30,Mon,A2-stories,08,M-Pesa 2007,research-needed
+W2,2026-11-30,Mon,A3-tools,08,Malipo checklist,pending-spec
+W2,2026-12-01,Tue,A1-systems,09,"WhatsApp catalogue, CATALOG",pending-spec
+W2,2026-12-01,Tue,A2-stories,09,Kopo la M-KOPA,research-needed
+W2,2026-12-01,Tue,A3-tools,09,Storage 15GB,pending-spec
+W2,2026-12-02,Wed,A1-systems,10,"Research stack, RESEARCH",pending-spec
+W2,2026-12-02,Wed,A2-stories,10,Twiga supply chain,research-needed
+W2,2026-12-02,Wed,A3-tools,10,Password managers,pending-spec
+W2,2026-12-03,Thu,A1-systems,11,"Prompt pack worth, PACK",pending-spec
+W2,2026-12-03,Thu,A2-stories,11,Sendy winding down,research-needed
+W2,2026-12-03,Thu,A3-tools,11,Time trackers,pending-spec
+W2,2026-12-04,Fri,A1-systems,12,"Margin sheet, MARGIN",pending-spec
+W2,2026-12-04,Fri,A2-stories,12,Mobile-money interoperability,research-needed
+W2,2026-12-04,Fri,A3-tools,12,Antivirus,pending-spec
+W2,2026-12-05,Sat,A1-systems,13,"Reminder not relationship, NUDGE",pending-spec
+W2,2026-12-05,Sat,A2-stories,13,Bakhresa vertical integration,research-needed
+W2,2026-12-05,Sat,A3-tools,13,AI free vs paid SW,pending-spec
+W2,2026-12-06,Sun,A1-systems,14,"Sandbox test, SANDBOX",pending-spec
+W2,2026-12-06,Sun,A2-stories,14,Jumia entry pricing,research-needed
+W2,2026-12-06,Sun,A3-tools,14,Canva vs Figma,pending-spec
+W3,2026-12-07,Mon,A1-systems,15,"Six-line proposal, BRIEF",pending-spec
+W3,2026-12-07,Mon,A2-stories,15,Qwikster,research-needed
+W3,2026-12-07,Mon,A3-tools,15,Hosting,pending-spec
+W3,2026-12-08,Tue,A1-systems,16,"Export before backup, BACKUP",pending-spec
+W3,2026-12-08,Tue,A2-stories,16,MoviePass $9.95,research-needed
+W3,2026-12-08,Tue,A3-tools,16,Domain .com/.co.tz,pending-spec
+W3,2026-12-09,Wed,A1-systems,17,"Agents on 2G, OFFLINE",pending-spec
+W3,2026-12-09,Wed,A2-stories,17,New Coke,research-needed
+W3,2026-12-09,Wed,A3-tools,17,Invoicing apps,pending-spec
+W3,2026-12-10,Thu,A1-systems,18,"Three logs, AUDIT",pending-spec
+W3,2026-12-10,Thu,A2-stories,18,Airline baggage pricing,research-needed
+W3,2026-12-10,Thu,A3-tools,18,Receipt scanners,pending-spec
+W3,2026-12-11,Fri,A1-systems,19,"Setup fee, RATE",pending-spec
+W3,2026-12-11,Fri,A2-stories,19,Apple iPhone price cut,research-needed
+W3,2026-12-11,Fri,A3-tools,19,Swahili keyboard,pending-spec
+W3,2026-12-12,Sat,A1-systems,20,"Sunday stock check, SUNDAY",pending-spec
+W3,2026-12-12,Sat,A2-stories,20,(owner-pick) Story 20,pending-spec
+W3,2026-12-12,Sat,A3-tools,20,Backup simu/laptop,pending-spec
+W3,2026-12-13,Sun,A1-systems,21,"Whole stack map, MAP",pending-spec
+W3,2026-12-13,Sun,A2-stories,21,"Season wrap, FILE",pending-spec
+W3,2026-12-13,Sun,A3-tools,21,Toolkit 7 free tools,pending-spec
