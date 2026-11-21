@@ -1,0 +1,98 @@
+[
+  {
+    "key": "apptests",
+    "file": "Kipimo-cha-App-5-Tests.pdf",
+    "title": "Kipimo cha app tano",
+    "keyword": "KIT",
+    "pages": 5,
+    "bytes": 65157,
+    "previews": [
+      "out/runway-kit/preview/apptests/p1.png",
+      "out/runway-kit/preview/apptests/p2.png",
+      "out/runway-kit/preview/apptests/p3.png",
+      "out/runway-kit/preview/apptests/p4.png",
+      "out/runway-kit/preview/apptests/p5.png"
+    ],
+    "link_annotations": 0,
+    "chars": 4621,
+    "first_page_chars": 870,
+    "subject": "Kipimo cha app tano kabla ya kulipia"
+  },
+  {
+    "key": "decisionfile",
+    "file": "The-Decision-File-Sources.pdf",
+    "title": "The Decision File \u00b7 sources 01\u201303",
+    "keyword": "FILE",
+    "pages": 6,
+    "bytes": 70153,
+    "previews": [
+      "out/runway-kit/preview/decisionfile/p1.png",
+      "out/runway-kit/preview/decisionfile/p2.png",
+      "out/runway-kit/preview/decisionfile/p3.png",
+      "out/runway-kit/preview/decisionfile/p4.png",
+      "out/runway-kit/preview/decisionfile/p5.png",
+      "out/runway-kit/preview/decisionfile/p6.png"
+    ],
+    "link_annotations": 0,
+    "chars": 7091,
+    "first_page_chars": 870,
+    "subject": "The Decision File \u00b7 sources for episodes 01\u201303"
+  },
+  {
+    "key": "invoice",
+    "file": "Invoice-Flow-Checklist.pdf",
+    "title": "Invoice flow checklist",
+    "keyword": "STACK",
+    "pages": 5,
+    "bytes": 65188,
+    "previews": [
+      "out/runway-kit/preview/invoice/p1.png",
+      "out/runway-kit/preview/invoice/p2.png",
+      "out/runway-kit/preview/invoice/p3.png",
+      "out/runway-kit/preview/invoice/p4.png",
+      "out/runway-kit/preview/invoice/p5.png"
+    ],
+    "link_annotations": 0,
+    "chars": 4914,
+    "first_page_chars": 763,
+    "subject": "Read this before you automate an invoice"
+  },
+  {
+    "key": "pricing",
+    "file": "Bei-Sample-Sura-1.pdf",
+    "title": "Bei \u00b7 sura ya mfano",
+    "keyword": "BEI",
+    "pages": 5,
+    "bytes": 64058,
+    "previews": [
+      "out/runway-kit/preview/pricing/p1.png",
+      "out/runway-kit/preview/pricing/p2.png",
+      "out/runway-kit/preview/pricing/p3.png",
+      "out/runway-kit/preview/pricing/p4.png",
+      "out/runway-kit/preview/pricing/p5.png"
+    ],
+    "link_annotations": 0,
+    "chars": 3847,
+    "first_page_chars": 686,
+    "subject": "Kipimo cha bei \u00b7 toleo la bure la jaribio"
+  },
+  {
+    "key": "toolkit",
+    "file": "Toolkit-ya-Freelancer.pdf",
+    "title": "Toolkit ya freelancer",
+    "keyword": "TOOLKIT",
+    "pages": 5,
+    "bytes": 64938,
+    "previews": [
+      "out/runway-kit/preview/toolkit/p1.png",
+      "out/runway-kit/preview/toolkit/p2.png",
+      "out/runway-kit/preview/toolkit/p3.png",
+      "out/runway-kit/preview/toolkit/p4.png",
+      "out/runway-kit/preview/toolkit/p5.png"
+    ],
+    "link_annotations": 0,
+    "chars": 4851,
+    "first_page_chars": 862,
+    "subject": "Toolkit ya freelancer \u00b7 zana 7 za bure"
+  }
+]
