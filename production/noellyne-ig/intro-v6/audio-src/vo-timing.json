@@ -1,0 +1,22 @@
+{
+ "vo-1-hook": {
+  "duration": 3.24,
+  "speechStart": 0.258,
+  "speechEnd": 2.955
+ },
+ "vo-2-name": {
+  "duration": 4.36,
+  "speechStart": 0.276,
+  "speechEnd": 3.985
+ },
+ "vo-3-promise": {
+  "duration": 6.2,
+  "speechStart": 0.253,
+  "speechEnd": 5.862
+ },
+ "vo-4-together": {
+  "duration": 1.84,
+  "speechStart": 0.269,
+  "speechEnd": 1.536
+ }
+}
