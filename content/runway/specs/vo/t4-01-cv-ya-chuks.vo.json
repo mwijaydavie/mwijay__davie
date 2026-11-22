@@ -1,0 +1,87 @@
+{
+  "voice": "Kiswahili · female · voice-03",
+  "voiceId": "voice-03",
+  "mood": "story",
+  "pace": 1.25,
+  "lead": 0.4,
+  "gap": 0.24,
+  "tail": 1.4,
+  "cues": [
+    "rise",
+    "whoosh",
+    "thud",
+    "whoosh",
+    "thud",
+    "thud",
+    "whoosh",
+    "cut"
+  ],
+  "scenes": [
+    {
+      "hook": 6.2
+    },
+    {
+      "hook": 3.4
+    },
+    {
+      "hook": 7.9
+    },
+    {
+      "hook": 6.5
+    },
+    {
+      "hook": 6.7
+    },
+    {
+      "hook": 5.5
+    },
+    {
+      "hook": 4.3
+    },
+    {
+      "hook": 7.3
+    }
+  ],
+  "clips": [
+    {
+      "scene": 1,
+      "file": "production/runway-engine/voice/t4-01/s1.mp3",
+      "text": "Kuna sentensi moja ambayo imeharibu ndoto elfu moja."
+    },
+    {
+      "scene": 2,
+      "file": "production/runway-engine/voice/t4-01/s2.mp3",
+      "text": "“Niletee CV yako, nione ninaweza kukusaidia.”"
+    },
+    {
+      "scene": 3,
+      "file": "production/runway-engine/voice/t4-01/s3.mp3",
+      "text": "Mzee Chuks ana miaka 58. Miaka 35 ya kazi. Mshahara: 150,000."
+    },
+    {
+      "scene": 4,
+      "file": "production/runway-engine/voice/t4-01/s4.mp3",
+      "text": "Droo ya Bw. Mbarak haifungwi kwa kufuli. Inafungwa kwa karatasi."
+    },
+    {
+      "scene": 5,
+      "file": "production/runway-engine/voice/t4-01/s5.mp3",
+      "text": "CV 287. Kila moja aliiandika yeye."
+    },
+    {
+      "scene": 6,
+      "file": "production/runway-engine/voice/t4-01/s6.mp3",
+      "text": "Bahasha haikuwa CV. Ilikuwa hesabu ya Januari. Makosa manne."
+    },
+    {
+      "scene": 7,
+      "file": "production/runway-engine/voice/t4-01/s7.mp3",
+      "text": "“Sikutaka cheo. Nilitaka ujue kuwa ninahesabu.”"
+    },
+    {
+      "scene": 8,
+      "file": "production/runway-engine/voice/t4-01/s8.mp3",
+      "text": "Kazi kwa CV: sifuri. Kwa kuhesabu vizuri: moja."
+    }
+  ]
+}

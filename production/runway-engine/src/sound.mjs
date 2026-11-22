@@ -101,8 +101,12 @@ export function soundtrack({seconds, sceneStarts = [], reveals = [], cues = [], 
   const fx = new Float32Array(n);
 
   // ---- bed: a slow two-note pad plus filtered air. Kept under -30 dBFS.
-  const padNotes = mood === 'dark' ? [110, 164.81, 220] : [146.83, 220, 293.66];
-  const padAmp = mood === 'dark' ? 0.05 : 0.038;
+  // 'story' is a warm minor figure with a slow swell — it should feel like a room with a
+  // fan in it, not like a product demo. Three notes, no drums, nothing to date it.
+  const padNotes = mood === 'dark' ? [110, 164.81, 220]
+    : mood === 'story' ? [130.81, 155.56, 196.0, 261.63]
+    : [146.83, 220, 293.66];
+  const padAmp = mood === 'dark' ? 0.05 : mood === 'story' ? 0.042 : 0.038;
   const rnd = makeNoise(23);
   let air = 0;
   for (let i = 0; i < n; i++) {
@@ -112,8 +116,9 @@ export function soundtrack({seconds, sceneStarts = [], reveals = [], cues = [], 
       const detune = 1 + Math.sin(t * 0.13 + k) * 0.0015; // slow chorus, no beating artefact
       v += Math.sin(TAU * padNotes[k] * detune * t) * (0.6 - k * 0.15);
     }
-    // fade the pad in over 1.2s and out over the last 0.8s
-    const env = clamp(t / 1.2) * clamp((seconds - t) / 0.8);
+    // fade the pad in over 1.2s and out over the last 0.8s; the story bed also breathes
+    const swell = mood === 'story' ? 0.82 + 0.18 * Math.sin(TAU * 0.055 * t) : 1;
+    const env = clamp(t / 1.2) * clamp((seconds - t) / 0.8) * swell;
     air = lowpass(air, rnd(), 0.0025);
     bed[i] = (v * padAmp + air * 0.05) * env;
   }
@@ -140,7 +145,7 @@ export function soundtrack({seconds, sceneStarts = [], reveals = [], cues = [], 
 
   // ---- outro sting on the last two seconds
   const sting = Math.floor((seconds - 1.55) * SR);
-  const notes = mood === 'dark' ? [220, 277.18] : [293.66, 440];
+  const notes = mood === 'dark' ? [220, 277.18] : mood === 'story' ? [196.0, 261.63, 392.0] : [293.66, 440];
   notes.forEach((f, k) => {
     const buf = tone({freq: f, dur: 1.5, amp: 0.1, decay: 2.2, harmonics: [1, 0.35, 0.12]});
     const at = sting + Math.floor(k * 0.16 * SR);

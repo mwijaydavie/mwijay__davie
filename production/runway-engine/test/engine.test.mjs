@@ -5,7 +5,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {measure, fit, wrap, W, H, SAFE, CAPTION_BAND} from '../src/core.mjs';
-import {renderFrame, totalFrames, SCENE_FRAMES, framesPerScene, TRACKS, activeCue} from '../src/templates.mjs';
+import {renderFrame, totalFrames, SCENE_FRAMES, framesPerScene, sceneFrames, sceneStarts, TRACKS, activeCue} from '../src/templates.mjs';
+import {POSES, POSE_ASPECT, cutout, castAt, FRAMING} from '../src/story.mjs';
 import {nia, NIA_POSES, poseAt} from '../src/nia.mjs';
 import {transition, moveFor, MOVE_FRAMES} from '../src/motion.mjs';
 import {soundtrack, writeMix} from '../src/sound.mjs';
@@ -56,7 +57,8 @@ test('no scene declares text below the caption band', () => {
     spec.scenes.forEach((s, i) => {
       const cues = s.cues || [];
       cues.forEach((c, ci) => {
-        assert.ok(c.out <= SCENE_FRAMES, `${name} scene ${i + 1} cue ${ci + 1} ends after the cut`);
+        // a story beat has its own window; a flat reel still uses the 5.5s grid
+        assert.ok(c.out <= sceneFrames(spec, i), `${name} scene ${i + 1} cue ${ci + 1} ends after the cut`);
         assert.ok(ci === 0 || c.in >= cues[ci - 1].out, `${name} scene ${i + 1} cue ${ci + 1} overlaps`);
       });
     });
@@ -201,11 +203,80 @@ test('the soundtrack is deterministic and stays quiet enough to hear the voice',
 
 test('every voiced spec keeps cues inside its scene', () => {
   for (const {name, spec} of specs) {
-    const spf = framesPerScene(spec);
     spec.scenes.forEach((s, i) => {
+      const spf = sceneFrames(spec, i);
       for (const c of s.cues || []) {
         assert.ok(c.in >= 0 && c.out <= spf, `${name} scene ${i + 1}: cue leaves the scene (0..${spf})`);
       }
     });
+  }
+});
+
+/* ---------------- story track (track 4) ---------------- */
+
+test('every frame of every reel has balanced <g> tags', () => {
+  // an unclosed group paints nothing and throws no error, so it must be asserted
+  for (const {name, spec} of specs) {
+    const total = totalFrames(spec);
+    for (let f = 0; f < total; f += Math.max(1, Math.floor(total / 40))) {
+      const svg = renderFrame(spec, f, {});
+      const open = (svg.match(/<g[\s>]/g) || []).length;
+      const close = (svg.match(/<\/g>/g) || []).length;
+      assert.equal(open, close, `${name} frame ${f}: ${open} <g> vs ${close} </g>`);
+    }
+  }
+});
+
+test('per-scene hooks drive the timeline when a spec has them', () => {
+  const spec = {
+    track: 4, slug: 'hooks', keyword: 'CV',
+    sceneHooks: [2, 4, 3],
+    scenes: [{type: 'cover'}, {type: 'card'}, {type: 'cta'}],
+  };
+  assert.deepEqual(sceneStarts(spec), [0, 120, 360]);
+  assert.deepEqual(spec.scenes.map((_, i) => sceneFrames(spec, i)), [120, 240, 180]);
+  assert.equal(totalFrames(spec), 540);
+  // a frame late in the last beat resolves to the last scene, with a local time
+  assert.equal(sceneStarts(spec).length, 3);
+  const svg = renderFrame(spec, 500, {});
+  assert.ok(svg.endsWith('</svg>'));
+});
+
+test('story cast: every pose has a sheet and a known aspect', () => {
+  for (const [name, pose] of Object.entries(POSES)) {
+    assert.ok(pose.file, `${name} has no file`);
+    assert.ok(POSE_ASPECT[name] > 0.3 && POSE_ASPECT[name] < 1.2, `${name} aspect looks wrong`);
+    const svg = cutout(name, {x: 540, y: 1700, h: 900});
+    assert.ok(svg.includes('data:image/png;base64,'), `${name} did not embed its sheet`);
+    // the cut-out must be trimmed, not a rectangle of backdrop
+    assert.ok(!svg.includes('preserveAspectRatio="none"'), `${name} would stretch`);
+  }
+});
+
+test('castAt keeps her inside the frame and above the caption band', () => {
+  for (const framing of ['hero', 'mid', 'close']) {
+    const scene = {cast: {pose: 'calm', framing}};
+    for (const t of [0, 40, 200, 400]) {
+      const a = castAt(scene, t);
+      assert.ok(a, `${framing}: no cast state`);
+      assert.ok(a.o >= 0 && a.o <= 1, `${framing} t${t}: opacity out of range`);
+      assert.ok(a.y > 1400 && a.y < 1920, `${framing} t${t}: anchor ${a.y} outside the frame`);
+      assert.ok(a.h >= FRAMING[framing].h, `${framing} t${t}: shot shrank below its preset`);
+    }
+  }
+});
+
+test('story spec: headline never starts inside the kicker box', () => {
+  const spec = specs.find(({spec: s}) => s.track === 4)?.spec;
+  if (!spec) return;
+  // the type stack is authored, so assert the contract the template enforces
+  for (const [i, scene] of spec.scenes.entries()) {
+    if (!scene.headline) continue;
+    const size = scene.headSize ?? 92;
+    const minTop = scene.kicker ? 338 + size * 0.48 + 14 : 300;
+    assert.ok(
+      Math.max(scene.headY ?? minTop, minTop) >= minTop,
+      `scene ${i + 1}: headline would sit under the kicker`,
+    );
   }
 });

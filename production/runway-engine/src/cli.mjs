@@ -14,7 +14,7 @@ import {createRequire} from 'node:module';
 import {fileURLToPath} from 'node:url';
 import {Resvg} from '@resvg/resvg-js';
 import {W, H, FPS, readImage, measure, fit, round} from './core.mjs';
-import {renderFrame, totalFrames, SCENE_FRAMES, framesPerScene, TRACKS} from './templates.mjs';
+import {renderFrame, totalFrames, SCENE_FRAMES, framesPerScene, sceneStarts, sceneFrames, TRACKS} from './templates.mjs';
 import {renderCarouselSlide, carouselSize} from './carousel.mjs';
 import {validate} from './validate.mjs';
 
@@ -76,8 +76,8 @@ function framesArg(spec) {
   // one still in the middle of every scene, plus the hook hold of scene 1
   const out = [120];
   const total = totalFrames(spec);
-  const spf = framesPerScene(spec);
-  for (let i = 0; i < spec.scenes.length; i++) out.push(i * spf + Math.round(spf * 0.64));
+  const starts = sceneStarts(spec);
+  for (let i = 0; i < spec.scenes.length; i++) out.push(starts[i] + Math.round(sceneFrames(spec, i) * 0.64));
   out.push(total - 1);
   return [...new Set(out)].filter((f) => f >= 0 && f < total);
 }
@@ -94,13 +94,15 @@ const srtTime = (frame) => {
 function writeSrt(spec, dir) {
   const lines = [];
   let n = 0;
-  // cues are authored in frames of a 5.5s scene; a longer scene stretches them with it
-  const spf = framesPerScene(spec);
-  const k = spf / SCENE_FRAMES;
+  // cues are authored in frames of a 5.5s scene; a longer scene stretches them with it.
+  // With per-scene hooks each beat has its own scale factor.
+  const starts = sceneStarts(spec);
   spec.scenes.forEach((scene, i) => {
+    const spf = sceneFrames(spec, i);
+    const k = spf / SCENE_FRAMES;
     for (const c of scene.cues || []) {
-      const a = i * spf + Math.round(c.in * k);
-      const b = i * spf + Math.round(c.out * k);
+      const a = starts[i] + Math.round(c.in * k);
+      const b = starts[i] + Math.round(c.out * k);
       n += 1;
       lines.push(String(n), `${srtTime(a)} --> ${srtTime(b)}`, c.text, '');
     }
@@ -110,10 +112,10 @@ function writeSrt(spec, dir) {
 }
 
 function writeCueSheet(spec, dir) {
-  const spf = framesPerScene(spec);
+  const starts = sceneStarts(spec);
   const rows = spec.scenes.map((s, i) => {
-    const start = (i * spf) / FPS;
-    const end = ((i + 1) * spf) / FPS;
+    const start = starts[i] / FPS;
+    const end = (starts[i] + sceneFrames(spec, i)) / FPS;
     return {
       scene: i + 1,
       start: `${start.toFixed(2)}s`,

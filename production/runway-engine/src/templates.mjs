@@ -9,13 +9,48 @@ import {
 import * as A from './art.mjs';
 import {nia, poseAt} from './nia.mjs';
 import {transition, moveFor, MOVE_FRAMES} from './motion.mjs';
+import {story} from './storyTrack.mjs';
 
 /** Nominal length of one scene. A spec may set `sceneSeconds` (the audio builder does when
  *  the voice needs more room), and every template reads the length from there. */
 export const SCENE_FRAMES = 330;
+
+/** Frame offset at which scene `i` (0-based) starts. Flat reels share one length; a story
+ *  reel sets `sceneHooks` so each beat keeps its own hook and cut on its own word. */
+export function sceneStarts(spec) {
+  const hooks = spec.sceneHooks;
+  if (!Array.isArray(hooks)) {
+    const spf = framesPerScene(spec);
+    return spec.scenes.map((_, i) => i * spf);
+  }
+  const out = [];
+  let at = 0;
+  for (const h of hooks) { out.push(at); at += Math.round(h * 60); }
+  return out;
+}
+
+export const sceneFrames = (spec, i) => {
+  const hooks = spec.sceneHooks;
+  if (!Array.isArray(hooks)) return framesPerScene(spec);
+  return Math.round((hooks[i] ?? hooks.at(-1) ?? 5.5) * 60);
+};
+
 export const framesPerScene = (spec) => Math.round((spec.sceneSeconds || SCENE_FRAMES / 60) * 60);
 
 export const TRACKS = {
+  4: {
+    id: 4,
+    name: 'Story · Kiswahili',
+    layout: 'story',
+    theme: {
+      bg: '#1C130E', ink: '#F7F3E8', muted: '#C9BFAE', accent: '#E9C46A', accent2: '#FF6A3D',
+      card: '#FFFFFF0D', cardEdge: '#FFFFFF24', gridColor: '#FFFFFF', gridOpacity: 0.04,
+      captionBg: '#0A0704E8', captionInk: '#FFFFFF',
+      chromeInk: '#F7F3E8', chromeMuted: '#F7F3E899', chromeAccent: '#E9C46A',
+      footerBg: 'none', route: '#E9C46A', badge: '#E9C46A',
+    },
+    fonts: {head: 'serif', stat: 'serif'},
+  },
   1: {
     id: 1,
     name: 'AI systems',
@@ -496,7 +531,55 @@ function track3Frame(spec, s, t, images, track) {
 
 /* ---------------------------- exported render ---------------------------- */
 
-const RENDERERS = {1: track1Frame, 2: track2Frame, 3: track3Frame};
+/** Story track chrome: a faint masthead so the feed still reads as one channel,
+ *  but no grid, no card, no footer — a story should feel filmed, not templated. */
+function storyChrome(spec, scene, th, t) {
+  const o = easeOut(unlerp(t, 0, 20));
+  const closing = scene?.type === 'cta';
+  // The closing card is the only place a keyword appears: a story earns the follow, it does
+  // not interrupt itself with a CTA in the middle.
+  const cta = closing ? (() => {
+    const p = easeOut(unlerp(t, 54, 84));
+    if (p <= 0) return '';
+    const w = measure(spec.keyword || 'CV', {role: 'mono', weight: 800, size: 30, tracking: 3}) + 52;
+    return `<g opacity="${round(p)}" transform="translate(0 ${round((1 - p) * 24)})">
+      ${rect(84, 1660, w, 62, {fill: th.accent, rx: 8})}
+      ${text(spec.keyword || 'CV', 84 + w / 2, 1702, {role: 'mono', weight: 800, size: 30, fill: '#1C130E', anchor: 'middle', tracking: 3})}
+      ${text(spec.ctaLine || 'Andika CV kwenye DM', 84 + w + 26, 1702, {role: 'head', weight: 700, size: 40, fill: th.chromeInk, tracking: -1})}
+    </g>`;
+  })() : '';
+  // NB: both opening tags above need their own close. A bare `</g>${cta}` here leaves the
+  // masthead group open, which silently swallowed everything after it in the frame.
+  return `<g opacity="${round(o * 0.85)}">
+    ${text((spec.series || 'MJOMBA DAUDI').toUpperCase(), 84, 148, {role: 'mono', weight: 700, size: 22, fill: th.chromeMuted, tracking: 4})}
+    ${text((spec.brand?.handle || '@mwijay__davie'), 996, 148, {role: 'mono', weight: 600, size: 22, fill: th.chromeMuted, anchor: 'end', tracking: 1})}
+    ${spec.episodeNo ? text(`SURA ${spec.episodeNo}`, 996, 186, {role: 'mono', weight: 700, size: 20, fill: th.chromeAccent, anchor: 'end', tracking: 3}) : ''}
+  </g>`;
+}
+
+/** Closing call-to-action. Painted AFTER the story body: the body's warm wash covers the
+ *  whole frame, so anything drawn before it is invisible. */
+function storyCta(spec, scene, th, t) {
+  if (scene?.type !== 'cta') return '';
+  const p = easeOut(unlerp(t, 54, 84));
+  if (p <= 0) return '';
+  const w = measure(spec.keyword || 'CV', {role: 'mono', weight: 800, size: 30, tracking: 3}) + 52;
+  return `<g opacity="${round(p)}" transform="translate(0 ${round((1 - p) * 24)})">
+    ${rect(84, 1660, w, 62, {fill: th.accent, rx: 8})}
+    ${text(spec.keyword || 'CV', 84 + w / 2, 1702, {role: 'mono', weight: 800, size: 30, fill: '#1C130E', anchor: 'middle', tracking: 3})}
+    ${text(spec.ctaLine || 'Andika CV kwenye DM', 84 + w + 26, 1702, {role: 'head', weight: 700, size: 40, fill: th.chromeInk, tracking: -1})}
+  </g>`;
+}
+
+const RENDERERS = {1: track1Frame, 2: track2Frame, 3: track3Frame, 4: story};
+
+/** Throws if a rendered frame has unbalanced <g> tags — an unclosed group is silent in SVG. */
+export function assertBalanced(svg) {
+  const open = (svg.match(/<g[\s>]/g) || []).length;
+  const close = (svg.match(/<\/g>/g) || []).length;
+  if (open !== close) throw new Error(`unbalanced <g>: ${open} open / ${close} close`);
+  return true;
+}
 
 /**
  * Render one composition frame to an SVG string.
@@ -507,10 +590,12 @@ export function renderFrame(spec, frame, {mark, images = {}} = {}) {
   if (!track) throw new Error(`unknown track ${spec.track}`);
   const total = spec.scenes.length;
   const spf = framesPerScene(spec);
-  const totalFrames = total * spf;
-  const idx = clamp(Math.floor(frame / spf), 0, total - 1);
+  const starts = sceneStarts(spec);
+  const totalFrames = starts[total - 1] + sceneFrames(spec, total - 1);
+  let idx = 0;
+  for (let i = 0; i < total; i++) if (frame >= starts[i]) idx = i;
   const scene = spec.scenes[idx];
-  const t = frame - idx * spf;
+  const t = frame - starts[idx];
   const th = track.theme;
   const render = RENDERERS[spec.track];
   const body = render(spec, scene, t, images, track);
@@ -518,7 +603,7 @@ export function renderFrame(spec, frame, {mark, images = {}} = {}) {
   // Nia, the account character. A scene opts in with `nia:{...}`; the first and last
   // scenes default to her so every Reel opens and closes on the same face.
   let cast = '';
-  if (spec.character !== false) {
+  if (spec.character !== false && spec.track !== 4) {
     const cfg = scene.nia ?? ((idx === 0 || idx === total - 1) ? {pose: idx === 0 ? 'perk' : 'present'} : null);
     if (cfg) {
       const {pose, since} = poseAt(scene, t);
@@ -535,8 +620,8 @@ export function renderFrame(spec, frame, {mark, images = {}} = {}) {
   // master fade in and out
   const fade = Math.min(easeOut(unlerp(frame, 0, 8)), 1 - easeInOut(unlerp(frame, totalFrames - 10, totalFrames - 1)));
   const cue = scene.cues && !spec.noCaptions ? activeCue(scene.cues, t) : null;
-  const move = transition(moveFor(spec, idx), frame, spf, th.accent);
-  return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+  const move = transition(moveFor(spec, idx), frame, sceneFrames(spec, idx), th.accent);
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
   <defs>
     <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
       <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#000000" flood-opacity="0.22"/>
@@ -548,12 +633,13 @@ export function renderFrame(spec, frame, {mark, images = {}} = {}) {
   </defs>
   <g opacity="${round(fade)}">
     ${move.outer}
-      ${background(track, spec, t, images)}
-      ${A.brandBar({mark, theme: th, t, handle: spec.brand?.handle || '@mwijay__davie'})}
+      ${spec.track === 4 ? '' : background(track, spec, t, images)}
+      ${spec.track === 4 ? storyChrome(spec, scene, th, t) : A.brandBar({mark, theme: th, t, handle: spec.brand?.handle || '@mwijay__davie'})}
       ${body}
       ${cast}
+      ${spec.track === 4 ? storyCta(spec, scene, th, t) : ''}
       ${cue ? A.captions({...cue, out: cue.out}, t, {theme: th, size: scene.captionSize || 50}) : ''}
-      ${scene.footerCta === false || !(idx === 0 || idx === total - 1) ? '' : A.footer({
+      ${spec.track === 4 || scene.footerCta === false || !(idx === 0 || idx === total - 1) ? '' : A.footer({
         keyword: scene.keywordFooter || spec.keyword,
         line1: scene.footerLine || spec.footerLine || 'Free file in DM.',
         theme: th, t, start: idx === 0 ? 60 : 150,
@@ -565,6 +651,8 @@ export function renderFrame(spec, frame, {mark, images = {}} = {}) {
   ${ticks(spec.track, {color: th.chromeInk, o: 0.16})}
   <rect x="0" y="${H - 6}" width="${round(W * clamp(frame / Math.max(1, totalFrames - 1)))}" height="6" fill="${th.accent}"/>
 </svg>`;
+  assertBalanced(svg);
+  return svg;
 }
 
 export function activeCue(cues, t) {
@@ -575,4 +663,4 @@ export function activeCue(cues, t) {
   return found;
 }
 
-export const totalFrames = (spec) => spec.scenes.length * framesPerScene(spec);
+export const totalFrames = (spec) => { const st = sceneStarts(spec); return st.at(-1) + sceneFrames(spec, spec.scenes.length - 1); };

@@ -2,12 +2,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {measure, fit, SAFE} from './core.mjs';
-import {SCENE_FRAMES, framesPerScene} from './templates.mjs';
+import {SCENE_FRAMES, framesPerScene, totalFrames} from './templates.mjs';
 
 const TYPES = {
   1: ['cover', 'clip', 'workflow', 'table', 'stat', 'checklist', 'cta'],
   2: ['cover', 'clip', 'article', 'timeline', 'chart', 'quote', 'stat', 'cta'],
   3: ['cover', 'compare', 'bars', 'demo', 'roi', 'checklist', 'cta'],
+  4: ['cover', 'face', 'card', 'stack', 'tally', 'cta'],
 };
 
 /** Words that are too generic to gate a DM on (the "type a comment" CTA). */
@@ -25,13 +26,13 @@ export function validate(spec) {
   const warn = (m) => warnings.push(m);
 
   if (!spec.slug) err('missing slug (used for the output folder)');
-  if (![1, 2, 3].includes(spec.track)) err('track must be 1, 2 or 3');
+  if (![1, 2, 3, 4].includes(spec.track)) err('track must be 1, 2, 3 or 4');
   const allowed = TYPES[spec.track] || [];
   if (!Array.isArray(spec.scenes) || !spec.scenes.length) err('no scenes');
   else {
     if (spec.scenes.length < 3) err('need at least 3 scenes (hook / body / CTA)');
     if (spec.scenes.length > 10) err('keep a Reel to 10 scenes or fewer');
-    if (spec.scenes.length * framesPerScene(spec) > 60 * 60) warn('over 60s; keep episodes 25–55s unless the brief says otherwise');
+    if (totalFrames(spec) > 60 * 60) warn('over 60s; keep episodes 25–55s unless the brief says otherwise');
     if (spec.scenes[0].type !== 'cover') err('scene 1 must be type "cover"');
     if (spec.scenes[spec.scenes.length - 1].type !== 'cta') warn('last scene is not a "cta"; state the keyword and the payoff on the last card');
   }
@@ -90,7 +91,12 @@ export function validate(spec) {
       if (typeof c.in !== 'number' || typeof c.out !== 'number') err(`${where}: cue ${ci + 1} needs numeric in/out frames`);
       if (c.in >= c.out) err(`${where}: cue ${ci + 1} ends before it starts`);
       if (c.in < last) err(`${where}: cue ${ci + 1} overlaps the previous cue`);
-      if (c.out > SCENE_FRAMES - 6) warn(`${where}: cue ${ci + 1} runs into the scene cut (${c.out} > ${SCENE_FRAMES - 6})`);
+      // a flat reel authors cues on a 5.5s grid; a story beat has its own hook, so the
+      // clamp is the scale factor for that specific scene
+      const limit = Array.isArray(spec.sceneHooks)
+        ? Math.round(spec.sceneHooks[i] * 60) - 4
+        : SCENE_FRAMES - 6;
+      if (c.out > limit) warn(`${where}: cue ${ci + 1} runs into the scene cut (${c.out} > ${limit})`);
       last = c.out;
       const f = fit(c.text, {role: 'head', weight: 700, size: 50, maxWidth: 900, maxLines: 2, minSize: 38});
       if (f.overflow) err(`${where}: cue ${ci + 1} is too long for two lines at phone size: "${c.text}"`);

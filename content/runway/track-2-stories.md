@@ -94,3 +94,55 @@ Tomorrow: <next episode hook>.
 ## Kabla ya kurekodi (gate)
 
 Kwa kila episode: fungua source, andika tarehe na kipimo, toa sentensi moja ya claim, kisha `sources[]` kwenye spec. `check` itakataa spec ya `timeline`/`article`/`chart` isiyo na `sources[]`. Kama source haipatikani kwa dakika 15, chagua episode nyingine; usikisie.
+
+---
+
+## Msimbo wa tatu · A2 Hadithi za Kiswahili (`track 4`)
+
+Toleo la majaribio: hadithi kutoka kitabu **Mjomba Daudi** (sura 2, "CV ya Mzee Chuks"),
+ikisimuliwa kwa Kiswahili na mhusika mmoja anayerejea. Hii bado si sehemu ya kalenda ya
+A2 — ni jaribio la muundo, na inaingia kwenye kalenda tu baada ya idhini.
+
+**Kwa nini kitabu:** hadithi ya A2 ya leo inahitaji chanzo cha nje kilichothibitishwa. Kitabu
+ni chanzo cha ndani: kinamilikiwa, hakina link inayokufa, na kila sura tayari ina mwanzo,
+mzunguko na mwisho. Lakini ni **fiction** — kwa hiyo hakuna namba ya soko, hakuna kampuni
+inayodaiwa, na hakuna caption inayosema "hii ilitokea". Kila reel inasema: *kutoka kitabu*.
+
+### Kanuni za msimbo huu
+
+1. **Kichwa = mzunguko, caption = maneno.** Kama kichwa kinarudia sentensi ya sauti, moja
+   inabidi iondolewe. (Kosa la kwanza kwenye jaribio hili: kichwa kilikuwa kinasoma kile
+   alichokuwa akisema.)
+2. **Sentensi moja ya kitabu ndiyo hook.** Usiibuni. "Niletee CV yako" ni hook ya asili.
+3. **Dakika 47, beats 8.** Hadithi ndefu kuliko hii inahitaji sehemu mbili; fupi kuliko 30s
+   haitasimulia mzunguko.
+4. **Mhusika mmoja, hisia tatu.** `calm` → `shock` → `laugh`. Hakuna uso wa nne bila sababu.
+5. **Hakuna CTA katikati.** Keyword inaonekana mara moja, kwenye kadi ya mwisho.
+6. **Hakuna madai ya uhalisia.** Ni hadithi, na tunasema hivyo.
+
+### 01 · CV ya Mzee Chuks · `CV`
+
+- **Chanzo:** *Mjomba Daudi*, Sura 2, kurasa 19–23 (Toleo la Kwanza, Dar es Salaam, 2026).
+- **Hook:** `Kuna sentensi moja ambayo imeharibu ndoto elfu moja.` — halisi kutoka ukurasa 19.
+- **Beats:** sentensi → CV 287 → droo isiyofungwa → hesabu ya Januari → "Sikutaka cheo" →
+  `Kwa CV: 0. Kwa kuhesabu: 1.`
+- **Reel:** `t4-01-cv-ya-chuks` — 47.8 s, 8 beats, sauti ya kike ya Kiswahili (`voice-03`),
+  mhusika wa 3D aliyekatwa (angalia [`character-nia.md`](character-nia.md)).
+- **Caption:**
+
+```
+Kila mtu anayeandika CV ana ndoto. Mzee Chuks aliandika 287.
+
+Kwa miaka 35 hakuwa akitafuta kazi. Alikuwa akiweka kumbukumbu.
+
+Siku moja bahasha haikuwa CV. Ilikuwa hesabu ya Januari, na makosa manne.
+
+Ndio maana mwisho wa hadithi hii, kazi zilizopatikana kwa CV: sifuri.
+Kwa kuhesabu vizuri: moja.
+
+Andika CV kwenye DM nikutumie kipimo cha kuhesabu kabla ya kuandika.
+```
+
+- **Kipimo cha mafanikio (bila kupima hakuna jaribio):** 3-second hold, watch-through hadi
+  beat 6 (`SI CV`), saves, na comments zisizo za keyword. Namba hazijapimwa bado — zipimwe
+  kwa reel hii kabla ya kuongeza sura nyingine.

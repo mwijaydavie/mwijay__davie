@@ -44,21 +44,56 @@ const voPath = path.join(REPO, 'content/runway/specs/vo', `${slug}.vo.json`);
 if (!fs.existsSync(voPath)) throw new Error(`missing ${path.relative(REPO, voPath)} (see production/runway-engine/voice/README.md)`);
 const vo = JSON.parse(fs.readFileSync(voPath, 'utf8'));
 
-const mood = flag('mood', spec.track === 2 ? 'dark' : spec.track === 3 ? 'idea' : 'light');
+const mood = flag('mood', vo.mood || (spec.track === 2 ? 'dark' : spec.track === 3 ? 'idea' : spec.track === 4 ? 'story' : 'light'));
 
 /** Spoken length of a clip after normalisation (trailing silence trimmed to 120 ms). */
 function clipInfo(file) {
   const out = path.join(dir, 'build', path.basename(file).replace(/\.[^.]+$/, '') + '.f32.wav');
   fs.mkdirSync(path.dirname(out), {recursive: true});
+  // A narrator who reads at 1.1 words/s makes a 45s story into a 70s one. `pace` stretches
+  // time without moving pitch, so the words stay hers and the cut stays fast.
+  const pace = vo.pace && vo.pace !== 1 ? `atempo=${vo.pace.toFixed(3)},` : '';
   const r = spawnSync(ff(), [
     '-y', '-hide_banner', '-loglevel', 'error', '-i', file,
-    '-af', 'silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse,loudnorm=I=-16:TP=-1.5:LRA=11,apad=pad_len=5760',
+    '-af', `${pace}silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse,loudnorm=I=-16:TP=-1.5:LRA=11,apad=pad_len=5760`,
     '-ac', '1', '-ar', String(SR), '-c:a', 'pcm_s16le', out,
   ], {encoding: 'utf8'});
   if (r.status !== 0) throw new Error(`ffmpeg failed on ${file}: ${r.stderr}`);
   const pcm = readWavMono(out);
   return {pcm, seconds: pcm.length / SR, wav: out};
 }
+
+
+/**
+ * Scene boundaries in seconds.
+ * A reel whose scenes share one length (tracks 1-3) uses the flat model: every scene is
+ * `sceneSeconds`, so `framesPerScene(spec)` can stretch cue frames with one multiplier.
+ * A story reel (vo.scenes) gives each beat its own hook, because a 2-word turn and a
+ * 12-word reveal do not deserve the same screen time.
+ */
+function sceneLayout() {
+  if (!Array.isArray(vo.scenes)) {
+    const len = vo.sceneSeconds ?? 5.5;
+    return {flat: len, hooks: vo.clips.map((_, i) => i).map(() => null).length ? null : null,
+            start: (n) => (n - 1) * len, length: () => len, count: null};
+  }
+  const starts = [];
+  let cursor = 0;
+  for (const s of vo.scenes) {
+    starts.push(cursor);
+    cursor += s.hook;
+  }
+  const lengths = vo.scenes.map((s) => s.hook);
+  return {
+    flat: null,
+    starts,
+    lengths,
+    count: vo.scenes.length,
+    start: (n) => starts[n - 1] ?? 0,
+    length: (n) => lengths[n - 1] ?? 0,
+  };
+}
+const layout = sceneLayout();
 
 /**
  * Lay the clips out. Each clip waits for its scene's earliest start, and a clip that runs
@@ -85,7 +120,7 @@ function schedule() {
       : clipInfo(path.resolve(REPO, clip.file));
     if (clip.scene !== sceneNo) {
       sceneNo = clip.scene;
-      const nominal = (sceneNo - 1) * sceneLenForLayout;
+      const nominal = layout.start(sceneNo);
       sceneStart = sceneNo <= spacedUntil ? Math.max(nominal, cursor + gap) : cursor + gap;
       cursor = sceneStart + lead;
       rows.push({kind: 'scene', scene: sceneNo, at: sceneStart});
@@ -95,7 +130,7 @@ function schedule() {
     const at = Math.max(cursor, sceneStart + lead);
     rows.push({kind: 'clip', scene: sceneNo, file: clip.file, at, seconds: info.seconds, text: clip.text, pcm: info.pcm});
     cursor = at + info.seconds;
-    if (cursor - sceneStart > Math.min(vo.maxSceneSeconds ?? 7.4, (vo.sceneSeconds ?? 5.5) + sceneSlack + 1.5)) {
+    if (!layout.count && cursor - sceneStart > Math.min(vo.maxSceneSeconds ?? 7.4, (vo.sceneSeconds ?? 5.5) + sceneSlack + 1.5)) {
       console.warn(`scene ${sceneNo}: ${(cursor - sceneStart).toFixed(2)}s of dialogue — trim the ` +
                    `read or the scene will hit the ${vo.maxSceneSeconds ?? 7.4}s cap`);
     }
@@ -112,14 +147,65 @@ const sceneRows = rows.filter((r) => r.kind === 'scene');
 const lastClipEnd = clips.length ? clips.at(-1).at + clips.at(-1).seconds : 0;
 const tail = vo.tail ?? 1.1;
 let sceneSeconds = vo.sceneSeconds ?? 5.5;
-for (const c of sceneRows) {
-  const inScene = clips.filter((k) => k.scene === c.scene);
-  if (!inScene.length) continue;
-  const span = inScene.at(-1).at + inScene.at(-1).seconds - (c.scene - 1) * sceneSeconds;
-  sceneSeconds = Math.max(sceneSeconds, Math.ceil((span + 0.35) * 10) / 10);
+let seconds;
+if (layout.count) {
+  // Per-scene hooks. Solve twice: the first pass sizes each beat to its dialogue, the
+  // second pass re-places the clips on the final boundaries so no cue can land outside
+  // its own scene (a beat that grows pushes everything after it).
+  const lead = vo.lead ?? 0.35;
+  const gap = vo.gap ?? 0.22;
+  const byScene = (n) => clips.filter((k) => k.scene === n);
+  const needFor = (n) => {
+    const mine = byScene(n);
+    if (!mine.length) return layout.lengths[n - 1] ?? 5.5;
+    const speech = mine.reduce((a, c) => a + c.seconds, 0) + gap * (mine.length - 1);
+    return Math.ceil((lead + speech + 0.3) * 10) / 10;
+  };
+  const finals = layout.lengths.map((hook, i) => Math.max(hook, needFor(i + 1)));
+  // The reel must be exactly as long as its mix. A flat reel gets that from `tail`; here the
+  // tail becomes a hold on the final card, which is what a story wants to end on anyway.
+  finals[finals.length - 1] = finals.at(-1);
+  layout.starts.length = 0;
+  let acc = 0;
+  for (const h of finals) { layout.starts.push(acc); acc += h; }
+  layout.lengths = finals;
+  // place clips on the final boundaries
+  for (const c of clips) {
+    const mine = byScene(c.scene);
+    const i = mine.indexOf(c);
+    c.at = i === 0 ? layout.start(c.scene) + lead : mine[i - 1].at + mine[i - 1].seconds + gap;
+  }
+  // A beat's own hook must cover its dialogue; re-solve once with the clips actually placed,
+  // so `seconds` (the mix) and sum(sceneHooks) (the frames) cannot disagree.
+  const recheck = layout.lengths.map((h, i) => {
+    const mine = byScene(i + 1);
+    if (!mine.length) return h;
+    const end = mine.at(-1).at + mine.at(-1).seconds;
+    return Math.max(h, Math.ceil((end - layout.starts[i] + 0.35) * 10) / 10);
+  });
+  layout.starts.length = 0;
+  let acc2 = 0;
+  for (const h of recheck) { layout.starts.push(acc2); acc2 += h; }
+  layout.lengths = recheck;
+  for (const c of clips) {
+    const mine = byScene(c.scene);
+    const i = mine.indexOf(c);
+    c.at = i === 0 ? layout.start(c.scene) + lead : mine[i - 1].at + mine[i - 1].seconds + gap;
+  }
+  for (const r of sceneRows) r.at = layout.start(r.scene);
+  for (const r of sceneRows) r.at = layout.start(r.scene);
+  seconds = Math.round(acc2 * 10) / 10;
+  sceneSeconds = null;
+} else {
+  for (const c of sceneRows) {
+    const inScene = clips.filter((k) => k.scene === c.scene);
+    if (!inScene.length) continue;
+    const span = inScene.at(-1).at + inScene.at(-1).seconds - (c.scene - 1) * sceneSeconds;
+    sceneSeconds = Math.max(sceneSeconds, Math.ceil((span + 0.35) * 10) / 10);
+  }
+  sceneSeconds = Math.min(vo.maxSceneSeconds ?? 7.4, sceneSeconds);
+  seconds = Math.round((spec.scenes.length * sceneSeconds + tail) * 10) / 10;
 }
-sceneSeconds = Math.min(vo.maxSceneSeconds ?? 7.4, sceneSeconds);
-const seconds = Math.round((spec.scenes.length * sceneSeconds + tail) * 10) / 10;
 
 // place clips into one 48 kHz buffer, pads trimmed to the actual voice
 const total = Math.ceil(seconds * SR);
@@ -133,7 +219,7 @@ for (const c of clips) {
 }
 
 // transitions: one cue per scene change; reveals: one tick per clip start
-const sceneStarts = sceneRows.map((r) => r.scene * 0 + (r.scene - 1) * sceneSeconds);
+const sceneStarts = sceneRows.map((r) => layout.start(r.scene));
 const cues = sceneStarts.map((_, i) => (i === 0 ? 'rise' : vo.cues?.[i] || 'whoosh'));
 const reveals = clips.map((c) => c.at);
 
@@ -144,13 +230,12 @@ writeMix(outWav, {seconds, bed, fx, voice});
 const audio = {
   slug,
   mood,
-  sceneSeconds,
+  ...(layout.count ? {sceneHooks: layout.lengths} : {sceneSeconds}),
   seconds,
   scenes: spec.scenes.length,
   voice: vo.voice || null,
   voiceId: vo.voiceId || null,
   clips: placed,
-  scenes_grew: +(seconds - spec.scenes.length * (vo.sceneSeconds ?? 5.5)).toFixed(2),
 };
 
 fs.writeFileSync(path.join(dir, 'audio.json'), JSON.stringify(audio, null, 2) + '\n');
@@ -158,22 +243,27 @@ fs.writeFileSync(path.join(dir, 'audio.json'), JSON.stringify(audio, null, 2) + 
 // The spec needs the new scene length *and* the measured cue windows before the video
 // renders: captions must appear with the voice, not with the frame numbers guessed by hand.
 const specOut = JSON.parse(fs.readFileSync(specPath, 'utf8'));
-specOut.sceneSeconds = sceneSeconds;
+if (layout.count) {
+  specOut.sceneHooks = layout.lengths;
+  delete specOut.sceneSeconds;
+} else {
+  specOut.sceneSeconds = sceneSeconds;
+}
 specOut.audio = {mix: path.relative(REPO, outWav), seconds, voice: vo.voice, voiceId: vo.voiceId || null};
-const startOf = (n) => (n - 1) * sceneSeconds;
+const startOf = (n) => layout.start(n);
 // Cues come from the mix: a caption may not appear before its line or outlive it.
 for (let i = 0; i < specOut.scenes.length; i++) {
   const mine = clips.filter((c) => c.scene === i + 1);
   if (!mine.length) { delete specOut.scenes[i].cues; continue; }
   specOut.scenes[i].cues = mine.map((c) => ({
     in: Math.max(0, Math.round((c.at - startOf(c.scene) - 0.06) * 60)),
-    out: Math.min(Math.round(sceneSeconds * 60) - 4, Math.round((c.at + c.seconds - startOf(c.scene) + 0.06) * 60)),
+    out: Math.min(Math.round(layout.length(c.scene) * 60) - 4, Math.round((c.at + c.seconds - startOf(c.scene) + 0.06) * 60)),
     text: c.text || '',
   }));
 }
 fs.writeFileSync(specPath, JSON.stringify(specOut, null, 2) + '\n');
 
 console.log(`${path.relative(REPO, outWav)}  ${seconds.toFixed(1)}s  ${placed.length} clips  ` +
-            `scene ${sceneSeconds}s  (+${audio.scenes_grew}s vs nominal)`);
+  (layout.count ? `beats ${layout.lengths.map((h) => h.toFixed(1)).join(' / ')}s` : `scene ${sceneSeconds}s`));
 if (clips.some((c) => !c.pcm && !vo.cache)) console.log('note: clips were re-measured, not re-used');
 if (flag('dry')) fs.rmSync(outWav);

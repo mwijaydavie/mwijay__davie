@@ -1,0 +1,187 @@
+{
+  "slug": "t4-01-cv-ya-chuks",
+  "track": 4,
+  "series": "Mjomba Daudi",
+  "episodeNo": "2",
+  "keyword": "CV",
+  "docType": "STORY",
+  "sceneHooks": [
+    6.2,
+    3.4,
+    7.9,
+    6.5,
+    6.7,
+    5.5,
+    4.3,
+    7.3
+  ],
+  "scenes": [
+    {
+      "type": "cover",
+      "mode": "face",
+      "kicker": "KARIAKOO · JUMANNE",
+      "headline": "Sentensi moja.",
+      "headSize": 104,
+      "headY": 396,
+      "underline": true,
+      "cast": {
+        "pose": "calm",
+        "side": "right",
+        "framing": "hero"
+      },
+      "tone": "warm",
+      "cues": [
+        {
+          "in": 20,
+          "out": 352,
+          "text": "Kuna sentensi moja ambayo imeharibu ndoto elfu moja."
+        }
+      ],
+      "ctaLine": "Andika CV kwenye DM"
+    },
+    {
+      "type": "face",
+      "mode": "face",
+      "kicker": "SENTENSI HIYO",
+      "headline": "imeharibu ndoto elfu moja",
+      "headSize": 88,
+      "headY": 386,
+      "cast": {
+        "pose": "calm",
+        "side": "right",
+        "framing": "mid"
+      },
+      "tone": "warm",
+      "cues": [
+        {
+          "in": 20,
+          "out": 179,
+          "text": "“Niletee CV yako, nione ninaweza kukusaidia.”"
+        }
+      ]
+    },
+    {
+      "type": "face",
+      "mode": "face",
+      "kicker": "MZEE CHUKS · 58",
+      "headline": "Miaka 35.",
+      "headSize": 96,
+      "headY": 392,
+      "cast": {
+        "pose": "calm",
+        "side": "right",
+        "framing": "mid"
+      },
+      "prop": "cv",
+      "tone": "warm",
+      "cues": [
+        {
+          "in": 20,
+          "out": 454,
+          "text": "Mzee Chuks ana miaka 58. Miaka 35 ya kazi. Mshahara: 150,000."
+        }
+      ]
+    },
+    {
+      "type": "stack",
+      "mode": "stack",
+      "kicker": "DROO YA BW. MBARAK",
+      "headline": "Haifungwi kwa kufuli.",
+      "headSize": 84,
+      "headY": 372,
+      "underline": true,
+      "tone": "cold",
+      "cues": [
+        {
+          "in": 20,
+          "out": 371,
+          "text": "Droo ya Bw. Mbarak haifungwi kwa kufuli. Inafungwa kwa karatasi."
+        }
+      ]
+    },
+    {
+      "type": "tally",
+      "mode": "tally",
+      "kicker": "KATIKA MIAKA 35",
+      "headline": "CV alizoandika",
+      "headSize": 80,
+      "headY": 376,
+      "tally": {
+        "n": 287,
+        "label": "nakala"
+      },
+      "tone": "cold",
+      "cues": [
+        {
+          "in": 20,
+          "out": 383,
+          "text": "CV 287. Kila moja aliiandika yeye."
+        }
+      ]
+    },
+    {
+      "type": "face",
+      "mode": "face",
+      "kicker": "SI CV",
+      "headline": "Hesabu.",
+      "headSize": 110,
+      "headY": 392,
+      "cast": {
+        "pose": "shock",
+        "side": "left",
+        "framing": "mid"
+      },
+      "prop": "ledger",
+      "tone": "cold",
+      "cues": [
+        {
+          "in": 20,
+          "out": 309,
+          "text": "Bahasha haikuwa CV. Ilikuwa hesabu ya Januari. Makosa manne."
+        }
+      ]
+    },
+    {
+      "type": "card",
+      "mode": "card",
+      "kicker": "ALISEMA",
+      "quote": "Sikutaka cheo. Nilitaka ujue kuwa ninahesabu.",
+      "headY": 520,
+      "tone": "warm",
+      "cues": [
+        {
+          "in": 20,
+          "out": 235,
+          "text": "“Sikutaka cheo. Nilitaka ujue kuwa ninahesabu.”"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "mode": "face",
+      "kicker": "DAFTARI LA MJOMBA",
+      "headline": "Kwa CV: 0.\nKwa kuhesabu: 1.",
+      "headSize": 70,
+      "headY": 386,
+      "cast": {
+        "pose": "laugh",
+        "side": "right",
+        "framing": "hero"
+      },
+      "tone": "warm",
+      "cues": [
+        {
+          "in": 20,
+          "out": 416,
+          "text": "Kazi kwa CV: sifuri. Kwa kuhesabu vizuri: moja."
+        }
+      ]
+    }
+  ],
+  "audio": {
+    "mix": "out/runway/t4-01-cv-ya-chuks/mix.wav",
+    "seconds": 47.8,
+    "voice": "Kiswahili · female · voice-03",
+    "voiceId": "voice-03"
+  }
+}
