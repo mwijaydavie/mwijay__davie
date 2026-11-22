@@ -24,9 +24,9 @@
       "headSize": 132,
       "cast": {
         "pose": "wave",
-        "x": 880,
-        "y": 2400,
-        "h": 1500
+        "x": 845,
+        "y": 1690,
+        "h": 1290
       },
       "captionLine": "App mbili. Features zilezile.",
       "cues": [
@@ -41,8 +41,8 @@
           "text": "Tofauti ni sekunde ngapi hadi uanze."
         }
       ],
-      "cardX": 64,
-      "cardY": 1000,
+      "cardX": 56,
+      "cardY": 760,
       "cardW": 600,
       "steps": {
         "title": "KIPIMO",
@@ -75,7 +75,7 @@
       "headSize": 104,
       "lay": "left",
       "cardX": 64,
-      "cardY": 590,
+      "cardY": 650,
       "cardW": 640,
       "ui": {
         "title": "KIPIMO",
@@ -97,9 +97,10 @@
       },
       "cast": {
         "pose": "point",
-        "x": 975,
-        "y": 1990,
-        "h": 1340
+        "x": 1010,
+        "y": 1700,
+        "h": 1340,
+        "flip": true
       },
       "captionLine": "Cold start: tatu dhidi ya kumi na moja.",
       "cues": [
@@ -132,7 +133,7 @@
       "headY": 380,
       "headSize": 100,
       "cardX": 64,
-      "cardY": 590,
+      "cardY": 650,
       "cardW": 640,
       "ui": {
         "title": "KIPIMO",
@@ -151,9 +152,9 @@
       },
       "cast": {
         "pose": "calm",
-        "x": 1000,
-        "y": 2000,
-        "h": 1340
+        "x": 965,
+        "y": 1710,
+        "h": 1350
       },
       "captionLine": "Zote zinahifadhi offline. Moja inatoa Markdown.",
       "cues": [
@@ -186,9 +187,10 @@
       "ctaY": 760,
       "cast": {
         "pose": "laugh",
-        "x": 950,
-        "y": 1990,
-        "h": 1300
+        "x": 900,
+        "y": 1700,
+        "h": 1330,
+        "flip": true
       },
       "captionLine": "Nikutumie checklist, bure.",
       "cues": [

@@ -52,21 +52,48 @@ export function logoData(file) {
 }
 
 /**
- * Draw her, bottom-anchored: `h` is her height in frame pixels, `y` is where her
- * feet would be (past the frame edge on purpose).
+ * Draw her, bottom-anchored: `h` is her height in frame pixels, `y` is where her feet
+ * would be (past the frame edge on purpose).
  *
- * `enter` gives a 16-frame rise-and-fade on the first shot of a scene. There is no
- * idle bob: a photograph that bobs looks like a bug. Life comes from the room's
- * lamp drift and the slow push, which the caller owns.
+ * She is a photograph, so the motion has to be authored — a still cut-out that slides
+ * looks like a sticker. Three layers, all cheap and all deterministic:
+ *
+ *   breathe · a 0.22 % scale on a ~4 s sine, plus a 1.5 px rise. The torso moves, not
+ *             the whole figure, so it reads as breath rather than as a bump.
+ *   sway    · a 0.35° rotation about a pivot just below her hips. This is the one that
+ *             does most of the work: it is what a person standing still actually does.
+ *   arm     · for `wave` and `point`, a small counter-rotation of the raised side,
+ *             approximated by a horizontal squash. A waving hand is never still.
+ *
+ * `enter` adds a 16-frame rise-and-fade on the first frame of a scene.
  */
-export function pose(name, t, {x = 790, y = 1930, h = 1180, flip = false, enter = true, o = 1} = {}) {
+export function pose(name, t, {
+  x = 790, y = 1930, h = 1180, flip = false, enter = true, o = 1,
+  motion = true, phase = 0, sway = 1, breath = 1,
+} = {}) {
   const data = sheet(name);
   const w = h * (POSE_ASPECT[name] || 0.48);
   const e = enter ? easeOut(unlerp(t, 0, 16)) : 1;
   const rise = enter ? (1 - easeInOut(unlerp(t, 0, 22))) * 26 : 0;
+
+  const tsec = t / 60;
+  // breath: two cycles in a smoker's rhythm, never faster than ~3.6 s
+  const br = motion ? Math.sin(((tsec + phase) / 2.6) * Math.PI * 2) : 0;
+  const breathe = 1 + br * 0.0052 * breath;
+  const lift = motion ? br * 4.2 * breath : 0;
+  // sway: a slower, wider period so it never looks locked to the breath
+  const sw = motion ? Math.sin(((tsec + phase) / 4.1) * Math.PI * 2 + 0.7) : 0;
+  const angle = sw * 0.85 * sway * (flip ? -1 : 1);
+  // arm: the raised side gets its own faster tick
+  const armT = motion && (name === 'wave' || name === 'point')
+    ? Math.sin(((tsec + phase) / 1.55) * Math.PI * 2) * 0.024 : 0;
+
   const sx = flip ? -1 : 1;
+  const pivotY = -h * 0.30;                      // just under the hips
   return `<g transform="translate(${round(x)} ${round(y + rise)}) scale(${sx} 1)" opacity="${round(clamp(e * o))}">
-    <image href="${data}" x="${round(-w / 2)}" y="${round(-h)}" width="${round(w)}" height="${round(h)}" preserveAspectRatio="xMidYMax meet"/>
+    <g transform="rotate(${round(angle * 100) / 100} 0 ${round(pivotY)}) scale(${round((1 + armT) * 1000) / 1000} ${round(breathe * 1000) / 1000})" transform-origin="0 ${round(-h)}">
+      <image href="${data}" x="${round(-w / 2)}" y="${round(-h - lift)}" width="${round(w)}" height="${round(h)}" preserveAspectRatio="xMidYMax meet"/>
+    </g>
   </g>`;
 }
 

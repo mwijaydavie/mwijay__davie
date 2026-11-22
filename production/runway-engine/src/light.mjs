@@ -38,7 +38,11 @@ export const LT = {
   pillEdge: '#B2C6DF',
   gold: '#F2B437',
   capBg: '#0B1B33',
+  band: '#31528F',      // the navy-blue band under the counter
 };
+
+/** The band is darker on the warm and mint plates, so it never fights the wallpaper. */
+const BAND = {paper: '#31528F', warm: '#43536B', mint: '#3D6B60'};
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const MARK_PATH = path.resolve(HERE, '../../../content/assets/altraware-mark.png');
@@ -47,41 +51,91 @@ const MARK = fs.existsSync(MARK_PATH) ? `data:image/png;base64,${fs.readFileSync
 const BG = {paper: LT.paper, warm: LT.paperWarm, mint: LT.paperMint};
 
 /**
- * The room: a pale wall with one diagonal light streak, a soft vignette at the bottom
- * so the character and the caption bar have something to sit on, and a floor line.
+ * The room, in three depth planes — this is the part that makes the reference reels
+ * read as a photograph rather than a slide:
+ *
+ *   back   · a pale wall, lit from the top-left, with one soft diagonal fold
+ *   middle · a white counter/desk, its front edge a long curve that crosses the frame
+ *   front  · a navy band under the counter, fading darker toward the bottom edge
+ *
+ * Her legs are hidden by the counter, which is why she reads as standing behind it.
+ * Everything is deterministic: the fold and the curve are fixed per tone.
  */
-function room(t, {tone = 'paper', streak = true} = {}) {
+function roomBack(t, {tone = 'paper', streak = true} = {}) {
   const base = BG[tone] || LT.paper;
+  const deep = BAND[tone] || LT.band;
   const drift = easeInOut(unlerp(t, 0, 340));
   let grain = '';
   for (let i = 0; i < 60; i++) {
-    grain += circle(round(hash01(`lt${i}`) * W), round(hash01(`lm${i}`) * H), 1.6, {fill: LT.ink, o: 0.018});
+    grain += circle(round(hash01(`lt${i}`) * W), round(hash01(`lm${i}`) * H), 1.6, {fill: LT.ink, o: 0.016});
   }
-  const shaft = streak
-    ? `<g opacity="0.55" transform="translate(${round(lerp(-30, 30, drift))} 0)">
-        <path d="M660 -60 L840 -60 L420 1980 L240 1980 Z" fill="url(#streak)"/>
-        <path d="M300 -60 L360 -60 L-60 1980 L-120 1980 Z" fill="url(#streak)" opacity="0.7"/>
+  // the counter's front edge: one shallow curve from the left edge to the right
+  const edge = 1238 + Math.sin(drift * Math.PI) * 3;
+  const counter = `M0 ${round(edge + 96)} Q 540 ${round(edge - 26)} 1080 ${round(edge + 52)} L1080 1920 L0 1920 Z`;
+  const bandTop = `M0 ${round(edge + 330)} Q 540 ${round(edge + 196)} 1080 ${round(edge + 292)} L1080 1920 L0 1920 Z`;
+  const fold = streak
+    ? `<g opacity="0.75" transform="translate(${round(lerp(-20, 20, drift))} 0)">
+        <path d="M700 -80 L812 -80 L520 1240 L408 1240 Z" fill="url(#fold)"/>
+        <path d="M300 -80 L344 -80 L60 1240 L16 1240 Z" fill="url(#fold)" opacity="0.6"/>
       </g>`
     : '';
-  return rect(0, 0, W, H, {fill: base}) +
-    `<defs>
-      <linearGradient id="streak" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/>
-        <stop offset="0.45" stop-color="#FFFFFF" stop-opacity="0.85"/>
-        <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
-      </linearGradient>
-      <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="${LT.ink}" stop-opacity="0"/>
-        <stop offset="1" stop-color="${LT.ink}" stop-opacity="0.09"/>
-      </linearGradient>
-      <radialGradient id="vig" cx="0.5" cy="0.5" r="0.5">
-        <stop offset="0.55" stop-color="${LT.ink}" stop-opacity="0"/>
+  return `<defs>
+      <radialGradient id="wallLight" cx="0.18" cy="0.05" r="0.95">
+        <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.55"/>
+        <stop offset="0.55" stop-color="#FFFFFF" stop-opacity="0.08"/>
         <stop offset="1" stop-color="${LT.ink}" stop-opacity="0.07"/>
       </radialGradient>
+      <linearGradient id="fold" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.9"/>
+        <stop offset="0.6" stop-color="#FFFFFF" stop-opacity="0.35"/>
+        <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="counterG" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/>
+        <stop offset="0.55" stop-color="#F4F8FC" stop-opacity="0.97"/>
+        <stop offset="1" stop-color="#DDE8F3" stop-opacity="0.95"/>
+      </linearGradient>
+      <linearGradient id="bandG" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="${deep}" stop-opacity="1"/>
+        <stop offset="1" stop-color="${deep}" stop-opacity="0.72"/>
+      </linearGradient>
     </defs>` +
-    shaft + grain +
-    rect(0, 1640, W, 280, {fill: 'url(#floor)'}) +
-    rect(0, 0, W, H, {fill: 'url(#vig)'});
+    // back plane
+    rect(0, 0, W, 1400, {fill: base}) +
+    rect(0, 0, W, 1400, {fill: 'url(#wallLight)'}) +
+    fold + grain +
+    // a faint moulding line on the wall, like the skirting in the LIMS plate
+    `<path d="M0 1122 L1080 1090" stroke="${LT.ink}" stroke-width="2" opacity="0.055" fill="none"/>`;
+}
+
+/**
+ * The front plane: the counter and the brand band. Drawn AFTER the cast, because she
+ * stands behind it — that is what puts her in the room instead of on the page.
+ * `edge` is shared with roomBack so the two halves join; the caller passes the same t.
+ */
+function roomFront(t, {tone = 'paper', band = true} = {}) {
+  const edge = 1238 + Math.sin(easeInOut(unlerp(t, 0, 340)) * Math.PI) * 3;
+  const glow = 0.5 + 0.5 * Math.sin(t / 60 * 0.55);
+  const deep = BAND[tone] || LT.band;
+  const counter = `M0 ${round(edge + 96)} Q 540 ${round(edge - 26)} 1080 ${round(edge + 52)} L1080 1920 L0 1920 Z`;
+  const bandTop = `M0 ${round(edge + 330)} Q 540 ${round(edge + 196)} 1080 ${round(edge + 292)} L1080 1920 L0 1920 Z`;
+  return `<defs>
+      <linearGradient id="counterG" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/>
+        <stop offset="0.5" stop-color="#F5F9FD" stop-opacity="0.99"/>
+        <stop offset="1" stop-color="#E2EBF5" stop-opacity="0.99"/>
+      </linearGradient>
+      <linearGradient id="bandG" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="${deep}" stop-opacity="1"/>
+        <stop offset="1" stop-color="${deep}" stop-opacity="0.62"/>
+      </linearGradient>
+    </defs>` +
+    // a soft contact shadow on the counter top where her body meets it
+    `<path d="M0 ${round(edge + 96)} Q 540 ${round(edge - 26)} 1080 ${round(edge + 52)} L1080 ${round(edge + 150)} L0 ${round(edge + 190)} Z" fill="${LT.ink}" opacity="0.05"/>` +
+    `<path d="${counter}" fill="url(#counterG)"/>` +
+    `<path d="M0 ${round(edge + 96)} Q 540 ${round(edge - 26)} 1080 ${round(edge + 52)}" stroke="#FFFFFF" stroke-width="8" fill="none" opacity="${round(0.90 + glow * 0.08)}"/>` +
+    `<path d="M0 ${round(edge + 106)} Q 540 ${round(edge - 16)} 1080 ${round(edge + 62)}" stroke="${LT.ink}" stroke-width="3" fill="none" opacity="0.06"/>` +
+    (band ? `<path d="${bandTop}" fill="url(#bandG)"/>` : '');
 }
 
 /** The pill lockup: mark, then "PRODUCT / SECTION" in tracked mono caps. */
@@ -118,7 +172,7 @@ function headline(scene, t, {x = 64, y = 380, size = 128, maxWidth = 940, start 
       size: sz, maxWidth, maxLines: 1, lineHeight: 1, tracking: accent ? -2 : -4, minSize: 54,
     });
     const o = easeOut(unlerp(t, start + n * 7, start + 20 + n * 7));
-    out += `<g transform="translate(0 ${round((1 - o) * 26)})">${text(f.lines[0], x, cur, {
+    out += `<g transform="translate(${round(Math.sin((t / 60) * 0.5 + n) * 1.2)} ${round((1 - o) * 26)})">${text(f.lines[0], x, cur, {
       role: accent ? 'serif' : 'head', weight: accent ? 500 : 700, size: f.size,
       fill: accent ? LT.accent : LT.ink, tracking: accent ? -2 : -4, o,
     })}</g>`;
@@ -146,7 +200,9 @@ function card(scene, t, {x = 64, y = 560, w = 520, start = 10} = {}) {
     ? 172 + (c.search ? 82 : 0) + rows.length * rowH + (c.footer ? 76 : 0) + (c.total ? 104 : 0)
     : 168 + steps.length * 78 + 34;
   const p = easeOut(unlerp(t, start, start + 24));
-  let out = `<g opacity="${round(p)}" transform="translate(0 ${round((1 - p) * 30)})">`;
+  const floatY = Math.sin((t / 60) * 0.62) * 2.6;
+  const floatX = Math.cos((t / 60) * 0.44) * 1.4;
+  let out = `<g opacity="${round(p)}" transform="translate(${round(floatX)} ${round((1 - p) * 30 + floatY)})">`;
   out += `<rect x="${x + 6}" y="${y + 12}" width="${w}" height="${h}" rx="26" fill="${LT.ink}" opacity="0.10"/>`;
   out += rect(x, y, w, h, {fill: LT.card, rx: 26, stroke: LT.cardEdge, sw: 2});
 
@@ -260,7 +316,7 @@ function summaryCard(sum, t, {x = 64, y = 1000, w = 620, start = 26} = {}) {
 }
 
 /** One navy bar, one or two lines, centred — the only caption the reels use. */
-function caption(scene, t, {y = 1734} = {}) {
+function caption(scene, t, {y = 1500} = {}) {
   const s = scene.captionLine;
   if (!s) return '';
   const p = easeOut(unlerp(t, 8, 26));
@@ -282,11 +338,11 @@ function caption(scene, t, {y = 1734} = {}) {
  */
 export function light(spec, scene, t, images, track) {
   const mode = scene.mode || (scene.ui || scene.steps ? 'card' : 'hook');
-  let out = room(t, {tone: scene.tone || 'paper', streak: scene.streak !== false});
+  const tone = scene.tone || 'paper';
+  let out = roomBack(t, {tone, streak: scene.streak !== false});
 
   const c = scene.cast;
   if (c && c.pose) {
-    out += floorShadow({x: c.x ?? 860, y: c.groundY ?? 1700, w: (c.h ?? 1180) * 0.22, o: 0.18});
     out += pose(c.pose, t, {
       x: c.x ?? 860, y: c.y ?? 1980, h: c.h ?? 1240,
       enter: c.enter ?? true, flip: !!c.flip,
@@ -308,5 +364,6 @@ export function light(spec, scene, t, images, track) {
     maxWidth: scene.headW ?? 940,
   });
   out += pillLockup(scene, t, {x: 64, y: scene.eyebrowY ?? 226});
-  return out + caption(scene, t, {y: scene.captionY ?? 1734});
+  out += roomFront(t, {tone, band: scene.band !== false});
+  return out + caption(scene, t, {y: scene.captionY ?? 1500});
 }

@@ -49,6 +49,33 @@ Zuri (turtleneck ya periwinkle, braids mbili, hoops za fedha) — poses tano:
 - `production/runway-engine/tools/cut_white.py` — kukata kutoka background nyeupe
 - `content/runway/specs/a3-01-note-apps.spec.json` — reel halisi ya Jumatatu 23 Nov
 
+## Depth (ukurasa wa tatu)
+
+Nilibadilisha ukurasa mmoja kuwa **tabaka tatu**, kama LIMS:
+
+| Tabaka | Kina | Kimechorwa |
+| --- | --- | --- |
+| Nyuma | ukuta `#EDF3F9`, mwanga juu-kushoto, mikunjo miwili ya diagonal, mstari wa skirting y=1122 | kabla ya mhusika |
+| **Mhusika** | amesimama **nyuma ya counter** | kati |
+| Mbele | counter nyeupe yenye ukingo wa mraba (y≈1240), kivuli chini ya mdomo wake, **band ya navy `#31528F`** chini | baada ya mhusika |
+| Caption | ON the counter, sio kwenye band | mwisho |
+
+Counter inamficha kiunoni — ndio inampa uzito. Bila hiyo anaonekana kama sticker iliyobandikwa.
+
+## Character animation
+
+Mhusika ni picha, kwa hivyo mwendo umeandikwa (`pose()` kwenye `src/zuri.mjs`):
+
+| Tabaka | Kipimo | Kwa nini |
+| --- | --- | --- |
+| Pumzi | scale 0.52%, mzunguko 2.6 s, lift 4.2 px | kifua kinapanda, sio mwili wote |
+| Kuyumba | 0.85° kuzunguka kiuno, mzunguko 4.1 s | hii ndio inafanya aonekane mtu |
+| Mkono | squash 2.4% kwa 1.55 s (`wave`, `point` tu) | mkono unaotikisika kamwe hausimami |
+| Kadi | kuelea 2.6 px / 1.4 px | kadi iliyosimama ni kitu kilichokufa |
+| Kichwa | drift 1.2 px | juu ya fremu isikae tupu |
+
+**Kipimo:** tofauti ya fremu mfululizo (60 fps) — video yako LIMS ni **0.325**, yangu ilianza **0.089**, sasa ni **0.237**. Bado 27% chini; sababu ni kwamba LIMS ina video halisi ya screen ndani ya kadi na mwendo wa kamera zaidi.
+
 ## Kanuni tano
 
 1. **Nyeupe inatawala.** Background ni karatasi, sio chumba.
