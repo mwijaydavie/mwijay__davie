@@ -1,0 +1,25 @@
+{
+  "voice": "English · female · voice-00",
+  "voiceId": "voice-00",
+  "mood": "dark",
+  "lead": 0.35,
+  "gap": 0.24,
+  "cues": ["rise", "whoosh", "thud", "whoosh", "whoosh", "cut"],
+  "scenes": [
+    {"hook": 9.0},
+    {"hook": 4.6},
+    {"hook": 5.0},
+    {"hook": 5.6},
+    {"hook": 8.0},
+    {"hook": 9.0}
+  ],
+  "clips": [
+    {"scene": 1, "file": "production/runway-engine/voice/t2-01/s1a.mp3", "text": "Two thousand. Netflix is losing money."},
+    {"scene": 1, "file": "production/runway-engine/voice/t2-01/s1b.mp3", "text": "They offer the whole company to Blockbuster. Fifty million dollars."},
+    {"scene": 2, "file": "production/runway-engine/voice/t2-01/s2a.mp3", "text": "Fifty million dollars. That was the entire company."},
+    {"scene": 3, "file": "production/runway-engine/voice/t2-01/s3a.mp3", "text": "The offer was declined. Not a negotiation. A no."},
+    {"scene": 4, "file": "production/runway-engine/voice/t2-01/s4a.mp3", "text": "Two thousand and ten: bankruptcy. Twenty twenty-one: the other side."},
+    {"scene": 5, "file": "production/runway-engine/voice/t2-01/s5a.mp3", "text": "Two accounts. One meeting. The founders say they offered. The chief executive says no talks."},
+    {"scene": 6, "file": "production/runway-engine/voice/t2-01/s6a.mp3", "text": "Tomorrow: the camera Kodak invented, then hid. The Decision File. Episode two."}
+  ]
+}

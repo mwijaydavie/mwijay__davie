@@ -37,6 +37,21 @@ Toleo la kwanza linashughulikia episodes 01–03:
 - Episodes 04–21 zitaongezwa kwenye dossier baada ya `research-needed` kufungwa. Post yenye
   keyword `FILE` kabla ya hapo inatoa dossier ya episodes 01–03 tu — na caption inasema hivyo.
 
+## Status ya production (21 Nov 2026)
+
+| Episode | Spec | Sauti | Video | Keyword |
+| --- | --- | --- | --- | --- |
+| 01 · Netflix $50M | ✅ | ✅ `voice-00` (clips 7) | ✅ 41.4s | — (hakuna keyword ep 1–20) |
+| 02 · Kodak | brief tu | — | — | — |
+
+**Kanuni mpya (kutoka ep 01):** Nia hawezi kusimama ndani ya kadi ya CTA ya track 2 — kadi
+inachukua upana wote wa safe area. Amehamishiwa kando ya kadi (`x 942`, `y 1436`, `scale 0.52`,
+pose `nod`), chini ya kadi na juu ya caption band. Ukiandika CTA mpya, hakikisha haingii
+caption band (y ≥ 1470).
+
+**Timeline:** `gap` sasa inajipanga yenyewe (`min(196, (1400-700)/(n-1))`). Timeline ya
+matukio 3 ilikuwa inavuka frame na event ya tatu kuishia chini ya caption.
+
 ## The 21 episodes
 
 Kila brief ina: hook, claim ya msingi, mahali pa kuithibitisha, na angle. **Status: DRAFT — hakuna episode iliyohakikiwa.** Episode 01, 06 na 08 zina chanzo kilichothibitishwa tayari; nyingine zinahitaji kuangalia source kabla ya script.

@@ -414,7 +414,13 @@ function track2Frame(spec, s, t, images, track) {
     case 'timeline': {
       return (s.kicker ? labelText(s.kicker, 84, T_TOP, {fill: th.accent, size: 23}) : '') +
         headlineBlock(s.headline, 84, T_TOP + 34, {size: 62, maxWidth: 900, maxLines: 2, fill: th.ink, tracking: -2, max: 580}).svg +
-        A.timeline(t, {events: s.events, x: 120, y: 640, gap: s.gap || 196, palette: th, start: 40, step: 30, w: 780});
+        A.timeline(t, {
+          events: s.events, x: 120, y: 640, palette: th, start: 40, step: 30, w: 780,
+          // A 3-event timeline used to overflow the frame: 3 x 196 ends at y=1128, and the
+          // third title then runs under the caption band. Fit the rail to the space that is
+          // actually left, so the number of beats never decides whether the last one is legible.
+          gap: s.gap || Math.min(196, Math.floor((1400 - 700) / Math.max(1, s.events.length - 1))),
+        });
     }
     case 'chart': {
       return (s.kicker ? labelText(s.kicker, 84, T_TOP, {fill: th.accent, size: 23}) : '') +
@@ -604,7 +610,10 @@ export function renderFrame(spec, frame, {mark, images = {}} = {}) {
   // scenes default to her so every Reel opens and closes on the same face.
   let cast = '';
   if (spec.character !== false && spec.track !== 4) {
-    const cfg = scene.nia ?? ((idx === 0 || idx === total - 1) ? {pose: idx === 0 ? 'perk' : 'present'} : null);
+    // The track-2 CTA fills the safe width with a card, so the default corner drops her on
+    // the headline. Beside the card's lower edge reads as a signing-off pose.
+    const ctaDefault = spec.track === 2 ? {x: 942, y: 1436, scale: 0.52, pose: 'nod'} : {pose: 'present'};
+    const cfg = scene.nia ?? ((idx === 0 || idx === total - 1) ? (idx === 0 ? {pose: 'perk'} : ctaDefault) : null);
     if (cfg) {
       const {pose, since} = poseAt(scene, t);
       const talking = activeCue(scene.cues, t) ? 1 : 0;

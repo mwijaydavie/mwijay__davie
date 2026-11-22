@@ -4,9 +4,9 @@
   "tag": "THE DECISION FILE",
   "series": "THE DECISION FILE",
   "episodeNo": "01",
-  "docType": "MEMO",
-  "docRef": "OFFER · 2000",
-  "chartNote": "Illustrative, not data",
+  "docType": "OFFER MEMO",
+  "docRef": "REF. NETFLIX/00",
+  "chartNote": "Illustration, not data",
   "keyword": "FILE",
   "footerLine": "Full source list in DM.",
   "footerNote": "Illustration only. No archival footage used.",
@@ -33,14 +33,14 @@
       "sub": "Blockbuster declined. Netflix kept going.",
       "cues": [
         {
-          "in": 10,
-          "out": 130,
+          "in": 17,
+          "out": 221,
           "text": "Two thousand. Netflix is losing money."
         },
         {
-          "in": 140,
-          "out": 300,
-          "text": "They fly to Blockbuster. Fifty million."
+          "in": 229,
+          "out": 523,
+          "text": "They offer the whole company to Blockbuster. Fifty million dollars."
         }
       ]
     },
@@ -55,14 +55,9 @@
       "source": "Newsweek fact check, 11 Mar 2021",
       "cues": [
         {
-          "in": 8,
-          "out": 140,
-          "text": "Fifty million dollars."
-        },
-        {
-          "in": 150,
-          "out": 310,
-          "text": "That was the entire company."
+          "in": 17,
+          "out": 257,
+          "text": "Fifty million dollars. That was the entire company."
         }
       ]
     },
@@ -74,14 +69,9 @@
       "source": "Paraphrase — see caption for the full quotes and the dispute.",
       "cues": [
         {
-          "in": 8,
-          "out": 150,
-          "text": "The offer was declined."
-        },
-        {
-          "in": 160,
-          "out": 300,
-          "text": "Not a negotiation. A no."
+          "in": 17,
+          "out": 274,
+          "text": "The offer was declined. Not a negotiation. A no."
         }
       ]
     },
@@ -108,19 +98,9 @@
       ],
       "cues": [
         {
-          "in": 8,
-          "out": 96,
-          "text": "Two thousand: the offer."
-        },
-        {
-          "in": 104,
-          "out": 200,
-          "text": "Two thousand ten: bankruptcy."
-        },
-        {
-          "in": 208,
-          "out": 310,
-          "text": "Twenty twenty-one: the other side."
+          "in": 17,
+          "out": 321,
+          "text": "Two thousand and ten: bankruptcy. Twenty twenty-one: the other side."
         }
       ]
     },
@@ -137,19 +117,9 @@
       "note": "When the people in the room disagree, say so on screen.",
       "cues": [
         {
-          "in": 8,
-          "out": 110,
-          "text": "Two accounts. One meeting."
-        },
-        {
-          "in": 120,
-          "out": 240,
-          "text": "The founders say they offered."
-        },
-        {
-          "in": 244,
-          "out": 318,
-          "text": "The CEO says no talks."
+          "in": 17,
+          "out": 461,
+          "text": "Two accounts. One meeting. The founders say they offered. The chief executive says no talks."
         }
       ]
     },
@@ -160,18 +130,29 @@
       "note": "Follow for the next episode.",
       "cues": [
         {
-          "in": 8,
-          "out": 130,
-          "text": "Tomorrow: the camera Kodak hid."
-        },
-        {
-          "in": 140,
-          "out": 300,
-          "text": "The Decision File. Episode two."
+          "in": 17,
+          "out": 432,
+          "text": "Tomorrow: the camera Kodak invented, then hid. The Decision File. Episode two."
         }
       ],
       "next": "TOMORROW · 20:00 EAT",
       "source": "Sources in caption"
     }
-  ]
+  ],
+  "sceneHooks": [
+    9.1,
+    4.6,
+    5,
+    5.7,
+    8,
+    9
+  ],
+  "audio": {
+    "mix": "out/runway/t2-01-netflix-50m/mix.wav",
+    "seconds": 41.4,
+    "voice": "English · female · voice-00",
+    "voiceId": "voice-00"
+  },
+  "chartLabel": "THE OFFER · 2000",
+  "docTitle": "BLOCKBUSTER"
 }

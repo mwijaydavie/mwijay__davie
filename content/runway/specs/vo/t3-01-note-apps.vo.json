@@ -1,0 +1,24 @@
+{
+  "voice": "Kiswahili · female · voice-01",
+  "voiceId": "voice-01",
+  "mood": "idea",
+  "lead": 0.35,
+  "gap": 0.22,
+  "cues": ["rise", "whoosh", "whoosh", "cut"],
+  "scenes": [
+    {"hook": 5.6},
+    {"hook": 6.2},
+    {"hook": 5.8},
+    {"hook": 5.4}
+  ],
+  "clips": [
+    {"scene": 1, "file": "production/runway-engine/voice/t3-01/s1a.mp3", "text": "App mbili. Features zilezile."},
+    {"scene": 1, "file": "production/runway-engine/voice/t3-01/s1b.mp3", "text": "Tofauti ni sekunde ngapi hadi uanze."},
+    {"scene": 2, "file": "production/runway-engine/voice/t3-01/s2a.mp3", "text": "Cold start: tatu dhidi ya kumi na moja."},
+    {"scene": 2, "file": "production/runway-engine/voice/t3-01/s2b.mp3", "text": "Zote zinahifadhi offline."},
+    {"scene": 2, "file": "production/runway-engine/voice/t3-01/s2c.mp3", "text": "Export: moja inatoa Markdown."},
+    {"scene": 3, "file": "production/runway-engine/voice/t3-01/s3a.mp3", "text": "Moja: cold start. Mbili: offline save. Tatu: export."},
+    {"scene": 4, "file": "production/runway-engine/voice/t3-01/s4a.mp3", "text": "Andika KIT."},
+    {"scene": 4, "file": "production/runway-engine/voice/t3-01/s4b.mp3", "text": "Nikutumie checklist, bure."}
+  ]
+}

@@ -10,7 +10,10 @@ Muda wa kazi: masaa 2–3 kwa siku. Ikiwa huna masaa hayo, punguza kwa akaunti m
   - Mfano: `@mwijaysystems` (A1) · `@thedecisionfile` (A2) · `@mwijaytools` (A3). Hakikisha hazijachukuliwa.
 - [ ] `cd production/runway-engine && npm install && npm test` — tests 13 zipite.
 - [ ] `node src/cli.mjs check` kwa specs 3.
-- [ ] Pitia Reels tatu za mwanzo (`out/runway/*/`): ziko tayari bila sauti; angalia kama hook inakubalika.
+- [x] **A1-01 na A2-01 ziko tayari kwa sauti** (41.4s na 34.2s). A3-01 inasubiri clips 6 za sauti pekee — manifest na spec ziko tayari.
+  - [x] A1-01 `t1-vo.mp4` · 34.2s · `STACK`
+  - [x] A2-01 `t2-vo.mp4` · 41.4s · `FILE` · sources 2 zilizo na tarehe
+  - [ ] A3-01 `t3-01-note-apps` · beats 4 · `KIT` — rekodi s2a/s2b/s2c/s3a/s4a/s4b kisha `node build-audio.mjs t3-01-note-apps`
 - [x] Files 5 za lead magnets zimebuild na kupimwa: `content/runway/files/` (`STACK`, `FILE`, `KIT`, `TOOLKIT`, `BEI`). Rejista ya CTA zilizobaki: `content/runway/files/README.md` §4.
 - [ ] Kagua PDFs 5 kwenye simu (sio preview pekee); rekebisha copy ukiona kitu kibaya.
 
