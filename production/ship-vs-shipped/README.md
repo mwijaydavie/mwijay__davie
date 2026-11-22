@@ -1,6 +1,6 @@
 # Ship vs Shipped
 
-**Review:** <https://drive.google.com/file/d/1-SFh6YdVqiKMBHHVFyMfThK8hbUwkbE-/view>
+**Review:** <https://drive.google.com/file/d/1vz8xEl4NtolwouPD3gXlKn2xfctbOJZj/view>
 1080×1920 · 60 fps · 31.22 s · H.264 yuv420p + AAC 48 kHz
 
 ## The angle

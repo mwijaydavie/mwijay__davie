@@ -34,6 +34,45 @@ Layered poses take **gesture styles**. Full-figure poses ignore them — a cue o
 | `aim` | small repeated aim | 68 | point |
 | `accent` | quick downward accent | 42 | wave |
 
+### The Altraware mark on the hoodie
+
+Every pose carries the Altraware logo on the chest patch. It is **baked into the base PNG**, not drawn per frame.
+
+`build-logo.py` does it: wipe the patch to knit colour, multiply-blend the mark, write the new base. `assets/altraware.png` is 256×256 RGBA.
+
+The badge rectangle is per-pose and **measured by eye**, hard-coded in `BADGES`:
+
+| pose | x0,y0,x1,y1 |
+| --- | --- |
+| wave | 541,707,599,739 |
+| point | 541,707,599,738 |
+| desk | 598,658,656,690 |
+| phone | 552,712,610,744 |
+| cheer | 556,648,612,680 |
+| ok | 548,676,606,706 |
+| peace | 566,640,622,672 |
+| pray | 541,707,599,739 |
+| thumbsup | 541,706,599,738 |
+
+**Do not try to find the badge by colour.** Every threshold that clears the knit also catches the sleeve badge, the hood edge or the background. On five poses a blob search painted a blue rectangle across her shoulders. Measure the rectangle once, in `.cache/badgegrid.png` (3×3 grid crops at 25 px), and write the numbers down.
+
+Two traps:
+
+- `desk` and `phone` have **two** pale rectangles — chest and sleeve. The sleeve one is not the badge.
+- After baking, set `mark: null` in `host-rig.json` so nothing draws a second copy. But `build-poses-generated.py` chokes on `mark: null` (`NoneType is not iterable`), so restore `mark: [546,711,41,24]` before regenerating poses, and re-run `build-logo.py` after.
+
+`logo-check.png` is the audit strip — all nine poses, mark visible. Regenerate and actually look at it whenever a base is rebuilt.
+
+---
+
+### Choosing a palette for a *second* show
+
+If you make a second Reel, change more than the words, or the audience reads it as the same video twice. In `ship-vs-shipped` the school Reel's eggshell went to slate + mint, the product UI went to code and matrices, and she went from presenter-scale to margin-scale. Same character, same rig, different show.
+
+And do not let the "dark editorial" instinct take the plate to near-black. On the first pass the tint was `#0b1522` at 10 % photo and the set read as a void with dust in it — the flat-background complaint again, only darker. `#152536` at 26 % photo kept the night mood and the classroom.
+
+---
+
 ### The nine poses, and what each one is for
 
 | Pose | Reads as | Use on |
@@ -59,6 +98,19 @@ Generation prompt pattern that worked (keep it this flat, or the face drifts):
 > Keep this exact 3D cartoon character identical: same face, same big round double-bun afro, same purple-tinted round sunglasses on top of the head, same gold hoop earrings, same blue hoodie with navy trim, same freckles. Change ONLY her pose: <one sentence>. Plain solid mid-grey background. Full torso, waist up, centred, front view, even soft studio lighting, high quality 3D render.
 
 Re-run `build-visemes.py` after adding a pose — a new pose's mouth patches must be pointed at the **wave** patches, because mouth patches cut from a closed smile cannot open.
+
+### Layout: she and the artifact never share a column
+
+The failure that recurs in every new episode: the text block runs straight through her hoodie, or a CTA bar lands across a raised hand. It is invisible in a downscaled sheet and obvious at 100 %.
+
+The rule that fixed it in `ship-vs-shipped`:
+
+- The **artifact** (code pane, matrix, trace, counter) owns a band, usually `y 600–920` or `y 760–1060`.
+- **She** owns a column on the side, or the band below the artifact. Never both in the same rectangle.
+- Keep all text above `y ≈ 1422` (the caption pill sits at 1440).
+- Write the positions as a `POS` table at the top of the renderer, one line per scene, so a collision is one number away from a fix.
+
+Then check at 100 %: caption pill clear, no text over the face, no bar over a hand, nothing outside the safe box.
 
 ---
 
@@ -156,7 +208,11 @@ Render `--proof=N` first and look at real frames. Then on the full render:
 
 ---
 
-## Reference implementation
+## Reference implementations
+
+- **School Reel** — `production/shule-altra-reel/`, warm, presenter-led, 8 poses, 36.82 s.
+- **Tech Reel** — `production/ship-vs-shipped/`, slate + mint, artifact-led, 31.22 s.
+
 
 `production/shule-altra-reel/` — eight beats, pose rotation, measured lip sync, real proof crops, living sets.
 `production/noellyne-host/README.md` — the rig API and recovery path.
