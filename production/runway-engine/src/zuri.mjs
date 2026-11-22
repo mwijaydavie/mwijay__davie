@@ -29,6 +29,7 @@ export const POSES = {
   point: {file: 'zuri-point-cut.png', aspect: 826 / 1177, note: 'points to her left (viewer right)'},
   shock: {file: 'zuri-shock-cut.png', aspect: 524 / 1203, note: 'hand to chest'},
   laugh: {file: 'zuri-laugh-cut.png', aspect: 725 / 1168, note: 'sign-off'},
+  wave:  {file: 'zuri-wave-cut.png',  aspect: 625 / 1176, note: 'hello — opens every light reel'},
 };
 
 export const POSE_ASPECT = Object.fromEntries(Object.entries(POSES).map(([k, v]) => [k, v.aspect]));

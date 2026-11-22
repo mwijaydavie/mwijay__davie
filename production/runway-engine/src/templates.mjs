@@ -11,6 +11,7 @@ import {nia, poseAt} from './nia.mjs';
 import {transition, moveFor, MOVE_FRAMES} from './motion.mjs';
 import {story} from './storyTrack.mjs';
 import {altraware, ALT} from './altraware.mjs';
+import {light, LT} from './light.mjs';
 
 /** Nominal length of one scene. A spec may set `sceneSeconds` (the audio builder does when
  *  the voice needs more room), and every template reads the length from there. */
@@ -39,6 +40,21 @@ export const sceneFrames = (spec, i) => {
 export const framesPerScene = (spec) => Math.round((spec.sceneSeconds || SCENE_FRAMES / 60) * 60);
 
 export const TRACKS = {
+  // Track 6 — the pale product reel (MwijayNote / LIMS / Model Mpya). The one the
+  // channel is actually recognised by: light page, navy type, blue italic turn.
+  6: {
+    id: 6,
+    name: 'Light product reel',
+    layout: 'paper',
+    theme: {
+      bg: LT.paper, ink: LT.ink, muted: LT.inkSoft, accent: LT.accent, accent2: '#0E9F6E',
+      card: '#FFFFFF', cardEdge: '#0B1B3314', gridColor: LT.ink, gridOpacity: 0.03,
+      captionBg: LT.capBg, captionInk: '#FFFFFF',
+      chromeInk: LT.ink, chromeMuted: '#0B1B3399', chromeAccent: LT.accent,
+      footerBg: '#FBFDFF', route: LT.accent, badge: LT.accent,
+    },
+    fonts: {head: 'head', stat: 'head'},
+  },
   // Track 5 — the Altraware house reel. Same room on every post, so the feed is
   // recognisable before the copy is read. See src/altraware.mjs for the method.
   5: {
@@ -112,7 +128,7 @@ export const TRACKS = {
 
 function background(track, spec, t, imgs) {
   const th = track.theme;
-  if (track.layout === 'night') return '';   // src/altraware.mjs draws the whole room
+  if (track.layout === 'night' || track.layout === 'paper') return '';   // the template draws its own room
   let out = rect(0, 0, W, H, {fill: th.bg});
   if (track.layout === 'light') {
     out += `<g opacity="${round(th.gridOpacity * 2)}">${gridLines({step: 72, color: th.gridColor, o: 0.5})}</g>`;
@@ -594,7 +610,7 @@ function storyCta(spec, scene, th, t) {
   </g>`;
 }
 
-const RENDERERS = {1: track1Frame, 2: track2Frame, 3: track3Frame, 4: story, 5: altraware};
+const RENDERERS = {1: track1Frame, 2: track2Frame, 3: track3Frame, 4: story, 5: altraware, 6: light};
 
 /** Throws if a rendered frame has unbalanced <g> tags — an unclosed group is silent in SVG. */
 export function assertBalanced(svg) {
@@ -626,7 +642,7 @@ export function renderFrame(spec, frame, {mark, images = {}} = {}) {
   // Nia, the account character. A scene opts in with `nia:{...}`; the first and last
   // scenes default to her so every Reel opens and closes on the same face.
   let cast = '';
-  if (spec.character !== false && spec.track !== 4 && spec.track !== 5) {
+  if (spec.character !== false && spec.track !== 4 && spec.track !== 5 && spec.track !== 6) {
     // The track-2 CTA fills the safe width with a card, so the default corner drops her on
     // the headline. Beside the card's lower edge reads as a signing-off pose.
     const ctaDefault = spec.track === 2 ? {x: 942, y: 1436, scale: 0.52, pose: 'nod'} : {pose: 'present'};
@@ -645,7 +661,7 @@ export function renderFrame(spec, frame, {mark, images = {}} = {}) {
 
   // master fade in and out
   const fade = Math.min(easeOut(unlerp(frame, 0, 8)), 1 - easeInOut(unlerp(frame, totalFrames - 10, totalFrames - 1)));
-  const cue = scene.cues && !spec.noCaptions && spec.track !== 5 ? activeCue(scene.cues, t) : null;
+  const cue = scene.cues && !spec.noCaptions && spec.track !== 5 && spec.track !== 6 ? activeCue(scene.cues, t) : null;
   const move = transition(moveFor(spec, idx), frame, sceneFrames(spec, idx), th.accent);
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
   <defs>
@@ -660,12 +676,12 @@ export function renderFrame(spec, frame, {mark, images = {}} = {}) {
   <g opacity="${round(fade)}">
     ${move.outer}
       ${spec.track === 4 ? '' : background(track, spec, t, images)}
-      ${spec.track === 4 ? storyChrome(spec, scene, th, t) : spec.track === 5 ? '' : A.brandBar({mark, theme: th, t, handle: spec.brand?.handle || '@mwijay__davie'})}
+      ${spec.track === 4 ? storyChrome(spec, scene, th, t) : spec.track === 5 || spec.track === 6 ? '' : A.brandBar({mark, theme: th, t, handle: spec.brand?.handle || '@mwijay__davie'})}
       ${body}
       ${cast}
       ${spec.track === 4 ? storyCta(spec, scene, th, t) : ''}
       ${cue ? A.captions({...cue, out: cue.out}, t, {theme: th, size: scene.captionSize || 50}) : ''}
-      ${spec.track === 4 || spec.track === 5 || scene.footerCta === false || !(idx === 0 || idx === total - 1) ? '' : A.footer({
+      ${spec.track === 4 || spec.track === 5 || spec.track === 6 || scene.footerCta === false || !(idx === 0 || idx === total - 1) ? '' : A.footer({
         keyword: scene.keywordFooter || spec.keyword,
         line1: scene.footerLine || spec.footerLine || 'Free file in DM.',
         theme: th, t, start: idx === 0 ? 60 : 150,

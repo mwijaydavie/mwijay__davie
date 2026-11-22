@@ -1,7 +1,7 @@
 week,date_eat,weekday,account,post_no,working_title,state
 W1,2026-11-23,Mon,A1-systems,01,"Invoice twice, STACK",rendered
 W1,2026-11-23,Mon,A2-stories,01,Blockbuster vs Netflix $50M,rendered
-W1,2026-11-23,Mon,A3-tools,01,Note apps 3s vs 11s,pending-spec
+W1,2026-11-23,Mon,A3-tools,01,Note apps 3s vs 11s,rendered
 W1,2026-11-24,Tue,A1-systems,02,"API vs MCP, WIRE",pending-spec
 W1,2026-11-24,Tue,A2-stories,02,Kodak's own camera,research-needed
 W1,2026-11-24,Tue,A3-tools,02,PDF open vs tap,pending-spec

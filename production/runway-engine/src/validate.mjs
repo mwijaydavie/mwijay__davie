@@ -11,6 +11,7 @@ const TYPES = {
   4: ['cover', 'face', 'card', 'stack', 'tally', 'cta'],
   // track 5 is driven by `mode` (hook · ui · stat · cta), so every beat is a valid card type
   5: ['cover', 'clip', 'demo', 'stat', 'cta'],
+  6: ['cover', 'card', 'stat', 'cta'],
 };
 
 /** Words that are too generic to gate a DM on (the "type a comment" CTA). */
@@ -28,7 +29,7 @@ export function validate(spec) {
   const warn = (m) => warnings.push(m);
 
   if (!spec.slug) err('missing slug (used for the output folder)');
-  if (![1, 2, 3, 4, 5].includes(spec.track)) err('track must be 1–5');
+  if (![1, 2, 3, 4, 5, 6].includes(spec.track)) err('track must be 1–6');
   const allowed = TYPES[spec.track] || [];
   if (!Array.isArray(spec.scenes) || !spec.scenes.length) err('no scenes');
   else {
@@ -77,7 +78,7 @@ export function validate(spec) {
       if (!Array.isArray(spec.sources) || !spec.sources.length) err(`${where}: spec.sources must list the dated primary sources for this episode`);
     }
     // track 5's demo beat is a drawn UI card, not a screen capture, so it needs no clip
-    if ((s.type === 'clip' || s.type === 'demo') && !(spec.track === 5 && s.ui)) {
+    if ((s.type === 'clip' || s.type === 'demo') && !(s.ui && (spec.track === 5 || spec.track === 6))) {
       const c = spec.clips?.[s.clip];
       if (!c) err(`${where}: clip "${s.clip}" is not defined in clips{}`);
       else {

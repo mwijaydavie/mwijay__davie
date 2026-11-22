@@ -1,0 +1,228 @@
+{
+  "slug": "a3-01-note-apps",
+  "track": 6,
+  "tag": "TOOL SHOWDOWN",
+  "type": "cover",
+  "keyword": "KIT",
+  "caption": "App mbili za notes. Zote zina features zote kwenye video ya matangazo.\n\nTofauti inaonekana kwenye sekunde za kwanza: moja inafungua hadi note ya mwisho kwa sekunde 3, nyingine inahitaji taps mbili na loading screen ya sekunde 11.\n\nNimepima kwa simu moja ya Android ya kati, airplane mode, notes 5 zilezile. Simu yako inaweza kutoa namba tofauti — ndio maana natoa checklist ya kujipima mwenyewe.\n\nComment KIT nipate tests 5 za kutumia kabla ya kulipia app yoyote.",
+  "cta": "ManyChat: KIT → Kipimo-cha-App-5-Tests.pdf (no affiliate link in week 1)",
+  "footerLine": "Checklist ya bure kwenye DM.",
+  "scenes": [
+    {
+      "type": "cover",
+      "mode": "hook",
+      "tone": "paper",
+      "eyebrow": "NOTE APPS  /  KIPIMO",
+      "lines": [
+        "Sekunde 3.",
+        {
+          "text": "Dhidi ya 11.",
+          "accent": true
+        }
+      ],
+      "headY": 430,
+      "headSize": 132,
+      "cast": {
+        "pose": "wave",
+        "x": 880,
+        "y": 2400,
+        "h": 1500
+      },
+      "captionLine": "App mbili. Features zilezile.",
+      "cues": [
+        {
+          "in": 17,
+          "out": 190,
+          "text": "App mbili. Features zilezile."
+        },
+        {
+          "in": 196,
+          "out": 332,
+          "text": "Tofauti ni sekunde ngapi hadi uanze."
+        }
+      ],
+      "cardX": 64,
+      "cardY": 1000,
+      "cardW": 600,
+      "steps": {
+        "title": "KIPIMO",
+        "steps": [
+          {
+            "label": "Simu moja",
+            "on": true
+          },
+          {
+            "label": "Notes tano",
+            "on": false
+          },
+          {
+            "label": "Airplane mode",
+            "on": false
+          }
+        ]
+      },
+      "cardDelay": 72
+    },
+    {
+      "type": "card",
+      "mode": "card",
+      "tone": "paper",
+      "eyebrow": "KIPIMO  /  NOTE APPS",
+      "lines": [
+        "Cold start."
+      ],
+      "headY": 360,
+      "headSize": 104,
+      "lay": "left",
+      "cardX": 64,
+      "cardY": 590,
+      "cardW": 640,
+      "ui": {
+        "title": "KIPIMO",
+        "sub": "Cold start hadi note",
+        "rows": [
+          {
+            "name": "App A",
+            "chip": "3 S",
+            "tone": "good"
+          },
+          {
+            "name": "App B",
+            "chip": "11 S",
+            "tone": "bad"
+          }
+        ],
+        "footer": "Simu moja, airplane mode",
+        "rowH": 124
+      },
+      "cast": {
+        "pose": "point",
+        "x": 975,
+        "y": 1990,
+        "h": 1340
+      },
+      "captionLine": "Cold start: tatu dhidi ya kumi na moja.",
+      "cues": [
+        {
+          "in": 17,
+          "out": 171,
+          "text": "Cold start: tatu dhidi ya kumi na moja."
+        },
+        {
+          "in": 177,
+          "out": 311,
+          "text": "Zote zinahifadhi offline."
+        },
+        {
+          "in": 317,
+          "out": 368,
+          "text": "Export: moja inatoa Markdown."
+        }
+      ],
+      "cardUnder": true
+    },
+    {
+      "type": "card",
+      "mode": "card",
+      "tone": "paper",
+      "eyebrow": "KIPIMO  /  NOTE APPS",
+      "lines": [
+        "Offline na export."
+      ],
+      "headY": 380,
+      "headSize": 100,
+      "cardX": 64,
+      "cardY": 590,
+      "cardW": 640,
+      "ui": {
+        "title": "KIPIMO",
+        "sub": "Mbili kati ya tatu",
+        "rows": [
+          {
+            "name": "Inahifadhi offline",
+            "value": "Zote"
+          },
+          {
+            "name": "Export",
+            "value": "Markdown"
+          }
+        ],
+        "footer": "B inatoa PDF pekee"
+      },
+      "cast": {
+        "pose": "calm",
+        "x": 1000,
+        "y": 2000,
+        "h": 1340
+      },
+      "captionLine": "Zote zinahifadhi offline. Moja inatoa Markdown.",
+      "cues": [
+        {
+          "in": 17,
+          "out": 344,
+          "text": "Moja: cold start. Mbili: offline save. Tatu: export."
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "mode": "cta",
+      "tone": "mint",
+      "eyebrow": "TOOLKIT  /  BURE",
+      "lines": [
+        "Andika KIT.",
+        {
+          "text": "Nikutumie.",
+          "accent": true
+        }
+      ],
+      "headY": 380,
+      "headSize": 118,
+      "cta": {
+        "label": "Andika KIT",
+        "hint": "Checklist ya tests 5 · DM · bure"
+      },
+      "ctaX": 64,
+      "ctaY": 760,
+      "cast": {
+        "pose": "laugh",
+        "x": 950,
+        "y": 1990,
+        "h": 1300
+      },
+      "captionLine": "Nikutumie checklist, bure.",
+      "cues": [
+        {
+          "in": 17,
+          "out": 183,
+          "text": "Andika KIT."
+        },
+        {
+          "in": 189,
+          "out": 320,
+          "text": "Nikutumie checklist, bure."
+        }
+      ],
+      "summary": {
+        "title": "KIT",
+        "items": [
+          "Cold start hadi note",
+          "Offline save",
+          "Export na backup"
+        ]
+      }
+    }
+  ],
+  "sceneHooks": [
+    6.4,
+    9.2,
+    8.6,
+    6
+  ],
+  "audio": {
+    "mix": "out/runway/a3-01-note-apps/mix.wav",
+    "seconds": 30.2,
+    "voice": "Kiswahili · female · voice-01",
+    "voiceId": "voice-01"
+  }
+}
