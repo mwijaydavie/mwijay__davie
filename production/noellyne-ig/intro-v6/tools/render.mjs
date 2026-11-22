@@ -82,10 +82,11 @@ const TOTAL = BEATS[BEATS.length - 1].to;
  * the page. `move` is the source in/out time so she actually moves.
  */
 const SHOTS = {
-  hook: { plate: "phone", scale: 0.86, x: 330, base: 1452, move: [1.28, 2.10] },
-  name: { plate: "desk", scale: 0.90, x: 470, base: 1452, move: [7.20, 8.20] },
-  promise: { plate: "desk", scale: 0.86, x: 505, base: 1452, move: [8.20, 9.20] },
-  cta: { plate: "point", scale: 0.96, x: 520, base: 1452, move: [17.10, 18.10] },
+  // panel: [x, y, w, h]; win: which part of the source frame to show
+  hook: { win: "phone", tilt: -1.5, move: [1.28, 2.05], zoom: 1.12, focus: [250, 880] },
+  name: { win: "desk", tilt: 1.0, move: [7.20, 8.10], zoom: 1.14, focus: [872, 890] },
+  promise: { win: "closeup", tilt: 1.3, move: [14.20, 15.40], zoom: 1.02, focus: [858, 880], h: 520, x: 640, y: 884 },
+  cta: { win: "point", tilt: -0.8, move: [17.10, 18.10], zoom: 1.14, focus: [872, 890] },
 };
 
 const TABLE_Y = 1452;
@@ -122,17 +123,72 @@ function wrap(ctx, text, maxW) {
 }
 
 // ---------------------------------------------------------------- assets
+// The Altraware mark is the real asset from content/assets, never a drawn
+// stand-in. V6 shipped an invented circle; that was the owner's biggest
+// complaint, so this is loaded once and reused.
+let LOGO = null;
+async function loadLogo() {
+  const p = path.join(ROOT, "production/noellyne-ig/intro-v6/assets/logo-tile-144.png");
+  if (fs.existsSync(p)) LOGO = await loadImage(p);
+}
+
 // loadImage is the only decoder that honours PNG here; `new Image()` with a
 // Buffer silently produced a fully transparent bitmap.
-const plateCache = new Map();
+/**
+ * The panel approach, and why it is final.
+ *
+ * Her approved footage was shot on a plum set. Six attempts to matte her onto
+ * the cream page all left something: a halo, a violet rim, white patches where
+ * semi-transparent edge pixels met beige, or a visible rectangle. The matte is
+ * not a solvable problem with this source.
+ *
+ * The Model Mpya reference solves the same problem by putting dark panels on a
+ * cream page — deliberately, as screens. That is what this does: her footage is
+ * shown whole, inside a rounded panel with a label chip, and the plum set
+ * becomes part of the design instead of a defect.
+ */
+/**
+ * Text-free source crops. Every one of these bounds was checked against the
+ * source grid: they exclude the baked header (y~300), the baked quotes in the
+ * right column of the hook, and the baked caption pills (y>=1275).
+ */
+const WIN = {
+  phone: [40, 466, 462, 1275], // 422x809, clears the baked quote card at x>=470
+  desk: [612, 466, 1080, 1275], // 468x809, clears both baked columns
+  point: [650, 466, 1080, 1275], // 430x809, clears the baked UI card at x<=640
+  // from 14.1 s the reel cuts to a clean close-up with no baked type on the
+  // right: that is the only stretch where a narrow window is fully clean.
+  closeup: [640, 466, 1080, 1275],
+};
+
+// prints share one baseline and one height, so the four beats feel set by the
+// same hand. Width follows each source aspect so nothing is ever cropped.
+const PRINT_H = 742;
+const PRINT_Y = 694; // image bottom lands at 1436, the mat rests on the table
+const PRINT_R = 992;
+const MAT = 15;
+/**
+ * Frames must be decoded with loadImage. `new Image(); img.src = buffer;`
+ * silently yields an empty bitmap in this canvas build, which is what made the
+ * first panel attempt render solid dark rectangles.
+ * Only the frames the edit actually uses are preloaded.
+ */
+const frameCache = new Map();
 async function loadPlates() {
-  for (const name of ["phone", "desk", "point"]) {
-    const p = path.join(PLATES, `plate-${name}.png`);
-    if (fs.existsSync(p)) plateCache.set(name, await loadImage(p));
+  const ranges = [[1.25, 2.10], [7.15, 8.15], [14.15, 15.45], [17.05, 18.15]];
+  for (const [a, b] of ranges) {
+    for (let t = a; t <= b + 1e-6; t += 1 / 30) {
+      const idx = clamp(Math.round(t * 30) + 1, 1, 744);
+      if (frameCache.has(idx)) continue;
+      const p = path.join(FRAMES, `f_${String(idx).padStart(4, "0")}.png`);
+      if (fs.existsSync(p)) frameCache.set(idx, await loadImage(p));
+    }
   }
+  process.stderr.write(`preloaded ${frameCache.size} frames\n`);
 }
-function plate(name) {
-  return plateCache.get(name) || null;
+function srcImg(t) {
+  const idx = clamp(Math.round(t * 30) + 1, 1, 744);
+  return frameCache.get(idx) || null;
 }
 
 
@@ -170,18 +226,13 @@ function prepare() {
 function drawChrome(ctx, beat, el, section) {
   const pop = ramp(el, 0.0, 0.26);
 
-  // violet logo mark
+  // the real Altraware tile, then the wordmark beside it
   ctx.save();
   ctx.globalAlpha = pop;
-  ctx.strokeStyle = PLUM;
-  ctx.lineWidth = 4.6;
-  ctx.lineCap = "round";
-  ctx.beginPath();
-  ctx.arc(100, 122, 13, -0.5, 4.2);
-  ctx.stroke();
-  ctx.font = `bold 22px ${FONTS.sans}`;
+  if (LOGO) ctx.drawImage(LOGO, M - 16, 92, 48, 48);
+  ctx.font = `bold 23px ${FONTS.sans}`;
   ctx.fillStyle = INK;
-  ctx.fillText("ALTRAWARE", 128, 130);
+  ctx.fillText("ALTRAWARE", M + 44, 128);
 
   ctx.globalAlpha = pop * 0.8;
   ctx.font = `bold 20px ${FONTS.sans}`;
@@ -246,36 +297,106 @@ function drawTable(ctx) {
   ctx.fillRect(0, TABLE_Y - 6, W, 102);
 }
 
+/**
+ * The scene window, and why the cutout is gone for good.
+ *
+ * Her approved footage was shot on a plum set that is not separable from her
+ * hair and glasses. Seven matte attempts each left a defect, because the defect
+ * is in the source, not the code. So she is no longer matted at all: a plain
+ * 1:1 crop of the frame is placed as a scene window in the page, its bottom edge
+ * landing exactly on the table line so the table plane occludes her below the
+ * waist, and its right edge running off the page so nothing is boxed in.
+ *
+ * Because the crop is 1:1 and the window is exactly as tall as the crop, no
+ * pixel of her is cut by this code: what you see is her scene, wall and all.
+ * The crop bounds were chosen to exclude every baked caption in the source.
+ */
+/**
+ * A print, not a cutout — and that is the whole point.
+ *
+ * Her approved footage was shot on a plum set that cannot be separated from her
+ * hair, lenses and hoodie; seven matte attempts each left a defect because the
+ * defect is in the source. So she is never matted. Instead the frame is used
+ * as-is, inside a white print border with a hairline and a slight tilt, and it
+ * stands on the same table plane as the type. It reads as a studio print laid
+ * on the page, which is a deliberate editorial object rather than a failed
+ * compositing job. No pixel of her is cut, ghosted or recoloured by this code.
+ */
 function drawSubject(ctx, shot, el, dur) {
-  const img = plate(shot.plate);
+  if (!shot.win) return;
+  const [x0w, y0w, x1w, y1w] = WIN[shot.win];
+  const ph = shot.h || PRINT_H;
+  const pw = Math.round((ph * (x1w - x0w)) / (y1w - y0w));
+  const px = shot.x != null ? shot.x : PRINT_R - pw;
+  const py = shot.y != null ? shot.y : PRINT_Y;
+  const t = ramp(el, 0.02, 0.42);
+  if (t <= 0.001) return;
+
+  const [x0, y0, x1, y1] = WIN[shot.win];
+  const img = srcImg(lerp(shot.move[0], shot.move[1], clamp(el / dur)));
   if (!img) return;
-  const dw = img.width * shot.scale * (W / 1080);
-  const dh = img.height * shot.scale * (W / 1080);
-  const x = shot.x;
-  const y = shot.base - dh;
 
-  // a barely-there breath so the stills are not dead frames
-  const bob = Math.sin(el * 1.15) * 3.0;
-  const drift = Math.sin(el * 0.62 + 1.1) * 2.2;
-
-  // The plate already carries a soft alpha whose room colour is within a few
-  // percent of the page, so compositing is all that is needed. The only extra
-  // touch is dissolving her very bottom into the tabletop.
-  const tmp = createCanvas(img.width, img.height);
-  const tc = tmp.getContext("2d");
-  tc.drawImage(img, 0, 0);
-  const fadeH = 120;
-  tc.globalCompositeOperation = "destination-out";
-  const g = tc.createLinearGradient(0, img.height - fadeH, 0, img.height);
-  g.addColorStop(0, "rgba(0,0,0,0)");
-  g.addColorStop(1, "rgba(0,0,0,0.92)");
-  tc.fillStyle = g;
-  tc.fillRect(0, img.height - fadeH, img.width, fadeH);
+  const w = pw + MAT * 2;
+  const h = ph + MAT * 2;
+  const cx = px + pw / 2;
+  const cy = py + ph / 2;
+  const tilt = (shot.tilt * Math.PI) / 180;
 
   ctx.save();
+  ctx.globalAlpha = t;
+  ctx.translate(cx, cy + (1 - t) * 34);
+  ctx.rotate(tilt);
+  ctx.translate(-cx, -cy);
+
+  // cast shadow, soft and low, so the print sits on the table
+  ctx.save();
+  ctx.shadowColor = "rgba(64,45,28,0.34)";
+  ctx.shadowBlur = 46;
+  ctx.shadowOffsetY = 20;
+  ctx.fillStyle = "#FBF7EF";
+  ctx.fillRect(px - MAT, py - MAT, w, h);
+  ctx.restore();
+
+  // image, cover-fitted so a tilted frame never shows a gap
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(px, py, pw, ph);
+  ctx.clip();
   ctx.imageSmoothingQuality = "high";
-  ctx.globalAlpha = ramp(el, 0.0, 0.30);
-  ctx.drawImage(tmp, x + drift, y + bob, dw, dh);
+  const push = 1 + 0.028 * clamp(el / Math.max(0.001, dur), 0, 1);
+  const zoom = (shot.zoom || 1.18) * push;
+  const [fx, fy] = shot.focus || [(x0 + x1) / 2, (y0 + y1) / 2];
+  // how much source is visible at this zoom
+  const visW = pw / zoom;
+  const visH = ph / zoom;
+  // keep the visible box inside the window
+  const sx = clamp(fx - visW / 2, x0, x1 - visW);
+  const sy = clamp(fy - visH / 2, y0, y1 - visH);
+  ctx.drawImage(img, sx, sy, visW, visH, px, py, pw, ph);
+  ctx.restore();
+
+  // contact shadow: a wide, soft band on the table, never a tight ellipse
+  ctx.save();
+  ctx.globalAlpha = t;
+  const near = ctx.createLinearGradient(0, py + ph + MAT - 14, 0, py + ph + MAT + 34);
+  near.addColorStop(0, "rgba(104,80,50,0.30)");
+  near.addColorStop(1, "rgba(104,80,50,0)");
+  ctx.fillStyle = near;
+  ctx.fillRect(px - MAT - 10, py + ph + MAT - 14, w + 20, 48);
+  const far = ctx.createLinearGradient(0, py + ph + MAT + 20, 0, py + ph + MAT + 96);
+  far.addColorStop(0, "rgba(104,80,50,0.13)");
+  far.addColorStop(1, "rgba(104,80,50,0)");
+  ctx.fillStyle = far;
+  ctx.fillRect(px - MAT - 46, py + ph + MAT + 20, w + 92, 76);
+  ctx.restore();
+
+  // white mat + hairline
+  ctx.strokeStyle = "rgba(30,25,18,0.24)";
+  ctx.lineWidth = 1.6;
+  ctx.strokeRect(px - MAT + 0.8, py - MAT + 0.8, w - 1.6, h - 1.6);
+  ctx.strokeStyle = "rgba(30,25,18,0.12)";
+  ctx.lineWidth = 1;
+  ctx.strokeRect(px, py, pw, ph);
   ctx.restore();
 }
 
@@ -572,6 +693,7 @@ async function main() {
   if (!outFile) throw new Error("pass an output .mp4 path");
 
   prepare();
+  await loadLogo();
   await loadPlates();
   fs.mkdirSync(path.dirname(outFile), { recursive: true });
   const frames = Math.min(Math.round(TOTAL * FPS), limit);
