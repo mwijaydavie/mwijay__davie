@@ -1,0 +1,389 @@
+{
+  "width": 939,
+  "height": 1136,
+  "poses": {
+    "wave": {
+      "base": {
+        "file": "wave-base.png",
+        "width": 939,
+        "height": 1136,
+        "sha256": "9a62a9012c2df17a0c86a5069b1fa188893d1cce7e899f87d229dc07a35320a8"
+      },
+      "lids": {
+        "file": "wave-blink.png",
+        "width": 268,
+        "height": 87,
+        "sha256": "ab94df9a97b5a8c8f8ff0644af4acc5ce7f6f5bcc00af90b1aa2e87d8cabe9fe",
+        "x": 359,
+        "y": 348
+      },
+      "hand": {
+        "file": "wave-hand.png",
+        "width": 212,
+        "height": 276,
+        "sha256": "17edf61bca3223801e7ed86ad58c830aad794efe090074403746d116e49c9f0b",
+        "x": 114,
+        "y": 359,
+        "pivot": [
+          107,
+          224
+        ]
+      },
+      "mark": [
+        546,
+        711,
+        41,
+        24
+      ],
+      "mouth": {
+        "A": {
+          "file": "wave-mouth-A.png",
+          "x": 421,
+          "y": 452,
+          "width": 132,
+          "height": 71,
+          "sha256": "ed650d740ccfa5fb1f5f509f1934e2fd27e292d1cbf44c795c7e715546eb2e3d"
+        },
+        "B": {
+          "file": "wave-mouth-B.png",
+          "x": 421,
+          "y": 452,
+          "width": 132,
+          "height": 71,
+          "sha256": "e9a03dac6ba4bda7eec2952ce5092ecf4bc15c801949933f31dc27c46d7744b1"
+        },
+        "C": {
+          "file": "wave-mouth-C.png",
+          "x": 421,
+          "y": 452,
+          "width": 132,
+          "height": 71,
+          "sha256": "2fd40750a796ec1402d53ba9e5db33e48324dae4d5ac62537ec875d97998fbf5"
+        },
+        "D": {
+          "file": "wave-mouth-D.png",
+          "x": 421,
+          "y": 452,
+          "width": 132,
+          "height": 71,
+          "sha256": "4f6c098f99eb2f0a4a9aa0358477c371eafd3411a5e6d0123232f1435a13e455"
+        },
+        "E": {
+          "file": "wave-mouth-E.png",
+          "x": 421,
+          "y": 452,
+          "width": 132,
+          "height": 71,
+          "sha256": "5195d8c9db248cb7bc1e7b61f0f9ea3bc07fdc9eab28e4093822fa50ac53c137"
+        },
+        "F": {
+          "file": "wave-mouth-F.png",
+          "x": 421,
+          "y": 452,
+          "width": 132,
+          "height": 71,
+          "sha256": "fad664c911c4d6ece7f86543493ae14461f87b57bcfe264c90fc2488adb7c0b8"
+        },
+        "G": {
+          "file": "wave-mouth-G.png",
+          "x": 421,
+          "y": 452,
+          "width": 132,
+          "height": 71,
+          "sha256": "e2da58c859e961a601c9d8b75d81cc908e3b2eca89eba67d45f31f2228c54e84"
+        },
+        "H": {
+          "file": "wave-mouth-H.png",
+          "x": 421,
+          "y": 452,
+          "width": 132,
+          "height": 71,
+          "sha256": "fbe9563a37fd476cd2daf4ad44868deb12b23ee00301dcd7adec55478352da6e"
+        }
+      }
+    },
+    "point": {
+      "base": {
+        "file": "point-base.png",
+        "width": 939,
+        "height": 1136,
+        "sha256": "c5367440c249b5b1fbde0dbef62440c3b6cde4836a752c02178075af3640a88d"
+      },
+      "lids": {
+        "file": "point-blink.png",
+        "width": 268,
+        "height": 87,
+        "sha256": "2923a92cc7941e10c0a9b09bcfdd03e189fe97513e05c7492767f765c50ab64d",
+        "x": 359,
+        "y": 348
+      },
+      "hand": {
+        "file": "point-hand.png",
+        "width": 214,
+        "height": 204,
+        "sha256": "e1cd8f75552028b4e1fa96b755ca58b5340fd7dca2eaad8213fe7e98a5306fb9",
+        "x": 50,
+        "y": 492,
+        "pivot": [
+          159,
+          133
+        ]
+      },
+      "mark": [
+        546,
+        711,
+        41,
+        24
+      ],
+      "mouth": {
+        "A": {
+          "file": "point-mouth-A.png",
+          "x": 421,
+          "y": 452,
+          "width": 132,
+          "height": 71,
+          "sha256": "6bb99b325eb2a398d9ff639ed66de408a0d24c6f2ed7fc7c5971639568b3f3ad"
+        },
+        "B": {
+          "file": "point-mouth-B.png",
+          "x": 421,
+          "y": 452,
+          "width": 132,
+          "height": 71,
+          "sha256": "d35e7aa09622744cc9a7d400df2b6b9dc7c2654a213ce3121eb2d0118ad194a0"
+        },
+        "C": {
+          "file": "point-mouth-C.png",
+          "x": 421,
+          "y": 452,
+          "width": 132,
+          "height": 71,
+          "sha256": "819ba4a204ae4b2f31d04a4752b0ad746fd24deef5704bbf4d31ecdbacafa2ef"
+        },
+        "D": {
+          "file": "point-mouth-D.png",
+          "x": 421,
+          "y": 452,
+          "width": 132,
+          "height": 71,
+          "sha256": "9ef488cf0183f65f74b56f512fbc48207104b22bc0555cc15068b5cffdb4bac7"
+        },
+        "E": {
+          "file": "point-mouth-E.png",
+          "x": 421,
+          "y": 452,
+          "width": 132,
+          "height": 71,
+          "sha256": "63f6d2b1ec6d1a1e90411130bab7a8ac48578ceaf20dfcd85f809046cd4a4077"
+        },
+        "F": {
+          "file": "point-mouth-F.png",
+          "x": 421,
+          "y": 452,
+          "width": 132,
+          "height": 71,
+          "sha256": "0af7128807483f40ca0d1827a00df41050c56aea009fc8633fc05bfaa0e28bd2"
+        },
+        "G": {
+          "file": "point-mouth-G.png",
+          "x": 421,
+          "y": 452,
+          "width": 132,
+          "height": 71,
+          "sha256": "a7f263f432893d7e788ca58a06003cb0d7b0a1c8e70a2ab4ffb3eed3ccc1e815"
+        },
+        "H": {
+          "file": "point-mouth-H.png",
+          "x": 421,
+          "y": 452,
+          "width": 132,
+          "height": 71,
+          "sha256": "84e8ec9e74762af332cb4bbcea324981c17cd44b406ef19b30f75b779cfe910c"
+        }
+      }
+    }
+  },
+  "files": [
+    {
+      "file": "wave-base.png",
+      "width": 939,
+      "height": 1136,
+      "sha256": "9a62a9012c2df17a0c86a5069b1fa188893d1cce7e899f87d229dc07a35320a8"
+    },
+    {
+      "file": "wave-hand.png",
+      "width": 212,
+      "height": 276,
+      "sha256": "17edf61bca3223801e7ed86ad58c830aad794efe090074403746d116e49c9f0b",
+      "x": 114,
+      "y": 359,
+      "pivot": [
+        107,
+        224
+      ]
+    },
+    {
+      "file": "wave-blink.png",
+      "width": 268,
+      "height": 87,
+      "sha256": "ab94df9a97b5a8c8f8ff0644af4acc5ce7f6f5bcc00af90b1aa2e87d8cabe9fe",
+      "x": 359,
+      "y": 348
+    },
+    {
+      "file": "wave-mouth-A.png",
+      "x": 421,
+      "y": 452,
+      "width": 132,
+      "height": 71,
+      "sha256": "ed650d740ccfa5fb1f5f509f1934e2fd27e292d1cbf44c795c7e715546eb2e3d"
+    },
+    {
+      "file": "wave-mouth-B.png",
+      "x": 421,
+      "y": 452,
+      "width": 132,
+      "height": 71,
+      "sha256": "e9a03dac6ba4bda7eec2952ce5092ecf4bc15c801949933f31dc27c46d7744b1"
+    },
+    {
+      "file": "wave-mouth-C.png",
+      "x": 421,
+      "y": 452,
+      "width": 132,
+      "height": 71,
+      "sha256": "2fd40750a796ec1402d53ba9e5db33e48324dae4d5ac62537ec875d97998fbf5"
+    },
+    {
+      "file": "wave-mouth-D.png",
+      "x": 421,
+      "y": 452,
+      "width": 132,
+      "height": 71,
+      "sha256": "4f6c098f99eb2f0a4a9aa0358477c371eafd3411a5e6d0123232f1435a13e455"
+    },
+    {
+      "file": "wave-mouth-E.png",
+      "x": 421,
+      "y": 452,
+      "width": 132,
+      "height": 71,
+      "sha256": "5195d8c9db248cb7bc1e7b61f0f9ea3bc07fdc9eab28e4093822fa50ac53c137"
+    },
+    {
+      "file": "wave-mouth-F.png",
+      "x": 421,
+      "y": 452,
+      "width": 132,
+      "height": 71,
+      "sha256": "fad664c911c4d6ece7f86543493ae14461f87b57bcfe264c90fc2488adb7c0b8"
+    },
+    {
+      "file": "wave-mouth-G.png",
+      "x": 421,
+      "y": 452,
+      "width": 132,
+      "height": 71,
+      "sha256": "e2da58c859e961a601c9d8b75d81cc908e3b2eca89eba67d45f31f2228c54e84"
+    },
+    {
+      "file": "wave-mouth-H.png",
+      "x": 421,
+      "y": 452,
+      "width": 132,
+      "height": 71,
+      "sha256": "fbe9563a37fd476cd2daf4ad44868deb12b23ee00301dcd7adec55478352da6e"
+    },
+    {
+      "file": "point-base.png",
+      "width": 939,
+      "height": 1136,
+      "sha256": "c5367440c249b5b1fbde0dbef62440c3b6cde4836a752c02178075af3640a88d"
+    },
+    {
+      "file": "point-hand.png",
+      "width": 214,
+      "height": 204,
+      "sha256": "e1cd8f75552028b4e1fa96b755ca58b5340fd7dca2eaad8213fe7e98a5306fb9",
+      "x": 50,
+      "y": 492,
+      "pivot": [
+        159,
+        133
+      ]
+    },
+    {
+      "file": "point-blink.png",
+      "width": 268,
+      "height": 87,
+      "sha256": "2923a92cc7941e10c0a9b09bcfdd03e189fe97513e05c7492767f765c50ab64d",
+      "x": 359,
+      "y": 348
+    },
+    {
+      "file": "point-mouth-A.png",
+      "x": 421,
+      "y": 452,
+      "width": 132,
+      "height": 71,
+      "sha256": "6bb99b325eb2a398d9ff639ed66de408a0d24c6f2ed7fc7c5971639568b3f3ad"
+    },
+    {
+      "file": "point-mouth-B.png",
+      "x": 421,
+      "y": 452,
+      "width": 132,
+      "height": 71,
+      "sha256": "d35e7aa09622744cc9a7d400df2b6b9dc7c2654a213ce3121eb2d0118ad194a0"
+    },
+    {
+      "file": "point-mouth-C.png",
+      "x": 421,
+      "y": 452,
+      "width": 132,
+      "height": 71,
+      "sha256": "819ba4a204ae4b2f31d04a4752b0ad746fd24deef5704bbf4d31ecdbacafa2ef"
+    },
+    {
+      "file": "point-mouth-D.png",
+      "x": 421,
+      "y": 452,
+      "width": 132,
+      "height": 71,
+      "sha256": "9ef488cf0183f65f74b56f512fbc48207104b22bc0555cc15068b5cffdb4bac7"
+    },
+    {
+      "file": "point-mouth-E.png",
+      "x": 421,
+      "y": 452,
+      "width": 132,
+      "height": 71,
+      "sha256": "63f6d2b1ec6d1a1e90411130bab7a8ac48578ceaf20dfcd85f809046cd4a4077"
+    },
+    {
+      "file": "point-mouth-F.png",
+      "x": 421,
+      "y": 452,
+      "width": 132,
+      "height": 71,
+      "sha256": "0af7128807483f40ca0d1827a00df41050c56aea009fc8633fc05bfaa0e28bd2"
+    },
+    {
+      "file": "point-mouth-G.png",
+      "x": 421,
+      "y": 452,
+      "width": 132,
+      "height": 71,
+      "sha256": "a7f263f432893d7e788ca58a06003cb0d7b0a1c8e70a2ab4ffb3eed3ccc1e815"
+    },
+    {
+      "file": "point-mouth-H.png",
+      "x": 421,
+      "y": 452,
+      "width": 132,
+      "height": 71,
+      "sha256": "84e8ec9e74762af332cb4bbcea324981c17cd44b406ef19b30f75b779cfe910c"
+    }
+  ],
+  "method": "Exact prior Business host keyed sprites; texture-warped mouth patches A\u2013H; X is closed/rest."
+}
