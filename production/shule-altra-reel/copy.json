@@ -1,0 +1,181 @@
+{
+  "keyword": "SHULE",
+  "note": "Swanglish first, English as a sidecar. Every claim is verifiable in the sample build pinned at 27fef99. No student data appears anywhere.",
+  "takes": [
+    {
+      "id": "hook",
+      "pose": "wave",
+      "sw": [
+        "Period ya kwanza",
+        "ni somo gani?"
+      ],
+      "en": [
+        "What is the first",
+        "lesson of the day?"
+      ],
+      "gesture": [
+        {
+          "kind": "wave",
+          "at": 0.1,
+          "len": 62
+        }
+      ],
+      "say": "Period ya kwanza ni somo gani?"
+    },
+    {
+      "id": "intro",
+      "pose": "wave",
+      "sw": [
+        "Hii ni Shule Altra.",
+        "Software ya siku nzima."
+      ],
+      "en": [
+        "This is Shule Altra.",
+        "Software for the whole school day."
+      ],
+      "gesture": [
+        {
+          "kind": "present",
+          "at": 0.15,
+          "len": 88
+        }
+      ],
+      "say": "Hii ni Shule Altra. Software ya siku nzima."
+    },
+    {
+      "id": "timetable",
+      "pose": "point",
+      "sw": [
+        "Timetable: chagua form",
+        "na stream."
+      ],
+      "en": [
+        "On the timetable: choose",
+        "a form and stream."
+      ],
+      "gesture": [
+        {
+          "kind": "point",
+          "at": 0.2,
+          "len": 96
+        }
+      ],
+      "say": "Timetable: chagua form na stream."
+    },
+    {
+      "id": "lesson",
+      "pose": "point",
+      "sw": [
+        "Form Two, Stream A.",
+        "Jumatatu saa mbili: Biology."
+      ],
+      "en": [
+        "Form Two, Stream A.",
+        "Monday at 8: Biology."
+      ],
+      "gesture": [
+        {
+          "kind": "aim",
+          "at": 0.15,
+          "len": 68
+        }
+      ],
+      "say": "Form Two, Stream A. Jumatatu saa mbili: Biology."
+    },
+    {
+      "id": "modules",
+      "pose": "point",
+      "sw": [
+        "Attendance, Academics,",
+        "na Finance."
+      ],
+      "en": [
+        "Attendance, Academics",
+        "and Finance."
+      ],
+      "gesture": [
+        {
+          "kind": "accent",
+          "at": 0.1,
+          "len": 42
+        },
+        {
+          "kind": "accent",
+          "at": 1.15,
+          "len": 42
+        },
+        {
+          "kind": "accent",
+          "at": 2.2,
+          "len": 42
+        }
+      ],
+      "say": "Attendance, Academics, na Finance."
+    },
+    {
+      "id": "pdf",
+      "pose": "point",
+      "sw": [
+        "Timetable PDF: unaiona",
+        "kabla ya kuprint."
+      ],
+      "en": [
+        "The timetable PDF: see it",
+        "before you print."
+      ],
+      "gesture": [
+        {
+          "kind": "point",
+          "at": 0.2,
+          "len": 96
+        }
+      ],
+      "say": "Timetable PDF: unaiona kabla ya kuprint."
+    },
+    {
+      "id": "offer",
+      "pose": "wave",
+      "sw": [
+        "App ya shule yako?",
+        "Altraware tunakujengea."
+      ],
+      "en": [
+        "An app for your school?",
+        "Altraware can build it."
+      ],
+      "gesture": [
+        {
+          "kind": "present",
+          "at": 0.15,
+          "len": 88
+        },
+        {
+          "kind": "accent",
+          "at": 1.95,
+          "len": 42
+        }
+      ],
+      "say": "App ya shule yako? Altraware tunakujengea."
+    },
+    {
+      "id": "cta",
+      "pose": "point",
+      "sw": [
+        "Comment SHULE,",
+        "nikutumie link."
+      ],
+      "en": [
+        "Comment SHULE and",
+        "I will send the link."
+      ],
+      "gesture": [
+        {
+          "kind": "point",
+          "at": 0.25,
+          "len": 96
+        }
+      ],
+      "say": "Comment SHULE, nikutumie link."
+    }
+  ]
+}
