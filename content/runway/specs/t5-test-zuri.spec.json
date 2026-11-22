@@ -1,0 +1,130 @@
+{
+  "id": "t5-test-zuri",
+  "track": 5,
+  "keyword": "POS",
+  "character": false,
+  "sceneSeconds": 5.5,
+  "brand": {
+    "handle": "@mwijay__davie",
+    "account": "Altraware"
+  },
+  "scenes": [
+    {
+      "mode": "hook",
+      "eyebrow": "ALTRAWARE  /  DEMO YA TOWUTI",
+      "lines": [
+        "Chai moja.",
+        "Mandazi tatu.",
+        {
+          "text": "Jumla?",
+          "accent": true
+        }
+      ],
+      "captionLine": "Chai moja, mandazi tatu. Jumla ni ngapi?",
+      "beam": true,
+      "type": "cover",
+      "headSize": 132,
+      "headY": 470,
+      "headWidth": 912,
+      "logo": true,
+      "cues": [
+        {
+          "in": 67,
+          "out": 276,
+          "text": "Chai moja, mandazi tatu. Jumla ni ngapi?"
+        }
+      ],
+      "push": 0.05
+    },
+    {
+      "mode": "ui",
+      "eyebrow": "FAIDA POS  /  DEMO",
+      "captionLine": "Gusa chai, gusa mandazi. Total inajitokeza.",
+      "ui": {
+        "title": "RECEIPT",
+        "ref": "FF-0031 · DEMO",
+        "rows": [
+          {
+            "name": "Chai ya Maziwa",
+            "price": "TSh 1,500",
+            "qty": 1,
+            "swatch": "#F3E4C8"
+          },
+          {
+            "name": "Mandazi",
+            "price": "TSh 1,000",
+            "qty": 3,
+            "swatch": "#E8B98A"
+          }
+        ],
+        "totalLabel": "Total",
+        "total": "TSh 2,950",
+        "foot": "DEMO · HAKUNA MALIPO HALISI"
+      },
+      "uiX": 58,
+      "uiY": 470,
+      "uiW": 780,
+      "cast": {
+        "pose": "point",
+        "x": 985,
+        "y": 2010,
+        "h": 1350
+      },
+      "type": "demo",
+      "headY": 350,
+      "logo": true,
+      "cues": [
+        {
+          "in": 0,
+          "out": 257,
+          "text": "Gusa chai, gusa mandazi. Jumla inajitokeza."
+        }
+      ],
+      "push": 0.03,
+      "eyebrowY": 236
+    },
+    {
+      "mode": "cta",
+      "eyebrow": "FAIDA POS",
+      "lines": [
+        "Faida POS"
+      ],
+      "captionLine": "Jaribu demo kwenye towuti ya Altraware.",
+      "cta": {
+        "label": "Jaribu demo",
+        "url": "altraware.co.tz/pos"
+      },
+      "cast": {
+        "pose": "laugh",
+        "x": 250,
+        "y": 2020,
+        "h": 1400,
+        "flip": true
+      },
+      "type": "cta",
+      "headY": 400,
+      "ctaY": 560,
+      "ctaX": 500,
+      "headX": 520,
+      "headWidth": 470,
+      "headSize": 88,
+      "logo": true,
+      "cues": [
+        {
+          "in": 0,
+          "out": 204,
+          "text": "Jaribu demo kwenye towuti ya Altraware. Ni bure."
+        }
+      ],
+      "push": 0.04
+    }
+  ],
+  "slug": "t5-test-zuri",
+  "mark": "content/assets/altraware-mark.png",
+  "audio": {
+    "mix": "out/runway/t5-test-zuri/mix.wav",
+    "seconds": 17.6,
+    "voice": "voice-01",
+    "voiceId": null
+  }
+}

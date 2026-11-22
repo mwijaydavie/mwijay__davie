@@ -1,0 +1,33 @@
+{
+  "slug": "t5-test-zuri",
+  "voice": "voice-01",
+  "language": "sw",
+  "mood": "light",
+  "lead": 0.45,
+  "gap": 0.28,
+  "cues": [
+    "rise",
+    "whoosh",
+    "cut"
+  ],
+  "clips": [
+    {
+      "scene": 1,
+      "id": "s1",
+      "file": "production/runway-engine/voice/t5-test-zuri/s1.mp3",
+      "text": "Chai moja, mandazi tatu. Jumla ni ngapi?"
+    },
+    {
+      "scene": 2,
+      "id": "s2",
+      "file": "production/runway-engine/voice/t5-test-zuri/s2.mp3",
+      "text": "Gusa chai, gusa mandazi. Jumla inajitokeza."
+    },
+    {
+      "scene": 3,
+      "id": "s3",
+      "file": "production/runway-engine/voice/t5-test-zuri/s3.mp3",
+      "text": "Jaribu demo kwenye towuti ya Altraware. Ni bure."
+    }
+  ]
+}

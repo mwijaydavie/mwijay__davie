@@ -248,6 +248,9 @@ if (layout.count) {
   delete specOut.sceneSeconds;
 } else {
   specOut.sceneSeconds = sceneSeconds;
+  // A flat reel keeps ONE scene length. A leftover per-scene hook array from an earlier
+  // pass would silently win over sceneSeconds and cut the picture short of the voice.
+  delete specOut.sceneHooks;
 }
 specOut.audio = {mix: path.relative(REPO, outWav), seconds, voice: vo.voice, voiceId: vo.voiceId || null};
 const startOf = (n) => layout.start(n);
