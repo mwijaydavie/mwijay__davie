@@ -28,6 +28,8 @@ const INK = "#132640", PALE = "#edf5fe", PAPER = "#fffdf7", BLUE = "#1f5ba6";
 const VIOLET = "#6444bf", DEEP = "#143d76", GRAY = "#49647f", GOLD = "#f2c66d";
 
 const tl = JSON.parse(fs.readFileSync(path.join(OUT, "timeline.json"), "utf8"));
+/** Per-frame viseme track analysed from the dry mix by lipsync.py. */
+const MOUTH = JSON.parse(fs.readFileSync(path.join(OUT, "mouth.json"), "utf8"));
 const COPY = JSON.parse(fs.readFileSync(path.join(HERE, "copy.json"), "utf8"));
 const spanOf = (id) => tl.spans.find((s) => s.id === id);
 const takeOf = (id) => COPY.takes.find((t) => t.id === id);
@@ -70,84 +72,97 @@ function wrapType(c, lines, x, y, size, lh, opts = {}) {
  * SCENES: every beat gets a different set, so this never reads as one card
  * repeated. `art` is drawn behind her; `fg` in front.
  */
+/**
+ * SCENES: every beat gets a different set, built on the REAL app screenshots.
+ *
+ * `shot(img, x, y, w)` draws a proof crop at a given width, keeping its aspect.
+ * A soft paper card behind it keeps the crop from floating; the shadow is one
+ * layer, not a blur stack.
+ */
+function shot(c, img, x, y, w, r = 14) {
+  const h = (img.height / img.width) * w;
+  rect(c, x - 4, y + 10, w + 8, h + 4, r + 4, "rgba(31,71,118,0.12)");
+  rect(c, x, y, w, h, r, "#ffffff");
+  c.save();
+  rr(c, x + 2, y + 2, w - 4, h - 4, r - 2);
+  c.clip();
+  c.drawImage(img, x + 2, y + 2, w - 4, h - 4);
+  c.restore();
+  edge(c, x, y, w, h, r, "rgba(19,38,64,0.16)", 2);
+  return h;
+}
+
 const SCENES = {
   hook: {
     bg: ["#fff9ed", "#f1e5d1"], photo: 0.62,
     draw(c, f, a) {
-      // a big soft question mark as a watermark, not an icon strip
-      c.save(); c.globalAlpha = 0.06; c.fillStyle = BLUE;
+      c.save(); c.globalAlpha = 0.055; c.fillStyle = BLUE;
       c.font = `700 760px '${FONTS.serif}'`; c.fillText("?", 700, 1180); c.restore();
     },
   },
   intro: {
     bg: ["#fffdf6", "#e6ecf6"], photo: 0.30,
     draw(c, f, a) {
-      // window frame composition: three tall panes, a quiet architectural cue
-      for (let i = 0; i < 3; i++) {
-        const x = 96 + i * 300;
-        rect(c, x, 300, 250, 900, 6, "rgba(255,255,255,0.42)");
-        edge(c, x, 300, 250, 900, 6, "rgba(31,91,166,0.16)", 2);
-      }
+      const t = smooth(a[0] + 8, a[0] + 46, f);
+      if (t <= 0.001) return;
+      c.save(); c.globalAlpha = t;
+      // the real app title, on the real page, with the maker mark
+      // brand block, high enough to clear the caption band at y=1616
+      rect(c, 96, 1120, 6, 210, 3, BLUE);
+      c.drawImage(IMG.brand, 128, 1122, 92, 92);
+      type(c, "Shule Altra", 240, 1184, 44, { weight: 760, color: INK });
+      type(c, "timetable · attendance", 240, 1224, 24,
+           { family: FONTS.mono, weight: 500, color: GRAY, width: 400 });
+      type(c, "academics · finance", 240, 1256, 24,
+           { family: FONTS.mono, weight: 500, color: GRAY, width: 400 });
+      shot(c, IMG.selectors, 96, 1310, 440);
+      c.restore();
     },
   },
   timetable: {
     bg: ["#f8fbff", "#dbe9f7"], photo: 0.18,
     draw(c, f, a) {
-      // a real timetable grid, built in the scene, columns filling in
-      const gx = 96, gy = 980, cw = 218, ch = 78;
-      const fill = (r, col) => smooth(a[0] + r * 0.30, a[0] + r * 0.30 + 26, f);
-      for (let r = 0; r < 4; r++) {
-        for (let col = 0; col < 4; col++) {
-          const t = fill(r, col);
-          if (t <= 0.001) continue;
-          rect(c, gx + col * cw, gy + r * ch, cw - 10, ch - 10, 6, `rgba(31,91,166,${0.06 + 0.5 * t})`);
-        }
-      }
-      for (let i = 0; i <= 4; i++) {
-        line(c, [[gx + i * cw, gy - 6], [gx + i * cw, gy + 4 * ch - 4]], "rgba(31,91,166,0.20)", 1.6);
-        line(c, [[gx - 6, gy + i * ch], [gx + 4 * cw - 4, gy + i * ch]], "rgba(31,91,166,0.20)", 1.6);
-      }
+      // the actual Form / Stream selectors, settling in
+      const t = smooth(a[0] + 10, a[0] + 38, f);
+      if (t <= 0.001) return;
+      c.save(); c.globalAlpha = t;
+      c.translate(0, (1 - t) * 16);
+      shot(c, IMG.selectors, 96, 1130, 470);
+      type(c, "Form 2 · Stream A", 96, 1352, 36, { weight: 700, color: BLUE });
+      c.restore();
     },
   },
   lesson: {
     bg: ["#fffbf1", "#e9e4f8"], photo: 0.24,
     draw(c, f, a) {
-      // a chalk-line path from Monday to Biology, drawn by the point gesture
-      const p = [[120, 900], [420, 830], [700, 900], [900, 1010]];
-      const q = easeOut(a[0] + 30, a[0] + 130, f);
-      if (q > 0.002) {
-        const pts = [];
-        for (let i = 0; i <= 40; i++) {
-          const u = (i / 40) * q;
-          const seg = Math.min(2, Math.floor(u * 3));
-          const lu = u * 3 - seg;
-          pts.push([lerp(p[seg][0], p[seg + 1][0], lu), lerp(p[seg][1], p[seg + 1][1], lu)]);
-        }
-        line(c, pts, GOLD, 16);
-        line(c, pts, "#8a6b23", 5);
+      // the real Monday 08:00 row, then the subject cells
+      const t = smooth(a[0] + 8, a[0] + 30, f);
+      if (t <= 0.001) return;
+      c.save(); c.globalAlpha = t;
+      shot(c, IMG.monday, 90, 1110, 460);
+      const t2 = smooth(a[0] + 40, a[0] + 56, f);
+      if (t2 > 0.001) {
+        c.globalAlpha = t * t2;
+        shot(c, IMG.time, 90, 1240, 200, 10);
+        shot(c, IMG.subject, 310, 1240, 240, 10);
       }
+      c.restore();
     },
   },
   modules: {
     bg: ["#f8fbff", "#dbedf7"], photo: 0.16,
     draw(c, f, a) {
-      // three module cards, staggered in, each with its own micro-diagram
-      const items = [
-        ["Attendance", "276", BLUE],
-        ["Academics", "A–C", VIOLET],
-        ["Finance", "TSh", "#2f7a5a"],
-      ];
-      items.forEach(([label, value, col], i) => {
-        const t = smooth(a[0] + i * 22, a[0] + i * 22 + 30, f);
+      // three real module rows, staggered
+      const items = [[IMG.attendance, "Attendance"], [IMG.academics, "Academics"], [IMG.finance, "Finance"]];
+      items.forEach(([img, label], i) => {
+        const t = smooth(a[0] + i * 24, a[0] + i * 24 + 30, f);
         if (t <= 0.001) return;
-        const y = 960 + i * 190 + (1 - t) * 34;
         c.save(); c.globalAlpha = t;
-        paper(c, 90, y, 900, 160, 22);
-        rect(c, 122, y + 44, 8, 72, 4, col);
-        type(c, label, 152, y + 82, 44, { weight: 720, color: INK });
-        type(c, value, 152, y + 132, 34, { family: FONTS.mono, weight: 500, color: GRAY });
-        dot(c, 930, y + 80, 26, col + "22");
-        dot(c, 930, y + 80, 12, col);
+        c.translate(0, (1 - t) * 26);
+        shot(c, img, 90, 1120 + i * 176, 380);
+        type(c, label, 496, 1172 + i * 176, 34, { weight: 700, color: INK });
+        line(c, [[496, 1190 + i * 176], [496 + 80 * t, 1190 + i * 176]],
+             ["#1f5ba6", "#6444bf", "#2f7a5a"][i], 4);
         c.restore();
       });
     },
@@ -155,56 +170,76 @@ const SCENES = {
   pdf: {
     bg: ["#fffdf6", "#eae5f6"], photo: 0.14,
     draw(c, f, a) {
-      // a page that turns up and gets a print control
-      const t = smooth(a[0] + 18, a[0] + 78, f);
+      // the real printed page rising into frame
+      const t = smooth(a[0] + 12, a[0] + 52, f);
       if (t <= 0.001) return;
-      const w = 700, h = 960;
-      const x = 190, y = 760 + (1 - t) * 90;
+      const w = 520, h = (IMG.pdfWeek.height / IMG.pdfWeek.width) * w;
+      const x = 90, y = 1120 + (1 - t) * 80;
       c.save(); c.globalAlpha = t;
-      paper(c, x, y, w, h, 10);
-      rect(c, x + 60, y + 70, 300, 26, 6, "rgba(19,38,64,0.75)");
-      for (let i = 0; i < 7; i++) line(c, [[x + 60, y + 150 + i * 92], [x + w - 60, y + 150 + i * 92]], "rgba(19,38,64,0.14)", 2);
-      rect(c, x + w - 190, y + h - 90, 130, 54, 12, VIOLET);
-      type(c, "PRINT", x + w - 178, y + h - 52, 26, { family: FONTS.mono, weight: 700, color: "#fff" });
+      rect(c, x - 8, y + 16, w + 16, h + 8, 14, "rgba(19,38,64,0.18)");
+      rect(c, x, y, w, h, 8, "#fff");
+      c.save(); rr(c, x + 2, y + 2, w - 4, h - 4, 7); c.clip();
+      c.drawImage(IMG.pdfWeek, x + 2, y + 2, w - 4, h - 4); c.restore();
+      edge(c, x, y, w, h, 8, "rgba(19,38,64,0.20)", 2);
       c.restore();
     },
   },
   offer: {
     bg: ["#fff9ee", "#e6e9f8"], photo: 0.40,
     draw(c, f, a) {
-      // two soft price/scope pills, so the offer reads on screen
-      const pills = [["Design", BLUE], ["Build", VIOLET], ["Security", "#2f7a5a"]];
-      pills.forEach(([label, col], i) => {
-        const t = smooth(a[0] + i * 16, a[0] + i * 16 + 28, f);
-        if (t <= 0.001) return;
-        const x = 96 + i * 300, y = 1010 + (1 - t) * 20;
-        c.save(); c.globalAlpha = t;
-        rect(c, x, y, 270, 92, 46, col + "18");
-        edge(c, x, y, 270, 92, 46, col + "55", 2);
-        type(c, label, x + 34, y + 60, 34, { weight: 700, color: col });
+      const t = smooth(a[0] + 10, a[0] + 34, f);
+      if (t <= 0.001) return;
+      c.save(); c.globalAlpha = t;
+      shot(c, IMG.download, 96, 1150, 440);
+      [["Design", BLUE], ["Build", VIOLET], ["Security", "#2f7a5a"]].forEach(([label, col], i) => {
+        const t2 = smooth(a[0] + 30 + i * 14, a[0] + 30 + i * 14 + 24, f);
+        if (t2 <= 0.001) return;
+        const x = 96 + i * 172, y = 1330 + (1 - t2) * 16;
+        c.save(); c.globalAlpha = t * t2;
+        rect(c, x, y, 158, 78, 39, col + "18");
+        edge(c, x, y, 158, 78, 39, col + "55", 2);
+        type(c, label, x + 22, y + 50, 26, { weight: 700, color: col });
         c.restore();
       });
+      c.restore();
     },
   },
   cta: {
     bg: ["#f9faff", "#d4e3fd"], photo: 0.34,
     draw(c, f, a) {
-      const t = smooth(a[0], a[0] + 40, f);
+      const t = smooth(a[0], a[0] + 34, f);
       if (t <= 0.001) return;
       c.save(); c.globalAlpha = t;
-      const x = 96, y = 1024, w = 560, h = 108;
-      rect(c, x, y, w * t, h, 54, GOLD);
-      type(c, "SHULE", x + 40, y + 70, 46, { family: FONTS.mono, weight: 700, color: "#3a2c07" });
+      const x = 96, y = 1180, w = 600, h = 112;
+      rect(c, x, y, Math.max(8, w * t), h, 56, GOLD);
+      type(c, "Comment SHULE", x + 42, y + 72, 44, { weight: 750, color: "#3a2c07", width: 520 });
       c.restore();
     },
   },
 };
 
 // ---------------------------------------------------------------- the page
-const PLATE = await (async () => {
-  await loadFonts();
-  return loadImage(".cache/kit/Inputs/empty-classroom.jpg");
-})();
+await loadFonts();
+
+/**
+ * The real product screenshots, from the kit's pinned capture (commit 27fef99).
+ * These are the actual app: Form 2 / Stream A selectors, the week grid, the
+ * Monday 08:00 Biology row, the Attendance/Academics/Finance rows and the printed
+ * PDF. Drawing a cute grid instead of showing the product was the earlier
+ * mistake — it proved nothing.
+ */
+const PROOF = ".cache/kit/Inputs/proof";
+const IMG = {};
+for (const [k, file] of Object.entries({
+  selectors: "selectors.png", week: "week.png", monday: "monday.png",
+  time: "time.png", subject: "subject.png", attendance: "attendance.png",
+  academics: "academics.png", finance: "finance.png", download: "download.png",
+  appTitle: "appTitle.png", pdfTitle: "pdfTitle.png", pdfWeek: "pdfWeek.png",
+  pdfMonday: "pdfMonday.png", brand: "brand.png",
+})) {
+  IMG[k] = await loadImage(path.join(PROOF, file));
+}
+const PLATE = await loadImage(".cache/kit/Inputs/empty-classroom.jpg");
 const HOST = await loadHost();
 const plateCache = new Map();
 for (const [id, s] of Object.entries(SCENES)) {
@@ -240,18 +275,24 @@ function drawFrame(ctx, f) {
    * of the reference Reels: the host and the artifact take turns, they never
    * cover each other.
    */
+  /**
+   * She never shares a column with the artifact. Where a beat has real UI, she
+   * stands in the right third at a smaller scale; the left two-thirds is the
+   * screenshot. Overlapping them was the last visible defect.
+   */
   const HOST_POS = {
     hook:      { x: 54,  y: 560, w: 900 },
-    intro:     { x: 54,  y: 560, w: 900 },
-    timetable: { x: 330, y: 700, w: 780 },
-    lesson:    { x: 300, y: 660, w: 800 },
-    modules:   { x: 380, y: 730, w: 760 },
-    pdf:       { x: 300, y: 700, w: 800 },
+    intro:     { x: 560, y: 860, w: 640 },
+    timetable: { x: 580, y: 780, w: 600 },
+    lesson:    { x: 560, y: 800, w: 620 },
+    modules:   { x: 590, y: 900, w: 620 },
+    pdf:       { x: 585, y: 800, w: 600 },
     offer:     { x: 54,  y: 600, w: 900 },
-    cta:       { x: 330, y: 700, w: 780 },
+    cta:       { x: 560, y: 900, w: 620 },
   }[span.id];
   draw(f, "review", {
     pose: take.pose,
+    mouth: MOUTH,
     ...HOST_POS,
     cues,
     blinks,

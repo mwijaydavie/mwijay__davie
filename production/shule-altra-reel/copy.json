@@ -24,7 +24,7 @@
     },
     {
       "id": "intro",
-      "pose": "wave",
+      "pose": "desk",
       "sw": [
         "Hii ni Shule Altra.",
         "Software ya siku nzima."
@@ -33,13 +33,7 @@
         "This is Shule Altra.",
         "Software for the whole school day."
       ],
-      "gesture": [
-        {
-          "kind": "present",
-          "at": 0.15,
-          "len": 88
-        }
-      ],
+      "gesture": [],
       "say": "Hii ni Shule Altra. Software ya siku nzima."
     },
     {
@@ -64,7 +58,7 @@
     },
     {
       "id": "lesson",
-      "pose": "point",
+      "pose": "phone",
       "sw": [
         "Form Two, Stream A.",
         "Jumatatu saa mbili: Biology."
@@ -73,18 +67,12 @@
         "Form Two, Stream A.",
         "Monday at 8: Biology."
       ],
-      "gesture": [
-        {
-          "kind": "aim",
-          "at": 0.15,
-          "len": 68
-        }
-      ],
+      "gesture": [],
       "say": "Form Two, Stream A. Jumatatu saa mbili: Biology."
     },
     {
       "id": "modules",
-      "pose": "point",
+      "pose": "desk",
       "sw": [
         "Attendance, Academics,",
         "na Finance."
@@ -93,23 +81,7 @@
         "Attendance, Academics",
         "and Finance."
       ],
-      "gesture": [
-        {
-          "kind": "accent",
-          "at": 0.1,
-          "len": 42
-        },
-        {
-          "kind": "accent",
-          "at": 1.15,
-          "len": 42
-        },
-        {
-          "kind": "accent",
-          "at": 2.2,
-          "len": 42
-        }
-      ],
+      "gesture": [],
       "say": "Attendance, Academics, na Finance."
     },
     {
@@ -151,7 +123,7 @@
         },
         {
           "kind": "accent",
-          "at": 1.95,
+          "at": 1.9,
           "len": 42
         }
       ],
@@ -159,7 +131,7 @@
     },
     {
       "id": "cta",
-      "pose": "point",
+      "pose": "desk",
       "sw": [
         "Comment SHULE,",
         "nikutumie link."
@@ -168,13 +140,7 @@
         "Comment SHULE and",
         "I will send the link."
       ],
-      "gesture": [
-        {
-          "kind": "point",
-          "at": 0.25,
-          "len": 96
-        }
-      ],
+      "gesture": [],
       "say": "Comment SHULE, nikutumie link."
     }
   ]

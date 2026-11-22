@@ -1,7 +1,23 @@
 # Shule Altra Reel — "Period ya kwanza ni somo gani?"
 
-**Review:** <https://drive.google.com/file/d/15sSWSbraDIBKtbzN8F_W9yNdTb7CuWyj/view>
+**v2 review:** <https://drive.google.com/file/d/18b2tYXA47BNCnnarZLfBs2mNfOfsWyt4/view>
+**v1 (superseded):** <https://drive.google.com/file/d/15sSWSbraDIBKtbzN8F_W9yNdTb7CuWyj/view>
 1080×1920 · 60 fps · 36.82 s · H.264 yuv420p + AAC 48 kHz stereo.
+
+## What changed in v2
+
+Two real defects were found by looking at the actual frames rather than the plan:
+
+1. **The mouth never moved.** `performerDraw` drew no mouth layer at all. The rig
+   ships eight viseme patches per pose and the renderer used none of them, which
+   is exactly the "mdomo umekuwa shut" note. Fixed by `production/noellyne-host/lipsync.py`,
+   which analyses the dry mix and drives the patches per frame.
+2. **She had only two poses**, so the same raised hand came back every beat. Two
+   more poses existed in the Tech Pulse V3 kit and were never wired in. Fixed by
+   `production/noellyne-host/build-poses.py` — see that rig's README.
+
+The sets were also rebuilt on the kit's real proof crops instead of drawn grids,
+and she now stands in the right third whenever the artifact needs the left.
 
 ## What it is
 

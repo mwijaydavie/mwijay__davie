@@ -25,7 +25,7 @@ here so it can never happen again.**
 
 ## Poses vs gestures — the distinction that matters
 
-There are **exactly two poses**: `wave` and `point`. Anything else is a
+There are **exactly four poses**: `wave`, `point`, `desk`, `phone`. Anything else is a
 *gesture style* applied to the arm of one of those poses:
 
 | style | what it looks like | length |
@@ -53,11 +53,41 @@ draw(frame, "review", { pose: "wave", x: 54, y: 560, w: 900,
 roughly where her body ends — use that for any gradient that settles her into
 the set, otherwise the half-body PNG cuts a hard horizontal line through her.
 
-## Known constraint
+## The two extra poses, and where they came from
 
-The rig is **half-body**. There is no hand-down pose, so beats that need her
-"listening" with arms low are not possible yet. If a script needs one, either
-animate a settle on the existing arm or generate a third pose — do not fake it.
+`wave` and `point` were the only poses in the Shule Altra kit. That is the direct
+cause of every Reel repeating the same raised hand: there was nothing else to
+draw. The Tech Pulse V3 kit had two more full figures on green screen —
+`desk-pose.png` (hands clasped, the news-anchor read) and `phone-pose.png` (phone
+up beside her face) — used there as cutaway art and never wired into the rig.
+
+`build-poses.py` keys them off green, registers them to the same 939x1136 canvas
+and derives mouth and lid patches at the same offsets. They are ADDED; the
+approved poses are untouched. Re-run only if you have the source art:
+
+```sh
+PYTHONPATH=.cache/rt python3 production/noellyne-host/build-poses.py \
+  .cache/zips/v3/Source/private-media/tech-pulse-tz-v3/inputs/art
+```
+
+Their arms are baked into the base render, so a gesture cue has no effect on
+them. Use them for listening, explaining and holding a phone; use `wave`/`point`
+when the arm has to move.
+
+## Mouth
+
+`performerDraw` draws **no mouth unless you pass one**. Forgetting this is how a
+Reel shipped with a closed mouth while the jaw kept moving.
+
+```sh
+python3 production/noellyne-host/lipsync.py out/mix.wav out/mouth.json --fps 60
+```
+
+That analyses the final dry mix and emits one `[openness, visemeLetter]` per
+frame; the renderer cross-fades the kit patches by openness. Natural speech sits
+around 55-65 % open frames. The eight patches per pose are real visemes — do not
+synthesise replacements by warping, which was tried twice and failed visibly
+both times.
 
 ## Provenance
 
