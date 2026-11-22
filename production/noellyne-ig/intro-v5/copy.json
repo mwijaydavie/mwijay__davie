@@ -1,0 +1,47 @@
+{
+  "note": "V5 copy. Rule after V4 rejection: every line must mean something on its own. Each entry has the spoken line, the on-screen words, and why it is safe.",
+  "lines": [
+    {
+      "id": "hook",
+      "vo": "Tech inakuchanganya?",
+      "onScreen": ["Tech inakuchanganya?", "Tuiweke rahisi."],
+      "english": "Is tech confusing you? Let's make it simple.",
+      "why": "A real question a viewer can answer. No invented terms."
+    },
+    {
+      "id": "name",
+      "vo": "Mimi ni Noellyne.",
+      "onScreen": ["Mimi ni Noellyne."],
+      "english": "I am Noellyne.",
+      "why": "Name only. No affiliation claim yet, so nothing to get wrong."
+    },
+    {
+      "id": "host",
+      "vo": "Tech host wa Altraware.",
+      "onScreen": ["Tech host wa Altraware"],
+      "english": "Tech host at Altraware.",
+      "why": "The only affiliation the owner approved. Exact wording kept from V4."
+    },
+    {
+      "id": "promise",
+      "vo": "Hapa utapata AI bila hype, app demos fupi, na tips za kujaribu.",
+      "onScreen": ["AI bila hype", "App demos fupi", "Tips za kujaribu"],
+      "english": "Here you get AI without hype, short app demos, and tips to try.",
+      "why": "Three concrete content promises, each a phrase that stands alone."
+    },
+    {
+      "id": "follow",
+      "vo": "Follow.",
+      "onScreen": ["Follow"],
+      "english": "Follow.",
+      "why": "One word, unambiguous."
+    },
+    {
+      "id": "together",
+      "vo": "Tujaribu pamoja.",
+      "onScreen": ["Tujaribu pamoja"],
+      "english": "Let's try it together.",
+      "why": "Correct Swahili imperative, warm close, no claims."
+    }
+  ]
+}
