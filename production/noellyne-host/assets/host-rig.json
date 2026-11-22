@@ -7,7 +7,7 @@
     "file": "wave-base.png",
     "width": 939,
     "height": 1136,
-    "sha256": "9a62a9012c2df17a0c86a5069b1fa188893d1cce7e899f87d229dc07a35320a8"
+    "sha256": "7279b89e55300c7a484d0fb8db7f1c17363f7d43f5ff797ef69d5d1a3f4e0ebb"
    },
    "lids": {
     "file": "wave-blink.png",
@@ -29,12 +29,7 @@
      224
     ]
    },
-   "mark": [
-    546,
-    711,
-    41,
-    24
-   ],
+   "mark": null,
    "mouth": {
     "A": {
      "file": "wave-mouth-A.png",
@@ -100,14 +95,20 @@
      "height": 71,
      "sha256": "fbe9563a37fd476cd2daf4ad44868deb12b23ee00301dcd7adec55478352da6e"
     }
-   }
+   },
+   "badge": [
+    542,
+    709,
+    598,
+    737
+   ]
   },
   "point": {
    "base": {
     "file": "point-base.png",
     "width": 939,
     "height": 1136,
-    "sha256": "c5367440c249b5b1fbde0dbef62440c3b6cde4836a752c02178075af3640a88d"
+    "sha256": "98b6cace9697fcd47c1734be9ed5c355cc1311b0ca30dc9bdb616e2d20d2e8dd"
    },
    "lids": {
     "file": "point-blink.png",
@@ -129,12 +130,7 @@
      133
     ]
    },
-   "mark": [
-    546,
-    711,
-    41,
-    24
-   ],
+   "mark": null,
    "mouth": {
     "A": {
      "file": "point-mouth-A.png",
@@ -200,14 +196,20 @@
      "height": 71,
      "sha256": "84e8ec9e74762af332cb4bbcea324981c17cd44b406ef19b30f75b779cfe910c"
     }
-   }
+   },
+   "badge": [
+    542,
+    709,
+    598,
+    737
+   ]
   },
   "desk": {
    "base": {
     "file": "desk-base.png",
     "width": 939,
     "height": 1136,
-    "sha256": "cb1958d3d4cc4a7040dd49bb06c11b767653fbc99f7b152547c5c6df44849ceb"
+    "sha256": "a1bdbfca8a719186204758b69cd10314ec8197796bef09498eef7e5efd0fe66b"
    },
    "lids": {
     "file": "desk-blink.png",
@@ -218,12 +220,7 @@
     "sha256": "d8a66484fb295f66b15d1800979a96920578a672bf6ca712c0dd21a992b801d4"
    },
    "hand": null,
-   "mark": [
-    546,
-    711,
-    41,
-    24
-   ],
+   "mark": null,
    "mouth": {
     "A": {
      "file": "wave-mouth-A.png",
@@ -290,14 +287,20 @@
      "sha256": "fbe9563a37fd476cd2daf4ad44868deb12b23ee00301dcd7adec55478352da6e"
     }
    },
-   "note": "green-screen art from Tech Pulse V3, keyed and registered"
+   "note": "green-screen art from Tech Pulse V3, keyed and registered",
+   "badge": [
+    542,
+    721,
+    592,
+    744
+   ]
   },
   "phone": {
    "base": {
     "file": "phone-base.png",
     "width": 939,
     "height": 1136,
-    "sha256": "894de93a047504e9af9e6c41f2d8fa1cba10bf4b0d7e807ad94b960f721cf213"
+    "sha256": "bf4b619b9e4c8ffdc03133d28db7df9c72428dcc26862af36127508bb06d654b"
    },
    "lids": {
     "file": "phone-blink.png",
@@ -308,12 +311,7 @@
     "sha256": "99380c3afc1f8af07cc917e4ceb4f2177dc8844cb77d34920686c4558d97f0f0"
    },
    "hand": null,
-   "mark": [
-    546,
-    711,
-    41,
-    24
-   ],
+   "mark": null,
    "mouth": {
     "A": {
      "file": "wave-mouth-A.png",
@@ -380,14 +378,20 @@
      "sha256": "fbe9563a37fd476cd2daf4ad44868deb12b23ee00301dcd7adec55478352da6e"
     }
    },
-   "note": "green-screen art from Tech Pulse V3, keyed and registered"
+   "note": "green-screen art from Tech Pulse V3, keyed and registered",
+   "badge": [
+    552,
+    720,
+    608,
+    749
+   ]
   },
   "cheer": {
    "base": {
     "file": "cheer-base.png",
     "width": 939,
     "height": 1136,
-    "sha256": "971425fabc013e697f435271d603c84463fec2900bf4aebd92f78d015d135775"
+    "sha256": "3b6ab4c777263756e96158bc69ea432d5f64ac6239b49a97f64be1e3247743f0"
    },
    "lids": {
     "file": "cheer-blink.png",
@@ -398,12 +402,7 @@
     "sha256": "c616d3501aa70d4c0150607c7b707fd7c70057922fc4754b154f97214fce506d"
    },
    "hand": null,
-   "mark": [
-    546,
-    711,
-    41,
-    24
-   ],
+   "mark": null,
    "mouth": {
     "A": {
      "file": "wave-mouth-A.png",
@@ -470,14 +469,20 @@
      "sha256": "fbe9563a37fd476cd2daf4ad44868deb12b23ee00301dcd7adec55478352da6e"
     }
    },
-   "note": "generated in her design from the approved render, keyed and registered"
+   "note": "generated in her design from the approved render, keyed and registered",
+   "badge": [
+    557,
+    652,
+    608,
+    676
+   ]
   },
   "ok": {
    "base": {
     "file": "ok-base.png",
     "width": 939,
     "height": 1136,
-    "sha256": "dd799481e8c5ed24c0df30d7cfb680cc07fe4978ccca372a8fbf2fcc3d9d6d90"
+    "sha256": "9a30c311bf0455bf2368da782bc3abcc9c885603a9450d329b610c26aca4cf3a"
    },
    "lids": {
     "file": "ok-blink.png",
@@ -488,12 +493,7 @@
     "sha256": "2d3b5fb04ad9cd75e99fd6f0fbcf6659e4e4b826b2f561fd26ca364864670be1"
    },
    "hand": null,
-   "mark": [
-    546,
-    711,
-    41,
-    24
-   ],
+   "mark": null,
    "mouth": {
     "A": {
      "file": "wave-mouth-A.png",
@@ -560,14 +560,20 @@
      "sha256": "fbe9563a37fd476cd2daf4ad44868deb12b23ee00301dcd7adec55478352da6e"
     }
    },
-   "note": "generated in her design from the approved render, keyed and registered"
+   "note": "generated in her design from the approved render, keyed and registered",
+   "badge": [
+    550,
+    679,
+    603,
+    705
+   ]
   },
   "peace": {
    "base": {
     "file": "peace-base.png",
     "width": 939,
     "height": 1136,
-    "sha256": "356fdb503bf918986cbe25c7b0c26bd327001f7515dc1cc8863ebe84eca22568"
+    "sha256": "a208dc664aa7cbe0086fd6a2656871ed4e8da27d1a6199bc536580b055f22ec2"
    },
    "lids": {
     "file": "peace-blink.png",
@@ -578,12 +584,7 @@
     "sha256": "00d2b5b908c495fa8db46936d69aaf2ab96ee78d0ec476f03fd31b623940c0da"
    },
    "hand": null,
-   "mark": [
-    546,
-    711,
-    41,
-    24
-   ],
+   "mark": null,
    "mouth": {
     "A": {
      "file": "wave-mouth-A.png",
@@ -650,14 +651,20 @@
      "sha256": "fbe9563a37fd476cd2daf4ad44868deb12b23ee00301dcd7adec55478352da6e"
     }
    },
-   "note": "generated in her design from the approved render, keyed and registered"
+   "note": "generated in her design from the approved render, keyed and registered",
+   "badge": [
+    568,
+    644,
+    618,
+    669
+   ]
   },
   "pray": {
    "base": {
     "file": "pray-base.png",
     "width": 939,
     "height": 1136,
-    "sha256": "9f22594d236e0ab39b19ef5363725ca26e02998fc397bc730bf741772361230e"
+    "sha256": "802bab6ba4a64d5c7346ac4715bbcc8e242d1344edb893671b83eef563d9e851"
    },
    "lids": {
     "file": "pray-blink.png",
@@ -668,12 +675,7 @@
     "sha256": "c6628b6aa02560c7ba7850a89404f0898398361614a262c4660cd4eaf10e75d0"
    },
    "hand": null,
-   "mark": [
-    546,
-    711,
-    41,
-    24
-   ],
+   "mark": null,
    "mouth": {
     "A": {
      "file": "wave-mouth-A.png",
@@ -740,14 +742,20 @@
      "sha256": "fbe9563a37fd476cd2daf4ad44868deb12b23ee00301dcd7adec55478352da6e"
     }
    },
-   "note": "generated in her design from the approved render, keyed and registered"
+   "note": "generated in her design from the approved render, keyed and registered",
+   "badge": [
+    541,
+    709,
+    597,
+    736
+   ]
   },
   "thumbsup": {
    "base": {
     "file": "thumbsup-base.png",
     "width": 939,
     "height": 1136,
-    "sha256": "da6152d8010e59124b2ec5eb6c36e0aea00d74323a55ce992ba03b54b3479734"
+    "sha256": "69da5826c84af0ec0d7756c655763cd1737dcb2a02859ab37d704ce3f9a78ff1"
    },
    "lids": {
     "file": "thumbsup-blink.png",
@@ -758,12 +766,7 @@
     "sha256": "1d70250a18dfe98ee5fae2ae0f035f92c483cf2c7fa4a0ab0f621095b644d73b"
    },
    "hand": null,
-   "mark": [
-    546,
-    711,
-    41,
-    24
-   ],
+   "mark": null,
    "mouth": {
     "A": {
      "file": "wave-mouth-A.png",
@@ -830,7 +833,13 @@
      "sha256": "fbe9563a37fd476cd2daf4ad44868deb12b23ee00301dcd7adec55478352da6e"
     }
    },
-   "note": "generated in her design from the approved render, keyed and registered"
+   "note": "generated in her design from the approved render, keyed and registered",
+   "badge": [
+    541,
+    709,
+    597,
+    737
+   ]
   }
  },
  "files": [

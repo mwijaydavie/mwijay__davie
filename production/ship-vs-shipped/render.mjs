@@ -129,7 +129,7 @@ const SCENES = {
     const roles = ["Teacher", "Bursar", "Parent", "Owner"];
     const rows = ["Marks", "Fees", "Contacts"];
     const allowed = [[1, 0, 1, 1], [0, 1, 0, 1], [1, 0, 0, 1]];
-    const x0 = 110, y0 = 780, cw = 200, ch = 96;
+    const x0 = 120, y0 = 780, cw = 200, ch = 96;
     c.save(); c.globalAlpha = t;
     roles.forEach((r, i) => mono(c, r, x0 + 30 + i * cw, y0 - 18, 20, { color: DIM }));
     rows.forEach((row, ri) => {
@@ -212,7 +212,7 @@ const SCENES = {
     rows.forEach(([label, value, unit], i) => {
       const k = smooth(a[0] + 10 + i * 12, a[0] + 10 + i * 12 + 22, f);
       if (k < 0.01) return;
-      const y = 760 + i * 96;
+      const y = 700 + i * 88;
       c.save(); c.globalAlpha = t * k;
       const shown = Math.round(value * easeOut(a[0] + 10 + i * 12, a[0] + 44 + i * 12, f));
       mono(c, String(shown), 100, y + 44, 54, { color: MINT, weight: 700, width: 260 });
@@ -221,7 +221,7 @@ const SCENES = {
       rect(c, 100, y + 66, 880, 2, 1, "rgba(148,163,184,0.18)");
       c.restore();
     });
-    mono(c, "measured in this repo, not estimated", 100, 1300, 20, { color: DIM });
+    mono(c, "measured in this repo, not estimated", 100, 1150, 20, { color: DIM });
     c.restore();
   },
 
@@ -270,14 +270,24 @@ for (const [id, p] of Object.entries(PALETTE)) {
  * here too, only harder: the artifact owns the centre, she stands in the margin.
  */
 const POS = {
-  hook:    { x: 640, y: 900, w: 400 },
-  gap:     { x: 660, y: 960, w: 360 },
-  auth:    { x: 40,  y: 780, w: 400 },
-  empty:   { x: 650, y: 700, w: 390 },
-  offline: { x: 40,  y: 720, w: 410 },
-  receipt: { x: 640, y: 760, w: 400 },
-  cta:     { x: 90,  y: 900, w: 560 },
+  hook:    { x: 660, y: 1090, w: 340 },
+  gap:     { x: 640, y: 1100, w: 350 },
+  auth:    { x: 40,  y: 1100, w: 340 },
+  empty:   { x: 650, y: 1100, w: 340 },
+  offline: { x: 40,  y: 1100, w: 340 },
+  receipt: { x: 650, y: 1160, w: 330 },
+  cta:     { x: 90,  y: 900,  w: 560 },
 };
+/**
+ * The invariant, after three passes of text running through her:
+ *
+ *   every artifact and every line of text lives above y = 1090;
+ *   she lives below it, except on the CTA where she is the subject.
+ *
+ * Position her by that rule, not by eye. `--layout` draws the boxes so it can be
+ * checked without rendering a frame.
+ */
+const SHE_TOP = 1090;
 
 function drawFrame(ctx, f) {
   const span = tl.spans.find((s) => f >= s.start - 3 && f < s.end + 40) || tl.spans[tl.spans.length - 1];

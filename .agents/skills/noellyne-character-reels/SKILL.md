@@ -36,40 +36,51 @@ Layered poses take **gesture styles**. Full-figure poses ignore them — a cue o
 
 ### The Altraware mark on the hoodie
 
-Every pose carries the Altraware logo on the chest patch. It is **baked into the base PNG**, not drawn per frame.
+Every pose carries the Altraware mark on the chest badge. It is **baked into the base PNG**, not drawn per frame. `build-logo.py` does it.
 
-`build-logo.py` does it: wipe the patch to knit colour, multiply-blend the mark, write the new base. `assets/altraware.png` is 256×256 RGBA.
+**This took three attempts, and the first two were wrong in ways that shipped.**
 
-The badge rectangle is per-pose and **measured by eye**, hard-coded in `BADGES`:
+Attempt 1 — find the badge by colour. A pale rectangle on pale denim, beside a pale sleeve badge and a pale hood edge, is not a colour problem. Thresholds that cleared the knit caught the shoulder, and five poses got a blue rectangle painted across them.
+
+Attempt 2 — wipe the badge back to "knit" and paste a print on it. This replaces a real printed patch with a flat lilac card. It reads as a sticker at 100 % and leaves a hard rectangle across her chest.
+
+**What works:** keep the patch exactly as rendered, and multiply the mark into it at the badge's own aspect ratio.
+
+```python
+mh = int(h * 0.94); mw = int(MARK.width * (mh / MARK.height))
+alpha = mk[..., 3:4] / 255 * 0.97
+region = base[my:my+mh, mx:mx+mw, :3]
+base[my:my+mh, mx:mx+mw, :3] = region*(1-alpha) + region*(mk[...,:3]/255)*alpha
+```
+
+Then two touches, both needed:
+- patch `* 0.86` — the badge renders cream, which reads as white paper at full res
+- borrow knit luminance from below the patch and re-apply it at ~20 % over the print, so the mark sits in the fabric
+
+**Finding the badge rectangle.** Flood-fill, not thresholds: `pale = lum > 196 & sat < 48`, take the largest connected blob near the chest. Measured on the clean bases:
 
 | pose | x0,y0,x1,y1 |
 | --- | --- |
-| wave | 541,707,599,739 |
-| point | 541,707,599,738 |
-| desk | 598,658,656,690 |
-| phone | 552,712,610,744 |
-| cheer | 556,648,612,680 |
-| ok | 548,676,606,706 |
-| peace | 566,640,622,672 |
-| pray | 541,707,599,739 |
-| thumbsup | 541,706,599,738 |
+| wave | 542,709,598,737 |
+| point | 542,709,598,737 |
+| desk | 542,721,592,744 |
+| phone | 552,720,608,749 |
+| cheer | 557,652,608,676 |
+| ok | 550,679,603,705 |
+| peace | 568,644,618,669 |
+| pray | 541,709,597,736 |
+| thumbsup | 541,709,597,737 |
 
-**Do not try to find the badge by colour.** Every threshold that clears the knit also catches the sleeve badge, the hood edge or the background. On five poses a blob search painted a blue rectangle across her shoulders. Measure the rectangle once, in `.cache/badgegrid.png` (3×3 grid crops at 25 px), and write the numbers down.
+The hand-typed boxes this replaced were wrong on `desk` by 56 px in x and 63 px in y — onto a *different patch*.
 
 Two traps:
 
-- `desk` and `phone` have **two** pale rectangles — chest and sleeve. The sleeve one is not the badge.
-- After baking, set `mark: null` in `host-rig.json` so nothing draws a second copy. But `build-poses-generated.py` chokes on `mark: null` (`NoneType is not iterable`), so restore `mark: [546,711,41,24]` before regenerating poses, and re-run `build-logo.py` after.
+- `desk` and `phone` have a second pale rectangle on the sleeve. Largest-blob-near-chest handles it; "all pale pixels" does not.
+- After baking, `mark: null` in `host-rig.json` so nothing draws twice. But `build-poses-generated.py` chokes on `mark: null`, so restore `mark: [546,711,41,24]` before regenerating poses and re-run `build-logo.py` after.
 
-`logo-check.png` is the audit strip — all nine poses, mark visible. Regenerate and actually look at it whenever a base is rebuilt.
+**Always re-run from clean bases.** `git checkout HEAD -- production/noellyne-host/assets/` first. Running `build-logo.py` on already-baked bases compounds; that is where the three-marks-on-`desk` frames came from.
 
----
-
-### Choosing a palette for a *second* show
-
-If you make a second Reel, change more than the words, or the audience reads it as the same video twice. In `ship-vs-shipped` the school Reel's eggshell went to slate + mint, the product UI went to code and matrices, and she went from presenter-scale to margin-scale. Same character, same rig, different show.
-
-And do not let the "dark editorial" instinct take the plate to near-black. On the first pass the tint was `#0b1522` at 10 % photo and the set read as a void with dust in it — the flat-background complaint again, only darker. `#152536` at 26 % photo kept the night mood and the classroom.
+**Verify the base, not the strip.** `logo-check.png` crops from `p["badge"]`, so it will happily show a clean patch while the mark sits somewhere else. Open the real bases at 100 % and confirm one patch, one mark.
 
 ---
 
@@ -103,12 +114,16 @@ Re-run `build-visemes.py` after adding a pose — a new pose's mouth patches mus
 
 The failure that recurs in every new episode: the text block runs straight through her hoodie, or a CTA bar lands across a raised hand. It is invisible in a downscaled sheet and obvious at 100 %.
 
-The rule that fixed it in `ship-vs-shipped`:
+"Put her on the left, the artifact on the right" does **not** work. Her box is ~340 px and her arms swing outside it; the matrix still landed across her face at 100 %.
 
-- The **artifact** (code pane, matrix, trace, counter) owns a band, usually `y 600–920` or `y 760–1060`.
-- **She** owns a column on the side, or the band below the artifact. Never both in the same rectangle.
-- Keep all text above `y ≈ 1422` (the caption pill sits at 1440).
-- Write the positions as a `POS` table at the top of the renderer, one line per scene, so a collision is one number away from a fix.
+What actually holds, and what `ship-vs-shipped` now enforces:
+
+- **One horizontal cut line.** Everything textual — artifact, labels, counters, footer — lives above `y = 1090`. She lives below it. Drawn as `SHE_TOP` in the renderer.
+- The only exception is the CTA, where she *is* the subject and the bar sits above her.
+- Caption pill at 1616. Keep the artifact above 1090 and both fit.
+- Write it as a `POS` table, one line per scene, so a collision is one number away from a fix.
+
+If a beat needs her beside an artifact, shrink the artifact to one column and give her the other — do not eyeball an overlap and hope
 
 Then check at 100 %: caption pill clear, no text over the face, no bar over a hand, nothing outside the safe box.
 
@@ -210,8 +225,8 @@ Render `--proof=N` first and look at real frames. Then on the full render:
 
 ## Reference implementations
 
-- **School Reel** — `production/shule-altra-reel/`, warm, presenter-led, 8 poses, 36.82 s.
-- **Tech Reel** — `production/ship-vs-shipped/`, slate + mint, artifact-led, 31.22 s.
+- **School Reel v4** — `production/shule-altra-reel/`, warm, presenter-led, 8 poses, 36.82 s. Drive `1enQsK9DTYzS5KLTEtCtg_T0Sywva-hEC`.
+- **Tech Reel v2** — `production/ship-vs-shipped/`, slate + mint, artifact-led, 31.22 s. Drive `171qu6xo0uD111vuHk9UViq9GTBKbXGUS`.
 
 
 `production/shule-altra-reel/` — eight beats, pose rotation, measured lip sync, real proof crops, living sets.

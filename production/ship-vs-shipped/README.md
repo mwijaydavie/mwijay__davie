@@ -1,6 +1,6 @@
 # Ship vs Shipped
 
-**Review:** <https://drive.google.com/file/d/1vz8xEl4NtolwouPD3gXlKn2xfctbOJZj/view>
+**Review:** <https://drive.google.com/file/d/171qu6xo0uD111vuHk9UViq9GTBKbXGUS/view>
 1080×1920 · 60 fps · 31.22 s · H.264 yuv420p + AAC 48 kHz
 
 ## The angle
@@ -30,6 +30,13 @@ On purpose, so the two do not compete:
 | subject | the product UI | code, matrices, traces |
 | her | large, presenter-led | small, in the margin |
 | set | classroom plate | same plate at 20–26 %, much darker wash |
+
+## Layout
+
+Every artifact and every line of text lives above `y = 1090`. She lives below it,
+except on the CTA where she is the subject. This is written down as `SHE_TOP` in
+`render.mjs` because three passes in a row put text through her hoodie, and each
+one was invisible until a full-res frame landed.
 
 ## Measured numbers
 
