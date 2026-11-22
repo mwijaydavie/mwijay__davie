@@ -50,7 +50,7 @@
      "y": 452,
      "width": 132,
      "height": 71,
-     "sha256": "e9a03dac6ba4bda7eec2952ce5092ecf4bc15c801949933f31dc27c46d7744b1"
+     "sha256": "1b448e382a40b431d3773fb01de84ee777ec199379ffbf90b2d63ef4ba0b9425"
     },
     "C": {
      "file": "wave-mouth-C.png",
@@ -66,7 +66,7 @@
      "y": 452,
      "width": 132,
      "height": 71,
-     "sha256": "4f6c098f99eb2f0a4a9aa0358477c371eafd3411a5e6d0123232f1435a13e455"
+     "sha256": "3face69e0af2295268187c327740be7115be8008b79a5f547d618f1d75ceeed0"
     },
     "E": {
      "file": "wave-mouth-E.png",
@@ -74,7 +74,7 @@
      "y": 452,
      "width": 132,
      "height": 71,
-     "sha256": "5195d8c9db248cb7bc1e7b61f0f9ea3bc07fdc9eab28e4093822fa50ac53c137"
+     "sha256": "5071e6c307c7463bfde5f10c2be936189d16e2bb0fae957a586ed7ab31352a71"
     },
     "F": {
      "file": "wave-mouth-F.png",
@@ -82,7 +82,7 @@
      "y": 452,
      "width": 132,
      "height": 71,
-     "sha256": "fad664c911c4d6ece7f86543493ae14461f87b57bcfe264c90fc2488adb7c0b8"
+     "sha256": "2f12f527e97bcce8a5e3a6d6200be5218f587fb0c3a3b225604a850f6a86cceb"
     },
     "G": {
      "file": "wave-mouth-G.png",
@@ -150,7 +150,7 @@
      "y": 452,
      "width": 132,
      "height": 71,
-     "sha256": "d35e7aa09622744cc9a7d400df2b6b9dc7c2654a213ce3121eb2d0118ad194a0"
+     "sha256": "d4d13ee861a4ddfa340fd7acbe15e8a2c06e87f247941dfa877f19722ddda501"
     },
     "C": {
      "file": "point-mouth-C.png",
@@ -166,7 +166,7 @@
      "y": 452,
      "width": 132,
      "height": 71,
-     "sha256": "9ef488cf0183f65f74b56f512fbc48207104b22bc0555cc15068b5cffdb4bac7"
+     "sha256": "93633a9ee068cf840f514dcf2b3aa15742a55473b221a72fa403ff9920587dcd"
     },
     "E": {
      "file": "point-mouth-E.png",
@@ -174,7 +174,7 @@
      "y": 452,
      "width": 132,
      "height": 71,
-     "sha256": "63f6d2b1ec6d1a1e90411130bab7a8ac48578ceaf20dfcd85f809046cd4a4077"
+     "sha256": "ef16691a555847fa34afcc27d106d2fd4def63b0436e6766382d3b4f0f2409da"
     },
     "F": {
      "file": "point-mouth-F.png",
@@ -182,7 +182,7 @@
      "y": 452,
      "width": 132,
      "height": 71,
-     "sha256": "0af7128807483f40ca0d1827a00df41050c56aea009fc8633fc05bfaa0e28bd2"
+     "sha256": "33c7d2cd35511712cf0312204cbc0a9322d7dbc72d6044778625358d033ef2ce"
     },
     "G": {
      "file": "point-mouth-G.png",
@@ -226,68 +226,68 @@
    ],
    "mouth": {
     "A": {
-     "file": "desk-mouth-A.png",
-     "x": 421,
-     "y": 452,
+     "file": "wave-mouth-A.png",
+     "x": 420,
+     "y": 456,
      "width": 132,
      "height": 71,
-     "sha256": "d21a20f5c73636dc6d08abf820cb0ae77b5446ad1010050d4d53d4d68a8da158"
+     "sha256": "ed650d740ccfa5fb1f5f509f1934e2fd27e292d1cbf44c795c7e715546eb2e3d"
     },
     "B": {
-     "file": "desk-mouth-B.png",
-     "x": 421,
-     "y": 452,
+     "file": "wave-mouth-B.png",
+     "x": 420,
+     "y": 456,
      "width": 132,
      "height": 71,
-     "sha256": "d21a20f5c73636dc6d08abf820cb0ae77b5446ad1010050d4d53d4d68a8da158"
+     "sha256": "1b448e382a40b431d3773fb01de84ee777ec199379ffbf90b2d63ef4ba0b9425"
     },
     "C": {
-     "file": "desk-mouth-C.png",
-     "x": 421,
-     "y": 452,
+     "file": "wave-mouth-C.png",
+     "x": 420,
+     "y": 456,
      "width": 132,
      "height": 71,
-     "sha256": "d21a20f5c73636dc6d08abf820cb0ae77b5446ad1010050d4d53d4d68a8da158"
+     "sha256": "2fd40750a796ec1402d53ba9e5db33e48324dae4d5ac62537ec875d97998fbf5"
     },
     "D": {
-     "file": "desk-mouth-D.png",
-     "x": 421,
-     "y": 452,
+     "file": "wave-mouth-D.png",
+     "x": 420,
+     "y": 456,
      "width": 132,
      "height": 71,
-     "sha256": "d21a20f5c73636dc6d08abf820cb0ae77b5446ad1010050d4d53d4d68a8da158"
+     "sha256": "3face69e0af2295268187c327740be7115be8008b79a5f547d618f1d75ceeed0"
     },
     "E": {
-     "file": "desk-mouth-E.png",
-     "x": 421,
-     "y": 452,
+     "file": "wave-mouth-E.png",
+     "x": 420,
+     "y": 456,
      "width": 132,
      "height": 71,
-     "sha256": "d21a20f5c73636dc6d08abf820cb0ae77b5446ad1010050d4d53d4d68a8da158"
+     "sha256": "5071e6c307c7463bfde5f10c2be936189d16e2bb0fae957a586ed7ab31352a71"
     },
     "F": {
-     "file": "desk-mouth-F.png",
-     "x": 421,
-     "y": 452,
+     "file": "wave-mouth-F.png",
+     "x": 420,
+     "y": 456,
      "width": 132,
      "height": 71,
-     "sha256": "d21a20f5c73636dc6d08abf820cb0ae77b5446ad1010050d4d53d4d68a8da158"
+     "sha256": "2f12f527e97bcce8a5e3a6d6200be5218f587fb0c3a3b225604a850f6a86cceb"
     },
     "G": {
-     "file": "desk-mouth-G.png",
-     "x": 421,
-     "y": 452,
+     "file": "wave-mouth-G.png",
+     "x": 420,
+     "y": 456,
      "width": 132,
      "height": 71,
-     "sha256": "d21a20f5c73636dc6d08abf820cb0ae77b5446ad1010050d4d53d4d68a8da158"
+     "sha256": "e2da58c859e961a601c9d8b75d81cc908e3b2eca89eba67d45f31f2228c54e84"
     },
     "H": {
-     "file": "desk-mouth-H.png",
-     "x": 421,
-     "y": 452,
+     "file": "wave-mouth-H.png",
+     "x": 420,
+     "y": 456,
      "width": 132,
      "height": 71,
-     "sha256": "d21a20f5c73636dc6d08abf820cb0ae77b5446ad1010050d4d53d4d68a8da158"
+     "sha256": "fbe9563a37fd476cd2daf4ad44868deb12b23ee00301dcd7adec55478352da6e"
     }
    },
    "note": "green-screen art from Tech Pulse V3, keyed and registered"
@@ -316,71 +316,521 @@
    ],
    "mouth": {
     "A": {
-     "file": "phone-mouth-A.png",
-     "x": 421,
-     "y": 452,
+     "file": "wave-mouth-A.png",
+     "x": 438,
+     "y": 471,
      "width": 132,
      "height": 71,
-     "sha256": "5e472b4e5bb89210d63bcc287c4656dcb09bf4ae101d5cc490aa4e4ff0cedeff"
+     "sha256": "ed650d740ccfa5fb1f5f509f1934e2fd27e292d1cbf44c795c7e715546eb2e3d"
     },
     "B": {
-     "file": "phone-mouth-B.png",
-     "x": 421,
-     "y": 452,
+     "file": "wave-mouth-B.png",
+     "x": 438,
+     "y": 471,
      "width": 132,
      "height": 71,
-     "sha256": "5e472b4e5bb89210d63bcc287c4656dcb09bf4ae101d5cc490aa4e4ff0cedeff"
+     "sha256": "1b448e382a40b431d3773fb01de84ee777ec199379ffbf90b2d63ef4ba0b9425"
     },
     "C": {
-     "file": "phone-mouth-C.png",
-     "x": 421,
-     "y": 452,
+     "file": "wave-mouth-C.png",
+     "x": 438,
+     "y": 471,
      "width": 132,
      "height": 71,
-     "sha256": "5e472b4e5bb89210d63bcc287c4656dcb09bf4ae101d5cc490aa4e4ff0cedeff"
+     "sha256": "2fd40750a796ec1402d53ba9e5db33e48324dae4d5ac62537ec875d97998fbf5"
     },
     "D": {
-     "file": "phone-mouth-D.png",
-     "x": 421,
-     "y": 452,
+     "file": "wave-mouth-D.png",
+     "x": 438,
+     "y": 471,
      "width": 132,
      "height": 71,
-     "sha256": "5e472b4e5bb89210d63bcc287c4656dcb09bf4ae101d5cc490aa4e4ff0cedeff"
+     "sha256": "3face69e0af2295268187c327740be7115be8008b79a5f547d618f1d75ceeed0"
     },
     "E": {
-     "file": "phone-mouth-E.png",
-     "x": 421,
-     "y": 452,
+     "file": "wave-mouth-E.png",
+     "x": 438,
+     "y": 471,
      "width": 132,
      "height": 71,
-     "sha256": "5e472b4e5bb89210d63bcc287c4656dcb09bf4ae101d5cc490aa4e4ff0cedeff"
+     "sha256": "5071e6c307c7463bfde5f10c2be936189d16e2bb0fae957a586ed7ab31352a71"
     },
     "F": {
-     "file": "phone-mouth-F.png",
-     "x": 421,
-     "y": 452,
+     "file": "wave-mouth-F.png",
+     "x": 438,
+     "y": 471,
      "width": 132,
      "height": 71,
-     "sha256": "5e472b4e5bb89210d63bcc287c4656dcb09bf4ae101d5cc490aa4e4ff0cedeff"
+     "sha256": "2f12f527e97bcce8a5e3a6d6200be5218f587fb0c3a3b225604a850f6a86cceb"
     },
     "G": {
-     "file": "phone-mouth-G.png",
-     "x": 421,
-     "y": 452,
+     "file": "wave-mouth-G.png",
+     "x": 438,
+     "y": 471,
      "width": 132,
      "height": 71,
-     "sha256": "5e472b4e5bb89210d63bcc287c4656dcb09bf4ae101d5cc490aa4e4ff0cedeff"
+     "sha256": "e2da58c859e961a601c9d8b75d81cc908e3b2eca89eba67d45f31f2228c54e84"
     },
     "H": {
-     "file": "phone-mouth-H.png",
-     "x": 421,
-     "y": 452,
+     "file": "wave-mouth-H.png",
+     "x": 438,
+     "y": 471,
      "width": 132,
      "height": 71,
-     "sha256": "5e472b4e5bb89210d63bcc287c4656dcb09bf4ae101d5cc490aa4e4ff0cedeff"
+     "sha256": "fbe9563a37fd476cd2daf4ad44868deb12b23ee00301dcd7adec55478352da6e"
     }
    },
    "note": "green-screen art from Tech Pulse V3, keyed and registered"
+  },
+  "cheer": {
+   "base": {
+    "file": "cheer-base.png",
+    "width": 939,
+    "height": 1136,
+    "sha256": "971425fabc013e697f435271d603c84463fec2900bf4aebd92f78d015d135775"
+   },
+   "lids": {
+    "file": "cheer-blink.png",
+    "width": 268,
+    "height": 87,
+    "x": 359,
+    "y": 348,
+    "sha256": "c616d3501aa70d4c0150607c7b707fd7c70057922fc4754b154f97214fce506d"
+   },
+   "hand": null,
+   "mark": [
+    546,
+    711,
+    41,
+    24
+   ],
+   "mouth": {
+    "A": {
+     "file": "wave-mouth-A.png",
+     "x": 435,
+     "y": 528,
+     "width": 132,
+     "height": 71,
+     "sha256": "ed650d740ccfa5fb1f5f509f1934e2fd27e292d1cbf44c795c7e715546eb2e3d"
+    },
+    "B": {
+     "file": "wave-mouth-B.png",
+     "x": 435,
+     "y": 528,
+     "width": 132,
+     "height": 71,
+     "sha256": "1b448e382a40b431d3773fb01de84ee777ec199379ffbf90b2d63ef4ba0b9425"
+    },
+    "C": {
+     "file": "wave-mouth-C.png",
+     "x": 435,
+     "y": 528,
+     "width": 132,
+     "height": 71,
+     "sha256": "2fd40750a796ec1402d53ba9e5db33e48324dae4d5ac62537ec875d97998fbf5"
+    },
+    "D": {
+     "file": "wave-mouth-D.png",
+     "x": 435,
+     "y": 528,
+     "width": 132,
+     "height": 71,
+     "sha256": "3face69e0af2295268187c327740be7115be8008b79a5f547d618f1d75ceeed0"
+    },
+    "E": {
+     "file": "wave-mouth-E.png",
+     "x": 435,
+     "y": 528,
+     "width": 132,
+     "height": 71,
+     "sha256": "5071e6c307c7463bfde5f10c2be936189d16e2bb0fae957a586ed7ab31352a71"
+    },
+    "F": {
+     "file": "wave-mouth-F.png",
+     "x": 435,
+     "y": 528,
+     "width": 132,
+     "height": 71,
+     "sha256": "2f12f527e97bcce8a5e3a6d6200be5218f587fb0c3a3b225604a850f6a86cceb"
+    },
+    "G": {
+     "file": "wave-mouth-G.png",
+     "x": 435,
+     "y": 528,
+     "width": 132,
+     "height": 71,
+     "sha256": "e2da58c859e961a601c9d8b75d81cc908e3b2eca89eba67d45f31f2228c54e84"
+    },
+    "H": {
+     "file": "wave-mouth-H.png",
+     "x": 435,
+     "y": 528,
+     "width": 132,
+     "height": 71,
+     "sha256": "fbe9563a37fd476cd2daf4ad44868deb12b23ee00301dcd7adec55478352da6e"
+    }
+   },
+   "note": "generated in her design from the approved render, keyed and registered"
+  },
+  "ok": {
+   "base": {
+    "file": "ok-base.png",
+    "width": 939,
+    "height": 1136,
+    "sha256": "dd799481e8c5ed24c0df30d7cfb680cc07fe4978ccca372a8fbf2fcc3d9d6d90"
+   },
+   "lids": {
+    "file": "ok-blink.png",
+    "width": 268,
+    "height": 87,
+    "x": 359,
+    "y": 348,
+    "sha256": "2d3b5fb04ad9cd75e99fd6f0fbcf6659e4e4b826b2f561fd26ca364864670be1"
+   },
+   "hand": null,
+   "mark": [
+    546,
+    711,
+    41,
+    24
+   ],
+   "mouth": {
+    "A": {
+     "file": "wave-mouth-A.png",
+     "x": 434,
+     "y": 438,
+     "width": 132,
+     "height": 71,
+     "sha256": "ed650d740ccfa5fb1f5f509f1934e2fd27e292d1cbf44c795c7e715546eb2e3d"
+    },
+    "B": {
+     "file": "wave-mouth-B.png",
+     "x": 434,
+     "y": 438,
+     "width": 132,
+     "height": 71,
+     "sha256": "1b448e382a40b431d3773fb01de84ee777ec199379ffbf90b2d63ef4ba0b9425"
+    },
+    "C": {
+     "file": "wave-mouth-C.png",
+     "x": 434,
+     "y": 438,
+     "width": 132,
+     "height": 71,
+     "sha256": "2fd40750a796ec1402d53ba9e5db33e48324dae4d5ac62537ec875d97998fbf5"
+    },
+    "D": {
+     "file": "wave-mouth-D.png",
+     "x": 434,
+     "y": 438,
+     "width": 132,
+     "height": 71,
+     "sha256": "3face69e0af2295268187c327740be7115be8008b79a5f547d618f1d75ceeed0"
+    },
+    "E": {
+     "file": "wave-mouth-E.png",
+     "x": 434,
+     "y": 438,
+     "width": 132,
+     "height": 71,
+     "sha256": "5071e6c307c7463bfde5f10c2be936189d16e2bb0fae957a586ed7ab31352a71"
+    },
+    "F": {
+     "file": "wave-mouth-F.png",
+     "x": 434,
+     "y": 438,
+     "width": 132,
+     "height": 71,
+     "sha256": "2f12f527e97bcce8a5e3a6d6200be5218f587fb0c3a3b225604a850f6a86cceb"
+    },
+    "G": {
+     "file": "wave-mouth-G.png",
+     "x": 434,
+     "y": 438,
+     "width": 132,
+     "height": 71,
+     "sha256": "e2da58c859e961a601c9d8b75d81cc908e3b2eca89eba67d45f31f2228c54e84"
+    },
+    "H": {
+     "file": "wave-mouth-H.png",
+     "x": 434,
+     "y": 438,
+     "width": 132,
+     "height": 71,
+     "sha256": "fbe9563a37fd476cd2daf4ad44868deb12b23ee00301dcd7adec55478352da6e"
+    }
+   },
+   "note": "generated in her design from the approved render, keyed and registered"
+  },
+  "peace": {
+   "base": {
+    "file": "peace-base.png",
+    "width": 939,
+    "height": 1136,
+    "sha256": "356fdb503bf918986cbe25c7b0c26bd327001f7515dc1cc8863ebe84eca22568"
+   },
+   "lids": {
+    "file": "peace-blink.png",
+    "width": 268,
+    "height": 87,
+    "x": 359,
+    "y": 348,
+    "sha256": "00d2b5b908c495fa8db46936d69aaf2ab96ee78d0ec476f03fd31b623940c0da"
+   },
+   "hand": null,
+   "mark": [
+    546,
+    711,
+    41,
+    24
+   ],
+   "mouth": {
+    "A": {
+     "file": "wave-mouth-A.png",
+     "x": 429,
+     "y": 463,
+     "width": 132,
+     "height": 71,
+     "sha256": "ed650d740ccfa5fb1f5f509f1934e2fd27e292d1cbf44c795c7e715546eb2e3d"
+    },
+    "B": {
+     "file": "wave-mouth-B.png",
+     "x": 429,
+     "y": 463,
+     "width": 132,
+     "height": 71,
+     "sha256": "1b448e382a40b431d3773fb01de84ee777ec199379ffbf90b2d63ef4ba0b9425"
+    },
+    "C": {
+     "file": "wave-mouth-C.png",
+     "x": 429,
+     "y": 463,
+     "width": 132,
+     "height": 71,
+     "sha256": "2fd40750a796ec1402d53ba9e5db33e48324dae4d5ac62537ec875d97998fbf5"
+    },
+    "D": {
+     "file": "wave-mouth-D.png",
+     "x": 429,
+     "y": 463,
+     "width": 132,
+     "height": 71,
+     "sha256": "3face69e0af2295268187c327740be7115be8008b79a5f547d618f1d75ceeed0"
+    },
+    "E": {
+     "file": "wave-mouth-E.png",
+     "x": 429,
+     "y": 463,
+     "width": 132,
+     "height": 71,
+     "sha256": "5071e6c307c7463bfde5f10c2be936189d16e2bb0fae957a586ed7ab31352a71"
+    },
+    "F": {
+     "file": "wave-mouth-F.png",
+     "x": 429,
+     "y": 463,
+     "width": 132,
+     "height": 71,
+     "sha256": "2f12f527e97bcce8a5e3a6d6200be5218f587fb0c3a3b225604a850f6a86cceb"
+    },
+    "G": {
+     "file": "wave-mouth-G.png",
+     "x": 429,
+     "y": 463,
+     "width": 132,
+     "height": 71,
+     "sha256": "e2da58c859e961a601c9d8b75d81cc908e3b2eca89eba67d45f31f2228c54e84"
+    },
+    "H": {
+     "file": "wave-mouth-H.png",
+     "x": 429,
+     "y": 463,
+     "width": 132,
+     "height": 71,
+     "sha256": "fbe9563a37fd476cd2daf4ad44868deb12b23ee00301dcd7adec55478352da6e"
+    }
+   },
+   "note": "generated in her design from the approved render, keyed and registered"
+  },
+  "pray": {
+   "base": {
+    "file": "pray-base.png",
+    "width": 939,
+    "height": 1136,
+    "sha256": "9f22594d236e0ab39b19ef5363725ca26e02998fc397bc730bf741772361230e"
+   },
+   "lids": {
+    "file": "pray-blink.png",
+    "width": 268,
+    "height": 87,
+    "x": 359,
+    "y": 348,
+    "sha256": "c6628b6aa02560c7ba7850a89404f0898398361614a262c4660cd4eaf10e75d0"
+   },
+   "hand": null,
+   "mark": [
+    546,
+    711,
+    41,
+    24
+   ],
+   "mouth": {
+    "A": {
+     "file": "wave-mouth-A.png",
+     "x": 429,
+     "y": 447,
+     "width": 132,
+     "height": 71,
+     "sha256": "ed650d740ccfa5fb1f5f509f1934e2fd27e292d1cbf44c795c7e715546eb2e3d"
+    },
+    "B": {
+     "file": "wave-mouth-B.png",
+     "x": 429,
+     "y": 447,
+     "width": 132,
+     "height": 71,
+     "sha256": "1b448e382a40b431d3773fb01de84ee777ec199379ffbf90b2d63ef4ba0b9425"
+    },
+    "C": {
+     "file": "wave-mouth-C.png",
+     "x": 429,
+     "y": 447,
+     "width": 132,
+     "height": 71,
+     "sha256": "2fd40750a796ec1402d53ba9e5db33e48324dae4d5ac62537ec875d97998fbf5"
+    },
+    "D": {
+     "file": "wave-mouth-D.png",
+     "x": 429,
+     "y": 447,
+     "width": 132,
+     "height": 71,
+     "sha256": "3face69e0af2295268187c327740be7115be8008b79a5f547d618f1d75ceeed0"
+    },
+    "E": {
+     "file": "wave-mouth-E.png",
+     "x": 429,
+     "y": 447,
+     "width": 132,
+     "height": 71,
+     "sha256": "5071e6c307c7463bfde5f10c2be936189d16e2bb0fae957a586ed7ab31352a71"
+    },
+    "F": {
+     "file": "wave-mouth-F.png",
+     "x": 429,
+     "y": 447,
+     "width": 132,
+     "height": 71,
+     "sha256": "2f12f527e97bcce8a5e3a6d6200be5218f587fb0c3a3b225604a850f6a86cceb"
+    },
+    "G": {
+     "file": "wave-mouth-G.png",
+     "x": 429,
+     "y": 447,
+     "width": 132,
+     "height": 71,
+     "sha256": "e2da58c859e961a601c9d8b75d81cc908e3b2eca89eba67d45f31f2228c54e84"
+    },
+    "H": {
+     "file": "wave-mouth-H.png",
+     "x": 429,
+     "y": 447,
+     "width": 132,
+     "height": 71,
+     "sha256": "fbe9563a37fd476cd2daf4ad44868deb12b23ee00301dcd7adec55478352da6e"
+    }
+   },
+   "note": "generated in her design from the approved render, keyed and registered"
+  },
+  "thumbsup": {
+   "base": {
+    "file": "thumbsup-base.png",
+    "width": 939,
+    "height": 1136,
+    "sha256": "da6152d8010e59124b2ec5eb6c36e0aea00d74323a55ce992ba03b54b3479734"
+   },
+   "lids": {
+    "file": "thumbsup-blink.png",
+    "width": 268,
+    "height": 87,
+    "x": 359,
+    "y": 348,
+    "sha256": "1d70250a18dfe98ee5fae2ae0f035f92c483cf2c7fa4a0ab0f621095b644d73b"
+   },
+   "hand": null,
+   "mark": [
+    546,
+    711,
+    41,
+    24
+   ],
+   "mouth": {
+    "A": {
+     "file": "wave-mouth-A.png",
+     "x": 422,
+     "y": 454,
+     "width": 132,
+     "height": 71,
+     "sha256": "ed650d740ccfa5fb1f5f509f1934e2fd27e292d1cbf44c795c7e715546eb2e3d"
+    },
+    "B": {
+     "file": "wave-mouth-B.png",
+     "x": 422,
+     "y": 454,
+     "width": 132,
+     "height": 71,
+     "sha256": "1b448e382a40b431d3773fb01de84ee777ec199379ffbf90b2d63ef4ba0b9425"
+    },
+    "C": {
+     "file": "wave-mouth-C.png",
+     "x": 422,
+     "y": 454,
+     "width": 132,
+     "height": 71,
+     "sha256": "2fd40750a796ec1402d53ba9e5db33e48324dae4d5ac62537ec875d97998fbf5"
+    },
+    "D": {
+     "file": "wave-mouth-D.png",
+     "x": 422,
+     "y": 454,
+     "width": 132,
+     "height": 71,
+     "sha256": "3face69e0af2295268187c327740be7115be8008b79a5f547d618f1d75ceeed0"
+    },
+    "E": {
+     "file": "wave-mouth-E.png",
+     "x": 422,
+     "y": 454,
+     "width": 132,
+     "height": 71,
+     "sha256": "5071e6c307c7463bfde5f10c2be936189d16e2bb0fae957a586ed7ab31352a71"
+    },
+    "F": {
+     "file": "wave-mouth-F.png",
+     "x": 422,
+     "y": 454,
+     "width": 132,
+     "height": 71,
+     "sha256": "2f12f527e97bcce8a5e3a6d6200be5218f587fb0c3a3b225604a850f6a86cceb"
+    },
+    "G": {
+     "file": "wave-mouth-G.png",
+     "x": 422,
+     "y": 454,
+     "width": 132,
+     "height": 71,
+     "sha256": "e2da58c859e961a601c9d8b75d81cc908e3b2eca89eba67d45f31f2228c54e84"
+    },
+    "H": {
+     "file": "wave-mouth-H.png",
+     "x": 422,
+     "y": 454,
+     "width": 132,
+     "height": 71,
+     "sha256": "fbe9563a37fd476cd2daf4ad44868deb12b23ee00301dcd7adec55478352da6e"
+    }
+   },
+   "note": "generated in her design from the approved render, keyed and registered"
   }
  },
  "files": [
@@ -389,6 +839,66 @@
    "width": 256,
    "height": 256,
    "sha256": "72981d16359d15858d5228c45f37528a065e86ea23ef2677b5740d7013ce4def"
+  },
+  {
+   "file": "cheer-base.png",
+   "width": 939,
+   "height": 1136,
+   "sha256": "971425fabc013e697f435271d603c84463fec2900bf4aebd92f78d015d135775"
+  },
+  {
+   "file": "cheer-blink.png",
+   "width": 268,
+   "height": 87,
+   "sha256": "c616d3501aa70d4c0150607c7b707fd7c70057922fc4754b154f97214fce506d"
+  },
+  {
+   "file": "cheer-mouth-A.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "cf2e0b870a9dc2b970066c6ca90276924c97e6401914aea3c76948c3bc8c3519"
+  },
+  {
+   "file": "cheer-mouth-B.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "cf2e0b870a9dc2b970066c6ca90276924c97e6401914aea3c76948c3bc8c3519"
+  },
+  {
+   "file": "cheer-mouth-C.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "cf2e0b870a9dc2b970066c6ca90276924c97e6401914aea3c76948c3bc8c3519"
+  },
+  {
+   "file": "cheer-mouth-D.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "cf2e0b870a9dc2b970066c6ca90276924c97e6401914aea3c76948c3bc8c3519"
+  },
+  {
+   "file": "cheer-mouth-E.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "cf2e0b870a9dc2b970066c6ca90276924c97e6401914aea3c76948c3bc8c3519"
+  },
+  {
+   "file": "cheer-mouth-F.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "cf2e0b870a9dc2b970066c6ca90276924c97e6401914aea3c76948c3bc8c3519"
+  },
+  {
+   "file": "cheer-mouth-G.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "cf2e0b870a9dc2b970066c6ca90276924c97e6401914aea3c76948c3bc8c3519"
+  },
+  {
+   "file": "cheer-mouth-H.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "cf2e0b870a9dc2b970066c6ca90276924c97e6401914aea3c76948c3bc8c3519"
   },
   {
    "file": "desk-base.png",
@@ -449,6 +959,126 @@
    "width": 132,
    "height": 71,
    "sha256": "d21a20f5c73636dc6d08abf820cb0ae77b5446ad1010050d4d53d4d68a8da158"
+  },
+  {
+   "file": "ok-base.png",
+   "width": 939,
+   "height": 1136,
+   "sha256": "dd799481e8c5ed24c0df30d7cfb680cc07fe4978ccca372a8fbf2fcc3d9d6d90"
+  },
+  {
+   "file": "ok-blink.png",
+   "width": 268,
+   "height": 87,
+   "sha256": "2d3b5fb04ad9cd75e99fd6f0fbcf6659e4e4b826b2f561fd26ca364864670be1"
+  },
+  {
+   "file": "ok-mouth-A.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "10ec5b1e979d38ecb6cc35700185f9b365a90e18085455953c10adfb91aeda91"
+  },
+  {
+   "file": "ok-mouth-B.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "10ec5b1e979d38ecb6cc35700185f9b365a90e18085455953c10adfb91aeda91"
+  },
+  {
+   "file": "ok-mouth-C.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "10ec5b1e979d38ecb6cc35700185f9b365a90e18085455953c10adfb91aeda91"
+  },
+  {
+   "file": "ok-mouth-D.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "10ec5b1e979d38ecb6cc35700185f9b365a90e18085455953c10adfb91aeda91"
+  },
+  {
+   "file": "ok-mouth-E.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "10ec5b1e979d38ecb6cc35700185f9b365a90e18085455953c10adfb91aeda91"
+  },
+  {
+   "file": "ok-mouth-F.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "10ec5b1e979d38ecb6cc35700185f9b365a90e18085455953c10adfb91aeda91"
+  },
+  {
+   "file": "ok-mouth-G.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "10ec5b1e979d38ecb6cc35700185f9b365a90e18085455953c10adfb91aeda91"
+  },
+  {
+   "file": "ok-mouth-H.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "10ec5b1e979d38ecb6cc35700185f9b365a90e18085455953c10adfb91aeda91"
+  },
+  {
+   "file": "peace-base.png",
+   "width": 939,
+   "height": 1136,
+   "sha256": "356fdb503bf918986cbe25c7b0c26bd327001f7515dc1cc8863ebe84eca22568"
+  },
+  {
+   "file": "peace-blink.png",
+   "width": 268,
+   "height": 87,
+   "sha256": "00d2b5b908c495fa8db46936d69aaf2ab96ee78d0ec476f03fd31b623940c0da"
+  },
+  {
+   "file": "peace-mouth-A.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "7c9be4360becba785f4afce46200f2f99a519d0c86310425bba7d7d3ff0f225f"
+  },
+  {
+   "file": "peace-mouth-B.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "7c9be4360becba785f4afce46200f2f99a519d0c86310425bba7d7d3ff0f225f"
+  },
+  {
+   "file": "peace-mouth-C.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "7c9be4360becba785f4afce46200f2f99a519d0c86310425bba7d7d3ff0f225f"
+  },
+  {
+   "file": "peace-mouth-D.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "7c9be4360becba785f4afce46200f2f99a519d0c86310425bba7d7d3ff0f225f"
+  },
+  {
+   "file": "peace-mouth-E.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "7c9be4360becba785f4afce46200f2f99a519d0c86310425bba7d7d3ff0f225f"
+  },
+  {
+   "file": "peace-mouth-F.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "7c9be4360becba785f4afce46200f2f99a519d0c86310425bba7d7d3ff0f225f"
+  },
+  {
+   "file": "peace-mouth-G.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "7c9be4360becba785f4afce46200f2f99a519d0c86310425bba7d7d3ff0f225f"
+  },
+  {
+   "file": "peace-mouth-H.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "7c9be4360becba785f4afce46200f2f99a519d0c86310425bba7d7d3ff0f225f"
   },
   {
    "file": "phone-base.png",
@@ -577,6 +1207,126 @@
    "sha256": "84e8ec9e74762af332cb4bbcea324981c17cd44b406ef19b30f75b779cfe910c"
   },
   {
+   "file": "pray-base.png",
+   "width": 939,
+   "height": 1136,
+   "sha256": "9f22594d236e0ab39b19ef5363725ca26e02998fc397bc730bf741772361230e"
+  },
+  {
+   "file": "pray-blink.png",
+   "width": 268,
+   "height": 87,
+   "sha256": "c6628b6aa02560c7ba7850a89404f0898398361614a262c4660cd4eaf10e75d0"
+  },
+  {
+   "file": "pray-mouth-A.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "dde0e67b99bf440a0249adf67fae2f48fd30f62ea96042a246e185d6d5b818ef"
+  },
+  {
+   "file": "pray-mouth-B.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "dde0e67b99bf440a0249adf67fae2f48fd30f62ea96042a246e185d6d5b818ef"
+  },
+  {
+   "file": "pray-mouth-C.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "dde0e67b99bf440a0249adf67fae2f48fd30f62ea96042a246e185d6d5b818ef"
+  },
+  {
+   "file": "pray-mouth-D.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "dde0e67b99bf440a0249adf67fae2f48fd30f62ea96042a246e185d6d5b818ef"
+  },
+  {
+   "file": "pray-mouth-E.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "dde0e67b99bf440a0249adf67fae2f48fd30f62ea96042a246e185d6d5b818ef"
+  },
+  {
+   "file": "pray-mouth-F.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "dde0e67b99bf440a0249adf67fae2f48fd30f62ea96042a246e185d6d5b818ef"
+  },
+  {
+   "file": "pray-mouth-G.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "dde0e67b99bf440a0249adf67fae2f48fd30f62ea96042a246e185d6d5b818ef"
+  },
+  {
+   "file": "pray-mouth-H.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "dde0e67b99bf440a0249adf67fae2f48fd30f62ea96042a246e185d6d5b818ef"
+  },
+  {
+   "file": "thumbsup-base.png",
+   "width": 939,
+   "height": 1136,
+   "sha256": "da6152d8010e59124b2ec5eb6c36e0aea00d74323a55ce992ba03b54b3479734"
+  },
+  {
+   "file": "thumbsup-blink.png",
+   "width": 268,
+   "height": 87,
+   "sha256": "1d70250a18dfe98ee5fae2ae0f035f92c483cf2c7fa4a0ab0f621095b644d73b"
+  },
+  {
+   "file": "thumbsup-mouth-A.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "2a4ce9c6a09bf99b0cf4a4f33ab258110aedfbc28f1437ea4d0a0c7f9067c81b"
+  },
+  {
+   "file": "thumbsup-mouth-B.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "2a4ce9c6a09bf99b0cf4a4f33ab258110aedfbc28f1437ea4d0a0c7f9067c81b"
+  },
+  {
+   "file": "thumbsup-mouth-C.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "2a4ce9c6a09bf99b0cf4a4f33ab258110aedfbc28f1437ea4d0a0c7f9067c81b"
+  },
+  {
+   "file": "thumbsup-mouth-D.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "2a4ce9c6a09bf99b0cf4a4f33ab258110aedfbc28f1437ea4d0a0c7f9067c81b"
+  },
+  {
+   "file": "thumbsup-mouth-E.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "2a4ce9c6a09bf99b0cf4a4f33ab258110aedfbc28f1437ea4d0a0c7f9067c81b"
+  },
+  {
+   "file": "thumbsup-mouth-F.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "2a4ce9c6a09bf99b0cf4a4f33ab258110aedfbc28f1437ea4d0a0c7f9067c81b"
+  },
+  {
+   "file": "thumbsup-mouth-G.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "2a4ce9c6a09bf99b0cf4a4f33ab258110aedfbc28f1437ea4d0a0c7f9067c81b"
+  },
+  {
+   "file": "thumbsup-mouth-H.png",
+   "width": 132,
+   "height": 71,
+   "sha256": "2a4ce9c6a09bf99b0cf4a4f33ab258110aedfbc28f1437ea4d0a0c7f9067c81b"
+  },
+  {
    "file": "wave-base.png",
    "width": 939,
    "height": 1136,
@@ -648,6 +1398,11 @@
   "wave",
   "point",
   "desk",
-  "phone"
+  "phone",
+  "cheer",
+  "ok",
+  "peace",
+  "pray",
+  "thumbsup"
  ]
 }

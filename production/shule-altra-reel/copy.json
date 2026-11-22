@@ -72,7 +72,7 @@
     },
     {
       "id": "modules",
-      "pose": "desk",
+      "pose": "thumbsup",
       "sw": [
         "Attendance, Academics,",
         "na Finance."
@@ -86,7 +86,7 @@
     },
     {
       "id": "pdf",
-      "pose": "point",
+      "pose": "peace",
       "sw": [
         "Timetable PDF: unaiona",
         "kabla ya kuprint."
@@ -95,18 +95,12 @@
         "The timetable PDF: see it",
         "before you print."
       ],
-      "gesture": [
-        {
-          "kind": "point",
-          "at": 0.2,
-          "len": 96
-        }
-      ],
+      "gesture": [],
       "say": "Timetable PDF: unaiona kabla ya kuprint."
     },
     {
       "id": "offer",
-      "pose": "wave",
+      "pose": "ok",
       "sw": [
         "App ya shule yako?",
         "Altraware tunakujengea."
@@ -115,23 +109,12 @@
         "An app for your school?",
         "Altraware can build it."
       ],
-      "gesture": [
-        {
-          "kind": "present",
-          "at": 0.15,
-          "len": 88
-        },
-        {
-          "kind": "accent",
-          "at": 1.9,
-          "len": 42
-        }
-      ],
+      "gesture": [],
       "say": "App ya shule yako? Altraware tunakujengea."
     },
     {
       "id": "cta",
-      "pose": "desk",
+      "pose": "cheer",
       "sw": [
         "Comment SHULE,",
         "nikutumie link."

@@ -104,26 +104,25 @@ export function performerDraw(c, host, fps) {
       const track = Array.isArray(mouth) ? mouth : mouth.frames;
       const cur = track[Math.min(f, track.length - 1)] || [0, "X"];
       const [openness, letter] = cur;
-      // The patches already carry the lip shape at full opacity, so alpha has to
-      // reach 1 quickly. A slow ramp leaves the closed smile showing through the
-      // lower lip and the mouth reads as shut even while it is animating.
-      const alpha = clamp((openness - 0.04) / 0.20);
-      if (letter !== "X" && alpha > 0.04) {
-        // pick the patch for this letter, blended toward the next one up
-        const ORDER = "ACHGCDFB";           // by openness, from lipsync.py
-        const idx = ORDER.indexOf(letter);
-        const lo = p.mouth[letter] || p.mouth.A;
-        const hiLetter = idx >= 0 && idx + 1 < ORDER.length ? ORDER[idx + 1] : null;
-        const hi = hiLetter ? p.mouth[hiLetter] : null;
-        const t = hi ? clamp((openness - (idx / ORDER.length)) * 3.2) : 0;
-        c.save();
-        c.globalAlpha *= alpha;
-        c.drawImage(layers[lo.file], lo.x, lo.y);
-        if (hi && t > 0.02) {
-          c.globalAlpha *= Math.min(1, t);
-          c.drawImage(layers[hi.file], hi.x, hi.y);
+      /**
+       * Draw the mouth at full opacity or not at all.
+       *
+       * The patches are complete replacements for the lip area: each one carries
+       * the whole mouth plus the skin around it. Compositing them at partial
+       * alpha (an earlier version ramped up from 0.25) leaves the closed smile
+       * showing through the new lips, and the result reads as a shut mouth even
+       * though it is animating. So the shape is chosen by openness, not blended.
+       */
+      if (letter !== "X" && openness > 0.10) {
+        const LADDER = ["A", "G", "C", "H", "D", "E", "B", "F"];
+        const idx = Math.min(LADDER.length - 1,
+          Math.max(0, Math.round(openness * (LADDER.length - 1))));
+        const patch = p.mouth[LADDER[idx]];
+        if (patch) {
+          c.save();
+          c.drawImage(layers[patch.file], patch.x, patch.y);
+          c.restore();
         }
-        c.restore();
       }
     }
 

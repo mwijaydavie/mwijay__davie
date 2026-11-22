@@ -17,6 +17,7 @@ import path from "node:path";
 import { spawn } from "node:child_process";
 import { createCanvas, loadImage } from "@napi-rs/canvas";
 import { loadFonts, loadHost, performerDraw, makeScene, FONTS } from "../noellyne-host/host.mjs";
+import { makeSet, groundShadow } from "../noellyne-host/background.mjs";
 
 const ROOT = process.cwd();
 const HERE = path.join(ROOT, "production/shule-altra-reel");
@@ -241,9 +242,22 @@ for (const [k, file] of Object.entries({
 }
 const PLATE = await loadImage(".cache/kit/Inputs/empty-classroom.jpg");
 const HOST = await loadHost();
+/**
+ * Each beat gets a living set instead of a static wash: the plate drifts, a light
+ * band sweeps, dust rises. `photo` per scene controls how much of the classroom
+ * shows through, so the eight beats read as eight places.
+ */
 const plateCache = new Map();
 for (const [id, s] of Object.entries(SCENES)) {
-  plateCache.set(id, makeScene(W, H, PLATE, { photoAlpha: s.photo, tint: s.bg[0], tint2: s.bg[1] }));
+  plateCache.set(id, makeSet(W, H, PLATE, {
+    photoAlpha: s.photo,
+    tint: s.bg[0],
+    tint2: s.bg[1],
+    parallax: s.parallax ?? 26,
+    sweep: s.sweep ?? 0.55,
+    dust: s.dust ?? 34,
+    vig: s.vig ?? 0.22,
+  }));
 }
 
 function drawFrame(ctx, f) {
@@ -258,7 +272,7 @@ function drawFrame(ctx, f) {
   ctx.translate(W / 2, H / 2);
   ctx.scale(cam, cam);
   ctx.translate(-W / 2, -H / 2);
-  ctx.drawImage(plateCache.get(span.id), 0, 0);
+  plateCache.get(span.id)(ctx, f, span.start, span.end);
   scene.draw(ctx, f, a);
   ctx.restore();
 
@@ -282,14 +296,16 @@ function drawFrame(ctx, f) {
    */
   const HOST_POS = {
     hook:      { x: 54,  y: 560, w: 900 },
-    intro:     { x: 560, y: 860, w: 640 },
-    timetable: { x: 580, y: 780, w: 600 },
-    lesson:    { x: 560, y: 800, w: 620 },
-    modules:   { x: 590, y: 900, w: 620 },
-    pdf:       { x: 585, y: 800, w: 600 },
-    offer:     { x: 54,  y: 600, w: 900 },
-    cta:       { x: 560, y: 900, w: 620 },
+    intro:     { x: 560, y: 880, w: 620 },
+    timetable: { x: 585, y: 800, w: 580 },
+    lesson:    { x: 560, y: 830, w: 600 },
+    modules:   { x: 600, y: 900, w: 580 },
+    pdf:       { x: 590, y: 820, w: 580 },
+    offer:     { x: 60,  y: 620, w: 880 },
+    cta:       { x: 560, y: 900, w: 600 },
   }[span.id];
+  groundShadow(ctx, HOST_POS.x + HOST_POS.w * 0.5, HOST_POS.y + HOST_POS.w * 0.99,
+               HOST_POS.w * 0.72, 0.20);
   draw(f, "review", {
     pose: take.pose,
     mouth: MOUTH,

@@ -25,7 +25,8 @@ here so it can never happen again.**
 
 ## Poses vs gestures — the distinction that matters
 
-There are **exactly four poses**: `wave`, `point`, `desk`, `phone`. Anything else is a
+There are **exactly nine poses**: `wave`, `point` (layered arms) and `desk`,
+`phone`, `cheer`, `ok`, `peace`, `pray`, `thumbsup` (full figures, arms baked). Anything else is a
 *gesture style* applied to the arm of one of those poses:
 
 | style | what it looks like | length |
@@ -73,6 +74,25 @@ PYTHONPATH=.cache/rt python3 production/noellyne-host/build-poses.py \
 Their arms are baked into the base render, so a gesture cue has no effect on
 them. Use them for listening, explaining and holding a phone; use `wave`/`point`
 when the arm has to move.
+
+## Mouth, part two
+
+`build-visemes.py` points every pose at the **wave** mouth patches. A new pose
+must be run through it: patches cut from a closed smile cannot open, which is why
+the generated poses stayed mute until this existed.
+
+The kit patches must be drawn at **full opacity**. Partial alpha leaves the closed
+smile visible through the open lips and the mouth reads shut while it animates —
+that is the exact failure the owner kept reporting.
+
+Do not paint teeth over the opening. A white band across a dark interior reads as
+a bandage at phone size.
+
+## Sets
+
+`background.mjs` builds a living set per beat: plate parallax, a light sweep, dust
+motes and a vignette, all derived from `frame`. "Background zimetulia sana" is
+what a static wash looks like; a set has to move.
 
 ## Mouth
 
