@@ -38,7 +38,10 @@ The owner now wants a **fresh, short introduction for Noellyne's IG**, with simp
 
 The owner supplied two Drive Reels as **motion references**. They specifically value depth, visible background/scene changes, lively head/gaze movement, a pointer and usable hand gestures. Borrow that motion rhythm, not their footage, screenshots, exact wording or audio. The script/storyboard lives under `intro-v3/`.
 
-**V6 is the current cut**: `Noellyne-Intro-V6-Altraware-Review.mp4`, 1080×1920, 30 fps, 19.8 s, owner-only in Drive (file id `1pCbmkkdpeHGTrwCQ09QgdbKteQiwPpBB`).
+**V8 is the current cut** — full bleed, her own audio, no page and no panel:
+<https://drive.google.com/file/d/1hryxjJlzlNgRGrDzs6OvyzbqZrbOuX3s/view>
+
+**V6**: `Noellyne-Intro-V6-Altraware-Review.mp4`, 1080×1920, 30 fps, 19.8 s, owner-only in Drive (file id `1pCbmkkdpeHGTrwCQ09QgdbKteQiwPpBB`).
 Earlier cuts, all kept and never to be replaced: V5 `1jn9AxvMQFbJBkiemLpXx-QfKZRLAOWTv`, V4 `1swGkvjuqg-BtgykP1HBn8Tjgjqu7TISm`, V3 `17PZki_K-1ZjRsz0bpnZUqOe4h0LJwynO`.
 
 **Always give the owner a link when a cut is delivered.** He asked for this explicitly after V5: a file in Drive without a link is not a deliverable. Include the `web_view_link` in the reply.
