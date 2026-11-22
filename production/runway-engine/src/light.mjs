@@ -346,7 +346,20 @@ export function light(spec, scene, t, images, track) {
     out += pose(c.pose, t, {
       x: c.x ?? 860, y: c.y ?? 1980, h: c.h ?? 1240,
       enter: c.enter ?? true, flip: !!c.flip,
+      gesture: c.hand ? null : (c.gesture ?? null), gestureScale: c.gestureScale ?? 0.98,
     });
+    // a frame-anchored gesture rig: easier to place than sheet coordinates, and it still
+    // inherits the scene's push because it is drawn inside the same group
+    if (c.hand) {
+      out += pose('__rigOnly', t, {
+        x: c.hand.x ?? c.x ?? 860, y: c.hand.y ?? 1100, h: c.hand.h ?? 420,
+        gesture: c.hand.gesture || 'wave',
+        gestureScale: c.hand.scale ?? 1.5,
+        gestureAngle: c.hand.angle ?? 8,
+        enter: c.hand.enter ?? true,
+        phase: c.hand.phase ?? 0.35,
+      });
+    }
   }
 
   if (mode === 'card' || (mode === 'hook' && (scene.steps || scene.ui)))

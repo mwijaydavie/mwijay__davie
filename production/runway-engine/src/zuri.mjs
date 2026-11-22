@@ -19,13 +19,18 @@ import {fileURLToPath} from 'node:url';
 import {
   clamp, lerp, unlerp, easeOut, easeInOut, round, readImage, circle,
 } from './core.mjs';
+import {hand} from './hands.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const DIR = path.resolve(HERE, '../assets/character');
 
 /** Every sheet we hold. Keys are what a spec writes in `cast.pose`. */
 export const POSES = {
+  // `body` is the wave sheet with the drawn hand erased: the rig in hands.mjs then puts
+  // whatever gesture the scene asks for at the wrist. Every other pose keeps its own
+  // rendered hands, because a full pose swap mid-shot would pop.
   calm:  {file: 'zuri-full-cut.png',  aspect: 573 / 1197, note: 'default, hands low'},
+  body:  {file: 'zuri-body-cut.png',  aspect: 620 / 1207, note: 'wave body, no hand — rigged'},
   point: {file: 'zuri-point-cut.png', aspect: 826 / 1177, note: 'points to her left (viewer right)'},
   shock: {file: 'zuri-shock-cut.png', aspect: 524 / 1203, note: 'hand to chest'},
   laugh: {file: 'zuri-laugh-cut.png', aspect: 725 / 1168, note: 'sign-off'},
@@ -69,8 +74,14 @@ export function logoData(file) {
  */
 export function pose(name, t, {
   x = 790, y = 1930, h = 1180, flip = false, enter = true, o = 1,
-  motion = true, phase = 0, sway = 1, breath = 1,
+  motion = true, phase = 0, sway = 1, breath = 1, gesture = null, gestureScale = 0.98,
+  gestureAngle = 0,
 } = {}) {
+  if (name === '__rigOnly') {
+    return `<g opacity="${round(clamp((enter ? easeOut(unlerp(t, 0, 16)) : 1) * o))}">${hand(gesture || 'wave', x, y, {
+      h: gestureScale * 300, angle: gestureAngle, t,
+    })}</g>`;
+  }
   const data = sheet(name);
   const w = h * (POSE_ASPECT[name] || 0.48);
   const e = enter ? easeOut(unlerp(t, 0, 16)) : 1;
@@ -90,12 +101,27 @@ export function pose(name, t, {
 
   const sx = flip ? -1 : 1;
   const pivotY = -h * 0.30;                      // just under the hips
+  // the wrist anchor, in her local pixels: measured off zuri-wave-cut.png where the
+  // drawn hand used to sit (u 0.755, v 0.335 of the sheet)
+  const wr = WRIST[name];
+  const gh = h * 0.30 * (gestureScale || 1);
+  const rig = gesture && wr
+    ? hand(gesture, wr.u * w - w / 2, -h + wr.v * h, {
+        h: gh, angle: wr.a, t: t + phase * 60, flip: !!wr.flip,
+      })
+    : '';
   return `<g transform="translate(${round(x)} ${round(y + rise)}) scale(${sx} 1)" opacity="${round(clamp(e * o))}">
-    <g transform="rotate(${round(angle * 100) / 100} 0 ${round(pivotY)}) scale(${round((1 + armT) * 1000) / 1000} ${round(breathe * 1000) / 1000})" transform-origin="0 ${round(-h)}">
+    <g transform="rotate(${round(angle * 100) / 100} 0 ${round(pivotY)}) scale(${round((1 + armT) * 1000) / 1000} ${round(breathe * 1000) / 1000})">
       <image href="${data}" x="${round(-w / 2)}" y="${round(-h - lift)}" width="${round(w)}" height="${round(h)}" preserveAspectRatio="xMidYMax meet"/>
+      ${rig}
     </g>
   </g>`;
 }
+
+/** Where the rigged hand sits on each sheet, in sheet-normalised coordinates. */
+const WRIST = {
+  body: {u: 0.800, v: 0.235, a: 6, flip: false},
+};
 
 /**
  * Where she stands for a given shot, in frame pixels. Same presets idea as the story

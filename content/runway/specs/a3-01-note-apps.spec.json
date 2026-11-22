@@ -23,10 +23,17 @@
       "headY": 430,
       "headSize": 132,
       "cast": {
-        "pose": "wave",
-        "x": 845,
-        "y": 1690,
-        "h": 1290
+        "pose": "body",
+        "x": 905,
+        "y": 1760,
+        "h": 1340,
+        "hand": {
+          "x": 835,
+          "y": 1240,
+          "gesture": "wave",
+          "scale": 1.15,
+          "angle": 7
+        }
       },
       "captionLine": "App mbili. Features zilezile.",
       "cues": [
@@ -96,11 +103,17 @@
         "rowH": 124
       },
       "cast": {
-        "pose": "point",
-        "x": 1010,
-        "y": 1700,
+        "pose": "body",
+        "x": 950,
+        "y": 1760,
         "h": 1340,
-        "flip": true
+        "hand": {
+          "x": 880,
+          "y": 1240,
+          "gesture": "point",
+          "scale": 1.15,
+          "angle": 7
+        }
       },
       "captionLine": "Cold start: tatu dhidi ya kumi na moja.",
       "cues": [
@@ -151,10 +164,17 @@
         "footer": "B inatoa PDF pekee"
       },
       "cast": {
-        "pose": "calm",
+        "pose": "body",
         "x": 965,
-        "y": 1710,
-        "h": 1350
+        "y": 1760,
+        "h": 1340,
+        "hand": {
+          "x": 895,
+          "y": 1240,
+          "gesture": "open",
+          "scale": 1.15,
+          "angle": 7
+        }
       },
       "captionLine": "Zote zinahifadhi offline. Moja inatoa Markdown.",
       "cues": [
@@ -188,7 +208,7 @@
       "cast": {
         "pose": "laugh",
         "x": 900,
-        "y": 1700,
+        "y": 1800,
         "h": 1330,
         "flip": true
       },
