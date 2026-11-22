@@ -1,0 +1,63 @@
+{
+  "title": "Ship vs Shipped",
+  "keyword": "SHIP",
+  "angle": "The gap between 'it works on my machine' and 'a school can use it on Monday'. No invented statistics: every number below is measured locally in this repo.",
+  "takes": [
+    {
+      "id": "hook",
+      "pose": "point",
+      "sw": ["Code yako inafanya kazi.", "Shule inaweza kuitumia?"],
+      "en": ["Your code works.", "Can a school actually use it?"],
+      "gesture": [{ "kind": "point", "at": 0.10, "len": 96 }],
+      "receipt": "hook"
+    },
+    {
+      "id": "gap",
+      "pose": "desk",
+      "sw": ["Kuna tofauti kati ya", "kufanya kazi na kutumika."],
+      "en": ["There is a gap between", "working and being usable."],
+      "gesture": [],
+      "receipt": "gap-stat"
+    },
+    {
+      "id": "auth",
+      "pose": "phone",
+      "sw": ["Mtu mmoja anaweza", "kuona data ya wote?"],
+      "en": ["Can one person see", "everybody's data?"],
+      "gesture": [],
+      "receipt": "roles"
+    },
+    {
+      "id": "empty",
+      "pose": "peace",
+      "sw": ["Screen tupu sio kosa.", "Ni ukosefu wa mfano."],
+      "en": ["An empty screen is not a bug.", "It is a missing example."],
+      "gesture": [],
+      "receipt": "empty"
+    },
+    {
+      "id": "offline",
+      "pose": "ok",
+      "sw": ["Net si ya kuaminika.", "Bado inafaa kufanya kazi?"],
+      "en": ["The network is not reliable.", "Does it still work?"],
+      "gesture": [],
+      "receipt": "offline"
+    },
+    {
+      "id": "receipt",
+      "pose": "thumbsup",
+      "sw": ["Kila kitu kinapimwa.", "Sio kudhaniwa."],
+      "en": ["Everything is measured.", "Not assumed."],
+      "gesture": [],
+      "receipt": "measure"
+    },
+    {
+      "id": "cta",
+      "pose": "cheer",
+      "sw": ["Comment SHIP,", "nikutumie checklist."],
+      "en": ["Comment SHIP and", "I will send the checklist."],
+      "gesture": [],
+      "receipt": "cta"
+    }
+  ]
+}

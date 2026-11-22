@@ -5,7 +5,7 @@
  * An earlier session kept it only on the sandbox disk and it was lost on reset,
  * which is why later versions fell back to cutting up the old intro footage.
  *
- * Four poses ship with it. `wave` and `point` have a separate hand layer, so the
+ * Nine poses ship with it. `wave` and `point` have a separate hand layer, so the
  * arm is a real gesture and not a crossfade. `desk` (hands clasped at the waist)
  * and `phone` (phone up beside her face) are full figures with the arms baked in
  * — they carry the beats where she should be listening or holding something
@@ -128,7 +128,8 @@ export function performerDraw(c, host, fps) {
 
     const b = Math.max(0, ...blinks.map((at) => smooth(at - 5, at, f) * (1 - smooth(at + 1, at + 6, f))));
     if (b > 0.001) { c.save(); c.globalAlpha *= b; c.drawImage(layers[p.lids.file], p.lids.x, p.lids.y); c.restore(); }
-    c.drawImage(mark, ...p.mark);
+    // `mark` is null once build-logo.py has baked the badge into the base.
+    if (p.mark) c.drawImage(mark, ...p.mark);
     c.restore();
   };
 }

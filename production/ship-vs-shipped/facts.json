@@ -1,0 +1,19 @@
+{
+  "_note": "Measured in this repository, not invented. Regenerate with the command in README.md.",
+  "measured": {
+    "projects": 19,
+    "with_readme": 17,
+    "js_files": 67,
+    "js_lines": 6166,
+    "checks": 15,
+    "poses": 9,
+    "mouth_shapes": 72
+  },
+  "sources": [
+    "production/ directory count",
+    "README.md presence per project",
+    "*.mjs and *.js under production/",
+    "filenames matching *check* or *.test.*",
+    "production/noellyne-host/assets/host-rig.json"
+  ]
+}
