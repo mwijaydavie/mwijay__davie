@@ -1,0 +1,13 @@
+{
+  "name": "noellyne-intro-v5",
+  "private": true,
+  "type": "module",
+  "description": "Noellyne IG profile intro, V5. Footage stays inside a designed card so no matte is needed.",
+  "scripts": {
+    "render": "node tools/render.mjs",
+    "mix": "node tools/mix-audio.mjs"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "^0.1.0"
+  }
+}

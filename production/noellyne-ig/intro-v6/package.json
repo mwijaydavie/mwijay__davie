@@ -1,0 +1,9 @@
+{
+  "name": "noellyne-intro-v6",
+  "private": true,
+  "type": "module",
+  "description": "Noellyne IG intro V6 - cream-on-cream look modelled on the Altraware reference reels.",
+  "dependencies": {
+    "@napi-rs/canvas": "^0.1.100"
+  }
+}
