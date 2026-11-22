@@ -82,6 +82,19 @@ Bendera: kila clip mpya inahitaji `credit`, na kila namba kwenye screen inahitaj
 | 5 | Uthibitisho wa facts za Track 2 | Kila episode ina `sources[]`; owner ahakiki kabla ya post | Kila episode |
 | 6 | Uamuzi wa Track 2 episode 20 | Sijaipanga kwa sababu haijahakikiwa | Bado |
 
+## 4a · Character na sauti (mpya, 21 Nov)
+
+- **Nia** — character mmoja kwa akaunti zote: kadi ya karatasi yenye sura, tab ya lime na glove moja
+  ya rangi ya akaunti. Pose 9, zote zinaonyeshwa kwenye [`character-nia.md`](character-nia.md).
+  Hajaruhusiwi kubadilika sura baada ya post ya kwanza; pose tu.
+- **Sauti** — `voice-00` (Kiingereza) na `voice-01` (Kiswahili), zote za kike, zimechaguliwa kwa
+  audition. Reel yoyote inaweza kuwekewa sauti yako halisi baadaye bila kubadilisha engine.
+  Maelezo: `production/runway-engine/voice/README.md`.
+- **Sound design** — bed, whoosh kwa kila cut, tick kwa kila text reveal, sting mwishoni; zote
+  zinatengenezwa na code, hakuna sample library.
+- **Hooks** — library ya hooks nne (A contradiction · B scenario · C specific result · D stakes)
+  pamoja na research na vyanzo: [`hooks.md`](hooks.md).
+
 ## 4b · Files za DM (lead magnets)
 
 CTA ya kila post inaahidi file. Files 5 zipo tayari kwenye [`files/`](files/README.md), zote A5,
@@ -133,5 +146,5 @@ Kwa nini hivi: 21 posts tayari hazimaanishi 21 video zilizorenderwa leo; video m
 - Hakuna claim ya mapato, followers au conversion ambayo haijaonekana kwenye Insights yako. Kila namba kwenye screen ina source yenye tarehe.
 - Track 2 haiposti hadithi yenye madai ya kisheria (kesi, scandal) bila hati ya msingi; tumia ripoti zilizochapishwa na uandike `VERIFY` kwenye brief.
 - Affiliate (Track 3) inatangazwa kama affiliate kwenye caption na screen; hakuna link iliyofichwa wala udhamini wa kubuni.
-- Vitu vilivyo tayari leo: specs 3 zenye Reel zilizorenderwa (`out/runway/`, si Git), carousel ya Track 3, na **lead magnets 5** (`files/`, zina-commit). Posts 58 hazina video wala file; ni briefs.
+- Vitu vilivyo tayari leo: Reel moja **yenye sauti, character na transitions** (t1, 34.2 s), specs 3 (`out/runway/`, si Git), carousel ya Track 3, na **lead magnets 5** (`files/`, zina-commit). Posts 58 hazina video wala file; ni briefs.
 - Files hazijatumwa kwa mtu, hazijapakiwa Dropbox/Drive, na hakuna link ya malipo iliyowashwa (`BEI` ni sample).

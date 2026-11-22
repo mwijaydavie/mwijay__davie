@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {measure, fit, SAFE} from './core.mjs';
-import {SCENE_FRAMES} from './templates.mjs';
+import {SCENE_FRAMES, framesPerScene} from './templates.mjs';
 
 const TYPES = {
   1: ['cover', 'clip', 'workflow', 'table', 'stat', 'checklist', 'cta'],
@@ -31,7 +31,7 @@ export function validate(spec) {
   else {
     if (spec.scenes.length < 3) err('need at least 3 scenes (hook / body / CTA)');
     if (spec.scenes.length > 10) err('keep a Reel to 10 scenes or fewer');
-    if (spec.scenes.length * SCENE_FRAMES > 60 * 60) warn('over 60s; keep episodes 25–55s unless the brief says otherwise');
+    if (spec.scenes.length * framesPerScene(spec) > 60 * 60) warn('over 60s; keep episodes 25–55s unless the brief says otherwise');
     if (spec.scenes[0].type !== 'cover') err('scene 1 must be type "cover"');
     if (spec.scenes[spec.scenes.length - 1].type !== 'cta') warn('last scene is not a "cta"; state the keyword and the payoff on the last card');
   }
@@ -46,6 +46,13 @@ export function validate(spec) {
 
   (spec.scenes || []).forEach((s, i) => {
     const where = `scene ${i + 1} (${s.type || 'no type'})`;
+    // the character is drawn in a 200x200 box; its feet must clear the caption band
+    if (s.nia?.y != null) {
+      const feet = s.nia.y + 130 * (s.nia.scale ?? 0.9);
+      if (feet > 1462 && !s.captionsOverCharacter) {
+        warn(`${where}: character feet at y=${Math.round(feet)} overlap the caption band (1470); move nia.y up`);
+      }
+    }
     if (!allowed.includes(s.type)) err(`${where}: type must be one of ${allowed.join(', ')}`);
     if (s.type === 'cover' || s.type === 'clip' || s.type === 'article' || s.type === 'compare' || s.type === 'demo') {
       if (s.headline && words(s.headline) > 14) warn(`${where}: headline is ${words(s.headline)} words; hooks read best at 4–10`);

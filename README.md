@@ -28,6 +28,7 @@ Content studio ya Kiswahili na English: tunachukua build halisi, tunaonyesha jin
 | [Tool shortlist](content/tools.md) | Repos zilizopitiwa, kila tool inatumika lini, na nini cha kuahirisha |
 | [Tech video skill](.agents/skills/tech-video-motion-graphics/SKILL.md) | Kanuni za frame-driven motion, TTS, captions, render na QA |
 | [Runway ya akaunti 3](content/runway/README.md) | Akaunti 3 tofauti (AI systems EN · Stories EN · Tools SW), posts 63 kwa siku 21, engine moja ya motion graphics |
+| [Character · Nia](content/runway/character-nia.md) + [hooks](content/runway/hooks.md) | Character mmoja anayejirudia kwenye Reels zote, na library ya hooks yenye vyanzo |
 | [Files za runway](content/runway/files/README.md) | Lead magnets 5 za PDF (A5, fonts embedded) zinazolingana na keyword za DM; rejista ya CTA ambazo bado hazina file |
 | [Post log](content/post-log.csv) | Metrics halisi baada ya wewe kupost; hakuna baseline ya kubuni |
 

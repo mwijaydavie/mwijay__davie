@@ -5,7 +5,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {measure, fit, wrap, W, H, SAFE, CAPTION_BAND} from '../src/core.mjs';
-import {renderFrame, totalFrames, SCENE_FRAMES, TRACKS, activeCue} from '../src/templates.mjs';
+import {renderFrame, totalFrames, SCENE_FRAMES, framesPerScene, TRACKS, activeCue} from '../src/templates.mjs';
+import {nia, NIA_POSES, poseAt} from '../src/nia.mjs';
+import {transition, moveFor, MOVE_FRAMES} from '../src/motion.mjs';
+import {soundtrack, writeMix} from '../src/sound.mjs';
 import {validate} from '../src/validate.mjs';
 import {renderCarouselSlide} from '../src/carousel.mjs';
 
@@ -135,4 +138,74 @@ test('carousel renders every declared slide at 1080x1350', () => {
     const {open, close} = tagBalance(svg);
     assert.equal(open, close);
   });
+});
+
+/* ---------- character, motion, sound (added with the VO pipeline) ---------- */
+
+test('nia renders every pose with balanced tags and no NaN', () => {
+  for (const pose of NIA_POSES) {
+    const svg = nia(40, {pose, talk: 1});
+    assert.ok(svg.length > 400, `${pose}: svg too small`);
+    assert.doesNotMatch(svg, /NaN|undefined/, `${pose}: produced NaN/undefined`);
+    const {open, close} = tagBalance(svg);
+    assert.equal(open, close, `${pose}: unbalanced tags`);
+  }
+});
+
+test('nia animates deterministically: same frame twice is identical', () => {
+  assert.equal(nia(37, {pose: 'tick'}), nia(37, {pose: 'tick'}));
+});
+
+test('poseAt returns the last pose whose beat has passed', () => {
+  const scene = {nia: {poses: [{at: 0, pose: 'idle'}, {at: 100, pose: 'tick'}, {at: 200, pose: 'nod'}]}};
+  assert.equal(poseAt(scene, 50).pose, 'idle');
+  assert.equal(poseAt(scene, 150).pose, 'tick');
+  assert.equal(poseAt(scene, 250).pose, 'nod');
+  assert.equal(poseAt(scene, 250).since, 50);
+  assert.equal(poseAt({}, 12).pose, 'idle');
+});
+
+test('a longer scene stretches cue frames but keeps them inside the scene', () => {
+  const spec = {track: 1, sceneSeconds: 7.2, scenes: [{type: 'cover', cues: [{in: 10, out: 300, text: 'a'}]}]};
+  const spf = framesPerScene(spec);
+  assert.equal(spf, 432);
+  const svg = renderFrame(spec, 20, {});
+  assert.match(svg, /width="1080"/);
+});
+
+test('transitions only move inside their frame window', () => {
+  const spf = 330;
+  assert.equal(transition('push', 200, spf).outer, '', 'push must be finished long before the next cut');
+  assert.match(transition('push', 3, spf).outer, /translate/);
+  assert.match(transition('wipe', 4, spf).bar, /<rect/);
+  assert.equal(transition('cut', 4, spf).bar, '');
+  // the CTA always lands on a hard cut, the opener never does
+  const spec = {scenes: [{}, {}, {}, {}], transition: 'push'};
+  assert.equal(moveFor(spec, 0), 'none');
+  assert.equal(moveFor(spec, 1), 'push');
+  assert.equal(moveFor(spec, 3), 'cut');
+  assert.ok(MOVE_FRAMES < 20);
+});
+
+test('the soundtrack is deterministic and stays quiet enough to hear the voice', () => {
+  const a = soundtrack({seconds: 6, sceneStarts: [0, 3], reveals: [0.4, 3.4], cues: ['rise', 'whoosh'], mood: 'light'});
+  const b = soundtrack({seconds: 6, sceneStarts: [0, 3], reveals: [0.4, 3.4], cues: ['rise', 'whoosh'], mood: 'light'});
+  assert.equal(a.n, b.n);
+  for (let i = 0; i < a.n; i += 997) assert.equal(a.bed[i], b.bed[i], 'bed must not use Math.random');
+
+  let peak = 0;
+  for (let i = 0; i < a.n; i++) peak = Math.max(peak, Math.abs(a.bed[i]));
+  assert.ok(peak < 0.35, `bed peak ${peak.toFixed(3)} is loud enough to mask speech`);
+  assert.ok(peak > 0.01, 'bed is silent');
+});
+
+test('every voiced spec keeps cues inside its scene', () => {
+  for (const {name, spec} of specs) {
+    const spf = framesPerScene(spec);
+    spec.scenes.forEach((s, i) => {
+      for (const c of s.cues || []) {
+        assert.ok(c.in >= 0 && c.out <= spf, `${name} scene ${i + 1}: cue leaves the scene (0..${spf})`);
+      }
+    });
+  }
 });

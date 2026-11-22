@@ -7,8 +7,13 @@ import {
   gridLines, ticks, gridLines as grid, readImage, isImage, sticker,
 } from './core.mjs';
 import * as A from './art.mjs';
+import {nia, poseAt} from './nia.mjs';
+import {transition, moveFor, MOVE_FRAMES} from './motion.mjs';
 
+/** Nominal length of one scene. A spec may set `sceneSeconds` (the audio builder does when
+ *  the voice needs more room), and every template reads the length from there. */
 export const SCENE_FRAMES = 330;
+export const framesPerScene = (spec) => Math.round((spec.sceneSeconds || SCENE_FRAMES / 60) * 60);
 
 export const TRACKS = {
   1: {
@@ -182,28 +187,28 @@ function stackFromBottom(items, bottom, gap) {
  */
 function coverText(s, {
   th, bottom = 1330, gap = 20, headlineSize = 100, maxLines = 4, tracking = -3.6,
-  role = 'head', weight = 780, headlineFill, eyebrowRole = 'mono', keyword,
+  role = 'head', weight = 780, headlineFill, eyebrowRole = 'mono', keyword, maxWidth = 900,
 } = {}) {
   const x = 84;
   const boxes = [];
   const extras = [];
   if (s.eyebrow) extras.push({h: 26, draw: (y) => labelText(s.eyebrow, x, y + 22, {fill: th.accent, size: 23})});
   if (s.kicker) extras.push({h: 44, draw: (y) => pill(String(s.kicker).toUpperCase(), x, y, {size: 23, padX: 15, padY: 8, fill: th.accent, ink: trackInk(th), tracking: 2.2}).svg});
-  if (s.sub) extras.push({h: 78, draw: (y) => bodyBlock(s.sub, x, y, {role: 'body', size: 32, maxLines: 2, fill: th.muted, maxWidth: 880}).svg});
+  if (s.sub) extras.push({h: 78, draw: (y) => bodyBlock(s.sub, x, y, {role: 'body', size: 32, maxLines: 2, fill: th.muted, maxWidth: maxWidth - 20}).svg});
   if (s.price) extras.push({h: 48, draw: (y) => text(s.price, x, y + 36, {role: 'head', weight: 740, size: 40, fill: th.accent, tracking: -1.2})});
   if (keyword) extras.push({h: 30, draw: (y) => text(`COMMENT ${keyword}`, x, y + 24, {role: 'mono', weight: 700, size: 24, fill: th.accent, tracking: 1.6})});
 
   const extraH = extras.reduce((a, e) => a + e.h + gap, 0);
   let size = headlineSize;
-  let head = headlineBlock(s.headline, x, 0, {role, weight, size, maxWidth: 900, maxLines, fill: headlineFill || th.ink, tracking, lineHeight: 0.97, max: 1e9});
+  let head = headlineBlock(s.headline, x, 0, {role, weight, size, maxWidth, maxLines, fill: headlineFill || th.ink, tracking, lineHeight: 0.97, max: 1e9});
   const availH = bottom - 640; // keep the art readable above the copy
   while (extraH + head.h > availH && size > 54) {
     size -= 4;
-    head = headlineBlock(s.headline, x, 0, {role, weight, size, maxWidth: 900, maxLines, fill: headlineFill || th.ink, tracking, lineHeight: 0.97, max: 1e9});
+    head = headlineBlock(s.headline, x, 0, {role, weight, size, maxWidth, maxLines, fill: headlineFill || th.ink, tracking, lineHeight: 0.97, max: 1e9});
   }
   const totalH = head.h + (extras.length ? gap * 2 + extraH - gap : 0);
   let y = bottom - totalH;
-  boxes.push(headlineBlock(s.headline, x, y, {role, weight, size, maxWidth: 900, maxLines, fill: headlineFill || th.ink, tracking, lineHeight: 0.97, max: 1e9}).svg);
+  boxes.push(headlineBlock(s.headline, x, y, {role, weight, size, maxWidth, maxLines, fill: headlineFill || th.ink, tracking, lineHeight: 0.97, max: 1e9}).svg);
   y += head.h;
   for (const e of extras) {
     y += gap;
@@ -221,6 +226,9 @@ function trackInk(th) {
 
 const T_BOTTOM = 1440; // nothing critical below this line
 const T_TOP = 320;
+/** Width reserved on the right when a scene places Nia in a column (her box + 24px gutter). */
+const NIA_COL = 240;
+const textWidth = (s, base = 912) => (s?.nia && (s.nia.x ?? 858) > 700 ? base - NIA_COL : base);
 
 function labelText(str, x, y, {size = 23, fill, o = 1} = {}) {
   return text(String(str).toUpperCase(), x, y, {role: 'mono', weight: 700, size, fill, tracking: 3, o});
@@ -254,7 +262,7 @@ function track1Frame(spec, s, t, images, track) {
     switch (s.type) {
       case 'cover': {
         const art = coverFrame({track, images, spec, kicker: s.kicker});
-        const copy = coverText(s, {th, bottom: 1424, gap: 22, headlineSize: 102, maxLines: 4, tracking: -3.8, keyword: s.keywordLine === false ? null : spec.keyword});
+        const copy = coverText(s, {th, bottom: 1424, gap: 22, headlineSize: s.nia ? 88 : 102, maxLines: 4, tracking: -3.8, maxWidth: textWidth(s), keyword: s.keywordLine === false ? null : spec.keyword});
         return art + `<g opacity="${round(clamp(spring(unlerp(t, 6, 30)) * 1.6))}" transform="translate(0 ${round((1 - spring(unlerp(t, 6, 34))) * 40)})">` + copy + '</g>';
       }
       case 'clip': {
@@ -274,7 +282,7 @@ function track1Frame(spec, s, t, images, track) {
         const blockH = (s.nodes.length - 1) * gap + 104;
         const top = Math.round(700 + (560 - blockH) / 2);
         return (s.kicker ? pill(s.kicker, 84, T_TOP, {size: 24, padX: 16, padY: 9, fill: th.accent, ink: '#FFFFFF', tracking: 2.4}).svg : '') + head +
-          A.workflow(t, {nodes: s.nodes, x: 84, y: top, w: 912, gap, palette: th, start: 40, step: 34}) +
+          A.workflow(t, {nodes: s.nodes, x: 84, y: top, w: textWidth(s, 912), gap, palette: th, start: 40, step: 34}) +
           (s.caption ? bodyBlock(s.caption, 84, top + blockH + 34, {size: 25, maxWidth: 880, maxLines: 2, fill: th.muted}).svg : '');
       }
       case 'table': {
@@ -301,17 +309,21 @@ function track1Frame(spec, s, t, images, track) {
           headlineBlock(s.headline, 84, T_TOP + 74, {size: 68, maxWidth: 900, maxLines: 2, fill: th.ink, max: 610}).svg;
         const bandTop = 700;
         const bandBottom = T_BOTTOM;
-        const blockH = (s.items.length - 1) * 168 + 142;
+        const cw = textWidth(s, 912);
+        const cardH = cw < 900 ? 132 : 142, rowH = cw < 900 ? 156 : 168;
+        const blockH = (s.items.length - 1) * rowH + cardH;
         const y0 = Math.round(bandTop + Math.max(0, (bandBottom - bandTop - blockH) / 2));
+        // each row lands on its own line of dialogue, not on a fixed frame offset
+        const beats = s.cues?.length === s.items.length ? s.cues.map((c) => c.in) : null;
         s.items.forEach((item, i) => {
-          const rv = reveal(t, 46 + i * 22, 20);
-          const yy = y0 + i * 168;
+          const rv = reveal(t, beats ? beats[i] : 46 + i * 22, 20);
+          const yy = y0 + i * rowH;
           out += `<g opacity="${round(rv.o)}" transform="translate(${round((1 - rv.p) * -36)} 0)">
-            ${rect(84, yy, 912, 142, {fill: th.card, rx: 18, stroke: th.cardEdge, sw: 2})}
-            ${circle(140, yy + 71, 30, {fill: i === 0 ? th.accent2 : 'none', stroke: i === 0 ? th.accent2 : th.cardEdge, sw: 2})}
-            ${text(String(i + 1), 140, yy + 82, {role: 'mono', weight: 700, size: 28, fill: th.ink, anchor: 'middle'})}
-            ${text(item.title, 190, yy + 62, {role: 'head', weight: 720, size: 36, fill: th.ink, tracking: -1})}
-            ${text(item.detail, 190, yy + 104, {role: 'body', weight: 450, size: 25, fill: th.muted})}
+            ${rect(84, yy, cw, cardH, {fill: th.card, rx: 18, stroke: th.cardEdge, sw: 2})}
+            ${circle(136, yy + cardH / 2, 28, {fill: i === 0 ? th.accent2 : 'none', stroke: i === 0 ? th.accent2 : th.cardEdge, sw: 2})}
+            ${text(String(i + 1), 136, yy + cardH / 2 + 10, {role: 'mono', weight: 700, size: 26, fill: th.ink, anchor: 'middle'})}
+            ${text(item.title, 186, yy + 58, {role: 'head', weight: 720, size: cw < 900 ? 32 : 36, fill: th.ink, tracking: -1})}
+            ${text(item.detail, 186, yy + 98, {role: 'body', weight: 450, size: cw < 900 ? 22 : 25, fill: th.muted})}
           </g>`;
         });
         return out;
@@ -449,16 +461,20 @@ function track3Frame(spec, s, t, images, track) {
     case 'checklist': {
       let out = (s.kicker ? labelText(s.kicker, 84, T_TOP, {fill: th.accent, size: 22}) : '') +
         headlineBlock(s.headline, 84, T_TOP + 34, {size: 66, maxWidth: 900, maxLines: 2, fill: th.ink, tracking: -2.6, max: 600}).svg;
-      const blockH3 = (s.items.length - 1) * 160 + 136;
+      const cw = textWidth(s, 912);
+      const rowH = cw < 900 ? 150 : 160, cardH = cw < 900 ? 128 : 136;
+      const blockH3 = (s.items.length - 1) * rowH + cardH;
       const y03 = Math.round(620 + Math.max(0, (T_BOTTOM - 620 - blockH3) / 2));
+      // reveal each row with its line: if the scene has cues, item i lands on cue i
+      const beats = s.cues?.length === s.items.length ? s.cues.map((c) => c.in) : null;
       s.items.forEach((item, i) => {
-        const rv = reveal(t, 40 + i * 22, 20);
-        const yy = y03 + i * 160;
+        const rv = reveal(t, beats ? beats[i] : 40 + i * 22, 20);
+        const yy = y03 + i * rowH;
         out += `<g opacity="${round(rv.o)}" transform="translate(${round((1 - rv.p) * 30)} 0)">
-          ${rect(84, yy, 912, 136, {fill: th.card, rx: 16, stroke: th.cardEdge, sw: 2})}
-          ${rect(84, yy, 10, 136, {fill: i % 2 ? th.ink : th.accent, rx: 4})}
-          ${text(item.title, 130, yy + 56, {role: 'head', weight: 720, size: 38, fill: th.ink, tracking: -1.2})}
-          ${text(item.detail, 130, yy + 100, {role: 'body', weight: 450, size: 26, fill: th.muted})}
+          ${rect(84, yy, cw, cardH, {fill: th.card, rx: 16, stroke: th.cardEdge, sw: 2})}
+          ${rect(84, yy, 10, cardH, {fill: i % 2 ? th.ink : th.accent, rx: 4})}
+          ${text(item.title, 130, yy + 52, {role: 'head', weight: 720, size: cw < 900 ? 34 : 38, fill: th.ink, tracking: -1.2})}
+          ${text(item.detail, 130, yy + 94, {role: 'body', weight: 450, size: cw < 900 ? 23 : 26, fill: th.muted})}
         </g>`;
       });
       return out;
@@ -490,15 +506,36 @@ export function renderFrame(spec, frame, {mark, images = {}} = {}) {
   const track = TRACKS[spec.track];
   if (!track) throw new Error(`unknown track ${spec.track}`);
   const total = spec.scenes.length;
-  const idx = clamp(Math.floor(frame / SCENE_FRAMES), 0, total - 1);
+  const spf = framesPerScene(spec);
+  const totalFrames = total * spf;
+  const idx = clamp(Math.floor(frame / spf), 0, total - 1);
   const scene = spec.scenes[idx];
-  const t = frame - idx * SCENE_FRAMES;
+  const t = frame - idx * spf;
   const th = track.theme;
   const render = RENDERERS[spec.track];
   const body = render(spec, scene, t, images, track);
-  // master fade in and out, 6 frames each
-  const fade = Math.min(easeOut(unlerp(frame, 0, 8)), 1 - easeInOut(unlerp(frame, total * SCENE_FRAMES - 10, total * SCENE_FRAMES - 1)));
+
+  // Nia, the account character. A scene opts in with `nia:{...}`; the first and last
+  // scenes default to her so every Reel opens and closes on the same face.
+  let cast = '';
+  if (spec.character !== false) {
+    const cfg = scene.nia ?? ((idx === 0 || idx === total - 1) ? {pose: idx === 0 ? 'perk' : 'present'} : null);
+    if (cfg) {
+      const {pose, since} = poseAt(scene, t);
+      const talking = activeCue(scene.cues, t) ? 1 : 0;
+      cast = nia(since, {
+        x: cfg.x ?? 858, y: cfg.y ?? 700, scale: cfg.scale ?? 0.92,
+        pose: cfg.pose || pose, accent: cfg.accent || th.accent, tab: cfg.tab || th.accent2,
+        ink: track.layout === 'dark' ? '#0B0D18' : th.ink, talk: talking,
+        label: cfg.label ?? 'NIA',
+      });
+    }
+  }
+
+  // master fade in and out
+  const fade = Math.min(easeOut(unlerp(frame, 0, 8)), 1 - easeInOut(unlerp(frame, totalFrames - 10, totalFrames - 1)));
   const cue = scene.cues && !spec.noCaptions ? activeCue(scene.cues, t) : null;
+  const move = transition(moveFor(spec, idx), frame, spf, th.accent);
   return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
   <defs>
     <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
@@ -510,20 +547,23 @@ export function renderFrame(spec, frame, {mark, images = {}} = {}) {
     </linearGradient>
   </defs>
   <g opacity="${round(fade)}">
-    ${background(track, spec, t, images)}
-    ${A.brandBar({mark, theme: th, t, handle: spec.brand?.handle || '@mwijay__davie'})}
-    ${body}
-    ${cue ? A.captions({...cue, out: cue.out}, t, {theme: th, size: scene.captionSize || 50}) : ''}
-    ${scene.footerCta === false || !(idx === 0 || idx === total - 1) ? '' : A.footer({
-      keyword: scene.keywordFooter || spec.keyword,
-      line1: scene.footerLine || spec.footerLine || 'Free file in DM.',
-      theme: th, t, start: idx === 0 ? 60 : 150,
-      // a scene may correct the spec-level note (e.g. an episode whose sources live in the caption)
-      note: scene.footerNote || (scene.source ? `${scene.source}.` : spec.footerNote),
-    })}
+    ${move.outer}
+      ${background(track, spec, t, images)}
+      ${A.brandBar({mark, theme: th, t, handle: spec.brand?.handle || '@mwijay__davie'})}
+      ${body}
+      ${cast}
+      ${cue ? A.captions({...cue, out: cue.out}, t, {theme: th, size: scene.captionSize || 50}) : ''}
+      ${scene.footerCta === false || !(idx === 0 || idx === total - 1) ? '' : A.footer({
+        keyword: scene.keywordFooter || spec.keyword,
+        line1: scene.footerLine || spec.footerLine || 'Free file in DM.',
+        theme: th, t, start: idx === 0 ? 60 : 150,
+        note: scene.footerNote || (scene.source ? `${scene.source}.` : spec.footerNote),
+      })}
+    ${move.close || ''}
+    ${move.bar || ''}
   </g>
   ${ticks(spec.track, {color: th.chromeInk, o: 0.16})}
-  <rect x="0" y="${H - 6}" width="${round(W * clamp(frame / Math.max(1, total * SCENE_FRAMES - 1)))}" height="6" fill="${th.accent}"/>
+  <rect x="0" y="${H - 6}" width="${round(W * clamp(frame / Math.max(1, totalFrames - 1)))}" height="6" fill="${th.accent}"/>
 </svg>`;
 }
 
@@ -535,4 +575,4 @@ export function activeCue(cues, t) {
   return found;
 }
 
-export const totalFrames = (spec) => spec.scenes.length * SCENE_FRAMES;
+export const totalFrames = (spec) => spec.scenes.length * framesPerScene(spec);

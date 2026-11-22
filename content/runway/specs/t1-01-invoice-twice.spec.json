@@ -3,75 +3,264 @@
   "track": 1,
   "tag": "AI SYSTEMS",
   "keyword": "STACK",
+  "transition": "push",
+  "character": true,
   "footerLine": "Free checklist in DM.",
   "footerNote": "Sample data. No client records on screen.",
-  "caption": "Your invoice already exists in a chat, a notebook and a receipt. You retype it for the PDF.\n\nCollect 6 fields once — who, what, how many, how much, when, paid or not — and the second copy writes itself.\n\nComment STACK and I'll send the 6-field checklist plus the 3-step flow. No new software needed.",
+  "caption": "You are editing your invoices wrong. You write it in the chat, again in the notebook, then again in the PDF.\n\nSix fields, collected once, and the second copy writes itself. No new software — the sheet you already have.\n\nComment STACK and I'll send the 6-field checklist plus the 3-step flow.",
   "cta": "ManyChat: STACK → Invoice-Flow-Checklist.pdf (verify delivery before posting)",
   "scenes": [
     {
       "type": "cover",
+      "transition": "rise",
       "eyebrow": "AI WORKFLOWS",
       "kicker": "INVOICING",
-      "headline": "You already wrote the invoice. Why are you typing it twice?",
-      "sub": "Six fields, collected once.",
+      "headline": "You are typing every invoice twice.",
+      "sub": "Six fields, written once.",
+      "captionSize": 50,
       "cues": [
-        {"in": 10, "out": 118, "text": "You already wrote this invoice."},
-        {"in": 128, "out": 250, "text": "Then you typed it again for the PDF."}
-      ]
+        {
+          "in": 48,
+          "out": 323,
+          "text": "You're typing every invoice twice. Chat. Notebook. Then the PDF."
+        }
+      ],
+      "nia": {
+        "pose": "perk",
+        "x": 858,
+        "y": 1075,
+        "scale": 1,
+        "poses": [
+          {
+            "at": 0,
+            "pose": "idle"
+          },
+          {
+            "at": 120,
+            "pose": "lean"
+          },
+          {
+            "at": 260,
+            "pose": "perk"
+          }
+        ]
+      }
     },
     {
       "type": "workflow",
+      "transition": "push",
       "kicker": "THE FLOW",
-      "headline": "Three steps, one afternoon.",
+      "headline": "Three steps. One afternoon.",
       "nodes": [
-        {"title": "Capture", "detail": "Order lands in one sheet, not four chats", "badge": "1 SHEET"},
-        {"title": "Draft", "detail": "Template fills the six fields you already collect", "badge": "AUTO"},
-        {"title": "Approve", "detail": "You tap send. Nothing leaves without you.", "badge": "HUMAN"}
-      ],
-      "caption": "No step here sends anything on its own.",
-      "cues": [
-        {"in": 8, "out": 96, "text": "Capture once, in one sheet."},
-        {"in": 104, "out": 196, "text": "Draft from the fields you trust."},
-        {"in": 204, "out": 300, "text": "Approve every send, by hand."}
-      ]
-    },
-    {
-      "type": "checklist",
-      "kicker": "THE SIX FIELDS",
-      "headline": "If you cannot name these, software will not fix it.",
-      "items": [
-        {"title": "Who is paying", "detail": "Registered name, not the chat nickname"},
-        {"title": "What and how many", "detail": "Item, unit, quantity — one line each"},
-        {"title": "Amount and date", "detail": "Price agreed, and the day it was agreed"}
+        {
+          "title": "Capture once",
+          "detail": "One sheet, one row"
+        },
+        {
+          "title": "Draft from fields",
+          "detail": "The page fills itself"
+        },
+        {
+          "title": "Approve by hand",
+          "detail": "You press send"
+        }
       ],
       "cues": [
-        {"in": 8, "out": 104, "text": "Who is paying."},
-        {"in": 112, "out": 208, "text": "What, and how many."},
-        {"in": 216, "out": 312, "text": "How much, and which day."}
-      ]
+        {
+          "in": 7,
+          "out": 162,
+          "text": "Capture once, in one sheet."
+        },
+        {
+          "in": 168,
+          "out": 315,
+          "text": "Then the draft fills itself."
+        }
+      ],
+      "nia": {
+        "pose": "present",
+        "x": 858,
+        "y": 1140,
+        "scale": 1,
+        "poses": [
+          {
+            "at": 0,
+            "pose": "idle"
+          },
+          {
+            "at": 150,
+            "pose": "present"
+          }
+        ]
+      }
     },
     {
       "type": "stat",
+      "transition": "push",
+      "kicker": "THE LAST STEP",
+      "value": 1,
+      "suffix": " tap",
+      "line": "Every send still waits for a person. Nothing goes out on its own.",
+      "note": "Illustrative flow. No automated sending is claimed or built.",
+      "source": "Own sample workflow, 20 Nov 2026",
+      "cues": [
+        {
+          "in": 0,
+          "out": 158,
+          "text": "Approve every send by hand."
+        }
+      ],
+      "nia": {
+        "pose": "nod",
+        "x": 806,
+        "y": 1188,
+        "scale": 0.82,
+        "poses": [
+          {
+            "at": 0,
+            "pose": "idle"
+          },
+          {
+            "at": 90,
+            "pose": "tick"
+          },
+          {
+            "at": 200,
+            "pose": "nod"
+          }
+        ]
+      }
+    },
+    {
+      "type": "checklist",
+      "transition": "wipe",
+      "kicker": "THE SIX FIELDS",
+      "headline": "No names, no invoice.",
+      "items": [
+        {
+          "title": "Who is paying",
+          "detail": "Registered name, not a chat nickname"
+        },
+        {
+          "title": "What, and how many",
+          "detail": "One line per item, with the unit"
+        },
+        {
+          "title": "How much, and which day",
+          "detail": "Price × quantity, and the date agreed"
+        }
+      ],
+      "cues": [
+        {
+          "in": 0,
+          "out": 50,
+          "text": "Who is paying."
+        },
+        {
+          "in": 56,
+          "out": 172,
+          "text": "What, and how many."
+        },
+        {
+          "in": 178,
+          "out": 302,
+          "text": "How much, and which day."
+        }
+      ],
+      "nia": {
+        "pose": "tick",
+        "x": 862,
+        "y": 960,
+        "scale": 1,
+        "poses": [
+          {
+            "at": 0,
+            "pose": "idle"
+          },
+          {
+            "at": 90,
+            "pose": "tick"
+          },
+          {
+            "at": 200,
+            "pose": "nod"
+          }
+        ]
+      }
+    },
+    {
+      "type": "stat",
+      "transition": "push",
       "kicker": "WHAT IT SAVES",
       "value": 6,
       "suffix": " fields",
-      "line": "Six fields, written once, reuse every invoice.",
+      "line": "Six fields, written once, reused on every invoice.",
       "note": "Counted from one sample workflow. This is not a measured customer result.",
       "source": "Own sample workflow, 20 Nov 2026",
       "cues": [
-        {"in": 8, "out": 150, "text": "Six fields. Written once."},
-        {"in": 160, "out": 300, "text": "Every invoice after that starts here."}
-      ]
+        {
+          "in": 0,
+          "out": 292,
+          "text": "Six fields. Written once. Every invoice after that starts here."
+        }
+      ],
+      "nia": {
+        "pose": "point",
+        "x": 806,
+        "y": 1188,
+        "scale": 0.82,
+        "poses": [
+          {
+            "at": 0,
+            "pose": "idle"
+          },
+          {
+            "at": 140,
+            "pose": "point"
+          },
+          {
+            "at": 260,
+            "pose": "celebrate"
+          }
+        ]
+      }
     },
     {
       "type": "cta",
-      "kicker": "FREE",
+      "transition": "cut",
+      "kicker": "FREE IN DM",
       "headline": "The six fields, plus the three-step flow.",
-      "line": "One page. Copy it into your own sheet tonight.",
+      "line": "One page. No new software.",
       "cues": [
-        {"in": 8, "out": 120, "text": "Comment STACK."},
-        {"in": 128, "out": 280, "text": "I'll send the checklist, free."}
-      ]
+        {
+          "in": 0,
+          "out": 162,
+          "text": "Comment STACK. I'll send the checklist, free."
+        }
+      ],
+      "nia": {
+        "pose": "present",
+        "x": 858,
+        "y": 1215,
+        "scale": 0.72,
+        "poses": [
+          {
+            "at": 0,
+            "pose": "idle"
+          },
+          {
+            "at": 180,
+            "pose": "celebrate"
+          }
+        ]
+      }
     }
-  ]
+  ],
+  "sceneSeconds": 5.7,
+  "audio": {
+    "mix": "out/runway/t1-01-invoice-twice/mix.wav",
+    "seconds": 35.4,
+    "voice": "English · female · voice-00",
+    "voiceId": "voice-00"
+  }
 }

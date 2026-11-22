@@ -1,0 +1,64 @@
+{
+  "voice": "English \u00b7 female \u00b7 voice-00",
+  "voiceId": "voice-00",
+  "sceneSeconds": 5.5,
+  "lead": 0.32,
+  "gap": 0.22,
+  "tail": 1.2,
+  "cues": [
+    "rise",
+    "whoosh",
+    "thud",
+    "whoosh",
+    "whoosh",
+    "cut"
+  ],
+  "clips": [
+    {
+      "scene": 1,
+      "file": "production/runway-engine/voice/t1-01/s1.mp3",
+      "text": "You're typing every invoice twice. Chat. Notebook. Then the PDF."
+    },
+    {
+      "scene": 2,
+      "file": "production/runway-engine/voice/t1-01/s2a.mp3",
+      "text": "Capture once, in one sheet."
+    },
+    {
+      "scene": 2,
+      "file": "production/runway-engine/voice/t1-01/s2b.mp3",
+      "text": "Then the draft fills itself."
+    },
+    {
+      "scene": 3,
+      "file": "production/runway-engine/voice/t1-01/s2c.mp3",
+      "text": "Approve every send by hand."
+    },
+    {
+      "scene": 4,
+      "file": "production/runway-engine/voice/t1-01/s3a.mp3",
+      "text": "Who is paying."
+    },
+    {
+      "scene": 4,
+      "file": "production/runway-engine/voice/t1-01/s3b.mp3",
+      "text": "What, and how many."
+    },
+    {
+      "scene": 4,
+      "file": "production/runway-engine/voice/t1-01/s3c.mp3",
+      "text": "How much, and which day."
+    },
+    {
+      "scene": 5,
+      "file": "production/runway-engine/voice/t1-01/s4.mp3",
+      "text": "Six fields. Written once. Every invoice after that starts here."
+    },
+    {
+      "scene": 6,
+      "file": "production/runway-engine/voice/t1-01/s5.mp3",
+      "text": "Comment STACK. I'll send the checklist, free."
+    }
+  ],
+  "spacedThrough": 4
+}

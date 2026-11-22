@@ -14,7 +14,7 @@ import {createRequire} from 'node:module';
 import {fileURLToPath} from 'node:url';
 import {Resvg} from '@resvg/resvg-js';
 import {W, H, FPS, readImage, measure, fit, round} from './core.mjs';
-import {renderFrame, totalFrames, SCENE_FRAMES, TRACKS} from './templates.mjs';
+import {renderFrame, totalFrames, SCENE_FRAMES, framesPerScene, TRACKS} from './templates.mjs';
 import {renderCarouselSlide, carouselSize} from './carousel.mjs';
 import {validate} from './validate.mjs';
 
@@ -76,7 +76,8 @@ function framesArg(spec) {
   // one still in the middle of every scene, plus the hook hold of scene 1
   const out = [120];
   const total = totalFrames(spec);
-  for (let i = 0; i < spec.scenes.length; i++) out.push(i * SCENE_FRAMES + 210);
+  const spf = framesPerScene(spec);
+  for (let i = 0; i < spec.scenes.length; i++) out.push(i * spf + Math.round(spf * 0.64));
   out.push(total - 1);
   return [...new Set(out)].filter((f) => f >= 0 && f < total);
 }
@@ -93,10 +94,13 @@ const srtTime = (frame) => {
 function writeSrt(spec, dir) {
   const lines = [];
   let n = 0;
+  // cues are authored in frames of a 5.5s scene; a longer scene stretches them with it
+  const spf = framesPerScene(spec);
+  const k = spf / SCENE_FRAMES;
   spec.scenes.forEach((scene, i) => {
     for (const c of scene.cues || []) {
-      const a = i * SCENE_FRAMES + c.in;
-      const b = i * SCENE_FRAMES + c.out;
+      const a = i * spf + Math.round(c.in * k);
+      const b = i * spf + Math.round(c.out * k);
       n += 1;
       lines.push(String(n), `${srtTime(a)} --> ${srtTime(b)}`, c.text, '');
     }
@@ -106,9 +110,10 @@ function writeSrt(spec, dir) {
 }
 
 function writeCueSheet(spec, dir) {
+  const spf = framesPerScene(spec);
   const rows = spec.scenes.map((s, i) => {
-    const start = (i * SCENE_FRAMES) / FPS;
-    const end = ((i + 1) * SCENE_FRAMES) / FPS;
+    const start = (i * spf) / FPS;
+    const end = ((i + 1) * spf) / FPS;
     return {
       scene: i + 1,
       start: `${start.toFixed(2)}s`,
@@ -227,12 +232,19 @@ async function main() {
     const ff = ffmpegPath();
     writeSrt(spec, dir);
     writeCueSheet(spec, dir);
-    const ffm = spawn(ff, [
-      '-y', '-hide_banner', '-loglevel', 'error',
-      '-f', 'rawvideo', '-pix_fmt', 'rgba', '-s', `${W}x${H}`, '-r', String(FPS), '-i', '-',
-      '-an', '-c:v', 'libx264', '-preset', 'medium', '-crf', '18', '-pix_fmt', 'yuv420p',
-      '-movflags', '+faststart', out,
-    ], {stdio: ['pipe', 'inherit', 'inherit']});
+    // A spec with an audio mix gets a second input and an AAC track; without one the reel
+    // stays silent rather than carrying a fake bed that will not match the voice.
+    const mixPath = spec.audio?.mix ? path.resolve(REPO, spec.audio.mix) : null;
+    const hasAudio = mixPath && fs.existsSync(mixPath);
+    const inputArgs = ['-f', 'rawvideo', '-pix_fmt', 'rgba', '-s', `${W}x${H}`, '-r', String(FPS), '-i', '-'];
+    if (hasAudio) inputArgs.push('-i', mixPath);
+    const outArgs = hasAudio
+      ? ['-c:v', 'libx264', '-preset', 'medium', '-crf', '18', '-pix_fmt', 'yuv420p',
+         '-c:a', 'aac', '-b:a', '192k', '-ar', '48000', '-shortest', '-movflags', '+faststart', out]
+      : ['-an', '-c:v', 'libx264', '-preset', 'medium', '-crf', '18', '-pix_fmt', 'yuv420p',
+         '-movflags', '+faststart', out];
+    const ffm = spawn(ff, ['-y', '-hide_banner', '-loglevel', 'error', ...inputArgs, ...outArgs],
+      {stdio: ['pipe', 'inherit', 'inherit']});
     const done = new Promise((res, rej) => {
       ffm.on('error', rej);
       ffm.on('close', (c) => (c === 0 ? res() : rej(new Error(`ffmpeg exited ${c}`))));

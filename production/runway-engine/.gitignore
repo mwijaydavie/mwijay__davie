@@ -1,2 +1,8 @@
 # Rendered output lives outside Git (see repo .gitignore: /out/)
 node_modules/
+# Derived audio: clips are canonical, the mix and the normalised copies are rebuilt
+out/
+*.f32.wav
+
+# Voice masters ARE tracked: voice/<slug>/sN.mp3 is what makes a caption's timing reproducible.
+# A 3-second TTS clip is ~20 KB; the whole voice folder stays well under 1 MB.

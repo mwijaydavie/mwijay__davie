@@ -28,13 +28,13 @@
 
 Kila post: hook, beats, cues (maneno ya kusoma), keyword, caption, file. Spec ya kwanza iko tayari; nyingine ziko kama brief ya kuandikia spec.
 
-### 01 · You already wrote the invoice. Why type it twice? · `STACK`
+### 01 · You are typing every invoice twice · `STACK`
 
-- **File:** [`Invoice-Flow-Checklist.pdf`](files/Invoice-Flow-Checklist.pdf) — fields 6 za kukusanya kabla ya automation, flow ya hatua 3, jedwali la kujaza. **Tayari (kurasa 5).**
-- **Beats:** hook → three-step flow (capture/draft/approve) → CTA.
-- **Caption:** `Your invoice exists in WhatsApp before it reaches a PDF. Collect 6 fields once, and the second copy writes itself. Comment STACK and I'll send the checklist. No new software needed.`
-- **Hali ya file:** tayari, imepimwa (`production/runway-kit`), iko kwenye repo. Haijatumwa kwa mtu.
-- **Spec:** [`specs/t1-01-invoice-twice.spec.json`](specs/t1-01-invoice-twice.spec.json)
+- **Hook (A · flat contradiction):** `You are typing every invoice twice.` Hook type A, text overlay on frame 1, spoken by the same voice.
+- **File:** [`Invoice-Flow-Checklist.pdf`](files/Invoice-Flow-Checklist.pdf) — fields 6, flow ya hatua 3, jedwali la kujaza. **Tayari (kurasa 5).**
+- **Character:** Nia anaingia scene 1 (`perk`), anaonyesha flow (`present`), anagusa kila field (`tick`), anashangilia CTA (`celebrate`).
+- **Reel:** tayari, 34.2 s, sauti ya kike + soundtrack (angalia [`hooks.md`](hooks.md) na [`character-nia.md`](character-nia.md)).
+- **Caption:** `You are editing your invoices wrong. You write it in the chat, again in the notebook, then again in the PDF.\n\nSix fields, collected once, and the second copy writes itself. No new software — the sheet you already have.\n\nComment STACK and I'll send the 6-field checklist plus the 3-step flow.`
 
 ### 02 · API or MCP? One question decides · `WIRE`
 
