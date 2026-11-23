@@ -167,6 +167,18 @@ Always list everything that must **not** change: face, eyes and gaze, bun afro, 
 
 - 1080 × 1920, **60 fps** CFR, H.264 yuv420p, AAC 48 kHz.
 - Everything derives from `frame`. Random seek must equal sequential render. No `Math.random`, no wall clock, no CSS transition.
+- **`smooth(a, b, f)` normalises inside itself.** Pass absolute terms and the
+  beat's local time — `smooth(6, 34, a[0])`. Writing
+  `smooth(a[0] + 6, a[0] + 34, f)` looks like an entrance animation and is
+  actually a constant: the value only depends on `start`, so the whole beat
+  renders at whatever that one number is. This shipped twice — every card in
+  the Shule Reel sat at 0.18 alpha and read as a ghost, and the tech Reel's
+  hook sat at 0.03. Grep both files for `a[0] +` before rendering.
+- **Animation hides layout bugs.** A still pulled from an entrance ramp shows
+  the card faded, not broken; a still from the middle shows the collision. Pull
+  stills at 40–70 % through each span, and add `--stills=id:frame` to the
+  renderer so QA never needs the encoder.
+
 - Critical type inside `x 78..943, y 354..1422`. Keep clear of the caption band `y 1616..1700` and the platform UI below it.
 - Build the audio first (`mix.py` → `timeline.json`), then render against those spans.
 - One focus at a time; a real change every 2–3 s; no two near-identical cuts.
@@ -175,12 +187,32 @@ Always list everything that must **not** change: face, eyes and gaze, bun afro, 
 
 ## 4 · Composition
 
-### She and the artifact take turns
+### One band, then her
 
-- **Beats with real UI**: she stands in the **right third** (`x 560–590`, `w 600–640`); the screenshot owns the left two-thirds. They must not overlap. Overlapping was the last visible defect.
-- **Address-only beats** (hook, offer): centred and large, `x 54, y 560, w 900`.
-- Her rig is **half-body**. Put a short gradient the exact colour of the page from `y + w * 0.98` downward, or the cut across her body reads as pasted-on.
-- Add a **ground shadow** under her so she stands in the set rather than floating on it.
+The rule that finally killed the "empty space kubwa sana" note — the layout was
+rebuilding itself beat to beat, so some beats had a short card and 300 px of
+nothing under it. Do not repeat that.
+
+- **Every artifact lives in one band**: `x 84 → 996`, `y 452 → 900`. Eight
+  beats, eight cards, the same box. Nothing floats outside it, nothing is
+  shorter than it.
+- **She starts below it**: `y 862–918`, `w 550–665`, `x 290–560`. Her hair
+  overlaps the card's bottom edge by ~30 px so the two are one composition,
+  not two pictures stacked.
+- **Inside the card, one internal grammar**: a real screenshot on the left, the
+  sentence that names it on the right. Same on every beat, so the eye lands in
+  the same place each time and the beat reads before it is spoken.
+- **She never covers the card.** Move her, not the card. If a raised hand
+  touches it (the CTA `cheer` pose did), shift her down and inward — never
+  shrink the card to dodge her.
+- **Fill the card.** A card that is 60 % white space with one 40 px strip in it
+  is the same defect in miniature. Each beat's artifact should reach at least
+  two thirds of the card's height; the timetable beat stacks selectors *and*
+  the printed grid for exactly this reason.
+- Her rig is **half-body**. Put a short gradient the exact colour of the page
+  from `y + w * 0.98` downward, or the cut across her body reads as pasted-on.
+- Add a **ground shadow** under her so she stands in the set rather than
+  floating on it.
 
 ### Sets must move
 
@@ -195,7 +227,15 @@ Vary `photo` (0.14–0.62) and the tint per beat so eight beats read as eight pl
 
 ### Proof, not decoration
 
-Show the **real screenshots** from the pinned capture (`Inputs/proof/*.png`, commit in `Capture-Proof.json`). A drawn grid standing in for a timetable proves nothing. Say on screen what is a sample — the Form 2 / Stream A / Monday 08:00 / Biology row is a locally created sample, not a client's timetable. No student names, marks, fees or records.
+Show the **real screenshots** from the pinned capture (`production/shule-altra-reel/proof/*.png`, commit in `Capture-Proof.json` — 256 KB, in the repo, because `.cache/` is wiped on every reset and a missing proof file hard-fails the renderer). A drawn grid standing in for a timetable proves nothing. Say on screen what is a sample — the Form 2 / Stream A / Monday 08:00 / Biology row is a locally created sample, not a client's timetable. No student names, marks, fees or records.
+
+### A strip is not a screenshot
+
+`week.png` is 2172 × 98 with a half-cut "Period saved" toast in it. Scaled to
+card width it is a hairline that reads as a rendering bug. Crop the real grid
+instead: `slice(c, IMG.pdfWeek, 0, 0, 1915, 400, x, y, w)` pastes the header and
+the first three periods at true aspect, and that is legible. Before placing any
+proof image, check its pixel dimensions — anything under ~1:0.15 is a strip.
 
 ---
 
