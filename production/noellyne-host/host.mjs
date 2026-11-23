@@ -57,7 +57,7 @@ const STYLES = {
 
 export function performerDraw(c, host, fps) {
   const { rig, layers, mark } = host;
-  return function draw(f, mode, { pose = "wave", x = 0, y = 0, w, cues = [], blinks = [], nods = [], mouth = null }) {
+  return function draw(f, mode, { pose = "wave", x = 0, y = 0, w, cues = [], blinks = [], nods = [], mouth = null, inner = null }) {
     const p = rig.poses[pose];
     if (!p) throw new Error(`unknown pose "${pose}" — have ${Object.keys(rig.poses).join(", ")}`);
     const k = w / rig.width;
@@ -131,7 +131,12 @@ export function performerDraw(c, host, fps) {
     const [openness, letter] = cur;
     const voicing = letter !== "X" && openness > 0.06;
 
-    if (bare) {
+    if (typeof inner === "function") {
+      // The caller stamps its own feathered plate HERE, inside the pose
+      // transform, so it inherits roll/lift exactly. Stamping outside this
+      // function landed the plate beside her jaw, not on it.
+      inner(c, f);
+    } else if (bare) {
       // caller stamps the plate
     } else if (p.ai) {
       const lv = !voicing ? "closed" : openness < 0.42 ? "mid" : "open";

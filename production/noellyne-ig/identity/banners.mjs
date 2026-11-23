@@ -402,10 +402,10 @@ const INK_H = 0.985;
  * version is what gets stamped.
  */
 const PLATES = new Map();
-function plate(pose, file) {
-  const key = pose + "|" + file;
+function plate(pose, v) {
+  const key = pose + "|" + v.file;
   if (PLATES.has(key)) return PLATES.get(key);
-  const src = HOST.layers[file];
+  const src = HOST.layers[v.file];
   const cv = createCanvas(src.width, src.height);
   const c = cv.getContext("2d");
   c.drawImage(src, 0, 0);
@@ -420,35 +420,23 @@ function plate(pose, file) {
   g.addColorStop(1, "rgba(0,0,0,0)");
   c.fillStyle = g;
   c.fillRect(0, 0, cv.width, cv.height);
-  // …then cut it to her actual silhouette. The AI plate carries a dark corner
-  // beyond her jaw where the render's background survived the white-key; the
-  // base's own alpha is the exact shape of her, so this removes it precisely.
+  // …then cut it to her actual silhouette OF THE SAME CROP. Drawing the full
+  // base at (0,0) intersected the patch with the base's empty top-left corner
+  // and erased the plate entirely — the stills never showed a mouth change.
   c.globalCompositeOperation = "destination-in";
-  c.drawImage(HOST.layers[HOST.rig.poses[pose].base.file], 0, 0);
+  c.drawImage(HOST.layers[HOST.rig.poses[pose].base.file],
+    -(v.cx - v.w / 2), -(v.cy - v.h / 2));
   PLATES.set(key, cv);
   return cv;
 }
 function her(c, pose, x, y, w, { mouth = "mid", frame = 0, cues = [], nod = false } = {}) {
   const draw = performerDraw(c, HOST, 30);
-  // Draw the base rig with `mouth: null` — we stamp the mouth ourselves below.
-  draw(frame, "review", { pose, mouth: false, x, y, w, cues, nods: nod ? [frame] : [] });
-
   const p = HOST.rig.poses[pose];
   const v = p?.ai?.[mouth];
-  if (!v) return { x, y, w, hemY: y + w * INK_H, cx: x + w / 2 };
-
-  // A still is not a lipsync track, so the plate is stamped once. The kit's
-  // plate carries a little opaque black at its edge (the render's background
-  // that the white-key missed); feathered to zero over 6 px, it cannot land on
-  // her jaw or her ear as a dark smudge.
-  const k = w / HOST.rig.width;
-  const pw = v.w * k, ph = v.h * k;
-  const px = x + (v.cx - v.w / 2) * k, py = y + (v.cy - v.h / 2) * k;
-  c.save();
-  c.shadowColor = "transparent";
-  c.globalAlpha = 0.99;
-  c.drawImage(plate(pose, v.file), px, py, pw, ph);
-  c.restore();
+  // Stamp inside the pose transform (`inner`), not outside it — the base and
+  // the plate must share roll/lift or the mouth slides off the jaw.
+  const inner = v ? (g) => g.drawImage(plate(pose, v), v.cx - v.w / 2, v.cy - v.h / 2) : undefined;
+  draw(frame, "review", { pose, mouth: false, x, y, w, cues, nods: nod ? [frame] : [], inner });
   return { x, y, w, hemY: y + w * INK_H, cx: x + w / 2 };
 }
 

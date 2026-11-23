@@ -95,7 +95,36 @@ different length is safe — `mix.py` re-measures and the edit moves with it.
 - Do not add a text card on a cream mat. Every frame is built, full bleed.
 - Do not stack two audios. One voice, one bed.
 
-## Drive links (public) — v3 (current)
+## Drive links (public) — v4 (current)
+
+**v4** fixes what made the mouth invisible: the feathered AI viseme plate was
+masked with the base's TOP-LEFT 244×170 corner (empty background → the plate
+was erased every frame), so v3's videos and stills showed only the base's
+static mouth. The mask now uses the same crop of the base, and the plate is
+stamped INSIDE the pose transform via `performerDraw`'s new `inner` hook.
+Also fixed: hold-gap frames (the 8-frame beat pauses) fell back to the OUTRO
+shot; they now freeze the beat that just ended. Videos re-rendered and
+re-verified frame-by-frame; every still/scene/banner/avatar re-rendered with
+the same fix.
+
+| Item | Link |
+|---|---|
+| **IG Reel / Story (v4)** | https://drive.google.com/file/d/1Ufvi_3DOOKHVH8H2kNPGMvxdjNFmsC-l/view |
+| **YouTube (v4)** | https://drive.google.com/file/d/1bM9FvFO9iQBcUGUa0zlcbrQwT-IMqA7J/view |
+| IG banner (v4) | https://drive.google.com/file/d/19yAVZILWyiToDlsxmiTsZBGtExCExcLG/view |
+| YouTube banner (v4) | https://drive.google.com/file/d/1lA_XeLdC2zHhb-8C2u0EZyS9cvaAFTu0/view |
+| Avatar (v4) | https://drive.google.com/file/d/1UVqvgiVcJu5L2nmlJVEUqMIsRtPtzlWQ/view |
+| Feed 01 — Studio (v4) | https://drive.google.com/file/d/1PuJmhKK1sHglzLr5Lob2iL0vYyQWqjqN/view |
+| Feed 02 — Desk (v4) | https://drive.google.com/file/d/1SlFLkuiH7EWgye-U3p2x4k6_qvJDT0LW/view |
+| Feed 03 — Floor (v4) | https://drive.google.com/file/d/1sWmsoHeH3WcSNpUvyyfnWr-rYfTkaO_Y/view |
+| Feed 04 — Outro (v4) | https://drive.google.com/file/d/10F4qyvunAqHQuO6ss9e5TRbxZCHgRn-5/view |
+| YouTube thumbnail (v4) | https://drive.google.com/file/d/1WAJVLk_56KDeUUeK08fE7LUEIqzbqZzE/view |
+| Reel cover (v4) | https://drive.google.com/file/d/1EIur0R_GuFH7D_agEo-hqrWyUd6RxYPL/view |
+| **Tech Bila Hype PDF (free)** | https://drive.google.com/file/d/1bWXa_u4wR9pwoMC4mnlKdrsrjrLcDaJ2/view |
+| Feed post — comment 'PDF' | https://drive.google.com/file/d/1LE02AmJ3Q55tO5UrCAMVcJyEr5b6_IRm/view |
+| Story — comment 'PDF' | https://drive.google.com/file/d/1rdzmMXeocfSurT8_g97Ryz7hOm2v0N-B/view |
+
+## Drive links (public) — v3 (superseded by v4 where applicable)
 
 **v3** replaces the v2 uploads for anything that changed: the videos (raw-plate
 double-draw is gone — her jaw finally has no dark smudge), the banners, the
@@ -248,3 +277,30 @@ three-step strip (COMMENT 'PDF' → NITAKUTUMIA PDF → ANZA LEO). Caption in
 **GOOGLE-FLOW-PROMPT.md** was still v1 (plum/neon). It now describes the
 daylight pack; the remaining "plum" reference is a note telling the reader to
 delete leftovers.
+
+---
+
+## v4 — Why the mouth was invisible, and the fix
+
+Owner: "why mouth movements on the video sizioni kabisa mzee".
+
+Two stacked bugs, both in the mouth path:
+
+1. **The feathered plate was erased before it reached the canvas.** `plate()`
+   cut the AI viseme patch to her silhouette with `destination-in` using the
+   base drawn at (0,0) — i.e. the base's TOP-LEFT 244×170, which is empty
+   background. Patch ∩ transparent = transparent. The stamp drew literally
+   nothing, every frame, in the videos AND in every still. Fix: the base is
+   now drawn at `-(v.cx − v.w/2), −(v.cy − v.h/2)` so the intersect uses the
+   same crop the patch came from.
+2. **The plate was stamped OUTSIDE the pose transform** (no roll/lift), so even
+   when it worked it would have drifted off the jaw. `performerDraw` now takes
+   an `inner(c, f)` callback that runs inside the pose transform (after the
+   base and hand, before lids/blink). intro.mjs, banners.mjs and host.mjs all
+   updated; stills + video verified frame-by-frame.
+
+Also fixed: frames in the 8-frame hold gaps between beats fell back to the
+OUTRO shot and rendered a washed-out non-beat; they now freeze the beat that
+just ended (`[...SHOT].reverse()` fallback). All out/ video + image assets
+were lost when the sandbox dropped the untracked `out/` tree, so everything
+was rebuilt from source and re-verified at full res.

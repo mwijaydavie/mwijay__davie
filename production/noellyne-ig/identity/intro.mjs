@@ -361,10 +361,10 @@ const INK_H = 0.985;
  * (the exact shape of her) plus a soft radial falloff, once, at load.
  */
 const PLATES = new Map();
-function plate(pose, file) {
-  const key = pose + "|" + file;
+function plate(pose, v) {
+  const key = pose + "|" + v.file;
   if (PLATES.has(key)) return PLATES.get(key);
-  const src = HOST.layers[file];
+  const src = HOST.layers[v.file];
   const cv = createCanvas(src.width, src.height);
   const c = cv.getContext("2d");
   c.drawImage(src, 0, 0);
@@ -377,8 +377,13 @@ function plate(pose, file) {
   g.addColorStop(0.86, "rgba(0,0,0,0.65)");
   g.addColorStop(1, "rgba(0,0,0,0)");
   c.fillStyle = g; c.fillRect(0, 0, cv.width, cv.height);
+  // Cut it to her silhouette OF THE SAME CROP. Drawing the full base at (0,0)
+  // intersected the patch with the base's top-left corner — transparent skin
+  // territory — which erased the plate outright. Shift the base so the crop
+  // region lines up, then intersect.
   c.globalCompositeOperation = "destination-in";
-  c.drawImage(HOST.layers[HOST.rig.poses[pose].base.file], 0, 0);
+  c.drawImage(HOST.layers[HOST.rig.poses[pose].base.file],
+    -(v.cx - v.w / 2), -(v.cy - v.h / 2));
   PLATES.set(key, cv);
   return cv;
 }
@@ -388,9 +393,9 @@ function plate(pose, file) {
  * AI plates are stamped by `performerDraw`; we only re-mask them here.
  */
 function her(c, pose, x, y, w, opts = {}) {
-  const { mouth = false, frame = 0, cues = [], nods = [] } = opts;
+  const { mouth = false, frame = 0, cues = [], nods = [], inner = null } = opts;
   const draw = performerDraw(c, HOST, FPS);
-  draw(frame, "review", { pose, mouth, x, y, w, cues, nods });
+  draw(frame, "review", { pose, mouth, x, y, w, cues, nods, inner });
   return { x, y, w, hemY: y + w * INK_H, cx: x + w / 2 };
 }
 
@@ -519,7 +524,11 @@ const SHOT = TL.spans.map((sp) => ({ ...COPY[sp.id], id: sp.id, at: sp.start, le
 const TOTAL = TL.frames;
 
 function drawFrame(c, f) {
-  const sh = SHOT.find((s) => f >= s.at && f < s.at + s.len) || SHOT[SHOT.length - 1];
+  // Hold gaps (the 8-frame breaths mix.py leaves after each take) belong to
+  // the beat that just finished — freezing it — not to the outro.
+  const sh = SHOT.find((s) => f >= s.at && f < s.at + s.len)
+    || [...SHOT].reverse().find((s) => f >= s.at)
+    || SHOT[0];
   const s = sh.at, e = s + sh.len;
   const u = clamp((f - s) / (e - s));
 
@@ -541,29 +550,24 @@ function drawFrame(c, f) {
 
   pool(c, x + w * 0.5, y + w * 0.28, w * 0.76, "255,255,255", 0.55);
 
-  // ── her mouth. `mouth: false` tells performerDraw to draw NO plate — we
-  //    stamp our own masked one below. Passing the track here drew the raw AI
-  //    plate (opaque dark background beyond her jaw) straight onto the wall.
+  // ── her mouth, stamped INSIDE the pose transform via `inner` — same roll,
+  //    same lift as the base. `mouth: false` tells performerDraw to draw no
+  //    built-in plate. The track still comes from out/mouth.json (lipsync.py).
   const m0 = MOUTH[f] || [0, "X"];
+  const p = HOST.rig.poses[sh.pose];
+  const [openness, letter] = m0;
+  const voicing = letter !== "X" && openness > 0.06;
+  const lv = !voicing ? "closed" : openness < 0.42 ? "mid" : "open";
+  const v = p.ai?.[lv];
+  const inner = v ? (g) => g.drawImage(plate(sh.pose, v), v.cx - v.w / 2, v.cy - v.h / 2) : undefined;
   her(c, sh.pose, x, y, w, {
     frame: f,
     mouth: false,
     cues: [{ kind: sh.pose === "point" ? "point" : sh.pose === "desk" ? "accent" : "wave",
              start: s + 6, len: Math.min(72, sh.len - 12) }],
     nods: [s + 12],
+    inner,
   });
-
-  // re-stamp her own mouth plate, masked, over the base
-  const p = HOST.rig.poses[sh.pose];
-  const [openness, letter] = m0;
-  const voicing = letter !== "X" && openness > 0.06;
-  const lv = !voicing ? "closed" : openness < 0.42 ? "mid" : "open";
-  const v = p.ai?.[lv];
-  if (v) {
-    const k = w / HOST.rig.width;
-    c.drawImage(plate(sh.pose, v.file),
-      x + (v.cx - v.w / 2) * k, y + (v.cy - v.h / 2) * k, v.w * k, v.h * k);
-  }
 
   // ── the desk, IN FRONT of her. Drawn after her, so her hem disappears
   //    behind the top surface instead of hanging past the edge. This is the
