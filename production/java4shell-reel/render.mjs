@@ -23,6 +23,9 @@ import { spawn } from "node:child_process";
 import { createCanvas, loadImage } from "@napi-rs/canvas";
 import { loadFonts, loadHost, performerDraw, FONTS } from "../noellyne-host/host.mjs";
 import { makeSet, groundShadow } from "../noellyne-host/background.mjs";
+import {
+  drawDeskBack, drawDeskFront, drawPaper, drawPulse, drawTechnicalFrame, drawKeyLight,
+} from "./set.mjs";
 
 const ROOT = process.cwd();
 const HERE = path.join(ROOT, "production/java4shell-reel");
@@ -316,6 +319,7 @@ const SCENES = {
 await loadFonts();
 const HOST = await loadHost();
 const PLATE = await loadImage(path.join(HERE, "assets/plate-serverroom.jpg"));
+const DESK = await loadImage(path.join(HERE, "assets/desk-console.jpg"));
 
 /**
  * Eight beats in one machine room, but not the same still: each beat gets its
@@ -342,13 +346,72 @@ for (const [id, p] of Object.entries(PALETTE)) {
  * and the same reason: her raised hand used to land on the artifact.
  */
 const POS = {
-  hook:   { x: 546, y: 916, w: 556 },
-  found:  { x: 552, y: 930, w: 546 },
-  bug:    { x: 548, y: 926, w: 550 },
-  apps:   { x: 560, y: 936, w: 540 },
-  patch:  { x: 552, y: 930, w: 546 },
-  action: { x: 556, y: 934, w: 542 },
-  cta:    { x: 330, y: 880, w: 640 },
+  hook:   { x: 520, y: 826, w: 600 },
+  found:  { x: 528, y: 836, w: 592 },
+  bug:    { x: 524, y: 830, w: 596 },
+  apps:   { x: 536, y: 844, w: 584 },
+  patch:  { x: 528, y: 836, w: 592 },
+  action: { x: 532, y: 840, w: 588 },
+  cta:    { x: 300, y: 872, w: 690 },
+};
+
+/**
+ * Per-beat desk settings. `top` is where the console surface begins; her waist
+ * lands just under it, so the desk crops her rather than her ending in mid-air.
+ * `key` drifts the plate sideways so two beats in the same room are not the
+ * same still.
+ */
+const DESKS = {
+  hook:   { surfaceY: 1382, drift: 12, key: -18, lift: 0.55, glow: 0.55, pulse: "rgba(255,181,69,0.85)", speed: 1.3, scale: "INPUT 65 B" },
+  found:  { surfaceY: 1374, drift: 10, key: 14,  lift: 0.50, glow: 0.48, pulse: "rgba(255,181,69,0.80)", speed: 1.7, scale: "T+0H" },
+  bug:    { surfaceY: 1380, drift: 14, key: -8,  lift: 0.42, glow: 0.42, pulse: "rgba(255,92,92,0.85)",  speed: 2.2, scale: "HEAP -62B" },
+  apps:   { surfaceY: 1388, drift: 9,  key: 22,  lift: 0.52, glow: 0.50, pulse: "rgba(255,92,92,0.75)",  speed: 1.5, scale: "N = 6" },
+  patch:  { surfaceY: 1378, drift: 11, key: -22, lift: 0.58, glow: 0.60, pulse: "rgba(61,220,151,0.90)", speed: 1.2, scale: "JDK 17.0.21.1" },
+  action: { surfaceY: 1384, drift: 13, key: 6,   lift: 0.54, glow: 0.52, pulse: "rgba(255,181,69,0.85)", speed: 1.8, scale: "CHECK 1-3" },
+  cta:    { surfaceY: 1404, drift: 12, key: 0,   lift: 0.66, glow: 0.72, pulse: "rgba(61,220,151,0.95)", speed: 1.4, scale: "PATCH" },
+};
+
+/**
+ * Paper on the desk. Each sheet is pinned at an angle and carries `delay`, so
+ * they land in sequence. They sit OUTSIDE the artifact band — left and right
+ * margins, plus the desk surface — so they never compete with the card.
+ */
+const SHEETS = {
+  hook: [
+    { x: 8,   y: 1246, w: 118, h: 146, rot: -8, delay: 26, rules: 4, seed: 3, torn: true },
+    { x: 1012, y: 1296, w: 104, h: 122, rot: 10, delay: 54, grid: true, seed: 9 },
+    { x: 96,  y: 1342, w: 176, h: 96,  rot: -3, delay: 82, rules: 3, seed: 5, fill: "rgba(255,245,225,0.90)" },
+  ],
+  found: [
+    { x: 1010, y: 1290, w: 110, h: 132, rot: 8,  delay: 22, rules: 4, seed: 2 },
+    { x: 6,   y: 1268, w: 116, h: 150, rot: -9, delay: 46, grid: true, seed: 7, torn: true },
+    { x: 888, y: 1382, w: 158, h: 86,  rot: 4,  delay: 74, rules: 3, seed: 11 },
+  ],
+  bug: [
+    { x: 4,   y: 1252, w: 120, h: 152, rot: -6, delay: 24, grid: true, seed: 4, ink: "rgba(255,92,92,0.30)" },
+    { x: 1012, y: 1294, w: 108, h: 134, rot: 10, delay: 52, rules: 4, seed: 8, torn: true },
+    { x: 104, y: 1348, w: 168, h: 90,  rot: -2, delay: 78, rules: 3, seed: 13 },
+  ],
+  apps: [
+    { x: 8,   y: 1242, w: 114, h: 148, rot: -8, delay: 20, rules: 5, seed: 6 },
+    { x: 1014, y: 1300, w: 106, h: 128, rot: 8,  delay: 48, grid: true, seed: 12, torn: true },
+    { x: 886, y: 1388, w: 152, h: 82,  rot: 5,  delay: 76, rules: 3, seed: 15 },
+  ],
+  patch: [
+    { x: 6,   y: 1256, w: 118, h: 144, rot: -5, delay: 22, rules: 4, seed: 1, ink: "rgba(61,220,151,0.32)" },
+    { x: 1012, y: 1288, w: 108, h: 142, rot: 9,  delay: 50, grid: true, seed: 10, torn: true },
+    { x: 112, y: 1344, w: 172, h: 92,  rot: -4, delay: 80, rules: 3, seed: 17 },
+  ],
+  action: [
+    { x: 4,   y: 1250, w: 116, h: 146, rot: -7, delay: 24, grid: true, seed: 14 },
+    { x: 1014, y: 1302, w: 104, h: 126, rot: 10, delay: 52, rules: 4, seed: 16, torn: true },
+    { x: 884, y: 1384, w: 150, h: 84,  rot: 3,  delay: 78, rules: 3, seed: 19 },
+  ],
+  cta: [
+    { x: 6,   y: 1252, w: 120, h: 142, rot: -6, delay: 20, rules: 4, seed: 21, torn: true },
+    { x: 1012, y: 1296, w: 108, h: 130, rot: 8,  delay: 46, grid: true, seed: 23 },
+    { x: 96,  y: 1350, w: 178, h: 94,  rot: -3, delay: 72, rules: 3, seed: 25, fill: "rgba(232,248,240,0.92)" },
+  ],
 };
 
 function drawFrame(ctx, f) {
@@ -365,25 +428,47 @@ function drawFrame(ctx, f) {
   SCENES[span.id](ctx, f, a);
   ctx.restore();
 
-  // her
+  /**
+   * The desk goes down BEFORE her, so she stands behind it. This is the answer
+   * to "hana legs": the rig is half-body, so a real console cropping her at the
+   * waist is how a news desk crops a presenter. It is also a place to put the
+   * paper and the stickers, which is what stops the frame being a text box on a
+   * dark plate.
+   */
   const p = POS[span.id];
+  const deskCfg = DESKS[span.id];
+
+  // the desk BEHIND her: monitors and the back of the surface
+  drawDeskBack(ctx, DESK, W, H, f, span.start, span.end, deskCfg);
+
+  // a key light behind her head so a dark hoodie on a dark room is not one shape
+  drawKeyLight(ctx, p.x + p.w * 0.52, p.y + p.w * 0.40, p.w * 0.94, deskCfg.lift ?? 0.6);
+
+  // her
   const draw = performerDraw(ctx, HOST, FPS);
   const cues = (take.gesture || []).map((g) => ({
     kind: g.kind, start: span.start + Math.round(g.at * FPS), len: g.len,
   }));
   const blinks = [span.start + 44, span.start + 44 + 116, span.start + 44 + 232]
     .filter((x) => x > span.start + 8 && x < span.end + 18);
-  groundShadow(ctx, p.x + p.w * 0.5, p.y + p.w * 0.99, p.w * 0.72, 0.34);
+  groundShadow(ctx, p.x + p.w * 0.5, p.y + p.w * 0.99, p.w * 0.74, 0.30);
   draw(f, "review", { pose: take.pose, mouth: MOUTH, ...p, cues, blinks, nods: [span.start + 18] });
 
-  // dissolve her hem into the floor, not into a white band
-  const fadeY = p.y + p.w * 0.985;
-  const g = ctx.createLinearGradient(0, fadeY, 0, 1700);
-  g.addColorStop(0, "rgba(8,18,28,0)");
-  g.addColorStop(0.55, "rgba(8,18,28,0.62)");
-  g.addColorStop(1, "rgba(8,18,28,0.94)");
-  ctx.fillStyle = g;
-  ctx.fillRect(0, fadeY, W, H - fadeY);
+  // the desk IN FRONT: crops her at the waist, which is the whole point
+  const front = drawDeskFront(ctx, DESK, W, H, f, span.start, span.end, deskCfg);
+  drawPulse(ctx, W, front.lip + 2, f, span.start, span.end, {
+    col: deskCfg.pulse ?? "rgba(61,220,151,0.85)",
+    speed: deskCfg.speed ?? 1.5,
+  });
+
+  // paper layer: notes pinned to the desk, landing one after another
+  drawPaper(ctx, SHEETS[span.id] || [], f, span.start);
+
+  // a technical frame around the artifact band — brackets, ticks, a scale label
+  drawTechnicalFrame(ctx, f, span.start, {
+    x: BAND.x - 14, y: BAND.top - 14, w: BAND.w + 28, h: BAND.bot - BAND.top + 28,
+    col: "rgba(143,163,184,0.30)", ticks: 13,
+  });
 
   // chrome
   ctx.save();

@@ -209,8 +209,51 @@ nothing under it. Do not repeat that.
   is the same defect in miniature. Each beat's artifact should reach at least
   two thirds of the card's height; the timetable beat stacks selectors *and*
   the printed grid for exactly this reason.
-- Her rig is **half-body**. Put a short gradient the exact colour of the page
-  from `y + w * 0.98` downward, or the cut across her body reads as pasted-on.
+### The half-body problem: give her a desk
+
+Her rig stops across the hoodie. A gradient fade hides the cut but leaves her
+floating, and the note that comes back is **"hana legs"** — which is correct, she
+does not. Do not fix this with a fade.
+
+Fix it with **set furniture in front of her**, drawn in two passes:
+
+1. `drawDeskBack` — the whole console plate, BEFORE her: monitors, the back of
+   the surface, the room. Her head and shoulders sit in front of this.
+2. `drawDeskFront` — only the surface from the lip downward, AFTER her. This is
+   what crops her at the waist, the way a news desk crops a presenter.
+
+The order is the whole trick. Desk drawn once in front buries her; desk drawn
+once behind leaves her in mid-air. A 26 px shadow gradient at the lip line sells
+the contact. A ~14 % hem feather is still worth doing, but as a feather, not as
+a cover-up.
+
+Geometry in plate terms, so the surface lands where you ask: the console plate's
+surface occupies rows `0.52 → 0.735` and its apron runs `0.735 → 1.0`. Scale the
+plate to `W * 1.26` so its own side edges never show, then `surfaceY` on screen
+is the only number to tune. Waist height lands around `y 1420–1470` at her
+`w 600`.
+
+### Layer the frame, or it is a text box on a plate
+
+One card on one photo is flat no matter how good the photo is. Four cheap layers
+turn it into a built set, and none of them touch her face:
+
+- **paper cutouts** — small sheets at 6–10°, torn bottom edge (deterministic
+  zigzag from `hash()`), a rule or two of fake handwriting. Pin them on the
+  desk surface and in the outer margins. **Never in the band, never at head
+  height** — a sheet over her mouth is worse than a plain frame.
+- **a technical frame** — corner brackets and a scale-tick row around the
+  artifact band. Engineering, not garnish. Skip the text label: at `y 440` it
+  collides with the headline.
+- **one travelling pulse** on the desk lip, colour-matched to the beat's accent
+  (mint = fix, red = bug, amber = time). One moving element that *means*
+  something beats everything drifting equally.
+- **a key light** behind her head, `globalCompositeOperation = "lighter"`, so a
+  dark hoodie on a dark room is not one silhouette.
+
+Stagger every arrival: 20–80 frames between sheets. Staggering is most of what
+"motion graphics" means at this scale.
+
 - Add a **ground shadow** under her so she stands in the set rather than
   floating on it.
 
