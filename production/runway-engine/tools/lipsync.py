@@ -14,7 +14,13 @@ Three steps, because raw RMS is not a mouth:
   3 · squashed with a floor, so the lips hover just apart between words instead of
       slamming shut on every pause
 """
-import glob, json, os, subprocess, sys
+import glob
+import json
+import os
+import subprocess
+import sys
+from pathlib import Path
+
 import numpy as np
 
 def ffmpeg_bin():
@@ -24,6 +30,9 @@ def ffmpeg_bin():
         if hit:
             return hit[0]
     return 'ffmpeg'
+
+
+ROOT = Path(__file__).resolve().parents[3]
 
 
 def main(mix, slug, out=None):
@@ -53,7 +62,9 @@ def main(mix, slug, out=None):
                 frames=frames,
                 mouth=[round(float(v), 3) for v in np.interp(xs, np.arange(len(out_env)), out_env)],
                 speaking=[round(float(v), 3) for v in np.interp(xs, np.arange(len(gate)), gate)])
-    out = out or f'content/runway/character/mouth-{slug}.json'
+    # Always write to the repo's content dir. The default used to resolve against the
+    # cwd, which silently baked the track into production/runway-engine/content/.
+    out = out or str(ROOT / 'content/runway/character' / f'mouth-{slug}.json')
     os.makedirs(os.path.dirname(out), exist_ok=True)
     json.dump(data, open(out, 'w'))
     print(f'{out}  {frames} frames  {seconds:.2f}s  '
