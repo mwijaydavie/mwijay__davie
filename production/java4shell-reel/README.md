@@ -1,6 +1,7 @@
 # Java4Shell Reel — "Herufi 65. Ndio zote."
 
-**Review:** <https://drive.google.com/file/d/1Ct1F8J6gbJdUU1JWJzm6uqUlryHXTkL5/view>
+**v2 (current, desk set):** <https://drive.google.com/file/d/1fVt__72-QRbI3YZSeTdoEI2O83IUA3DT/view>
+**v1 (superseded — she floated, "hana legs"):** <https://drive.google.com/file/d/1Ct1F8J6gbJdUU1JWJzm6uqUlryHXTkL5/view>
 1080×1920 · 60 fps · 46.58 s · H.264 yuv420p + AAC 48 kHz stereo.
 
 ## The observation
@@ -26,6 +27,25 @@ Oracle's November 2026 CPU. Nothing is estimated.
 | 6 | action | three checks in order | pray — this is on you today |
 | 7 | cta | **Comment PATCH** + what comes back | peace — sign-off |
 
+## The set, and why there is a desk
+
+Her rig is half-body: the PNG stops across the hoodie. v1 faded that cut into
+the floor, which hid it but left her floating — the note came back as "hana
+legs", and it was right.
+
+v2 puts a real console **in front of her**, drawn in two passes (`set.mjs`):
+
+- `drawDeskBack` before her — monitors, the back of the surface, the room;
+- `drawDeskFront` after her — only the surface from the lip down, which crops
+  her at the waist the way a news desk crops a presenter.
+
+On top of that: paper cutouts on the desk (torn edges, staggered 20–80 frames),
+corner brackets and scale ticks around the artifact band, one pulse travelling
+the desk lip in the beat's accent colour, and a key light behind her head so the
+hoodie separates from the dark plate.
+
+![the desk](assets/desk-console.jpg)
+
 ## Why it is not the school Reel
 
 - Dark machine room (a generated server-corridor plate), not an eggshell page.
@@ -33,6 +53,8 @@ Oracle's November 2026 CPU. Nothing is estimated.
 - The artifact band is the same box on every beat (`y 452 → 900`) and she starts
   below it at 880–936, so this reads as the same series as Shule and Ship.
 - Type is native UI: a byte ruler, a heap diagram, an app matrix, a fix card.
+- She stands **behind a console**, framed by brackets and paper — not against a
+  gradient with a caption band under her.
 
 ## Rebuild
 
