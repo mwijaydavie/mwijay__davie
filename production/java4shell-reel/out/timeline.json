@@ -1,0 +1,43 @@
+{
+  "fps": 60,
+  "frames": 2795,
+  "seconds": 46.58,
+  "spans": [
+    {
+      "id": "hook",
+      "start": 11,
+      "end": 378
+    },
+    {
+      "id": "found",
+      "start": 411,
+      "end": 848
+    },
+    {
+      "id": "bug",
+      "start": 875,
+      "end": 1343
+    },
+    {
+      "id": "apps",
+      "start": 1370,
+      "end": 1804
+    },
+    {
+      "id": "patch",
+      "start": 1834,
+      "end": 2218
+    },
+    {
+      "id": "action",
+      "start": 2245,
+      "end": 2473
+    },
+    {
+      "id": "cta",
+      "start": 2506,
+      "end": 2705
+    }
+  ],
+  "keyword": "PATCH"
+}
