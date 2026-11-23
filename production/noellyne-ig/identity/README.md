@@ -95,7 +95,32 @@ different length is safe — `mix.py` re-measures and the edit moves with it.
 - Do not add a text card on a cream mat. Every frame is built, full bleed.
 - Do not stack two audios. One voice, one bed.
 
-## Drive links (public) — v2
+## Drive links (public) — v3 (current)
+
+**v3** replaces the v2 uploads for anything that changed: the videos (raw-plate
+double-draw is gone — her jaw finally has no dark smudge), the banners, the
+four feed scenes, the poster and the thumbnail (all carry the **photo props**:
+laptop, mug, plant). New: the **Tech Bila Hype** PDF and the comment-PDF feed
+and story creatives. The avatar is unchanged, so v2's link stands.
+
+| Item | Link |
+|---|---|
+| **IG Reel / Story (v3)** | https://drive.google.com/file/d/16r89JYcTwOPig3LqyO9QMqWz1i0bkoQq/view |
+| **YouTube (v3)** | https://drive.google.com/file/d/1To2xcIPIkuSGdlUCl0FP7ktZ4-VZ5Ejk/view |
+| IG banner (v3) | https://drive.google.com/file/d/1Q_mSmAUGGBEELAfaGTX7rROqy8ikphF1/view |
+| YouTube banner (v3) | https://drive.google.com/file/d/1e2l9AHpg67INO9d0oxgaRZfvNUfVRrwA/view |
+| Avatar | https://drive.google.com/file/d/1Rs_AU6DV1iSUK13QiCLvCZDAivcJCuOZ/view |
+| Feed 01 — Studio (v3) | https://drive.google.com/file/d/1W6FKEkfjOQNBc9KGPzO1u_K-O807HmZ_/view |
+| Feed 02 — Desk (v3) | https://drive.google.com/file/d/14up8AvZ33eifxWEo7F6Kdw4pJ1GUpGJ_/view |
+| Feed 03 — Floor (v3) | https://drive.google.com/file/d/1UiN_RhkuM91KLXQ2hW7l6cmRPzjNszCc/view |
+| Feed 04 — Outro (v3) | https://drive.google.com/file/d/1FtGzng8-vH7hlNBsJWaptLODuITVI89N/view |
+| YouTube thumbnail (v3) | https://drive.google.com/file/d/1kIawzvDx9qWS4viWIs8zHnt3XD_oYYGD/view |
+| Reel cover (v3) | https://drive.google.com/file/d/1-visou7_n0ryalGY-ZPQH8lYYaTR30jN/view |
+| **Tech Bila Hype PDF (free)** | https://drive.google.com/file/d/1bWXa_u4wR9pwoMC4mnlKdrsrjrLcDaJ2/view |
+| **Feed post — comment 'PDF' (4:5)** | https://drive.google.com/file/d/1LE02AmJ3Q55tO5UrCAMVcJyEr5b6_IRm/view |
+| **Story — comment 'PDF' (9:16)** | https://drive.google.com/file/d/1rdzmMXeocfSurT8_g97Ryz7hOm2v0N-B/view |
+
+## Drive links (public) — v2 (superseded)
 
 **v2** answers three notes: daylight instead of black/neon, a mouth that moves, and a desk in front of her so she never reads as a floating sticker.
 
@@ -181,3 +206,45 @@ The `by = d.front + 104` apron rule is for tall frames only.
 ### Cuts are a paper-white flash
 
 Fading to black in a daylight set reads as a mistake. Each cut is a 4-frame flash to the paper colour instead — the same value as the set, so it reads as a shutter, not a blackout.
+
+---
+
+## v3 — Tech Bila Hype campaign, photo props, two mouth-fixes
+
+Owner's ask: *"new content nzuri we can ask people to comment an get PDF nzuri
+nice more poses na real reference za vitu kama picha umezicut out vyema"*.
+
+**New poses** — `present` (open palm offer), `one` (index up) and `hold`
+(both hands presenting), keyed/registered exactly like the first six, badge
+mark baked, on the 939×1136 canvas. Their AI viseme renders are pending —
+`performerDraw` falls back to the base still for them until those exist, so
+stills use them; motion work should wait for the visemes.
+
+**Photo props** — laptop, mug, plant are generated product shots on seamless
+white, cut by `cut-props.py` (border flood → shadow-growth → enclosed-pocket
+seal). They carry no shadow of their own; a soft contact ellipse seats them
+on the surface. Call sites in `banners.mjs` and `intro.mjs` draw
+`photoProp(...)`. The hand-drawn laptop/mug/plant are gone from every
+composition.
+
+**Two mouth bugs found and fixed in `intro.mjs`** — v2's videos shipped both:
+the per-frame MOUTH track was also passed to `performerDraw`, which drew the
+*raw* AI plate (opaque dark background beyond her jaw) onto the wall, and the
+masked re-stamp then picked the openness level from `MOUTH[beatStart]` instead
+of `MOUTH[frame]`. Now `performerDraw` gets `mouth: false` and the re-stamp
+reads the current frame. Do not pass the track to both places again.
+
+**The PDF** — `pdf/tech-bila-hype.pdf`, built by `pdf/build-pdf.py`. 15 A4
+pages: cover (the `hold` pose), contents, twelve real tools each with Ni nini
+/ Kwa nini / Anza leo / Mfano / Bila Hype tip, a worksheet strip and 01–12
+progress dots, closing CTA. No invented prices, no USSD codes from memory,
+and a closing note that caps/limits change.
+
+**The creatives** — `out/post-comment-pdf.png` (4:5) and
+`out/story-comment-pdf.png` (9:16), her presenting the guide, with a
+three-step strip (COMMENT 'PDF' → NITAKUTUMIA PDF → ANZA LEO). Caption in
+`campaign-caption.txt`.
+
+**GOOGLE-FLOW-PROMPT.md** was still v1 (plum/neon). It now describes the
+daylight pack; the remaining "plum" reference is a note telling the reader to
+delete leftovers.
