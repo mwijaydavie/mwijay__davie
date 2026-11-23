@@ -76,6 +76,27 @@ Mhusika ni picha, kwa hivyo mwendo umeandikwa (`pose()` kwenye `src/zuri.mjs`):
 
 **Kipimo:** tofauti ya fremu mfululizo (60 fps) — video yako LIMS ni **0.325**, yangu ilianza **0.089**, sasa ni **0.237**. Bado 27% chini; sababu ni kwamba LIMS ina video halisi ya screen ndani ya kadi na mwendo wa kamera zaidi.
 
+## Mkono na ishara
+
+Mikono ni **picha sita zilizorender** kwa mtindo wake (`assets/character/hand-*-cut.png`):
+
+| Faili | Ishara | Matumizi |
+| --- | --- | --- |
+| `hand-open` | 🖐🏾 / ✋🏾 | kufungua reel, "sawa" |
+| `hand-point` | 🫵🏾 | kuonyesha kadi |
+| `hand-peace` | ✌🏾 | "mbili" kwenye list |
+| `hand-like` | 👍🏾 | kuidhinisha |
+| `hand-ok` | 👌🏾 | "sawa kabisa" |
+| `hand-pray` | 🙏🏾 | asante, CTA |
+
+`src/hands.mjs` inaziweka; kila ishara inayumba kwa **kiwiko** (14° kwa `wave`, 1.6° kwa nyingine).
+
+`zuri-body-cut.png` ni picha ya `wave` iliyofutwa mkono kwa **connected component** (sio kwa rangi) — braid iliyokuwa nyuma ya mkono ilinusurika.
+
+## Kamera
+
+Kila scene ina push-in ya **2.4%** na kupanda kwa 8 px katika fremu 34 za kwanza. Counter na band **hazishiriki** kwenye zoom — ni ndege ya mbele ya 2D, na kuzizoom kunamficha kiunoni.
+
 ## Kanuni tano
 
 1. **Nyeupe inatawala.** Background ni karatasi, sio chumba.

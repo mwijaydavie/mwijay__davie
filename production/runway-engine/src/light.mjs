@@ -221,7 +221,14 @@ function card(scene, t, {x = 64, y = 560, w = 520, start = 10} = {}) {
     rows.forEach((r, i) => {
       const o = easeOut(unlerp(t, start + 14 + i * 7, start + 30 + i * 7));
       const ry = yy + i * rowH;
+      // after the row lands, a hairline highlight crosses it once, then rests
+      const sweep = clamp(unlerp(t, start + 34 + i * 12, start + 58 + i * 12));
+      const sx = lerp(-w * 0.5, w * 1.1, easeInOut(sweep));
       out += `<g opacity="${round(o)}">`;
+      if (sweep > 0 && sweep < 1) {
+        out += `<g clip-path="url(#rowClip${i})"><rect x="${round(x + sx - 90)}" y="${round(ry - 8)}" width="90" height="${round(rowH - 24)}" fill="${LT.accent}" opacity="0.10" transform="skewX(-14)"/></g>`;
+        out += `<clipPath id="rowClip${i}"><rect x="${x + 12}" y="${round(ry - 8)}" width="${w - 24}" height="${round(rowH - 24)}" rx="10"/></clipPath>`;
+      }
       out += text(r.name, x + pad, ry + 40, {role: 'body', weight: 600, size: 33, fill: LT.ink});
       if (r.value) {
         const bad = r.tone === 'bad';
@@ -319,12 +326,13 @@ function summaryCard(sum, t, {x = 64, y = 1000, w = 620, start = 26} = {}) {
 function caption(scene, t, {y = 1500} = {}) {
   const s = scene.captionLine;
   if (!s) return '';
-  const p = easeOut(unlerp(t, 8, 26));
+  // it snaps on 6 frames after the cut, fully opaque: a phone viewer reads it or misses it
+  const p = unlerp(t, 5, 11);
   const f = fit(s, {role: 'body', weight: 600, size: 42, maxWidth: 820, maxLines: 2, lineHeight: 1.18, tracking: -0.6, minSize: 30});
   const lh = f.size * 1.18;
   const boxH = f.lines.length * lh + 40;
   const x0 = 44;
-  return `<g opacity="${round(p)}" transform="translate(0 ${round((1 - p) * 14)})">
+  return `<g opacity="${p > 0 ? 1 : 0}" transform="translate(0 ${round((1 - easeOut(p)) * 10)})">
     ${rect(x0, y - boxH + 12, W - x0 * 2, boxH, {fill: LT.capBg, rx: 18})}
     ${f.lines.map((l, i) => text(l, W / 2, y - boxH + 32 + lh * (i + 0.8), {
       role: 'body', weight: 600, size: f.size, fill: '#FFFFFF', anchor: 'middle', tracking: -0.6,
@@ -339,10 +347,20 @@ function caption(scene, t, {y = 1500} = {}) {
 export function light(spec, scene, t, images, track) {
   const mode = scene.mode || (scene.ui || scene.steps ? 'card' : 'hook');
   const tone = scene.tone || 'paper';
+  // The camera: a 2.4 % push across the whole scene, plus a 6 px rise in the first
+  // 30 frames. The reels move like a locked-off phone on a slider, not like a zoom.
+  const span = Math.max(1, Math.round((scene.frames || 340)));
+  const cp = easeInOut(unlerp(t, 0, span));
+  const zoom = 1 + (scene.zoom ?? 0.024) * cp;
+  const riseY = (1 - easeOut(unlerp(t, 0, 34))) * 8;
   let out = roomBack(t, {tone, streak: scene.streak !== false});
 
   const c = scene.cast;
   if (c && c.pose) {
+    // a soft, wide contact shadow on the wall behind her, then the figure
+    const cx = c.x ?? 860;
+    const ch = c.h ?? 1240;
+    out += `<ellipse cx="${round(cx)}" cy="${round((c.y ?? 1980) - ch * 0.06)}" rx="${round(ch * 0.30)}" ry="${round(ch * 0.26)}" fill="${LT.ink}" opacity="0.055"/>`;
     out += pose(c.pose, t, {
       x: c.x ?? 860, y: c.y ?? 1980, h: c.h ?? 1240,
       enter: c.enter ?? true, flip: !!c.flip,
@@ -377,6 +395,6 @@ export function light(spec, scene, t, images, track) {
     maxWidth: scene.headW ?? 940,
   });
   out += pillLockup(scene, t, {x: 64, y: scene.eyebrowY ?? 226});
-  out += roomFront(t, {tone, band: scene.band !== false});
-  return out + caption(scene, t, {y: scene.captionY ?? 1500});
+  const shot = `<g transform="translate(540 1000) scale(${round(zoom * 1000) / 1000}) translate(-540 ${round(-1000 - riseY)})">${out}</g>`;
+  return shot + roomFront(t, {tone, band: scene.band !== false}) + caption(scene, t, {y: scene.captionY ?? 1500});
 }
