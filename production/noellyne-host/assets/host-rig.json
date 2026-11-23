@@ -101,7 +101,33 @@
     709,
     598,
     737
-   ]
+   ],
+   "ai": {
+    "closed": {
+     "file": "wave-ai-closed.png",
+     "w": 244,
+     "h": 170,
+     "cx": 520,
+     "cy": 474,
+     "sha256": "c48a369233ff9e88f5bcf4c4828867096a48cccdee91bfe470367ebe54dce2f3"
+    },
+    "mid": {
+     "file": "wave-ai-mid.png",
+     "w": 244,
+     "h": 170,
+     "cx": 520,
+     "cy": 474,
+     "sha256": "8e08d2bcc711844ccf18bc9dd0717099a553e7d6945ebb23b5493c1a48e0ad97"
+    },
+    "open": {
+     "file": "wave-ai-open.png",
+     "w": 244,
+     "h": 170,
+     "cx": 520,
+     "cy": 474,
+     "sha256": "cee85529177a4a8584da26a2e0f6154f12fb750da026b4e0d1ce82c513283cfc"
+    }
+   }
   },
   "point": {
    "base": {
@@ -202,7 +228,33 @@
     709,
     598,
     737
-   ]
+   ],
+   "ai": {
+    "closed": {
+     "file": "point-ai-closed.png",
+     "w": 244,
+     "h": 170,
+     "cx": 525,
+     "cy": 472,
+     "sha256": "2fc134244c87ff5246986d474918d4b70457acc00842d0f6c005dab75c6cd2e0"
+    },
+    "mid": {
+     "file": "point-ai-mid.png",
+     "w": 244,
+     "h": 170,
+     "cx": 525,
+     "cy": 472,
+     "sha256": "bf0082f75978f40facc7fde52d0ffbc64ad1f66672edca085d745d42e8248623"
+    },
+    "open": {
+     "file": "point-ai-open.png",
+     "w": 244,
+     "h": 170,
+     "cx": 525,
+     "cy": 472,
+     "sha256": "8359355101754945c92ce80c73d324996977a7f2d29ce8315d2226a00038f579"
+    }
+   }
   },
   "desk": {
    "base": {
@@ -293,7 +345,33 @@
     721,
     592,
     744
-   ]
+   ],
+   "ai": {
+    "closed": {
+     "file": "desk-ai-closed.png",
+     "w": 244,
+     "h": 170,
+     "cx": 520,
+     "cy": 481,
+     "sha256": "29b2cb77a1a7f836170e021df5859fff9d074b26c6d743ff309169e5db5b948c"
+    },
+    "mid": {
+     "file": "desk-ai-mid.png",
+     "w": 244,
+     "h": 170,
+     "cx": 520,
+     "cy": 481,
+     "sha256": "3a0db8b5e5ce9eaa73fc09216d1a09884b4612a7abf0cce851208e8553443486"
+    },
+    "open": {
+     "file": "desk-ai-open.png",
+     "w": 244,
+     "h": 170,
+     "cx": 520,
+     "cy": 481,
+     "sha256": "d9c9937a88528d0bcc758cb6eed6202c7e3121c3a81fe3984e83534d10dfa8a8"
+    }
+   }
   },
   "phone": {
    "base": {
@@ -384,7 +462,33 @@
     720,
     608,
     749
-   ]
+   ],
+   "ai": {
+    "closed": {
+     "file": "phone-ai-closed.png",
+     "w": 244,
+     "h": 170,
+     "cx": 515,
+     "cy": 479,
+     "sha256": "03b0a32c00dba856ffb5a37f9fb22cabf6cd98f396b60d0a56a13787659673e9"
+    },
+    "mid": {
+     "file": "phone-ai-mid.png",
+     "w": 244,
+     "h": 170,
+     "cx": 515,
+     "cy": 479,
+     "sha256": "9b03c4d331932b44b1a1efb12eb9f7616e2f74bff87ce01db6025bf7e0cc5be4"
+    },
+    "open": {
+     "file": "phone-ai-open.png",
+     "w": 244,
+     "h": 170,
+     "cx": 515,
+     "cy": 479,
+     "sha256": "2d9cdf07b9600fc8816ebaa57d0b32e20577b4ead1f804fd1e730214cb3d781d"
+    }
+   }
   },
   "cheer": {
    "base": {
@@ -1049,6 +1153,15 @@
    "sha256": "cf2e0b870a9dc2b970066c6ca90276924c97e6401914aea3c76948c3bc8c3519"
   },
   {
+   "file": "desk-ai-closed.png"
+  },
+  {
+   "file": "desk-ai-mid.png"
+  },
+  {
+   "file": "desk-ai-open.png"
+  },
+  {
    "file": "desk-base.png",
    "width": 939,
    "height": 1136,
@@ -1247,6 +1360,15 @@
    "sha256": "7c9be4360becba785f4afce46200f2f99a519d0c86310425bba7d7d3ff0f225f"
   },
   {
+   "file": "phone-ai-closed.png"
+  },
+  {
+   "file": "phone-ai-mid.png"
+  },
+  {
+   "file": "phone-ai-open.png"
+  },
+  {
    "file": "phone-base.png",
    "width": 939,
    "height": 1136,
@@ -1305,6 +1427,15 @@
    "width": 132,
    "height": 71,
    "sha256": "5e472b4e5bb89210d63bcc287c4656dcb09bf4ae101d5cc490aa4e4ff0cedeff"
+  },
+  {
+   "file": "point-ai-closed.png"
+  },
+  {
+   "file": "point-ai-mid.png"
+  },
+  {
+   "file": "point-ai-open.png"
   },
   {
    "file": "point-base.png",
@@ -1509,6 +1640,15 @@
    "width": 132,
    "height": 71,
    "sha256": "2a4ce9c6a09bf99b0cf4a4f33ab258110aedfbc28f1437ea4d0a0c7f9067c81b"
+  },
+  {
+   "file": "wave-ai-closed.png"
+  },
+  {
+   "file": "wave-ai-mid.png"
+  },
+  {
+   "file": "wave-ai-open.png"
   },
   {
    "file": "wave-base.png",

@@ -5,7 +5,7 @@
  "takes": [
   {
    "id": "hook",
-   "pose": "cheer",
+   "pose": "point",
    "sw": [
     "Code yako inafanya kazi.",
     "Shule inaweza kuitumia?"
@@ -25,7 +25,7 @@
   },
   {
    "id": "gap",
-   "pose": "peace",
+   "pose": "desk",
    "sw": [
     "Kuna tofauti kati ya",
     "kufanya kazi na kutumika."
@@ -39,7 +39,7 @@
   },
   {
    "id": "auth",
-   "pose": "thumbsup",
+   "pose": "phone",
    "sw": [
     "Mtu mmoja anaweza",
     "kuona data ya wote?"
@@ -67,7 +67,7 @@
   },
   {
    "id": "offline",
-   "pose": "pray",
+   "pose": "point",
    "sw": [
     "Net si ya kuaminika.",
     "Bado inafaa kufanya kazi?"
@@ -81,7 +81,7 @@
   },
   {
    "id": "receipt",
-   "pose": "cheer",
+   "pose": "thumbsup",
    "sw": [
     "Kila kitu kinapimwa.",
     "Sio kudhaniwa."

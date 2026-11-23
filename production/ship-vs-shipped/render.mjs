@@ -82,67 +82,67 @@ const C = {
 
 const SCENES = {
   hook(c, f, a) {
-    const t = smooth(a[0] + 6, a[0] + 34, f);
+    const t = smooth(6, 34, a[0]);
     if (t < 0.01) return;
     c.save(); c.globalAlpha = t; c.translate(0, (1 - t) * 20);
-    const p = pane(c, 84, 620, 600, 250, "school.ts — works locally");
-    codeLine(c, p.x + 30, p.y + 116, [["const ", C.kw], ["t", C.txt], [" = ", C.txt], ["build", C.fn], ["(", C.txt], ["F2", C.num], [")", C.txt]], 24);
-    codeLine(c, p.x + 30, p.y + 158, [["test", C.fn], ["(", C.txt], ["'my machine'", C.str], [")", C.txt]], 24);
-    codeLine(c, p.x + 30, p.y + 200, [["// Monday 8am?", C.cm]], 24);
+    const p = pane(c, 84, 400, 912, 300, "school.ts — works locally");
+    codeLine(c, p.x + 40, p.y + 118, [["const ", C.kw], ["timetable", C.txt], [" = ", C.txt], ["build", C.fn], ["(", C.txt], ["Form2", C.num], [")", C.txt]], 30);
+    codeLine(c, p.x + 40, p.y + 172, [["test", C.fn], ["(", C.txt], ["'works on my machine'", C.str], [")", C.txt]], 30);
+    codeLine(c, p.x + 40, p.y + 226, [["// can a school run it Monday 8am?", C.cm]], 30);
     c.restore();
   },
 
   gap(c, f, a) {
     // two columns: it runs / it is used. the width between them is the point
-    const t = smooth(a[0] + 8, a[0] + 46, f);
+    const t = smooth(8, 46, a[0]);
     if (t < 0.01) return;
     c.save(); c.globalAlpha = t;
-    rect(c, 90, 620, 400, 290, 22, SLATE);
-    edge(c, 90, 620, 400, 290, 22, "rgba(148,163,184,0.25)", 2);
-    mono(c, "IT RUNS", 118, 700, 26, { color: GREEN, weight: 700 });
-    codeLine(c, 118, 760, [["npm test", C.txt]], 26);
-    mono(c, "12 passed", 118, 810, 26, { color: GREEN });
-    mono(c, "0 users yet", 118, 866, 24, { color: C.cm });
+    rect(c, 84, 400, 430, 470, 26, SLATE);
+    edge(c, 84, 400, 430, 470, 26, "rgba(148,163,184,0.25)", 2);
+    mono(c, "IT RUNS", 118, 500, 28, { color: GREEN, weight: 700 });
+    codeLine(c, 118, 588, [["npm test", C.txt]], 32);
+    mono(c, "12 passed", 118, 664, 30, { color: GREEN });
+    mono(c, "0 users yet", 118, 748, 26, { color: C.cm });
 
-    rect(c, 540, 620, 400, 290, 22, SLATE);
-    edge(c, 540, 620, 400, 290, 22, "rgba(251,191,36,0.30)", 2);
-    mono(c, "IT IS USED", 568, 670, 26, { color: AMBER, weight: 700 });
+    rect(c, 566, 400, 430, 470, 26, SLATE);
+    edge(c, 566, 400, 430, 470, 26, "rgba(251,191,36,0.30)", 2);
+    mono(c, "IT IS USED", 600, 500, 28, { color: AMBER, weight: 700 });
     [["Monday 08:00", "Biology", "Form 2A"], ["Attendance", "276 records", "one click"]]
       .forEach((row, i) => {
-        mono(c, row[0], 568, 730 + i * 78, 22, { color: DIM });
-        mono(c, row[1], 568, 758 + i * 78, 25, { color: PAPER, weight: 600 });
+        mono(c, row[0], 600, 590 + i * 112, 24, { color: DIM });
+        mono(c, row[1], 600, 630 + i * 112, 30, { color: PAPER, weight: 600 });
       });
     // the gap, drawn
-    const g = easeOut(a[0] + 40, a[0] + 90, f);
+    const g = easeOut(40, 90, a[0]);
     c.save();
     c.strokeStyle = MINT; c.lineWidth = 4; c.setLineDash([10, 12]);
     c.beginPath(); c.moveTo(505, 640); c.lineTo(505, 890); c.stroke();
     c.restore();
-    mono(c, "the gap", 507, 920, 20, { color: MINT, align: "center" });
+    mono(c, "the gap", 532, 898, 22, { color: MINT, align: "center" });
     c.restore();
   },
 
   auth(c, f, a) {
     // an access matrix: who can see what. the answer has to be visible, not told.
-    const t = smooth(a[0] + 6, a[0] + 40, f);
+    const t = smooth(6, 40, a[0]);
     if (t < 0.01) return;
     const roles = ["Teacher", "Bursar", "Parent", "Owner"];
     const rows = ["Marks", "Fees", "Contacts"];
     const allowed = [[1, 0, 1, 1], [0, 1, 0, 1], [1, 0, 0, 1]];
-    const x0 = 120, y0 = 780, cw = 200, ch = 96;
+    const x0 = 96, y0 = 540, cw = 196, ch = 112;
     c.save(); c.globalAlpha = t;
-    roles.forEach((r, i) => mono(c, r, x0 + 30 + i * cw, y0 - 18, 20, { color: DIM }));
+    roles.forEach((r, i) => mono(c, r, x0 + 84 + i * cw, y0 - 20, 20, { color: DIM }));
     rows.forEach((row, ri) => {
       mono(c, row, x0, y0 + 34 + ri * ch, 22, { color: PAPER, weight: 600 });
       roles.forEach((_, ci) => {
-        const k = smooth(a[0] + 20 + (ri * 4 + ci) * 4, a[0] + 20 + (ri * 4 + ci) * 4 + 18, f);
+        const k = smooth(20 + (ri * 4 + ci) * 4, 20 + (ri * 4 + ci) * 4 + 18, a[0]);
         if (k < 0.01) return;
         const ok = allowed[ri][ci];
-        const bx = x0 + 30 + ci * cw, by = y0 + 8 + ri * ch;
+        const bx = x0 + 84 + ci * cw, by = y0 + 10 + ri * ch;
         c.save(); c.globalAlpha = t * k;
-        rect(c, bx, by, 150, 62, 12, ok ? "rgba(52,211,153,0.16)" : "rgba(248,113,113,0.13)");
-        edge(c, bx, by, 150, 62, 12, ok ? "rgba(52,211,153,0.55)" : "rgba(248,113,113,0.42)", 2);
-        mono(c, ok ? "allow" : "deny", bx + 20, by + 40, 22, { color: ok ? GREEN : RED, weight: 600 });
+        rect(c, bx, by, 152, 76, 12, ok ? "rgba(52,211,153,0.16)" : "rgba(248,113,113,0.13)");
+        edge(c, bx, by, 152, 76, 12, ok ? "rgba(52,211,153,0.55)" : "rgba(248,113,113,0.42)", 2);
+        mono(c, ok ? "allow" : "deny", bx + 20, by + 50, 22, { color: ok ? GREEN : RED, weight: 600 });
         c.restore();
       });
     });
@@ -151,55 +151,55 @@ const SCENES = {
 
   empty(c, f, a) {
     // the empty state, then the empty state with an example in it
-    const t = smooth(a[0] + 6, a[0] + 36, f);
+    const t = smooth(6, 36, a[0]);
     if (t < 0.01) return;
-    const p = pane(c, 90, 780, 900, 300, "timetable — Form 2A, Term 1", AMBER);
+    const p = pane(c, 84, 400, 912, 470, "timetable — Form 2A, Term 1", AMBER);
     c.save(); c.globalAlpha = t;
     const rowsFilled = Math.floor(clamp((f - a[0] - 70) / 26, 0, 5));
     for (let i = 0; i < 5; i++) {
-      const y = p.y + 100 + i * 40;
+      const y = p.y + 126 + i * 64;
       const filled = i < rowsFilled;
-      rect(c, p.x + 30, y, filled ? 760 : 300 + i * 60, 22, 6,
+      rect(c, p.x + 34, y, filled ? 780 : 320 + i * 70, 30, 8,
            filled ? "rgba(94,234,212,0.20)" : "rgba(148,163,184,0.13)");
       if (filled) mono(c, ["Mon 08:00 Biology", "Mon 09:20 Maths", "Tue 08:00 Kiswahili",
                            "Wed 10:40 Physics", "Thu 08:00 History"][i],
-                      p.x + 44, y + 17, 16, { color: MINT, weight: 500 });
+                      p.x + 50, y + 22, 19, { color: MINT, weight: 500 });
     }
     if (rowsFilled === 0) {
-      mono(c, "no rows", p.x + 30, p.y + 200, 24, { color: C.cm });
-      mono(c, "→ add a sample term", p.x + 30, p.y + 244, 24, { color: AMBER });
+      mono(c, "no rows", p.x + 34, p.y + 210, 28, { color: C.cm });
+      mono(c, "→ add a sample term", p.x + 34, p.y + 262, 28, { color: AMBER });
     }
     c.restore();
   },
 
   offline(c, f, a) {
     // a latency trace that drops to nothing, and the app still answering
-    const t = smooth(a[0] + 6, a[0] + 34, f);
+    const t = smooth(6, 34, a[0]);
     if (t < 0.01) return;
-    const p = pane(c, 90, 740, 900, 340, "request log — last 30 s", MINT);
+    const p = pane(c, 84, 400, 912, 470, "request log — last 30 s", MINT);
     c.save(); c.globalAlpha = t;
-    let px = p.x + 40, py = p.y + 190;
+    let px = p.x + 48, py = p.y + 230;
     c.beginPath(); c.moveTo(px, py);
     const n = 46;
     for (let i = 0; i < n; i++) {
       const u = i / (n - 1);
       const alive = u < 0.42;
       const yy = py + (alive ? Math.sin(u * 26) * 16 : 0);
-      px = p.x + 40 + u * 800;
+      px = p.x + 48 + u * 820;
       c.lineTo(px, yy);
     }
     c.strokeStyle = MINT; c.lineWidth = 3; c.stroke();
     // the cut
-    rect(c, p.x + 40 + 0.42 * 800, p.y + 110, 3, 170, 1, RED);
-    mono(c, "offline", p.x + 40 + 0.42 * 800 + 10, p.y + 128, 18, { color: RED });
-    mono(c, "queued 4 writes, still answering", p.x + 40, p.y + 250, 22, { color: PAPER });
-    mono(c, "no spinner, no data loss", p.x + 40, p.y + 290, 22, { color: MINT });
+    rect(c, p.x + 48 + 0.42 * 820, p.y + 124, 4, 226, 1, RED);
+    mono(c, "offline", p.x + 48 + 0.42 * 820 + 14, p.y + 146, 21, { color: RED });
+    mono(c, "queued 4 writes, still answering", p.x + 48, p.y + 336, 27, { color: PAPER });
+    mono(c, "no spinner, no data loss", p.x + 48, p.y + 388, 27, { color: MINT });
     c.restore();
   },
 
   receipt(c, f, a) {
     // the measured numbers, in a table, counted up
-    const t = smooth(a[0] + 4, a[0] + 30, f);
+    const t = smooth(4, 30, a[0]);
     if (t < 0.01) return;
     const rows = [
       ["renderers", FACTS.js_files, "files"],
@@ -210,23 +210,23 @@ const SCENES = {
     ];
     c.save(); c.globalAlpha = t;
     rows.forEach(([label, value, unit], i) => {
-      const k = smooth(a[0] + 10 + i * 12, a[0] + 10 + i * 12 + 22, f);
+      const k = smooth(10 + i * 12, 10 + i * 12 + 22, a[0]);
       if (k < 0.01) return;
-      const y = 700 + i * 88;
+      const y = 420 + i * 96;
       c.save(); c.globalAlpha = t * k;
-      const shown = Math.round(value * easeOut(a[0] + 10 + i * 12, a[0] + 44 + i * 12, f));
-      mono(c, String(shown), 100, y + 44, 54, { color: MINT, weight: 700, width: 260 });
-      type(c, label, 380, y + 30, 30, { color: PAPER, weight: 700, width: 460 });
-      mono(c, unit, 380, y + 58, 20, { color: DIM });
-      rect(c, 100, y + 66, 880, 2, 1, "rgba(148,163,184,0.18)");
+      const shown = Math.round(value * easeOut(10 + i * 12, 44 + i * 12, a[0]));
+      mono(c, String(shown), 100, y + 58, 66, { color: MINT, weight: 700, width: 300 });
+      type(c, label, 420, y + 40, 36, { color: PAPER, weight: 700, width: 520 });
+      mono(c, unit, 420, y + 74, 22, { color: DIM });
+      rect(c, 100, y + 84, 880, 2, 1, "rgba(148,163,184,0.18)");
       c.restore();
     });
-    mono(c, "measured in this repo, not estimated", 100, 1150, 20, { color: DIM });
+    mono(c, "measured in this repo, not estimated", 100, 902, 21, { color: DIM });
     c.restore();
   },
 
   cta(c, f, a) {
-    const t = smooth(a[0], a[0] + 32, f);
+    const t = smooth(0, 32, a[0]);
     if (t < 0.01) return;
     c.save(); c.globalAlpha = t;
     rect(c, 84, 420, Math.max(10, 700 * t), 130, 65, MINT);
@@ -270,13 +270,13 @@ for (const [id, p] of Object.entries(PALETTE)) {
  * here too, only harder: the artifact owns the centre, she stands in the margin.
  */
 const POS = {
-  hook:    { x: 660, y: 1090, w: 340 },
-  gap:     { x: 640, y: 1100, w: 350 },
-  auth:    { x: 40,  y: 1100, w: 340 },
-  empty:   { x: 650, y: 1100, w: 340 },
-  offline: { x: 40,  y: 1100, w: 340 },
-  receipt: { x: 650, y: 1160, w: 330 },
-  cta:     { x: 90,  y: 900,  w: 560 },
+  hook:    { x: 620, y: 990, w: 440 },
+  gap:     { x: 590, y: 990, w: 450 },
+  auth:    { x: 40,  y: 990, w: 440 },
+  empty:   { x: 610, y: 990, w: 440 },
+  offline: { x: 40,  y: 990, w: 440 },
+  receipt: { x: 620, y: 990, w: 430 },
+  cta:     { x: 250, y: 870, w: 620 },
 };
 /**
  * The invariant, after three passes of text running through her:
@@ -287,7 +287,7 @@ const POS = {
  * Position her by that rule, not by eye. `--layout` draws the boxes so it can be
  * checked without rendering a frame.
  */
-const SHE_TOP = 1090;
+const SHE_TOP = 990;
 
 function drawFrame(ctx, f) {
   const span = tl.spans.find((s) => f >= s.start - 3 && f < s.end + 40) || tl.spans[tl.spans.length - 1];
