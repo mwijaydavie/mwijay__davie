@@ -475,7 +475,33 @@
     652,
     608,
     676
-   ]
+   ],
+   "ai": {
+    "closed": {
+     "file": "cheer-ai-closed.png",
+     "w": 220,
+     "h": 154,
+     "cx": 540,
+     "cy": 449,
+     "sha256": "a65569c50212845679fa358c3d1b3ca6b48e73f4271ab9cd1d33044a7110d695"
+    },
+    "mid": {
+     "file": "cheer-ai-mid.png",
+     "w": 220,
+     "h": 154,
+     "cx": 540,
+     "cy": 449,
+     "sha256": "5269c9ed230af286f17bef62da96e4167f433887feb988bc9d5274ed19f98507"
+    },
+    "open": {
+     "file": "cheer-ai-open.png",
+     "w": 220,
+     "h": 154,
+     "cx": 540,
+     "cy": 449,
+     "sha256": "e0d8791d4eae3c52961534a4f6a4c589ced472467b62633cbcb79655bc211202"
+    }
+   }
   },
   "ok": {
    "base": {
@@ -566,7 +592,33 @@
     679,
     603,
     705
-   ]
+   ],
+   "ai": {
+    "closed": {
+     "file": "ok-ai-closed.png",
+     "w": 244,
+     "h": 170,
+     "cx": 520,
+     "cy": 459,
+     "sha256": "afa2728abb3541d4a82dc981145bea0b9ed4a21c6142b3a1fa4382ac0fd8c485"
+    },
+    "mid": {
+     "file": "ok-ai-mid.png",
+     "w": 244,
+     "h": 170,
+     "cx": 520,
+     "cy": 459,
+     "sha256": "1b8c9efd7113b8dc8dd2fb0555c7af77104c33d89c89a9c0be17c0b8de6a977e"
+    },
+    "open": {
+     "file": "ok-ai-open.png",
+     "w": 244,
+     "h": 170,
+     "cx": 520,
+     "cy": 459,
+     "sha256": "e7385bd3e53922d32480e3bd5e8bca3db9fa563cdf60a6fb38ce7e2538701139"
+    }
+   }
   },
   "peace": {
    "base": {
@@ -657,7 +709,33 @@
     644,
     618,
     669
-   ]
+   ],
+   "ai": {
+    "closed": {
+     "file": "peace-ai-closed.png",
+     "w": 230,
+     "h": 160,
+     "cx": 520,
+     "cy": 429,
+     "sha256": "c261769e01da728813c4409509a66486dbca2ddd928e5e4c60f0c55270d9dc6e"
+    },
+    "mid": {
+     "file": "peace-ai-mid.png",
+     "w": 230,
+     "h": 160,
+     "cx": 520,
+     "cy": 429,
+     "sha256": "b0dbce445fcd61271c2214bf909541cb3a73681542f6d10f4bc3d59897869a0c"
+    },
+    "open": {
+     "file": "peace-ai-open.png",
+     "w": 230,
+     "h": 160,
+     "cx": 520,
+     "cy": 429,
+     "sha256": "ec265d9f2fe925092df42bb03c8cc1d0b272a8c57c7a71d0028339e7acaf6269"
+    }
+   }
   },
   "pray": {
    "base": {
@@ -748,7 +826,33 @@
     709,
     597,
     736
-   ]
+   ],
+   "ai": {
+    "closed": {
+     "file": "pray-ai-closed.png",
+     "w": 244,
+     "h": 170,
+     "cx": 520,
+     "cy": 464,
+     "sha256": "25e902df76f3b0e23e8f7c92583bf08bffed628c2e0618bf4bb1f692d78768cb"
+    },
+    "mid": {
+     "file": "pray-ai-mid.png",
+     "w": 244,
+     "h": 170,
+     "cx": 520,
+     "cy": 464,
+     "sha256": "5c1a9bc32ab06703f5d3068a608507e06d93e7c1e0a4dd194f29e74c0cd1503c"
+    },
+    "open": {
+     "file": "pray-ai-open.png",
+     "w": 244,
+     "h": 170,
+     "cx": 520,
+     "cy": 464,
+     "sha256": "e624d2458f02c3140e937a7b10ea89481b1e21d0421181f72a82ee0469a9aab8"
+    }
+   }
   },
   "thumbsup": {
    "base": {
@@ -839,7 +943,33 @@
     709,
     597,
     737
-   ]
+   ],
+   "ai": {
+    "closed": {
+     "file": "thumbsup-ai-closed.png",
+     "w": 240,
+     "h": 168,
+     "cx": 510,
+     "cy": 484,
+     "sha256": "6f268cf5226c977c7c80f8d0fd1b20930f352770461736c79ef7bd6372c6ad7a"
+    },
+    "mid": {
+     "file": "thumbsup-ai-mid.png",
+     "w": 240,
+     "h": 168,
+     "cx": 510,
+     "cy": 484,
+     "sha256": "372964912904a6f2e60630197ab9993652323e0a741fb783543436d9eec2c7c3"
+    },
+    "open": {
+     "file": "thumbsup-ai-open.png",
+     "w": 240,
+     "h": 168,
+     "cx": 510,
+     "cy": 484,
+     "sha256": "626987cba25817ab06ee2265d0bf082a38cbefa1b9375b372cb4a328f3170f86"
+    }
+   }
   }
  },
  "files": [
@@ -848,6 +978,15 @@
    "width": 256,
    "height": 256,
    "sha256": "72981d16359d15858d5228c45f37528a065e86ea23ef2677b5740d7013ce4def"
+  },
+  {
+   "file": "cheer-ai-closed.png"
+  },
+  {
+   "file": "cheer-ai-mid.png"
+  },
+  {
+   "file": "cheer-ai-open.png"
   },
   {
    "file": "cheer-base.png",
@@ -970,6 +1109,15 @@
    "sha256": "d21a20f5c73636dc6d08abf820cb0ae77b5446ad1010050d4d53d4d68a8da158"
   },
   {
+   "file": "ok-ai-closed.png"
+  },
+  {
+   "file": "ok-ai-mid.png"
+  },
+  {
+   "file": "ok-ai-open.png"
+  },
+  {
    "file": "ok-base.png",
    "width": 939,
    "height": 1136,
@@ -1028,6 +1176,15 @@
    "width": 132,
    "height": 71,
    "sha256": "10ec5b1e979d38ecb6cc35700185f9b365a90e18085455953c10adfb91aeda91"
+  },
+  {
+   "file": "peace-ai-closed.png"
+  },
+  {
+   "file": "peace-ai-mid.png"
+  },
+  {
+   "file": "peace-ai-open.png"
   },
   {
    "file": "peace-base.png",
@@ -1216,6 +1373,15 @@
    "sha256": "84e8ec9e74762af332cb4bbcea324981c17cd44b406ef19b30f75b779cfe910c"
   },
   {
+   "file": "pray-ai-closed.png"
+  },
+  {
+   "file": "pray-ai-mid.png"
+  },
+  {
+   "file": "pray-ai-open.png"
+  },
+  {
    "file": "pray-base.png",
    "width": 939,
    "height": 1136,
@@ -1274,6 +1440,15 @@
    "width": 132,
    "height": 71,
    "sha256": "dde0e67b99bf440a0249adf67fae2f48fd30f62ea96042a246e185d6d5b818ef"
+  },
+  {
+   "file": "thumbsup-ai-closed.png"
+  },
+  {
+   "file": "thumbsup-ai-mid.png"
+  },
+  {
+   "file": "thumbsup-ai-open.png"
   },
   {
    "file": "thumbsup-base.png",

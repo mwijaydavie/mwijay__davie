@@ -100,29 +100,47 @@ export function performerDraw(c, host, fps) {
      * This is the piece that was simply missing. She used to talk with a closed
      * mouth, which is exactly what "mdomo umekuwa shut" describes.
      */
-    if (mouth && p.mouth) {
-      const track = Array.isArray(mouth) ? mouth : mouth.frames;
-      const cur = track[Math.min(f, track.length - 1)] || [0, "X"];
-      const [openness, letter] = cur;
-      /**
-       * Draw the mouth at full opacity or not at all.
-       *
-       * The patches are complete replacements for the lip area: each one carries
-       * the whole mouth plus the skin around it. Compositing them at partial
-       * alpha (an earlier version ramped up from 0.25) leaves the closed smile
-       * showing through the new lips, and the result reads as a shut mouth even
-       * though it is animating. So the shape is chosen by openness, not blended.
-       */
-      if (letter !== "X" && openness > 0.10) {
-        const LADDER = ["A", "G", "C", "H", "D", "E", "B", "F"];
-        const idx = Math.min(LADDER.length - 1,
-          Math.max(0, Math.round(openness * (LADDER.length - 1))));
-        const patch = p.mouth[LADDER[idx]];
-        if (patch) {
-          c.save();
-          c.drawImage(layers[patch.file], patch.x, patch.y);
-          c.restore();
-        }
+    /**
+     * The mouth.
+     *
+     * Two sources, in order of preference:
+     *
+     *   1. `p.ai` — AI renders of THIS pose with only the mouth changed. They are
+     *      her real mouth, her real lighting, her real teeth, at three openness
+     *      levels. This is what replaced the kit patches after the kit patch
+     *      painted a grin on her chin: the kit's eight "visemes" are all one
+     *      painted smile with no teeth, so pasting one onto a pose reads as a
+     *      sticker. A model render at three levels does not.
+     *
+     *   2. `p.mouth` — the original kit patches, kept for the poses that do not
+     *      have AI levels yet.
+     *
+     * The level is chosen by openness, not blended: these are complete
+     * replacements for the lip area, so partial alpha would leave the closed
+     * mouth showing through.
+     */
+    const track = mouth && (Array.isArray(mouth) ? mouth : mouth.frames);
+    const cur = track ? (track[Math.min(f, track.length - 1)] || [0, "X"]) : [0, "X"];
+    const [openness, letter] = cur;
+    const voicing = letter !== "X" && openness > 0.06;
+
+    if (p.ai) {
+      const lv = !voicing ? "closed" : openness < 0.42 ? "mid" : "open";
+      const v = p.ai[lv];
+      if (v) {
+        c.save();
+        c.drawImage(layers[v.file], v.cx - v.w / 2, v.cy - v.h / 2);
+        c.restore();
+      }
+    } else if (voicing && p.mouth) {
+      const LADDER = ["A", "G", "C", "H", "D", "E", "B", "F"];
+      const idx = Math.min(LADDER.length - 1,
+        Math.max(0, Math.round(openness * (LADDER.length - 1))));
+      const patch = p.mouth[LADDER[idx]];
+      if (patch) {
+        c.save();
+        c.drawImage(layers[patch.file], patch.x, patch.y);
+        c.restore();
       }
     }
 

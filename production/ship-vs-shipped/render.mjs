@@ -239,7 +239,7 @@ const SCENES = {
 // ---------------------------------------------------------------- page
 await loadFonts();
 const HOST = await loadHost();
-const PLATE = await loadImage(".cache/kit/Inputs/empty-classroom.jpg");
+const PLATE = await loadImage(path.join(process.cwd(), "production/noellyne-host/poses-src/plate-classroom.jpg"));
 
 /**
  * Lift the palette. The first cut used near-black tints and the plate vanished,

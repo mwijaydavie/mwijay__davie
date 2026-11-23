@@ -131,28 +131,37 @@ Then check at 100 %: caption pill clear, no text over the face, no bar over a ha
 
 ## 2 · Lip sync
 
-`performerDraw` draws **no mouth unless you pass one**. Forgetting this is how a Reel shipped with a closed mouth and a moving jaw.
+### The kit's visemes are a lie — do not use them on the newer poses
 
-```sh
-python3 production/noellyne-host/lipsync.py out/mix.wav out/mouth.json --fps 60
-```
+The kit ships eight mouth patches and they look like a viseme set. They are not: **all eight are the same painted grin**, with no teeth and no mouth interior. Measured: 0–18 pixels brighter than 190 in every one of them.
 
-Then:
+Pasting one onto `cheer` or `peace` puts a painted smile on her **chin**, because:
+- the patch is 132×71 but her actual lips are ~200×47, so the patch is the wrong shape entirely
+- her head sits at a different place in each pose, and the rig's automatic mouth-finder locks onto the wrong dark region on a pose that already has an open mouth
+- `WAVE_CENTRE = (494, 363)` in `build-visemes.py` was not the mouth at all — it was up at the brows. Every non-wave patch was placed ~89 px too low.
 
-```js
-draw(f, "review", { pose, mouth: MOUTH, x, y, w, cues, blinks, nods });
-```
+That is the "mdomo unaoongea unachekesha" report. It shipped twice before it was caught, because a contact sheet at 300 px wide hides it and a 100 % crop does not.
 
-The track is one `[openness, visemeLetter]` per frame, analysed from the **final dry mix**. Natural speech lands around **55–65 % open frames**; far outside that means the analysis or the mix is wrong.
+### What works: ask the model for the mouth, three levels
 
-### Rules that were learned the hard way
+For each pose, render **three** images from that pose's own base, changing *only* the mouth:
 
-- **Draw the patch at full opacity.** Partial alpha leaves the closed smile showing through the new lips and the mouth reads shut even while it animates. Pick the shape by openness; do not blend.
-- **Use the kit's patches.** They are real visemes — open, round, wide, with teeth. Do not synthesize replacements: repainting the lip area smears the mouth shut, and row-shifting drags the hoop earrings and the transparent neck edge into frame as ghosting. Both were tried; both are in the git history.
-- **Do not paint teeth over the opening.** A white band across a dark interior reads as a bandage at phone size, not teeth.
-- **Align by the eyebrows.** The gold hoops also match lit skin (167 px error), the lens purple also matches the denim hoodie, and the eye whites also match the teeth. Brows are the only feature that is unambiguously dark, central, and stable — measured spread under 30 px across all nine poses.
+| level | prompt phrase | use |
+| --- | --- | --- |
+| `closed` | (just use the base) | silence, and the gaps between words |
+| `mid` | "slightly open, mid-syllable, lips barely apart showing a small sliver of upper teeth, as if saying eh" | most syllables |
+| `open` | "open in a natural talking shape, upper teeth visible, dark mouth interior, lips parted as if mid-word ah" | stressed vowels |
 
----
+Always list everything that must **not** change: face, eyes and gaze, bun afro, sunglasses position, hoop earrings, hoodie, freckles, skin tone, lighting, the exact pose of the arms. The model holds all of it and changes only the mouth; the diff confirms it.
+
+`build-ai-visemes.py` then:
+1. keys the white background back to the base's own alpha
+2. cuts a **soft ellipse** around the lips (never a rectangle — an ellipse edge is the whole difference between a mouth and a sticker)
+3. writes `assets/<pose>-ai-<level>.png` and a rig `ai` block with cx/cy
+
+`host.mjs` picks the level from openness (`<0.42` → mid, else open) and only falls back to the kit patches for poses that have no AI levels yet.
+
+**Verify at 100 %.** Crop 110×100 around the mouth on a real rendered frame and look. A correct result shows her own teeth and her own lip shape at every level. A wrong one shows a rectangle, a second mouth, or a smile on her chin.
 
 ## 3 · Frame contract
 
