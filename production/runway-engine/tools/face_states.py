@@ -17,6 +17,7 @@ POSES = ['open', 'point', 'peace', 'like', 'ok', 'pray', 'heart', 'count']
 REF = 'assets/character/pose-open-norm.png'
 BLINK = 'assets/character/face-blink-src.png'
 TALK = 'assets/character/face-talk-src.png'
+TALK_MID = 'assets/character/face-talk-mid-src.png'
 OUTDIR = 'assets/character/face'
 os.makedirs(OUTDIR, exist_ok=True)
 GEO = json.load(open('../../content/runway/character/pose-geometry.json'))
@@ -28,6 +29,8 @@ ref = np.asarray(Image.open(REF).convert('RGB')).astype(np.float32)
 REF_HEAD = GEO['reference']          # master: head_cx 439, chin 459, head_h 391
 blink = np.asarray(Image.open(BLINK).convert('RGB')).astype(np.float32)
 talk = np.asarray(Image.open(TALK).convert('RGB')).astype(np.float32)
+talk_hi = np.asarray(Image.open(TALK).convert('RGB')).astype(np.uint8)
+talk_mid = np.asarray(Image.open(TALK_MID).convert('RGB')).astype(np.uint8)
 
 # patch windows on the master sheet (measured: eye centres 383,326 / 478,326; mouth 430,422)
 EYES = dict(l=dict(cx=383, cy=326, w=112, h=76), r=dict(cx=478, cy=326, w=112, h=76))
@@ -105,12 +108,15 @@ for p in POSES:
         hf = f'{OUTDIR}/{p}-half-{side}.png'
         half.save(hf)
         entry['patches'][f'half_{side}'] = dict(file=hf, x=px, y=py, w=e['w'], h=ph)
-    img, _ = make_patch(talk, MOUTH['cx'], MOUTH['cy'], MOUTH['w'], MOUTH['h'], 0, 0, 14)
     px = int(g['head_cx'] + MOUTH_REL['dx'] - MOUTH['w'] / 2)
     py = int(g['chin'] + MOUTH_REL['dy'] - MOUTH['h'] / 2)
-    f = f'{OUTDIR}/{p}-talk.png'
-    img.save(f)
-    entry['patches']['talk'] = dict(file=f, x=px, y=py, w=MOUTH['w'], h=MOUTH['h'])
+    # three mouth states: quiet (her own), mid, and wide. The engine picks between them
+    # from the audio envelope, so a half-volume syllable gets a half-open mouth.
+    for key, src_img in (('talk', talk_hi), ('talkMid', talk_mid)):
+        img, _ = make_patch(src_img, MOUTH['cx'], MOUTH['cy'], MOUTH['w'], MOUTH['h'], 0, 0, 14)
+        f = f'{OUTDIR}/{p}-{key}.png'
+        img.save(f)
+        entry['patches'][key] = dict(file=f, x=px, y=py, w=MOUTH['w'], h=MOUTH['h'])
     meta[p] = entry
     print(f'{p:6s} drift {dx:+d},{dy:+d}  match {score:.2f}')
 

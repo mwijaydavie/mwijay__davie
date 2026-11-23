@@ -21,6 +21,8 @@ import {
   clamp, lerp, unlerp, easeOut, easeInOut, round, readImage, circle,
 } from './core.mjs';
 
+const smoothstep = (x) => { const t = clamp(x); return t * t * (3 - 2 * t); };
+
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const DIR = path.resolve(HERE, '../assets/character');
 
@@ -181,9 +183,18 @@ export function pose(name, t, {
     let out = '';
     // the mouth opens BEFORE the eyes close in reading order, so a blink does not
     // swallow the talk patch
+    // Two mouths, not one. A quiet syllable gets the mid shape and a loud one the wide
+    // shape, cross-faded — a single wide mouth faded in and out is a muppet.
     if (talkAmt > 0.02) {
-      const p = f.patches.talk;
-      out += `<image href="${patchData(p.file)}" x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" opacity="${round(Math.min(1, talkAmt * 1.4) * 100) / 100}"/>`;
+      const mid = f.patches.talkMid, wide = f.patches.talk;
+      const hi = smoothstep(unlerp(talkAmt, 0.28, 0.72));
+      const lo = smoothstep(unlerp(talkAmt, 0.02, 0.30));
+      if (mid && lo > 0.01) {
+        out += `<image href="${patchData(mid.file)}" x="${mid.x}" y="${mid.y}" width="${mid.w}" height="${mid.h}" opacity="${round(lo * (1 - 0.55 * hi) * 100) / 100}"/>`;
+      }
+      if (wide && hi > 0.01) {
+        out += `<image href="${patchData(wide.file)}" x="${wide.x}" y="${wide.y}" width="${wide.w}" height="${wide.h}" opacity="${round(hi * 100) / 100}"/>`;
+      }
     }
     if (b) {
       for (const side of ['l', 'r']) {
