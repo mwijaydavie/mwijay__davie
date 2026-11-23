@@ -1,5 +1,10 @@
 # Altraware Technology — “Unahitaji Website au Application?”
 
+> **PDF (Drive, public):** https://drive.google.com/file/d/1IXDjSAf07MRPe7aFKA8HFyx_QHyXHp9U/view
+> — toleo lililoundwa kwa ajili ya kusoma kwenye Drive; yaliyomo ni haya haya.
+> Picha za tovuti zenu (reference pics za Faida / CareTrack) zikitolewa na owner, nitaziweka
+> ndani ya PDF ijayo.
+
 **30-sekunde · 3 × 10s kwa Google Flow (Veo) · Kiswahili kwanza · Motion graphics · Presenter = picha yako (`image-30.png`)**
 
 Hii ni script na ma-prompt matatu ya kunakili moja kwa moja kwenye Flow — kutengeneza clip moja baada ya nyingine (10s kila moja), kisha kuzunganisha mpangilio huo ukawa 30s moja.
