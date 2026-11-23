@@ -1,6 +1,9 @@
 // The three visual systems. Each template is a pure function of (spec, frame).
 // Background family, type treatment and entry motion differ per track so three
 // accounts never look like the same feed.
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
 import {
   W, H, SAFE, clamp, lerp, unlerp, easeOut, easeInOut, spring, between, reveal, hash01, pick,
   rect, circle, line, text, block, pill, arrow, roundedPath, attrs, round, measure, fit,
@@ -11,6 +14,20 @@ import {nia, poseAt} from './nia.mjs';
 import {transition, moveFor, MOVE_FRAMES} from './motion.mjs';
 import {story} from './storyTrack.mjs';
 import {altraware, ALT} from './altraware.mjs';
+
+// Lip-sync tables baked from each reel's mix (tools/lipsync.py). Keyed by slug.
+const MOUTH_TRACKS = {};
+{
+  const dir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../content/runway/character');
+  if (fs.existsSync(dir)) {
+    for (const f of fs.readdirSync(dir)) {
+      if (f.startsWith('mouth-') && f.endsWith('.json')) {
+        const j = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
+        MOUTH_TRACKS[j.slug] = j;
+      }
+    }
+  }
+}
 import {light, LT} from './light.mjs';
 
 /** Nominal length of one scene. A spec may set `sceneSeconds` (the audio builder does when
@@ -650,10 +667,13 @@ export function renderFrame(spec, frame, {mark, images = {}} = {}) {
     if (cfg) {
       const {pose, since} = poseAt(scene, t);
       const talking = activeCue(scene.cues, t) ? 1 : 0;
+      // if the spec carries a lip-sync track, Nia's mouth follows the mix frame by frame
+      const mt = spec.mouthTrack && MOUTH_TRACKS[spec.mouthTrack];
+      const mouth = mt ? (mt.mouth[Math.min(mt.frames - 1, Math.max(0, Math.round(frame)))] ?? 0) : null;
       cast = nia(since, {
         x: cfg.x ?? 858, y: cfg.y ?? 700, scale: cfg.scale ?? 0.92,
         pose: cfg.pose || pose, accent: cfg.accent || th.accent, tab: cfg.tab || th.accent2,
-        ink: track.layout === 'dark' ? '#0B0D18' : th.ink, talk: talking,
+        ink: track.layout === 'dark' ? '#0B0D18' : th.ink, talk: talking, mouth,
         label: cfg.label ?? 'NIA',
       });
     }

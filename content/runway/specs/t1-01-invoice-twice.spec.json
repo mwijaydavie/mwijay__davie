@@ -67,13 +67,13 @@
       ],
       "cues": [
         {
-          "in": 7,
-          "out": 162,
+          "in": 19,
+          "out": 174,
           "text": "Capture once, in one sheet."
         },
         {
-          "in": 168,
-          "out": 315,
+          "in": 180,
+          "out": 326,
           "text": "Then the draft fills itself."
         }
       ],
@@ -105,8 +105,8 @@
       "source": "Own sample workflow, 20 Nov 2026",
       "cues": [
         {
-          "in": 0,
-          "out": 158,
+          "in": 22,
+          "out": 182,
           "text": "Approve every send by hand."
         }
       ],
@@ -152,18 +152,18 @@
       ],
       "cues": [
         {
-          "in": 0,
-          "out": 50,
+          "in": 16,
+          "out": 86,
           "text": "Who is paying."
         },
         {
-          "in": 56,
-          "out": 172,
+          "in": 92,
+          "out": 208,
           "text": "What, and how many."
         },
         {
-          "in": 178,
-          "out": 302,
+          "in": 214,
+          "out": 326,
           "text": "How much, and which day."
         }
       ],
@@ -199,8 +199,8 @@
       "source": "Own sample workflow, 20 Nov 2026",
       "cues": [
         {
-          "in": 0,
-          "out": 292,
+          "in": 33,
+          "out": 326,
           "text": "Six fields. Written once. Every invoice after that starts here."
         }
       ],
@@ -233,8 +233,8 @@
       "line": "One page. No new software.",
       "cues": [
         {
-          "in": 0,
-          "out": 162,
+          "in": 35,
+          "out": 222,
           "text": "Comment STACK. I'll send the checklist, free."
         }
       ],
@@ -262,5 +262,6 @@
     "seconds": 35.4,
     "voice": "English · female · voice-00",
     "voiceId": "voice-00"
-  }
+  },
+  "mouthTrack": "t1-01-invoice-twice"
 }

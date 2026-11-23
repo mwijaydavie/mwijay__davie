@@ -28,10 +28,10 @@ function eye(cx, cy, r, {blink = 0, lookX = 0, lookY = 0, ink}) {
 
 /**
  * @param {number} t   frames into the current scene
- * @param {object} o   {x,y,scale,pose,accent,tab,ink,talk}
+ * @param {object} o   {x,y,scale,pose,accent,tab,ink,talk,mouth}
  */
 export function nia(t, {x = 540, y = 900, scale = 1, pose = 'idle', accent = '#3343C5',
-                        tab = '#DFFC77', ink = '#161827', talk = 0, label = 'NIA'} = {}) {
+                        tab = '#DFFC77', ink = '#161827', talk = 0, mouth = null, label = 'NIA'} = {}) {
   const p = typeof pose === 'number' ? NIA_POSES[pose] || 'idle' : pose;
   const enter = easeOut(unlerp(t, 0, 14));
   const blob = easeInOut(unlerp(t, 0, 40));
@@ -54,8 +54,13 @@ export function nia(t, {x = 540, y = 900, scale = 1, pose = 'idle', accent = '#3
   const breathe = Math.sin((t / 144) * Math.PI * 2) * 4;
   const blinkPhase = (t % 186) / 186;
   const blink = blinkPhase > 0.94 ? Math.sin(((blinkPhase - 0.94) / 0.06) * Math.PI) : 0;
-  // talking mouth: open/close driven by a fast deterministic wave while `talk` > 0
-  const mouthOpen = talk ? 0.35 + 0.65 * Math.abs(Math.sin((t / 5.5) * Math.PI)) : 0.18;
+  // Mouth: `mouth` is the measured audio envelope for this frame (0..1) when the spec
+  // carries a lip-sync track, so the lips land on the syllables actually being said.
+  // Falling back to `talk` uses the old wave, which is only good enough for a stub.
+  // no floor: at 0 she is shut. A floor leaves her mouth ajar through every pause.
+  const mouthOpen = mouth != null
+    ? clamp(mouth * 1.1)
+    : (talk ? 0.35 + 0.65 * Math.abs(Math.sin((t / 5.5) * Math.PI)) : 0.18);
 
   const dy = lerp(28, P.dy, settle) + breathe * (1 - settle * 0.4);
   const rot = lerp(-9, P.rot, settle);
@@ -108,8 +113,18 @@ export function nia(t, {x = 540, y = 900, scale = 1, pose = 'idle', accent = '#3
       <!-- eyes: rust-orange, so the character is findable in a thumbnail -->
       ${eye(-31, -74, 10, {blink, ink: '#C2410C'})}
       ${eye(31, -74, 10, {blink, ink: '#C2410C'})}
-      <!-- mouth opens while the voice is speaking -->
-      <path d="M -15 -44 Q 0 ${round(-44 + mouthOpen * 17)} 15 -44" fill="none" stroke="${ink}" stroke-width="5" stroke-linecap="round"/>
+      <!-- mouth: a closed smile at rest, filling with a dark opening as the voice
+           rises. The jaw line drops too, so the whole face moves, not just the lip. -->
+      ${(() => {
+        const w = 15 + mouthOpen * 3;
+        const drop = mouthOpen * 20;
+        const top = -44;
+        if (mouthOpen < 0.12) {
+          return `<path d="M ${-w} ${top} Q 0 ${round(top + 9 - mouthOpen * 60)} ${w} ${top}" fill="none" stroke="${ink}" stroke-width="5" stroke-linecap="round"/>`;
+        }
+        const bot = top + 4 + drop;
+        return `<path d="M ${-w} ${top} Q 0 ${round(top - 3)} ${w} ${top} Q ${round(w * 1.02)} ${round((top + bot) / 2)} ${w - 3} ${round(bot)} Q 0 ${round(bot + 7)} ${-w + 3} ${round(bot)} Q ${round(-w * 1.02)} ${round((top + bot) / 2)} ${-w} ${top} Z" fill="${ink}" stroke="${ink}" stroke-width="3.5" stroke-linejoin="round"/>`;
+      })()}
       <!-- ruled lines under the face keep her reading as a form -->
       <line x1="-40" y1="-22" x2="12" y2="-22" stroke="${ink}" stroke-width="4" stroke-opacity="0.16" stroke-linecap="round"/>
       <line x1="-40" y1="-9" x2="-8" y2="-9" stroke="${ink}" stroke-width="4" stroke-opacity="0.16" stroke-linecap="round"/>
