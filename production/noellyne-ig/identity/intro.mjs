@@ -316,6 +316,40 @@ function books(c, x, baseY, w) {
 
 await loadFonts();
 const HOST = await loadHost();
+
+/**
+ * Real photographed props, cut out of their studio white by `cut-props.py`.
+ * The owner asked for "real reference za vitu kama picha … umezicut out vyema":
+ * hand-drawn props read as clip art next to a rendered character at feed size,
+ * so the desk objects are photographs now. The cut carries no shadow, so a
+ * soft contact ellipse is painted under each one — that is what seats it on
+ * the surface.
+ */
+const PROPS = {};
+for (const n of ["laptop", "mug", "plant"]) {
+  PROPS[n] = await loadImage(path.join(HERE, "props", n + ".png"));
+}
+
+/**
+ * Stamp a photographed prop. `x` is the LEFT edge for laptop/mug and the
+ * CENTRE for plant, matching the drawn versions they replace, so call sites
+ * keep their numbers. `baseY` is where the object stands.
+ */
+function photoProp(c, name, x, baseY, w, { center = false } = {}) {
+  const img = PROPS[name];
+  const h = (w * img.height) / img.width;
+  const cx = center ? x : x + w / 2;
+  const g = c.createRadialGradient(cx, baseY, 0, cx, baseY, w * 0.55);
+  g.addColorStop(0, "rgba(31,44,54,0.28)");
+  g.addColorStop(0.55, "rgba(31,44,54,0.12)");
+  g.addColorStop(1, "rgba(31,44,54,0)");
+  c.save();
+  c.translate(cx, baseY); c.scale(1, 0.22); c.translate(-cx, -baseY);
+  c.fillStyle = g;
+  c.beginPath(); c.arc(cx, baseY, w * 0.55, 0, Math.PI * 2); c.fill();
+  c.restore();
+  c.drawImage(img, center ? x - w / 2 : x, baseY - h, w, h);
+}
 const INK_H = 0.985;
 
 /**
@@ -507,11 +541,13 @@ function drawFrame(c, f) {
 
   pool(c, x + w * 0.5, y + w * 0.28, w * 0.76, "255,255,255", 0.55);
 
-  // ── her mouth. The track is per frame; `performerDraw` picks the plate.
-  const m0 = MOUTH[s] || [0, "X"];
+  // ── her mouth. `mouth: false` tells performerDraw to draw NO plate — we
+  //    stamp our own masked one below. Passing the track here drew the raw AI
+  //    plate (opaque dark background beyond her jaw) straight onto the wall.
+  const m0 = MOUTH[f] || [0, "X"];
   her(c, sh.pose, x, y, w, {
     frame: f,
-    mouth: MOUTH,
+    mouth: false,
     cues: [{ kind: sh.pose === "point" ? "point" : sh.pose === "desk" ? "accent" : "wave",
              start: s + 6, len: Math.min(72, sh.len - 12) }],
     nods: [s + 12],
@@ -536,9 +572,9 @@ function drawFrame(c, f) {
   const floorY = WIDE ? H * 0.845 : H * 0.785;
   herShadow(c, x + w / 2, deskY + 26, w);
   const d = desk(c, deskY, { bottom: floorY });
-  if (sh.pose === "point") plant(c, W - 150, d.front + 2, 130, { pot: "#f0d8bb" });
-  else if (sh.pose === "peace") plant(c, 150, d.front + 2, 125, { pot: "#ffe2d6", leaf: "#5aa88b" });
-  else if (sh.pose === "desk") mug(c, W - 210, d.front - 6, 74, "#ffffff");
+  if (sh.pose === "point") photoProp(c, "plant", W - 150, d.front + 2, 130, { center: true });
+  else if (sh.pose === "peace") photoProp(c, "plant", 150, d.front + 2, 125, { center: true });
+  else if (sh.pose === "desk") photoProp(c, "mug", W - 210, d.front - 6, 74);
   else books(c, W - 300, d.front - 4, 150);
   floorPapers(c, floorY, 7);
 

@@ -349,6 +349,40 @@ await loadFonts();
 const HOST = await loadHost();
 
 /**
+ * Real photographed props, cut out of their studio white by `cut-props.py`.
+ * The owner asked for "real reference za vitu kama picha … umezicut out vyema":
+ * hand-drawn props read as clip art next to a rendered character at feed size,
+ * so the desk objects are photographs now. The cut carries no shadow, so a
+ * soft contact ellipse is painted under each one — that is what seats it on
+ * the surface.
+ */
+const PROPS = {};
+for (const n of ["laptop", "mug", "plant"]) {
+  PROPS[n] = await loadImage(path.join(HERE, "props", n + ".png"));
+}
+
+/**
+ * Stamp a photographed prop. `x` is the LEFT edge for laptop/mug and the
+ * CENTRE for plant, matching the drawn versions they replace, so call sites
+ * keep their numbers. `baseY` is where the object stands.
+ */
+function photoProp(c, name, x, baseY, w, { center = false } = {}) {
+  const img = PROPS[name];
+  const h = (w * img.height) / img.width;
+  const cx = center ? x : x + w / 2;
+  const g = c.createRadialGradient(cx, baseY, 0, cx, baseY, w * 0.55);
+  g.addColorStop(0, "rgba(31,44,54,0.28)");
+  g.addColorStop(0.55, "rgba(31,44,54,0.12)");
+  g.addColorStop(1, "rgba(31,44,54,0)");
+  c.save();
+  c.translate(cx, baseY); c.scale(1, 0.22); c.translate(-cx, -baseY);
+  c.fillStyle = g;
+  c.beginPath(); c.arc(cx, baseY, w * 0.55, 0, Math.PI * 2); c.fill();
+  c.restore();
+  c.drawImage(img, center ? x - w / 2 : x, baseY - h, w, h);
+}
+
+/**
  * Her, on a light set.
  *
  * `inkH` is the fraction of her box height that actually has ink in it. At
@@ -575,12 +609,12 @@ function feedScene(id) {
   floorPlane(c, W, H, H * 0.812, "222,208,244");
 
   if (id === "studio") {
-    laptop(c, W * 0.635, hem + 40, 250);
-    mug(c, W * 0.185, hem + 34, 74, "#ffffff");
+    photoProp(c, "laptop", W * 0.635, hem + 40, 250);
+    photoProp(c, "mug", W * 0.315, hem + 34, 74);
     books(c, W * 0.14, hem + 30, 150);
   } else if (id === "desk") {
-    laptop(c, W * 0.155, hem + 38, 205);
-    mug(c, W * 0.755, hem + 32, 70, "#fdf8ee");
+    photoProp(c, "laptop", W * 0.155, hem + 38, 205);
+    photoProp(c, "mug", W * 0.755, hem + 32, 70);
     // a drawing sheet laid flat, held by a second hand-sized weight
     c.save();
     c.translate(W * 0.70, hem + 54);
@@ -593,11 +627,11 @@ function feedScene(id) {
     }
     c.restore();
   } else if (id === "room") {
-    plant(c, W * 0.845, hem + 40, 138, { pot: "#f0d8bb" });
+    photoProp(c, "plant", W * 0.845, hem + 40, 138, { center: true });
     books(c, W * 0.10, hem + 34, 165);
   } else {
-    plant(c, W * 0.115, hem + 38, 140, { pot: "#ffe2d6", leaf: "#5aa88b" });
-    mug(c, W * 0.80, hem + 34, 76, "#ffffff", "#e8735a");
+    photoProp(c, "plant", W * 0.115, hem + 38, 140, { center: true });
+    photoProp(c, "mug", W * 0.80, hem + 34, 76);
   }
 
   // foreground papers, hung off the top corners — depth above, furniture below
@@ -658,8 +692,8 @@ function bannerIG() {
   herShadow(c, h.cx, hem + 24, w);
   desk(c, { y: hem + 4, w: W, bottom: H * 0.700, color: "#eee2cd", apron: "#e3d4ba" });
   floorPlane(c, W, H, H * 0.700, "222,208,244");
-  laptop(c, W * 0.665, hem + 46, 240);
-  mug(c, W * 0.175, hem + 40, 78, "#ffffff");
+  photoProp(c, "laptop", W * 0.665, hem + 46, 240);
+  photoProp(c, "mug", W * 0.315, hem + 40, 78);
   books(c, W * 0.135, hem + 36, 148);
 
   // ── type on the apron
@@ -716,8 +750,8 @@ function bannerYT() {
   herShadow(c, h.cx, hem + 22, w);
   desk(c, { y: hem + 2, w: W, bottom: H * 0.875, color: "#f3e6d2", apron: "#e8d8bd" });
   floorPlane(c, W, H, H * 0.875, "238,222,250");
-  plant(c, W - 120, hem + 34, 155, { pot: "#ffe2d6", leaf: "#5aa88b" });
-  mug(c, W * 0.735, hem + 30, 66, "#ffffff", "#e8735a");
+  photoProp(c, "plant", W - 120, hem + 34, 155, { center: true });
+  photoProp(c, "mug", W * 0.735, hem + 30, 66);
 
   // ── type: inside the safe area
   rect(c, sx, sy + 26, 5, 286, 2.5, VIOLET);

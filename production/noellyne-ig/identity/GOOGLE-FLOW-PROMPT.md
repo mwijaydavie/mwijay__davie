@@ -4,8 +4,15 @@ Paste-ready prompt for **Google Flow** (Flow with Gemini / Veo). Flow animates a
 **still you supply**, so the job of the prompt is not to invent her — it is to
 tell Flow what to move, what to leave alone, and how the camera behaves.
 
-Use it with `out/look-plum.png` (or the head-and-shoulders crop of it). Read
+Use it with `out/banner-ig.png` (or the head-and-shoulders crop of it). Read
 **§ 0** before you paste, and **§ 6** if the first take drifts off-model.
+
+> **v2 note — the look changed.** The owner said "dont prioritize dark bgs …
+> neons nyeusi kisa tupo in tech". Every reference in this file now describes
+> the **daylight** pack: cream paper, soft mint, warm sand, pale lilac, a desk
+> under her waist, and her mouth — in stills at least — mid-word. If you find a
+> "plum", "neon", or "mid-word expression" line below this section, it is a leftover
+> from v1 — delete it or fix it to match.
 
 ---
 
@@ -35,23 +42,28 @@ Use it with `out/look-plum.png` (or the head-and-shoulders crop of it). Read
 > her, do not change her age, do not change her outfit.
 >
 > **The action:** she is looking slightly off-camera, then her eyes find the
-> lens. A small, warm, closed-lip smile arrives a beat later. One slow natural
-> blink at 0:02. A tiny nod at 0:05. Her left hand lifts into a relaxed
-> half-wave that stops at shoulder height — it does **not** come toward the
-> camera and it does **not** leave the frame. Nothing else moves.
+> lens. Her mouth is parted exactly as it is in the reference still — mid-word,
+> upper teeth just visible — and it stays that way, or opens and closes gently
+> with the speech rhythm. One slow natural blink at 0:02. A tiny nod at 0:05.
+> Her left hand lifts into a relaxed half-wave that stops at shoulder height —
+> it does **not** come toward the camera and it does **not** leave the frame.
+> Nothing else moves.
 >
 > **The camera:** very slow push-in, about 6 % over the full eight seconds,
 > locked-off horizon, no handheld wobble, no parallax shift. The framing never
 > changes: head-and-shoulders, her eyes sitting on the upper third, the top of
 > her puffs just inside the frame.
 >
-> **The light:** soft key from camera-left, a cool violet rim light from behind
-> separating her shoulders from a deep plum background, a faint lavender haze
-> low in the frame. The key does not flicker and its direction never changes.
+> **The light:** soft daylight from camera-left, warm and high, the way a room
+> with big windows looks at 10 a.m. A gentle cool bounce from the opposite side,
+> no rim glow, no coloured haze. The key does not flicker and its direction
+> never changes.
 >
-> **The background:** a quiet deep-plum studio with a single soft violet glow
-> behind her, a few very faint out-of-focus dust motes drifting slowly upward.
-> No text, no logos, no props entering frame.
+> **The background:** a quiet daylight set in the same family as the rest of
+> the pack — cream paper with a soft lilac wash, or soft mint, or warm sand.
+> One large sun-pool behind her, one thin orbit arc, a sheet or two of laid
+> paper drifting at the frame edge if any motion at all is asked of them. No
+> text, no logos, no props entering frame.
 >
 > **Avoid:** photoreal skin, changing her hairstyle, adding sunglasses over her
 > eyes, adding hands or fingers that did not exist, morphing her hoodie, rapid
@@ -98,18 +110,18 @@ Six seconds each, same palette. These give you something to cut to, so her face
 is not on screen for the full sixteen seconds.
 
 > Cinematic macro shot, vertical 9:16. A sheet of cream paper with faint
-> technical grid lines floats slowly in deep-plum space, rotating two degrees,
-> catching a soft violet rim light along one edge. Very shallow depth of field,
-> the background a smooth plum-to-black gradient. Slow drift to the right. No
+> technical grid lines on it leans against an invisible sunbeam, rotating two
+> degrees, catching warm light along one edge. Very shallow depth of field, the
+> background a soft cream-to-lilac gradient. Slow drift to the right. No
 > text, no writing, no hands, no person.
 
 > Cinematic shot, vertical 9:16. A thin lavender circle drawn in space rotates
 > slowly, exactly one quarter turn over six seconds, while a soft light travels
-> around it once. Deep plum background, faint dust motes, generous negative
+> around it once. Pale-lilac background with a soft sun-pool, generous negative
 > space on the left. No text, no person.
 
 > Cinematic shot, vertical 9:16. Thirty small paper squares in cream, lavender
-> and gold drift gently upward through a dark violet void, tumbling slowly, out
+> and gold drift gently upward through a warm sand-lit room, tumbling slowly, out
 > of focus in the foreground, sharp in the middle distance. Calm, no turbulence,
 > no wind, no camera shake.
 
@@ -161,7 +173,7 @@ The failure modes, in the order they happen:
 | Her hoodie changes colour or cut | the prompt described the outfit too loosely | do not describe it at all — rely on **`preserve the reference image exactly`** |
 | The camera pulls back and shows no legs | "cinematic" implies a wide | add **`the camera never pulls back; framing stays head-and-shoulders for the entire clip`** |
 | Her puffs jiggle like jelly | too much motion amplitude | add **`her hair moves only slightly, with weight, as real curls do`** |
-| Background turns into a room | model adds context | add **`the background stays an abstract deep-plum studio void; no walls, no furniture, no windows`** |
+| Background turns into a busy scene | model adds context | add **`the background stays the quiet daylight set from the reference — one sun-pool, one paper sheet, still life; no people, no clutter`** |
 
 ---
 

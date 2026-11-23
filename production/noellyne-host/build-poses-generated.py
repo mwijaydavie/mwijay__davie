@@ -30,7 +30,9 @@ CANVAS_W, CANVAS_H = RIG["width"], RIG["height"]
 
 # Landmarks, measured once on the approved pose and shared by every generated one.
 WAVE = RIG["poses"]["wave"]
-MARK = tuple(WAVE["mark"])
+# `mark: null` in the rig means the badge is already baked (see build-logo.py).
+# Fall back to the measured wave box, as the skill instructs.
+MARK = tuple(WAVE["mark"] or [546, 711, 41, 24])
 
 # Where her face sits on the shared canvas, from the approved wave pose: the
 # sunglasses run from x=311 to x=560, i.e. 249 px wide, centred at 435.
@@ -127,9 +129,15 @@ def sha(p: Path) -> str:
 
 
 def main():
+    # Pass pose names to register only those (and merge them into the existing
+    # rig instead of rebuilding it). Without arguments, registers everything —
+    # the original behaviour.
+    wanted = set(sys.argv[1:])
     made = []
     for path in sorted(SRC.glob("*-raw.png")):
         name = path.name.replace("-raw.png", "")
+        if wanted and name not in wanted:
+            continue
         keyed = register(key_grey(path))
         base = ASSETS / f"{name}-base.png"
         keyed.save(base)
@@ -167,7 +175,10 @@ def main():
             files.append({"file": p.name, "width": im.width, "height": im.height,
                           "sha256": sha(p)})
     RIG["files"] = files
-    RIG["poses_order"] = ["wave", "point", "desk", "phone"] + made
+    if wanted:
+        RIG["poses_order"] = [p for p in RIG["poses_order"] if p not in made] + made
+    else:
+        RIG["poses_order"] = ["wave", "point", "desk", "phone"] + made
     (ASSETS / "host-rig.json").write_text(json.dumps(RIG, indent=1))
     print(f"rig now has {len(RIG['poses'])} poses")
 

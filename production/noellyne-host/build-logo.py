@@ -42,6 +42,9 @@ BADGES = {
     "peace":    (568, 644, 618, 669),
     "pray":     (541, 709, 597, 736),
     "thumbsup": (541, 709, 597, 737),
+    "present":  (541, 707, 599, 735),
+    "one":      (541, 707, 599, 735),
+    "hold":     (541, 707, 599, 735),
 }
 COVER = 0.94      # how much of the patch height the print fills
 INK = 0.97        # print opacity
@@ -84,8 +87,12 @@ def apply(im: Image.Image, box) -> Image.Image:
 
 
 def main():
+    import sys
+    wanted = set(sys.argv[1:])
     check = []
     for name in RIG["poses_order"]:
+        if wanted and name not in wanted:
+            continue
         p = RIG["poses"][name]
         box = BADGES.get(name)
         if not box:

@@ -35,11 +35,13 @@ MOUTH = {
     "wave": (520, 480), "point": (525, 478), "desk": (520, 487), "phone": (515, 485),
     "cheer": (540, 455), "ok": (520, 465), "peace": (520, 435), "pray": (520, 470),
     "thumbsup": (510, 490),
+    "present": (505, 485), "one": (505, 485), "hold": (505, 485),
 }
 # lip width per pose, so the plate always covers the real mouth
 LIPW = {
     "wave": 200, "point": 200, "desk": 200, "phone": 200, "cheer": 176,
     "ok": 200, "peace": 186, "pray": 200, "thumbsup": 196,
+    "present": 200, "one": 200, "hold": 200,
 }
 LEVELS = ("closed", "mid", "open")
 
