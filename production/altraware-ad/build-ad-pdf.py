@@ -222,7 +222,8 @@ toc = [
     ("05", "BEAT 3 — ANZA LEO (0:20–0:30): CTA, bei, domain, tagline"),
     ("06", "Ma-prompt ya Google Flow — CLIP 1 (kunakili moja kwa moja)"),
     ("07", "Ma-prompt ya Google Flow — CLIP 2"),
-    ("08", "Ma-prompt ya Google Flow — CLIP 3"),
+    ("08", "Ma-prompt ya Google Flow — CLIP 3 (toleo la bidhaa)"),
+    ("★", "TOLEO JIPYA — GENERAL & FUN: prompts mpya, hakuna CareTrack (linapendekezwa)"),
     ("09", "Configura Flow: reference image, 9:16, 10s, Veo"),
     ("10", "Picha halisi za demos — jinsi ya kurekodi Faida & CareTrack"),
     ("11", "Picha za kurejea kutoka tovuti (altra.tanzaniareach.com)"),
@@ -445,6 +446,84 @@ Camera: slow 4% push-in on the open, gentle pull-back on the hold — everything
 still. Audio: her voice + music swell (warm afro-house / amapiano-lite, no vocals),
 resolving on the last word."""
 
+CLIP1_G = """Vertical 9:16, 10 seconds, Altraware commercial — warm, playful. Subject: the attached
+reference image — the EXACT same woman, same face, same long voluminous dark wavy hair,
+same gold hoop earrings, thin gold necklace, black off-shoulder top. Do not redesign her.
+Action: she BURSTS into frame mid-sentence as if the camera was already rolling, laughs,
+points straight at the viewer like she caught them; leans in mock-serious for the last line.
+Environment: warm terracotta-brown studio wall, soft string lights blurred on the left,
+one wooden stool, cream floor — daylight, never black or neon. Camera: eye-level medium
+shot; one slow push-in (dolly-in) across the 10 seconds, ending at medium close-up.
+Movement: handheld micro-float only — no other camera move; at 0:08 a quick whip-pan cut
+to white. Lighting: warm golden key light from camera right, soft bounce fill from camera
+left, one subtle lens flare at 0:09. Composition: she sits slightly right-of-frame; the
+left third stays open for big bold text. Mood: a friend teasing you at a kiosk — bright,
+quick, warm, never slick.
+
+Swahili VO (clear moving lips, natural Swahili): "Sema boss! Biashara yako… iko wapi sasa
+hivi? Kama mteja akakutafuta Google — akakututa tano? Wacha nione."
+
+Motion graphics — simple, big, one language, easy to build in the editor:
+- 0:02 Lower-third text pops in with a soft pop: "BIASHARA YAKO IKO WAPI?" (bold white
+  letters on a violet pill, bottom-left).
+- 0:04 Fast full-screen joke card: "GOOGLE > HAKUNA?!" (violet text on cream, stamped on
+  with a thump).
+- 0:08 On "Wacha nione." the frame flashes white for 0.4s — then CLIP 2.
+SFX: record-scratch or rimshot on her pop-in · thump · whoosh. Music: afro-house sneaks
+in from 0:06 under the VO. Audio: silent from Flow — VO is recorded separately."""
+
+CLIP2_G = """Vertical 9:16, 10 seconds, SAME presenter, SAME terracotta studio. Subject: the attached
+reference image again — same face, same hair, same gold hoops, same black top. Action:
+she taps her phone like casting a spell; a playful fan of floating icons blooms above her
+palm — a browser window, a chat bubble, a bar chart — each popping with its own sound;
+she catches an invisible flying bill, stamps it "LIMESHUGHULIKIWA", slides it off-screen;
+finishes with both palms open, still delighted. Environment: same warm studio; a small
+café table enters frame with a laptop (cool-blue glow from the laptop vs the warm key).
+Camera: starts on her hands (detail), slowly tilts up to her face, then locked-off medium
+shot with a gentle 4% push-in. Movement: tilt-up once — no other camera move. Lighting:
+warm golden key (as CLIP 1) + cool soft fill from the laptop. Composition: centred on her
+face for symmetry when she opens her palms; icons orbit left, text lands right. Mood:
+mischievous delight — "we built something cool, and it actually works here."
+
+Swahili VO: "Website? Tunayo. Application? Tunaizaa. Mteja anatuma order… simu inapiga…
+pesa zinakuja. Teknolojia inayofanya kazi kama ilivyoumbwa — na inaelewa Kiswahili."
+
+Motion graphics — big and readable, build in the editor:
+- 0:01–0:04 Three sticker-icons pop in one by one over her palm (browser, chat, graph) —
+  each with a soft pop SFX.
+- 0:05 Words land on the right in mono font: "ORDER > SMS > MPESA INAKUJA" (cream on
+  violet strip).
+- 0:07 A price counter clicks up slot-machine style: "TSh 350,000/=" with small mono
+  caption under it: "tovuti · kuanzia" — then stamps down with a thump. Hold 1s.
+- 0:08 Toggle pill flicks on: "SW / EN".
+- 0:09–0:10 Flash to cream; cut to CLIP 3.
+SFX: pop x3 · phone chime · cash-register thump · toggle click · whoosh. Music: beat
+drops in properly. Text stays <= 2 lines per moment."""
+
+CLIP3_G = """Vertical 9:16, 10 seconds, SAME presenter, SAME studio — golden light pushed warmer, as
+the sun sets behind her. Subject: the attached reference image, centred — same face,
+hair, hoops, top. Action: she half-smiles, wags a finger playfully; then opens her hand
+invite to camera like a show-and-tell invitation; last beat — small wink, small wave,
+satisfied nod. Environment: same warm studio, string lights a little closer to glowing.
+Camera: eye-level medium close-up; ONE slow 4% dolly-in across the whole clip — no cuts
+until the end-card. Lighting: golden key from camera right, raised warmer; soft rim
+light behind her shoulder; gentle bloom on highlights. Composition: she dead centre;
+lower third left clean for the CTA card; end-card fills frame 0:26–0:30. Mood: warm
+sign-off — friend-in-the-know, zero desperation.
+
+Swahili VO: "Kwa hivyo — unataka website? Au application? Wacha tuanze.
+altra.tanzaniareach.com. Tupigie neno. Sisi ni Altraware — teknolojia inayozungumza
+lugha yako."
+
+End-card (build in the editor over a cream card or the last warm frame):
+- Altraware violet cloud logo draws itself in (left).
+- Under it, "altra.tanzaniareach.com" types out letter-by-letter with a blinking cursor.
+- Big serif headline: "ANZA LEO."
+- Tagline: "Technology that speaks our language." (small, elegant)
+- Tiny mono line: "DAR ES SALAAM · KISWAHILI KWANZA".
+Hold 12 frames, then cut to black for 6 frames. Music resolves.
+SFX: soft whoosh + warm chime on "ANZA LEO."""
+
 WIDE_NOTE = ("YouTube/16:9: kwa kila prompt ongeza tu — “frame for 16:9, subject "
              "right-of-centre, copy block on the left third, end-card centred.” "
              "Kwa Flow, chagua aspect 16:9 kwenye settings; muundo wa kamera alio mahali yake.")
@@ -457,6 +536,45 @@ story.append(Paragraph("07 — CLIP 2 · Ma-prompt ya Flow: MAJIBU HALISI", H1))
 prompt_block(CLIP2)
 story.append(Paragraph("08 — CLIP 3 · Ma-prompt ya Flow: ANZA LEO", H1))
 prompt_block(CLIP3)
+
+# ── ★ TOLEO JIPYA — GENERAL & FUN ───────────────────────────────────────────
+story.append(Paragraph("★ TOLEO JIPYA — GENERAL &amp; FUN (linapendekezwa)", H1))
+story.append(Paragraph(
+    "Mabadiliko dhidi ya §03–§08 (toleo la bidhaa): hakuna CareTrack — wala bidhaa yoyote "
+    "yenyewe; nguvu zote iko kwenye hisia, ucheshi na CTA moja; maneno ya motion graphics "
+    "yameandikwa kwa lugha ya kawaida (anayesoma anaelewa anachoweka kwenye skrini); "
+    "na direction ya kamera/mwanga/utunzi inafuata kanuni ya kiufundi "
+    "(.agents/skills/google-flow-cinematic-prompts/SKILL.md): Sentensi kamili, kwa ukamilifu, "
+    "moja kwa moja kwenye Flow — si /commands.", SMALL))
+gen_tbl = [[Paragraph("<b>BEAT</b>", CELLW), Paragraph("<b>SEKUNDE</b>", CELLW), Paragraph("<b>HISIA</b>", CELLW)],
+    [Paragraph("<b>1 — SWALI FUN</b>", CELL), Paragraph("0:00 – 0:10", CELL),
+     Paragraph("Presenter anavulika kwenye kamera akiwa na furaha — swali moja la siri: “Biashara yako iko wapi?” Jibu linakataa kuwepo kwenye Google", CELL)],
+    [Paragraph("<b>2 — TECH INAYOFANYA KAZI</b>", CELL), Paragraph("0:10 – 0:20", CELL),
+     Paragraph("Sticker icons, order inaingia, pesa inakuja, counter ya 350K, SW/EN — ucheshi lakini ukweli: teknolojia inafanya kitaalam", CELL)],
+    [Paragraph("<b>3 — ANZA LEO</b>", CELL), Paragraph("0:20 – 0:30", CELL),
+     Paragraph("Finger-wag ya kirafiki → mkono waalika → end-card: logo, domain, “ANZA LEO.”, tagline halisi", CELL)]]
+t = Table(gen_tbl, colWidths=[40 * mm, 22 * mm, PAGE_W - 2 * M - 62 * mm])
+t.setStyle(TableStyle([
+    ("BACKGROUND", (0, 0), (-1, 0), VIOLET),
+    ("ROWBACKGROUNDS", (0, 1), (-1, -1), [HexColor("#fffdf8"), HexColor("#faf7ee")]),
+    ("GRID", (0, 0), (-1, -1), 0.4, HexColor("#e7dfcf")),
+    ("VALIGN", (0, 0), (-1, -1), "TOP"),
+    ("TOPPADDING", (0, 0), (-1, -1), 6), ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
+]))
+story.append(t)
+story.append(Spacer(1, 6))
+story.append(Paragraph("VO (rekodiwenu — Flow isindeze Kiswahili)", H2))
+story.append(Paragraph("CLIP 1 — <i>“Sema boss! Biashara yako… iko wapi sasa hivi? Kama mteja akakutafuta Google — akakututa tano? Wacha nione.”</i><br/>"
+                       "CLIP 2 — <i>“Website? Tunayo. Application? Tunaizaa. Mteja anatuma order… simu inapiga… pesa zinakuja. Teknolojia inayofanya kazi kama ilivyoumbwa — na inaelewa Kiswahili.”</i><br/>"
+                       "CLIP 3 — <i>“Kwa hivyo — unataka website? Au application? Wacha tuanze. altra.tanzaniareach.com. Tupigie neno. Sisi ni Altraware — teknolojia inayozungumza lugha yako.”</i>", BODY))
+story.append(Paragraph("CLIP 1 — SWALI FUN", H2))
+prompt_block(CLIP1_G)
+story.append(Paragraph("CLIP 2 — TECH INAYOFANYA KAZI", H2))
+prompt_block(CLIP2_G)
+story.append(Paragraph("CLIP 3 — ANZA LEO", H2))
+prompt_block(CLIP3_G)
+story.append(Paragraph("Toleo la bidhaa (na Faida POS + CareTrack) lipo §03–§08. Chagua moja — kanuni zote za sauti, editor, UFAME na uzinduzi zinasalia kama zilivyo.", SMALL))
+
 story.append(Paragraph(WIDE_NOTE, SMALL))
 
 # ── §09 Flow config ─────────────────────────────────────────────────────────

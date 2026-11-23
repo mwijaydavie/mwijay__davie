@@ -7,6 +7,115 @@
 
 **30-sekunde · 3 × 10s kwa Google Flow (Veo) · Kiswahili kwanza · Motion graphics · Presenter = picha yako (`image-30.png`)**
 
+## TOLEO B — GENERAL FUN (Novemba 2026) · linapendekezwa · hakuna CareTrack
+
+Mabadiliko dhidi ya toleo la awali (§01–15): **hakuna CareTrack** (wala bidhaa yoyote
+yenyewe — si Faida pia); nguvu zote iko kwenye **hisia + ucheshi + CTA moja**; maandishi ya
+motion graphics yameandikwa **kwa Kiswahili cha kawaida** (kila anayesoma anaelewa anachoweka
+kwenye skrini); na direction ya kamera/mwanga/utunzi sasa inafuata kanuni ya
+`.agents/skills/google-flow-cinematic-prompts/SKILL.md` (subject + action + environment +
+camera + movement + lighting + composition + mood, kwa sentensi — sio "/commands").
+
+**VO (Swahili, funna, ~2.8–3 neno/sekunde):**
+
+- CLIP 1 — *"Sema boss! Biashara yako… iko wapi sasa hivi? Kama mteja akakutafuta Google — akakututa tano? Wacha nione."*
+- CLIP 2 — *"Website? Tunayo. Application? Tunaizaa. Mteja anatuma order… simu inapiga… pesa zinakuja. Teknolojia inayofanya kazi kama ilivyoumbwa — na inaelewa Kiswahili."*
+- CLIP 3 — *"Kwa hivyo — unataka website? Au application? Wacha tuanze. altra.tanzaniareach.com. Tupigie neno. Sisi ni Altraware — teknolojia inayozungumza lugha yako."*
+
+**CLIP 1 — SWALI FUN (kunakili kwenye Flow):**
+
+```
+Vertical 9:16, 10 seconds, Altraware commercial — warm, playful. Subject: the attached
+reference image — the EXACT same woman, same face, same long voluminous dark wavy hair,
+same gold hoop earrings, thin gold necklace, black off-shoulder top. Do not redesign her.
+Action: she BURSTS into frame mid-sentence as if the camera was already rolling, laughs,
+points straight at the viewer like she caught them; leans in mock-serious for the last line.
+Environment: warm terracotta-brown studio wall, soft string lights blurred on the left,
+one wooden stool, cream floor — daylight, never black or neon. Camera: eye-level medium
+shot; one slow push-in (dolly-in) across the 10 seconds, ending at medium close-up.
+Movement: handheld micro-float only — no other camera move; at 0:08 a quick whip-pan cut
+to white. Lighting: warm golden key light from camera right, soft bounce fill from camera
+left, one subtle lens flare at 0:09. Composition: she sits slightly right-of-frame; the
+left third stays open for big bold text. Mood: a friend teasing you at a kiosk — bright,
+quick, warm, never slick.
+
+Swahili VO (clear moving lips, natural Swahili): "Sema boss! Biashara yako… iko wapi sasa
+hivi? Kama mteja akakutafuta Google — akakututa tano? Wacha nione."
+
+Motion graphics — simple, big, one language, easy to build in the editor:
+- 0:02 Lower-third text pops in with a soft pop: "BIASHARA YAKO IKO WAPI?" (bold white
+  letters on a violet pill, bottom-left).
+- 0:04 Fast full-screen joke card: "GOOGLE → HAKUNA?!" (violet text on cream, stamped on
+  with a thump).
+- 0:08 On "Wacha nione." the frame flashes white for 0.4s — then CLIP 2.
+SFX: record-scratch or rimshot on her pop-in · thump · whoosh. Music: afro-house sneaks
+in from 0:06 under the VO. Audio: silent from Flow — VO is recorded separately.
+```
+
+**CLIP 2 — TECH INAYOFANYA KAZI (kunakili kwenye Flow):**
+
+```
+Vertical 9:16, 10 seconds, SAME presenter, SAME terracotta studio. Subject: the attached
+reference image again — same face, same hair, same gold hoops, same black top. Action:
+she taps her phone like casting a spell; a playful fan of floating icons blooms above her
+palm — a browser window, a chat bubble, a bar chart — each popping with its own sound;
+she catches an invisible flying bill, stamps it "LIMESHUGHULIKIWA", slides it off-screen;
+finishes with both palms open, still delighted. Environment: same warm studio; a small
+café table enters frame with a laptop (cool-blue glow from the laptop vs the warm key).
+Camera: starts on her hands (detail), slowly tilts up to her face, then locked-off medium
+shot with a gentle 4% push-in. Movement: tilt-up once — no other camera move. Lighting:
+warm golden key (as CLIP 1) + cool soft fill from the laptop. Composition: centred on her
+face for symmetry when she opens her palms; icons orbit left, text lands right. Mood:
+mischievous delight — "we built something cool, and it actually works here."
+
+Swahili VO: "Website? Tunayo. Application? Tunaizaa. Mteja anatuma order… simu inapiga…
+pesa zinakuja. Teknolojia inayofanya kazi kama ilivyoumbwa — na inaelewa Kiswahili."
+
+Motion graphics — big and readable, build in the editor:
+- 0:01–0:04 Three sticker-icons pop in one by one over her palm (browser, chat, graph) —
+  each with a soft pop SFX.
+- 0:05 Words land on the right in mono font: "ORDER → SMS → MPESA INAKUJA" (cream on
+  violet strip).
+- 0:07 A price counter clicks up slot-machine style: "TSh 350,000/=" with small mono
+  caption under it: "tovuti · kuanzia" — then stamps down with a thump. Hold 1s.
+- 0:08 Toggle pill flicks on: "SW / EN".
+- 0:09–0:10 Flash to cream; cut to CLIP 3.
+SFX: pop x3 · phone chime · cash-register thump · toggle click · whoosh. Music: beat
+drops in properly. Text stays <= 2 lines per moment.
+```
+
+**CLIP 3 — ANZA LEO (kunakili kwenye Flow):**
+
+```
+Vertical 9:16, 10 seconds, SAME presenter, SAME studio — golden light pushed warmer, as
+the sun sets behind her. Subject: the attached reference image, centred — same face,
+hair, hoops, top. Action: she half-smiles, wags a finger playfully; then opens her hand
+invite to camera like a show-and-tell invitation; last beat — small wink, small wave,
+satisfied nod. Environment: same warm studio, string lights a little closer to glowing.
+Camera: eye-level medium close-up; ONE slow 4% dolly-in across the whole clip — no cuts
+until the end-card. Lighting: golden key from camera right, raised warmer; soft rim
+light behind her shoulder; gentle bloom on highlights. Composition: she dead centre;
+lower third left clean for the CTA card; end-card fills frame 0:26–0:30. Mood: warm
+sign-off — friend-in-the-know, zero desperation.
+
+Swahili VO: "Kwa hivyo — unataka website? Au application? Wacha tuanze.
+altra.tanzaniareach.com. Tupigie neno. Sisi ni Altraware — teknolojia inayozungumza
+lugha yako."
+
+End-card (build in the editor over a cream card or the last warm frame):
+- Altraware violet cloud logo draws itself in (left).
+- Under it, "altra.tanzaniareach.com" types out letter-by-letter with a blinking cursor.
+- Big serif headline: "ANZA LEO."
+- Tagline: "Technology that speaks our language." (small, elegant)
+- Tiny mono line: "DAR ES SALAAM · KISWAHILI KWANZA".
+Hold 12 frames, then cut to black for 6 frames. Music resolves.
+SFX: soft whoosh + warm chime on "ANZA LEO."
+```
+
+Toleo la bidhaa (Faida/CareTrack) liko kwenye §01–§15 hapo chini — chagua moja; §14 UFAME inashikilia hata kama ukichagua toleo B (hakuna claim za bidhaa ndani yake, lakini bei "350,000/= tovuti kuanzia" inawaka kwa ticker ya tovuti — thibitisha kwenye /pricing).
+
+---
+
 Hii ni script na ma-prompt matatu ya kunakili moja kwa moja kwenye Flow — kutengeneza clip moja baada ya nyingine (10s kila moja), kisha kuzunganisha mpangilio huo ukawa 30s moja.
 
 ---
