@@ -95,18 +95,89 @@ different length is safe — `mix.py` re-measures and the edit moves with it.
 - Do not add a text card on a cream mat. Every frame is built, full bleed.
 - Do not stack two audios. One voice, one bed.
 
-## Drive links (public)
+## Drive links (public) — v2
+
+**v2** answers three notes: daylight instead of black/neon, a mouth that moves, and a desk in front of her so she never reads as a floating sticker.
 
 | Item | Link |
 |---|---|
-| IG Reel / Story — `intro.mp4` | https://drive.google.com/file/d/18chfAQkXp0MJJRkiUMbZEaoLgz83czzx/view |
-| YouTube — `intro-yt.mp4` | https://drive.google.com/file/d/1YIa3HgFClkC5pV438qXLhRhJUX18WHUR/view |
-| IG banner | https://drive.google.com/file/d/1mPNt1n1U4ISCkNrBNzqRptgBw_oErmnV/view |
-| YouTube banner | https://drive.google.com/file/d/1DYlIasvMbL7qw_hBWwXK0KkxYtl5yk57/view |
-| Avatar | https://drive.google.com/file/d/1KmJ6_apeDlP6hLiZv5CjMntpYG01xfwv/view |
-| Feed 01 — plum | https://drive.google.com/file/d/1-0bFxEkURT1F3xEz8GZTRwEseB-aRkV2/view |
-| Feed 02 — desk | https://drive.google.com/file/d/1aidtQ2tufCToHzVPcYWvYYOr0ARfOJen/view |
-| Feed 03 — room | https://drive.google.com/file/d/126lzAY2RBR97cT-riuTMjEW-ffV3KZ3T/view |
-| Feed 04 — sky | https://drive.google.com/file/d/1x8qkQBOaIchHHImMGEdV7-1l_jO5Aj9Z/view |
-| YouTube thumbnail | https://drive.google.com/file/d/1PPPgyS6t_mYbu7fi7CMmU8nL00pNS7FX/view |
-| Reel cover / story poster | https://drive.google.com/file/d/1ItpzbJmfRLcTK29lgydsjTVNiSkGz0Id/view |
+| **IG Reel / Story** | https://drive.google.com/file/d/1RM0Q6Ip4S0UKmhJXUa_vjj-OQgsVSUfD/view |
+| **YouTube** | https://drive.google.com/file/d/1jFTTUZBk16fQBIv61kWQmZJP1k8dCxTz/view |
+| IG banner | https://drive.google.com/file/d/1Jnl9yBvsDubnnvmXbflMy4ne-UwQuJwk/view |
+| YouTube banner | https://drive.google.com/file/d/1hLQdffw8cYLxIwcruNwWR4zSNPooar7O/view |
+| Avatar | https://drive.google.com/file/d/1Rs_AU6DV1iSUK13QiCLvCZDAivcJCuOZ/view |
+| Feed 01 — Studio | https://drive.google.com/file/d/17y1jNSmAnkldiZJ4NKsZgxWmLTexguaE/view |
+| Feed 02 — Desk | https://drive.google.com/file/d/1JcT9BTwJllRi2YJM-mHITh_CxZzJt0iY/view |
+| Feed 03 — Floor | https://drive.google.com/file/d/1h7r0RZHmJ0RRU81gEtQSyRowrDXMQQsl/view |
+| Feed 04 — Outro | https://drive.google.com/file/d/1nIRgSDbGTik0T6HzSSB-GIZf00VIeh0a/view |
+| YouTube thumbnail | https://drive.google.com/file/d/1wNmuxojaZS6AmquJ7sqxDwdNv4hkJJEf/view |
+| Reel cover | https://drive.google.com/file/d/15vABdq6DhZJJjPI9HfifNQJiFRbZMcf5/view |
+
+<details><summary>v1 links (superseded — dark sets)</summary>
+
+IG Reel `18chfAQkXp0MJJRkiUMbZEaoLgz83czzx` · YouTube `1YIa3HgFClkC5p438qXLhRhJUX18WHUR` · IG banner `1mPNt1n1U4ISCkNrBNzqRptgBw_oErmnV` · YT banner `1DYlIasvMbL7qw_hBWwXK0KkxYtl5yk57` · Avatar `1KmJ6_apeDlP6hLiZv5CjMntpYG01xfwv` · Feed plum `1-0bFxEkURT1F3xEz8GZTRwEseB-aRkV2` · desk `1aidtQ2tufCToHzVPcYWvYYOr0ARfOJen` · room `126lzAY2RBR97cT-riuTMjEW-ffV3KZ3T` · sky `1x8qkQBOaIchHHImMGEdV7-1l_jO5Aj9Z` · thumb `1PPPgyS6t_mYbu7fi7CMmU8nL00pNS7FX` · poster `1ItpzbJmfRLcTK29lgydsjTVNiSkGz0Id`
+
+</details>
+
+---
+
+## v2 — what changed and why
+
+Three notes from the owner drove the rebuild. Each one is a rule now, not a one-off.
+
+### 1. Daylight, not neon
+
+> *"dont prioritize dark bgs kama hii neons nyeusi kisa tupo in tech"*
+
+The dark plum/violet sets are gone from the pack. Every scene is a room in daylight — cream paper, soft mint, warm sand, pale lilac sky. Accents stay saturated (violet, mint, gold, coral); the **field** does not. Nothing paints a black frame.
+
+The rule: *tech is not a nightclub.* A tech host in daylight reads as a person you would trust; a neon void reads as a gaming channel.
+
+### 2. She speaks
+
+> *"mbona mouth movements hamna"*
+
+The rig always had real AI visemes — her own mouth at three openness levels, per pose — but `performerDraw` only draws them when it is handed a track, and the stills never were.
+
+- **Stills** get the `mid` plate: mouth slightly open, reading as *just spoke*.
+- **Video** gets `out/mouth.json`, produced by `production/noellyne-host/lipsync.py` from the actual mix. 58.9 % of frames are open.
+
+Two bugs had to be fixed for this to look right:
+
+- `mouth: null` meant "she is silent", not "draw nothing" — so it drew the closed plate *including* the dark corner the white-key missed. That corner is the black smudge on her ear. **`mouth: false`** is the real opt-out.
+- The AI plates carry an opaque near-black fringe outside her jaw. Every plate is now masked to **the pose's own base alpha**, plus a soft radial falloff, at load. `plate(pose, file)` in both `banners.mjs` and `intro.mjs`.
+
+### 3. A desk, so "hana legs" stops being visible
+
+> *"character wetu hana legs so try basi huku chini kuwe kama na design au table … isionekane kama floating sticker"*
+
+This is the important one. The fix is **not** a fade, a crop, or a gradient — those still leave a cut-out floating in the frame. The fix is a **physical object in front of her**, drawn **after** her:
+
+```
+her(...)           ← she is drawn first
+desk(...)          ← then the desk, at `hem - 0.035 w`, so her hem goes BEHIND it
+laptop / mug / plant / books   ← objects on the desk surface
+floorPapers(...)   ← loose sheets on the floor
+```
+
+Three ordering bugs were fixed to get here:
+
+1. Her mouth plate has to be re-stamped **after** her body but **before** the desk.
+2. The desk's back edge must sit **above** her hem (`hem - 0.035 w`), not at `hem + 2`. At `hem + 2` she ends *on* the desk and still looks cut.
+3. The `desk()` function originally took the *frame height* as its `h` argument, so the apron filled two thirds of the frame. It takes `bottom` now, and the apron is a measured band between `d.front` and `floorY`.
+
+The type then rides the apron at `d.front + 104`, which is inside that band by construction — the same "measured band" rule that fixed the IG banner in v1.
+
+### Wide frames are a different composition
+
+`--landscape` is not a resize. A centred portrait in 16:9 leaves two dead columns and puts the name through her head, so wide frames:
+
+- crop her against the right edge (`x = W - w * 0.80`),
+- put the type in a left column at `H * 0.560` over a wash that fades out by `0.66 W`,
+- drop the corner paper (her hand is there) and keep one sheet high-left instead.
+
+The `by = d.front + 104` apron rule is for tall frames only.
+
+### Cuts are a paper-white flash
+
+Fading to black in a daylight set reads as a mistake. Each cut is a 4-frame flash to the paper colour instead — the same value as the set, so it reads as a shutter, not a blackout.

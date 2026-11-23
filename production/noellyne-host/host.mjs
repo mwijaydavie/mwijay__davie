@@ -119,12 +119,21 @@ export function performerDraw(c, host, fps) {
      * replacements for the lip area, so partial alpha would leave the closed
      * mouth showing through.
      */
-    const track = mouth && (Array.isArray(mouth) ? mouth : mouth.frames);
+    /**
+     * `mouth: false` means "draw no mouth plate at all" — the caller is going to
+     * stamp its own feathered plate. It is NOT the same as `mouth: null`, which
+     * still means "she is silent" and draws the closed plate. Conflating the two
+     * painted a square of the plate's background onto her jaw.
+     */
+    const bare = mouth === false;
+    const track = !bare && mouth && (Array.isArray(mouth) ? mouth : mouth.frames);
     const cur = track ? (track[Math.min(f, track.length - 1)] || [0, "X"]) : [0, "X"];
     const [openness, letter] = cur;
     const voicing = letter !== "X" && openness > 0.06;
 
-    if (p.ai) {
+    if (bare) {
+      // caller stamps the plate
+    } else if (p.ai) {
       const lv = !voicing ? "closed" : openness < 0.42 ? "mid" : "open";
       const v = p.ai[lv];
       if (v) {
