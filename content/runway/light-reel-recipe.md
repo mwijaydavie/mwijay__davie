@@ -119,6 +119,20 @@ Mikono ni **picha sita zilizorender** kwa mtindo wake (`assets/character/hand-*-
 
 `zuri-body-cut.png` ni picha ya `wave` iliyofutwa mkono kwa **connected component** (sio kwa rangi) — braid iliyokuwa nyuma ya mkono ilinusurika.
 
+## Uso: blink na mdomo
+
+Macho hayakaa wazi dakika nzima. Kila pose ina **patch za uso** zilizotengenezwa kutoka
+picha zake mwenyewe (`tools/face_states.py`): kope limefungwa, nusu-fungwa, na mdomo wazi.
+
+- **Blink**: fremu 4-7 kwa kila blink (100–150 ms), mara mbili kwa ~4 s, haziko sawa.
+  Mfuatano ni `half → shut → half`, sio `half → shut → half` kwa mwelekeo usiofaa.
+- **Mdomo**: unafuata fungu la maneno la clip — unafunguka kwenye silabi iliyosisitizwa,
+  sio kwa kasi ile ile. `scene.talk === false` unamfunga mdomo.
+
+Patches ni **feathered** (alpha 0 ukingoni), kwa hiyo zinaingia kwenye pose yoyote
+bila mshono. Zinawekwa kwa **kichwa cha pose** (head_cx, chin), sio kwa coordinates za
+master — kila pose ni crop tofauti.
+
 ## Kamera
 
 Kila scene ina push-in ya **2.4%** na kupanda kwa 8 px katika fremu 34 za kwanza. Counter na band **hazishiriki** kwenye zoom — ni ndege ya mbele ya 2D, na kuzizoom kunamficha kiunoni.

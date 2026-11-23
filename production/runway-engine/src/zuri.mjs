@@ -44,7 +44,43 @@ export const POSES = {
   laugh: {file: 'zuri-laugh-cut.png',   note: 'sign-off'},
 };
 
-// measured in cut-image pixels by tools/pose_geometry.py
+// face states: blink and a talking mouth, baked per pose as feathered patches
+const FACE = JSON.parse(fs.readFileSync(path.join(HERE, '../../../content/runway/character/face-states.json'), 'utf8'));
+const IMG_DIR = path.join(HERE, '../assets/character');
+const PATCH_CACHE = new Map();
+function patchData(file) {
+  if (!PATCH_CACHE.has(file)) {
+    const p = path.resolve(HERE, '../', file);
+    PATCH_CACHE.set(file, fs.existsSync(p)
+      ? `data:image/png;base64,${fs.readFileSync(p).toString('base64')}`
+      : null);
+  }
+  return PATCH_CACHE.get(file);
+}
+
+/**
+ * Blink schedule, in frames at 60 fps. A real blink is 100–150 ms: that is 6–9 frames
+ * total, with only 2–3 of them fully shut. Getting this wrong is invisible in a still
+ * and obvious in motion — too short and the eye never appears to close, too long and
+ * she looks sleepy. Two blinks per ~4 s, and never evenly spaced.
+ */
+function blinkAt(t, seed = 0) {
+  const per = 232;
+  const phase = (t + Math.round(seed * 53)) % per;
+  // the lid closes in one frame, holds shut, then opens through a half state. Going
+  // half -> shut -> half at 60 fps reads as a flicker, because the half states are on
+  // the way DOWN, not on the way up.
+  if (phase < 2) return 'half';
+  if (phase < 5) return 'blink';
+  if (phase < 7) return 'half';
+  // a double blink, which is what people actually do
+  if (phase > 24 && phase < 26) return 'half';
+  if (phase > 26 && phase < 29) return 'blink';
+  if (phase > 29 && phase < 31) return 'half';
+  return null;
+}
+
+/** measured in cut-image pixels by tools/pose_geometry.py */
 const GEO = JSON.parse(fs.readFileSync(path.join(HERE, '../../../content/runway/character/pose-geometry.json'), 'utf8'));
 
 /** Where the chin and the head centre sit inside each cut image, as fractions. */
@@ -98,7 +134,7 @@ export function logoData(file) {
 export function pose(name, t, {
   x = 790, y = 1690, h = 1180, flip = false, enter = false, o = 1,
   motion = true, phase = 0, sway = 1, breath = 1,
-  from = null, handover = 0,
+  from = null, handover = 0, talk = 0, blink = true, mouth = true,
 } = {}) {
   const data = sheet(name);
   const g = geo(name);
@@ -129,6 +165,34 @@ export function pose(name, t, {
     return `<image href="${sheet(n)}" x="${round(-gg.cx * ww)}" y="${round(-gg.chin * h)}" width="${round(ww)}" height="${round(h)}" preserveAspectRatio="none"/>`;
   };
 
+  // ---- face: blink and mouth, drawn in sheet space on top of the pose -------------
+  // `talk` is 0 (shut) .. 1 (open); a talking head never holds one mouth shape, so the
+  // caller can pass a small wobble and we add a second, slower one here.
+  const f = FACE.poses[name];
+  let fx = 1, fy = 1;
+  if (f) {
+    const k = 1 + Math.sin(((tsec + phase) / 2.6) * Math.PI * 2) * 0.004 * breath;
+    fx = k; fy = 1 / k;
+  }
+  const talkAmt = mouth ? talk : 0;   // the mouth is independent of the eyes
+  const faceLayer = (n) => {
+    if (!f) return '';
+    const b = blink ? blinkAt(t, (n.length + phase * 10) / 4) : null;
+    let out = '';
+    // the mouth opens BEFORE the eyes close in reading order, so a blink does not
+    // swallow the talk patch
+    if (talkAmt > 0.02) {
+      const p = f.patches.talk;
+      out += `<image href="${patchData(p.file)}" x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" opacity="${round(Math.min(1, talkAmt * 1.4) * 100) / 100}"/>`;
+    }
+    if (b) {
+      for (const side of ['l', 'r']) {
+        const p = f.patches[`${b}_${side}`] || f.patches[`blink_${side}`];
+        if (p) out += `<image href="${patchData(p.file)}" x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}"/>`;
+      }
+    }
+    return out;
+  };
   // where the previous pose's chin sits, so a handover dissolves exactly in place
   let layers = img(name);
   if (from && handover > 0) {
@@ -140,6 +204,7 @@ export function pose(name, t, {
   return `<g transform="translate(${round(x)} ${round(y)}) scale(${sx} 1)" opacity="${round(clamp(e * o))}">
     <g transform="translate(${round(shiftX)} 0) rotate(${round(angle * 100) / 100} 0 ${round(pivotY + shoulderDrop)}) scale(${round(settle * breathe * 1000) / 1000} ${round((1 / breathe) * 1000) / 1000})">
       ${layers}
+      <g transform="translate(${round(-g.cx * w)} ${round(-g.chin * h)}) scale(${round((h / g.h) * 10000) / 10000}) scale(${round((1 / fx) * 10000) / 10000} ${round((1 / fy) * 10000) / 10000})">${faceLayer(name)}</g>
     </g>
   </g>`;
 }

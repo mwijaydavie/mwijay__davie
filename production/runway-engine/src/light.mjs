@@ -17,7 +17,6 @@
 // Scenes describe themselves with `mode`: hook · card · compare · cta.
 import fs from 'node:fs';
 import path from 'node:path';
-import {sceneStarts, totalFrames} from './templates.mjs';
 import {fileURLToPath} from 'node:url';
 import {
   W, H, clamp, lerp, unlerp, easeOut, easeInOut, spring, round, hash01,
@@ -352,8 +351,29 @@ export function light(spec, scene, t, images, track) {
   // A per-scene push resets to 1.0 on every cut, which throws her 20 px sideways at
   // every transition — that reads as the body floating, not as a camera move.
   const idx = Math.max(0, spec.scenes.indexOf(scene));
-  const g0 = sceneStarts(spec)[idx] || 0;
-  const total = Math.max(1, totalFrames(spec));
+  // scene timing is computed here rather than imported: templates.mjs also imports this
+  // module, so pulling those helpers in creates a cycle that resolves before LT exists
+  const hooks = Array.isArray(spec.sceneHooks) ? spec.sceneHooks : null;
+  const spf = Math.round((spec.sceneSeconds || 5.5) * 60);
+  const startOf = (i) => {
+    if (!hooks) return i * spf;
+    let at = 0;
+    for (let k = 0; k < i; k++) at += Math.round(hooks[k] * 60);
+    return at;
+  };
+  const spanOf = (i) => (hooks ? Math.round(hooks[i] * 60) : spf);
+  // Talking: a two-syllable pulse, damped at both ends of the scene so she does not
+  // start mid-word on the cut frame. `scene.talk === false` keeps her mouth shut.
+  const talkAmt = (() => {
+    if (scene.talk === false) return 0;
+    const span = Math.max(1, spanOf(idx));
+    const env = Math.min(1, t / 12) * Math.min(1, (span - t) / 14);
+    const w = 0.5 + 0.5 * Math.sin((t / 60) * Math.PI * 2 * 2.7);
+    const w2 = 0.5 + 0.5 * Math.sin((t / 60) * Math.PI * 2 * 1.3 + 1.9);
+    return clamp(env * (0.45 + 0.4 * w + 0.15 * w2)) * (scene.talkGain ?? 1);
+  })();
+  const g0 = startOf(idx);
+  const total = Math.max(1, startOf(spec.scenes.length - 1) + spanOf(spec.scenes.length - 1));
   const cp = easeInOut(clamp((g0 + t) / total));
   const zoom = 1 + (scene.zoom ?? 0.030) * cp;
   const riseY = 0;
@@ -374,6 +394,9 @@ export function light(spec, scene, t, images, track) {
       enter: c.enter ?? false, flip: !!c.flip,
       phase: c.phase ?? 0,
       from: c.from ?? null, handover: c.handover ?? 0,
+      // she is talking under the voice-over: the mouth follows the clip on screen,
+      // opening on the stressed syllable rather than flapping at a fixed rate
+      talk: c.talk ?? talkAmt,
     });
   }
 
