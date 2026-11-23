@@ -1,0 +1,91 @@
+{
+  "source": "assets/character/zuri-full-src.png",
+  "sheet": {
+    "w": 843,
+    "h": 1264
+  },
+  "px": {
+    "head_top": 68,
+    "chin": 459,
+    "head_h": 391,
+    "head_cx": 425,
+    "shoulder_y": 529,
+    "wrist_y": 1249,
+    "waist_y": 1250,
+    "hip_y": 1243,
+    "cuff_y": 1249,
+    "elbow_l": {
+      "x": 205,
+      "y": 889
+    },
+    "elbow_r": {
+      "x": 642,
+      "y": 889
+    },
+    "wrist_l": {
+      "x": 167,
+      "y": 1249
+    },
+    "wrist_r": {
+      "x": 684,
+      "y": 1249
+    }
+  },
+  "units": {
+    "head_h": 391,
+    "head_w": 0.918,
+    "shoulder_w": 0.286,
+    "chin_to_shoulder": 0.179,
+    "shoulder_to_wrist": 1.841,
+    "chin_to_waist": 2.023,
+    "chin_to_hip": 2.005,
+    "upper_arm": 0.921,
+    "forearm": 0.921
+  },
+  "joints": {
+    "neck": {
+      "x": 0.0,
+      "y": 0.077
+    },
+    "shoulder_l": {
+      "x": -0.143,
+      "y": 0.179
+    },
+    "shoulder_r": {
+      "x": 0.143,
+      "y": 0.179
+    },
+    "elbow_l": {
+      "x": -0.563,
+      "y": 1.1
+    },
+    "elbow_r": {
+      "x": 0.555,
+      "y": 1.1
+    },
+    "wrist_l": {
+      "x": -0.66,
+      "y": 2.02
+    },
+    "wrist_r": {
+      "x": 0.662,
+      "y": 2.02
+    },
+    "waist": {
+      "x": 0.0,
+      "y": 2.023
+    },
+    "hip": {
+      "x": 0.0,
+      "y": 2.005
+    },
+    "chin": {
+      "x": 0.0,
+      "y": 0.0
+    }
+  },
+  "sheet_ratio": {
+    "h_over_w": 1.4994,
+    "head_over_sheet": 0.3093
+  }
+}
