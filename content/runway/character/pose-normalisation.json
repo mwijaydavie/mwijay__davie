@@ -1,0 +1,58 @@
+{
+  "reference": {
+    "cx": 439,
+    "chin": 459,
+    "hair_top": 68,
+    "head_h": 391
+  },
+  "poses": {
+    "open": {
+      "scale": 1.0026,
+      "dx": 0,
+      "dy": 0,
+      "head_h": 390
+    },
+    "point": {
+      "scale": 1.0026,
+      "dx": -2,
+      "dy": 0,
+      "head_h": 390
+    },
+    "peace": {
+      "scale": 1.0,
+      "dx": -1,
+      "dy": 0,
+      "head_h": 391
+    },
+    "like": {
+      "scale": 1.0026,
+      "dx": -2,
+      "dy": 0,
+      "head_h": 390
+    },
+    "ok": {
+      "scale": 0.9949,
+      "dx": 0,
+      "dy": 3,
+      "head_h": 393
+    },
+    "pray": {
+      "scale": 1.0026,
+      "dx": -2,
+      "dy": 0,
+      "head_h": 390
+    },
+    "heart": {
+      "scale": 1.0026,
+      "dx": -1,
+      "dy": 0,
+      "head_h": 390
+    },
+    "count": {
+      "scale": 1.0,
+      "dx": 0,
+      "dy": 0,
+      "head_h": 391
+    }
+  }
+}

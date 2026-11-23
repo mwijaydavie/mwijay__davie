@@ -1,0 +1,94 @@
+{
+  "reference": {
+    "w": 843,
+    "h": 1264,
+    "chin": 459,
+    "head_cx": 439,
+    "hair_top": 68,
+    "head_h": 391,
+    "waist_y": 1246,
+    "hip_y": null
+  },
+  "poses": {
+    "open": {
+      "w": 648,
+      "h": 1207,
+      "chin": 403,
+      "head_cx": 352,
+      "hair_top": 12,
+      "head_h": 391,
+      "waist_y": null,
+      "hip_y": null
+    },
+    "point": {
+      "w": 611,
+      "h": 1207,
+      "chin": 402,
+      "head_cx": 316,
+      "hair_top": 12,
+      "head_h": 390,
+      "waist_y": null,
+      "hip_y": null
+    },
+    "peace": {
+      "w": 730,
+      "h": 1207,
+      "chin": 402,
+      "head_cx": 326,
+      "hair_top": 11,
+      "head_h": 391,
+      "waist_y": null,
+      "hip_y": null
+    },
+    "like": {
+      "w": 663,
+      "h": 1207,
+      "chin": 403,
+      "head_cx": 368,
+      "hair_top": 12,
+      "head_h": 391,
+      "waist_y": null,
+      "hip_y": null
+    },
+    "ok": {
+      "w": 659,
+      "h": 1208,
+      "chin": 403,
+      "head_cx": 363,
+      "hair_top": 19,
+      "head_h": 384,
+      "waist_y": null,
+      "hip_y": null
+    },
+    "pray": {
+      "w": 693,
+      "h": 1207,
+      "chin": 402,
+      "head_cx": 362,
+      "hair_top": 12,
+      "head_h": 390,
+      "waist_y": null,
+      "hip_y": null
+    },
+    "heart": {
+      "w": 793,
+      "h": 1208,
+      "chin": 404,
+      "head_cx": 410,
+      "hair_top": 12,
+      "head_h": 392,
+      "waist_y": null,
+      "hip_y": null
+    },
+    "count": {
+      "w": 656,
+      "h": 1207,
+      "chin": 402,
+      "head_cx": 361,
+      "hair_top": 11,
+      "head_h": 391,
+      "waist_y": null,
+      "hip_y": null
+    }
+  }
+}

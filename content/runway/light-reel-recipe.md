@@ -76,6 +76,32 @@ Mhusika ni picha, kwa hivyo mwendo umeandikwa (`pose()` kwenye `src/zuri.mjs`):
 
 **Kipimo:** tofauti ya fremu mfululizo (60 fps) — video yako LIMS ni **0.325**, yangu ilianza **0.089**, sasa ni **0.237**. Bado 27% chini; sababu ni kwamba LIMS ina video halisi ya screen ndani ya kadi na mwendo wa kamera zaidi.
 
+## Mikono: picha kamili, sio kubandika
+
+**Hakuna mkono unaobandikwa juu ya mwili.** Mkono wa kubandikwa hauwezi kuungana na
+sleeve — unaonekana kama sticker, kwa sababu ndio.
+
+Kila ishara ni **render kamili ya mtu mmoja**: mkono, sleeve, kifundo, na cuff zote
+zimechorwa pamoja. Ishara tisa: `open · point · peace · like · ok · pray · heart · count`
+pamoja na `calm` na `laugh`.
+
+Pose zote zinasawazishwa kwa kichwa kimoja (`tools/normalize_poses.py`), na scene
+inamweka kwa **kidevu** (`cast.chinY`), sio kwa chini ya picha.
+
+## Hakuna float
+
+Mwili uliosimama hauna bob. Kile kinachosogea:
+
+| Tabaka | Pivot | Kiasi |
+| --- | --- | --- |
+| Pumzi | kiuno | 0.75% ubavu, shoulder drop 0.22% |
+| Kuteleza | hip | 1.15° kwa 5.9 s |
+| Uzito | hip | 0.4% usawa, phase 90° |
+| Kichwa | shingo | −38% ya kuteleza |
+
+Na **kamera ni moja kwa reel nzima** (`+3%` kwa 30 s). Kamera ya kila scene inarudisha
+zoom nyuma kwenye kila kukata — hiyo ndio ilikuwa "float" halisi.
+
 ## Mkono na ishara
 
 Mikono ni **picha sita zilizorender** kwa mtindo wake (`assets/character/hand-*-cut.png`):

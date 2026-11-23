@@ -14,30 +14,48 @@
 //
 // The sheets are tall enough to reach past the frame edge, because the shipped
 // Altraware reels always crop her at the knees or the hip.
+import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {
   clamp, lerp, unlerp, easeOut, easeInOut, round, readImage, circle,
 } from './core.mjs';
-import {hand} from './hands.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const DIR = path.resolve(HERE, '../assets/character');
 
 /** Every sheet we hold. Keys are what a spec writes in `cast.pose`. */
+// Every pose is a COMPLETE render of her, hand included: no composite hand is ever
+// pasted onto a body, because a body with a pasted hand is not one person. Poses are
+// normalised to one head size and one origin (`tools/normalize_poses.py`), so a
+// gesture change is a move inside the same animated body, not a picture swap.
 export const POSES = {
-  // `body` is the wave sheet with the drawn hand erased: the rig in hands.mjs then puts
-  // whatever gesture the scene asks for at the wrist. Every other pose keeps its own
-  // rendered hands, because a full pose swap mid-shot would pop.
-  calm:  {file: 'zuri-full-cut.png',  aspect: 573 / 1197, note: 'default, hands low'},
-  body:  {file: 'zuri-body-cut.png',  aspect: 620 / 1207, note: 'wave body, no hand — rigged'},
-  point: {file: 'zuri-point-cut.png', aspect: 826 / 1177, note: 'points to her left (viewer right)'},
-  shock: {file: 'zuri-shock-cut.png', aspect: 524 / 1203, note: 'hand to chest'},
-  laugh: {file: 'zuri-laugh-cut.png', aspect: 725 / 1168, note: 'sign-off'},
-  wave:  {file: 'zuri-wave-cut.png',  aspect: 625 / 1176, note: 'hello — opens every light reel'},
+  calm:  {file: 'zuri-full-cut.png',    note: 'default, relaxed, hands low'},
+  open:  {file: 'pose-open-cut.png',    note: '✋🏾 raised palm'},
+  wave:  {file: 'pose-open-cut.png',    note: 'alias of open'},
+  point: {file: 'pose-point-cut.png',   note: '🫵🏾 pointing at the viewer'},
+  peace: {file: 'pose-peace-cut.png',   note: '✌🏾'},
+  like:  {file: 'pose-like-cut.png',    note: '👍🏾 thumbs up'},
+  ok:    {file: 'pose-ok-cut.png',      note: '👌🏾'},
+  pray:  {file: 'pose-pray-cut.png',    note: '🙏🏾 palms together'},
+  heart: {file: 'pose-heart-cut.png',   note: '🫶🏾 heart hands'},
+  count: {file: 'pose-count-cut.png',   note: '🤌🏾 pinched'},
+  shock: {file: 'zuri-shock-cut.png',   note: 'hand to chest'},
+  laugh: {file: 'zuri-laugh-cut.png',   note: 'sign-off'},
 };
 
-export const POSE_ASPECT = Object.fromEntries(Object.entries(POSES).map(([k, v]) => [k, v.aspect]));
+// measured in cut-image pixels by tools/pose_geometry.py
+const GEO = JSON.parse(fs.readFileSync(path.join(HERE, '../../../content/runway/character/pose-geometry.json'), 'utf8'));
+
+/** Where the chin and the head centre sit inside each cut image, as fractions. */
+function geo(name) {
+  const g = GEO.poses[name] || GEO.poses.open;
+  return {
+    cx: g.head_cx / g.w,
+    chin: g.chin / g.h,
+    w: g.w, h: g.h,
+  };
+}
 
 const cache = new Map();
 function sheet(name) {
@@ -57,76 +75,82 @@ export function logoData(file) {
 }
 
 /**
- * Draw her, bottom-anchored: `h` is her height in frame pixels, `y` is where her feet
- * would be (past the frame edge on purpose).
+ * Draw her, anchored on the CHIN.
  *
- * She is a photograph, so the motion has to be authored — a still cut-out that slides
- * looks like a sticker. Three layers, all cheap and all deterministic:
+ * `h` is her height in frame pixels; `y` is where her chin sits. The chin is the
+ * anchor because it is the one landmark every pose shares after normalisation —
+ * anchoring on the bottom of the cut makes each pose land on its own invisible
+ * shelf, which is what made a gesture change look like a hop.
  *
- *   breathe · a 0.22 % scale on a ~4 s sine, plus a 1.5 px rise. The torso moves, not
- *             the whole figure, so it reads as breath rather than as a bump.
- *   sway    · a 0.35° rotation about a pivot just below her hips. This is the one that
- *             does most of the work: it is what a person standing still actually does.
- *   arm     · for `wave` and `point`, a small counter-rotation of the raised side,
- *             approximated by a horizontal squash. A waving hand is never still.
+ * What she does NOT do: she never floats. There is no vertical bob on the whole
+ * figure. A standing body is planted; what moves is
  *
- * `enter` adds a 16-frame rise-and-fade on the first frame of a scene.
+ *   breath  · ribs open and the shoulders rise a little; the pelvis does not move
+ *   sway    · a slow roll of the torso ABOVE the hip, so the hip stays the pivot
+ *   head    · counter-rotates part of the sway, with a few frames of lag
+ *   weight  · a 0.35 % squash that keeps the chin height fixed, so she settles
+ *             instead of bobbing
+ *
+ * `gesture` changes pose. Pass `handover` in frames: for that many frames after the
+ * change she is cross-dissolved from the previous pose, which reads as a fast,
+ * soft move of the arm rather than as a paper swap.
  */
 export function pose(name, t, {
-  x = 790, y = 1930, h = 1180, flip = false, enter = true, o = 1,
-  motion = true, phase = 0, sway = 1, breath = 1, gesture = null, gestureScale = 0.98,
-  gestureAngle = 0,
+  x = 790, y = 1690, h = 1180, flip = false, enter = false, o = 1,
+  motion = true, phase = 0, sway = 1, breath = 1,
+  from = null, handover = 0,
 } = {}) {
-  if (name === '__rigOnly') {
-    return `<g opacity="${round(clamp((enter ? easeOut(unlerp(t, 0, 16)) : 1) * o))}">${hand(gesture || 'wave', x, y, {
-      h: gestureScale * 300, angle: gestureAngle, t,
-    })}</g>`;
-  }
   const data = sheet(name);
-  const w = h * (POSE_ASPECT[name] || 0.48);
-  const e = enter ? easeOut(unlerp(t, 0, 16)) : 1;
-  const rise = enter ? (1 - easeInOut(unlerp(t, 0, 22))) * 26 : 0;
+  const g = geo(name);
+  const w = h * (g.w / g.h);
 
+  const e = enter ? easeOut(unlerp(t, 0, 14)) : 1;
   const tsec = t / 60;
-  // breath: two cycles in a smoker's rhythm, never faster than ~3.6 s
-  const br = motion ? Math.sin(((tsec + phase) / 2.6) * Math.PI * 2) : 0;
-  const breathe = 1 + br * 0.0052 * breath;
-  const lift = motion ? br * 4.2 * breath : 0;
-  // sway: a slower, wider period so it never looks locked to the breath
-  const sw = motion ? Math.sin(((tsec + phase) / 4.1) * Math.PI * 2 + 0.7) : 0;
-  const angle = sw * 0.85 * sway * (flip ? -1 : 1);
-  // arm: the raised side gets its own faster tick
-  const armT = motion && (name === 'wave' || name === 'point')
-    ? Math.sin(((tsec + phase) / 1.55) * Math.PI * 2) * 0.024 : 0;
+  const br = motion ? Math.sin(((tsec + phase) / 2.6) * Math.PI * 2) : 0;   // ~2.6 s
+  const sw = motion ? Math.sin(((tsec + phase) / 5.9) * Math.PI * 2 + 0.7) : 0; // ~5.9 s
+
+  // pivot: the hip, in px below her chin (2.05 head heights, measured)
+  const pivotY = h * 0.62;
+  // she is planted: the hip is the pivot, so the head travels more than the hip does.
+  // 1.15 deg of roll is what a person actually does while talking; more reads drunk.
+  const angle = sw * 1.15 * sway * (flip ? -1 : 1);
+  // weight shift: a small horizontal drift of the upper body over the planted hip,
+  // phase-shifted 90 deg from the roll so the figure does not pivot like a metronome
+  const shiftX = Math.cos(((tsec + phase) / 5.9) * Math.PI * 2 + 0.7) * h * 0.004;
+  const breathe = 1 + br * 0.0075 * breath;          // ribs
+  const settle = 1 - Math.abs(br) * 0.0035 * breath; // weight, never a bob
+  // shoulders drop a little on the exhale — the detail that makes breath read
+  const shoulderDrop = br * h * 0.0022 * breath;
 
   const sx = flip ? -1 : 1;
-  const pivotY = -h * 0.30;                      // just under the hips
-  // the wrist anchor, in her local pixels: measured off zuri-wave-cut.png where the
-  // drawn hand used to sit (u 0.755, v 0.335 of the sheet)
-  const wr = WRIST[name];
-  const gh = h * 0.30 * (gestureScale || 1);
-  const rig = gesture && wr
-    ? hand(gesture, wr.u * w - w / 2, -h + wr.v * h, {
-        h: gh, angle: wr.a, t: t + phase * 60, flip: !!wr.flip,
-      })
-    : '';
-  return `<g transform="translate(${round(x)} ${round(y + rise)}) scale(${sx} 1)" opacity="${round(clamp(e * o))}">
-    <g transform="rotate(${round(angle * 100) / 100} 0 ${round(pivotY)}) scale(${round((1 + armT) * 1000) / 1000} ${round(breathe * 1000) / 1000})">
-      <image href="${data}" x="${round(-w / 2)}" y="${round(-h - lift)}" width="${round(w)}" height="${round(h)}" preserveAspectRatio="xMidYMax meet"/>
-      ${rig}
+  const img = (n) => {
+    const gg = geo(n);
+    const ww = h * (gg.w / gg.h);
+    return `<image href="${sheet(n)}" x="${round(-gg.cx * ww)}" y="${round(-gg.chin * h)}" width="${round(ww)}" height="${round(h)}" preserveAspectRatio="none"/>`;
+  };
+
+  // where the previous pose's chin sits, so a handover dissolves exactly in place
+  let layers = img(name);
+  if (from && handover > 0) {
+    const k = clamp(unlerp(t, 0, handover));
+    const a = 1 - k;
+    if (a > 0.001) layers = `<g opacity="${round(a * 1000) / 1000}">${img(from)}</g>${layers}`;
+  }
+
+  return `<g transform="translate(${round(x)} ${round(y)}) scale(${sx} 1)" opacity="${round(clamp(e * o))}">
+    <g transform="translate(${round(shiftX)} 0) rotate(${round(angle * 100) / 100} 0 ${round(pivotY + shoulderDrop)}) scale(${round(settle * breathe * 1000) / 1000} ${round((1 / breathe) * 1000) / 1000})">
+      ${layers}
     </g>
   </g>`;
 }
-
-/** Where the rigged hand sits on each sheet, in sheet-normalised coordinates. */
-const WRIST = {
-  body: {u: 0.800, v: 0.235, a: 6, flip: false},
-};
 
 /**
  * Where she stands for a given shot, in frame pixels. Same presets idea as the story
  * track, but tuned to a full-body cut-out that is meant to be cropped by the frame.
  */
+/** width / height of each cut sheet, for callers that need to reserve space */
+export const POSE_ASPECT = Object.fromEntries(Object.keys(POSES).map(k => [k, geo(k).w / geo(k).h]));
+
 export const SHOT = {
   hero:  {x: 800, y: 1980, h: 1300},   // stands at the right, head near y≈690
   tall:  {x: 820, y: 2040, h: 1520},   // head near y≈520, for a hook with no UI

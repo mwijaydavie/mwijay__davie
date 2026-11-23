@@ -17,12 +17,13 @@
 // Scenes describe themselves with `mode`: hook · card · compare · cta.
 import fs from 'node:fs';
 import path from 'node:path';
+import {sceneStarts, totalFrames} from './templates.mjs';
 import {fileURLToPath} from 'node:url';
 import {
   W, H, clamp, lerp, unlerp, easeOut, easeInOut, spring, round, hash01,
   rect, circle, line, text, fit, measure, readImage,
 } from './core.mjs';
-import {pose, floorShadow, POSE_ASPECT} from './zuri.mjs';
+import {pose, floorShadow} from './zuri.mjs';
 
 /** Palette sampled from the three reference reels. */
 export const LT = {
@@ -347,12 +348,15 @@ function caption(scene, t, {y = 1500} = {}) {
 export function light(spec, scene, t, images, track) {
   const mode = scene.mode || (scene.ui || scene.steps ? 'card' : 'hook');
   const tone = scene.tone || 'paper';
-  // The camera: a 2.4 % push across the whole scene, plus a 6 px rise in the first
-  // 30 frames. The reels move like a locked-off phone on a slider, not like a zoom.
-  const span = Math.max(1, Math.round((scene.frames || 340)));
-  const cp = easeInOut(unlerp(t, 0, span));
-  const zoom = 1 + (scene.zoom ?? 0.024) * cp;
-  const riseY = (1 - easeOut(unlerp(t, 0, 34))) * 8;
+  // The camera: ONE continuous push across the whole reel, not one per scene.
+  // A per-scene push resets to 1.0 on every cut, which throws her 20 px sideways at
+  // every transition — that reads as the body floating, not as a camera move.
+  const idx = Math.max(0, spec.scenes.indexOf(scene));
+  const g0 = sceneStarts(spec)[idx] || 0;
+  const total = Math.max(1, totalFrames(spec));
+  const cp = easeInOut(clamp((g0 + t) / total));
+  const zoom = 1 + (scene.zoom ?? 0.030) * cp;
+  const riseY = 0;
   let out = roomBack(t, {tone, streak: scene.streak !== false});
 
   const c = scene.cast;
@@ -361,23 +365,16 @@ export function light(spec, scene, t, images, track) {
     const cx = c.x ?? 860;
     const ch = c.h ?? 1240;
     out += `<ellipse cx="${round(cx)}" cy="${round((c.y ?? 1980) - ch * 0.06)}" rx="${round(ch * 0.30)}" ry="${round(ch * 0.26)}" fill="${LT.ink}" opacity="0.055"/>`;
+    // one pose per scene, swapped by cutting — never a pasted hand. If the scene
+    // declares a `handover`, the previous pose dissolves into this one in place.
     out += pose(c.pose, t, {
-      x: c.x ?? 860, y: c.y ?? 1980, h: c.h ?? 1240,
-      enter: c.enter ?? true, flip: !!c.flip,
-      gesture: c.hand ? null : (c.gesture ?? null), gestureScale: c.gestureScale ?? 0.98,
+      x: c.x ?? 860, y: c.chinY ?? c.y ?? 1690, h: c.h ?? 1240,
+      // she is already standing when the shot opens: an entrance fade/drift makes a
+      // planted body look like it is being lowered into frame on wires
+      enter: c.enter ?? false, flip: !!c.flip,
+      phase: c.phase ?? 0,
+      from: c.from ?? null, handover: c.handover ?? 0,
     });
-    // a frame-anchored gesture rig: easier to place than sheet coordinates, and it still
-    // inherits the scene's push because it is drawn inside the same group
-    if (c.hand) {
-      out += pose('__rigOnly', t, {
-        x: c.hand.x ?? c.x ?? 860, y: c.hand.y ?? 1100, h: c.hand.h ?? 420,
-        gesture: c.hand.gesture || 'wave',
-        gestureScale: c.hand.scale ?? 1.5,
-        gestureAngle: c.hand.angle ?? 8,
-        enter: c.hand.enter ?? true,
-        phase: c.hand.phase ?? 0.35,
-      });
-    }
   }
 
   if (mode === 'card' || (mode === 'hook' && (scene.steps || scene.ui)))

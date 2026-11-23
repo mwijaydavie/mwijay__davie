@@ -22,19 +22,6 @@
       ],
       "headY": 430,
       "headSize": 132,
-      "cast": {
-        "pose": "body",
-        "x": 905,
-        "y": 1760,
-        "h": 1340,
-        "hand": {
-          "x": 835,
-          "y": 1240,
-          "gesture": "wave",
-          "scale": 1.15,
-          "angle": 7
-        }
-      },
       "captionLine": "App mbili. Features zilezile.",
       "cues": [
         {
@@ -68,7 +55,13 @@
           }
         ]
       },
-      "cardDelay": 72
+      "cardDelay": 72,
+      "cast": {
+        "pose": "open",
+        "x": 1010,
+        "chinY": 1000,
+        "h": 1790
+      }
     },
     {
       "type": "card",
@@ -102,19 +95,6 @@
         "footer": "Simu moja, airplane mode",
         "rowH": 124
       },
-      "cast": {
-        "pose": "body",
-        "x": 950,
-        "y": 1760,
-        "h": 1340,
-        "hand": {
-          "x": 880,
-          "y": 1240,
-          "gesture": "point",
-          "scale": 1.15,
-          "angle": 7
-        }
-      },
       "captionLine": "Cold start: tatu dhidi ya kumi na moja.",
       "cues": [
         {
@@ -133,7 +113,13 @@
           "text": "Export: moja inatoa Markdown."
         }
       ],
-      "cardUnder": true
+      "cardUnder": true,
+      "cast": {
+        "pose": "point",
+        "x": 1010,
+        "chinY": 1000,
+        "h": 1790
+      }
     },
     {
       "type": "card",
@@ -163,19 +149,6 @@
         ],
         "footer": "B inatoa PDF pekee"
       },
-      "cast": {
-        "pose": "body",
-        "x": 965,
-        "y": 1760,
-        "h": 1340,
-        "hand": {
-          "x": 895,
-          "y": 1240,
-          "gesture": "open",
-          "scale": 1.15,
-          "angle": 7
-        }
-      },
       "captionLine": "Zote zinahifadhi offline. Moja inatoa Markdown.",
       "cues": [
         {
@@ -183,7 +156,13 @@
           "out": 344,
           "text": "Moja: cold start. Mbili: offline save. Tatu: export."
         }
-      ]
+      ],
+      "cast": {
+        "pose": "peace",
+        "x": 1010,
+        "chinY": 1000,
+        "h": 1790
+      }
     },
     {
       "type": "cta",
@@ -205,13 +184,6 @@
       },
       "ctaX": 64,
       "ctaY": 760,
-      "cast": {
-        "pose": "laugh",
-        "x": 900,
-        "y": 1800,
-        "h": 1330,
-        "flip": true
-      },
       "captionLine": "Nikutumie checklist, bure.",
       "cues": [
         {
@@ -232,6 +204,12 @@
           "Offline save",
           "Export na backup"
         ]
+      },
+      "cast": {
+        "pose": "heart",
+        "x": 1010,
+        "chinY": 1000,
+        "h": 1790
       }
     }
   ],
