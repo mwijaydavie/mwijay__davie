@@ -224,5 +224,6 @@
     "seconds": 30.2,
     "voice": "Kiswahili · female · voice-01",
     "voiceId": "voice-01"
-  }
+  },
+  "mouthTrack": "a3-01-note-apps"
 }

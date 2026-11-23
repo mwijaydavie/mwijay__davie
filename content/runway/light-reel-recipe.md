@@ -126,8 +126,11 @@ picha zake mwenyewe (`tools/face_states.py`): kope limefungwa, nusu-fungwa, na m
 
 - **Blink**: fremu 4-7 kwa kila blink (100–150 ms), mara mbili kwa ~4 s, haziko sawa.
   Mfuatano ni `half → shut → half`, sio `half → shut → half` kwa mwelekeo usiofaa.
-- **Mdomo**: unafuata fungu la maneno la clip — unafunguka kwenye silabi iliyosisitizwa,
-  sio kwa kasi ile ile. `scene.talk === false` unamfunga mdomo.
+- **Mdomo**: unafuata **sauti halisi**, sio kasi ya kubuni. Bahasha (envelope) ya `mix.wav`
+  inapimwa kwa 100 Hz, inasafishwa, kisha inahifadhiwa kwa 60 fps kwenye
+  `content/runway/character/mouth-<slug>.json`. Spec inaandika `mouthTrack: "<slug>"`.
+  Mdomo unafunguka kwa haraka na kufunga kwa upole — ndio jinsi mdomo wa mtu unavyofanya.
+  `scene.talk === false` unamfunga mdomo kwa scene hiyo.
 
 Patches ni **feathered** (alpha 0 ukingoni), kwa hiyo zinaingia kwenye pose yoyote
 bila mshono. Zinawekwa kwa **kichwa cha pose** (head_cx, chin), sio kwa coordinates za

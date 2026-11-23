@@ -45,6 +45,20 @@ export const LT = {
 const BAND = {paper: '#31528F', warm: '#43536B', mint: '#3D6B60'};
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
+
+// per-scene, per-frame lip-sync tables baked from the mix (scripts/../mouth-*.json)
+const MOUTH = {};
+{
+  const dir = path.resolve(HERE, '../../../content/runway/character');
+  if (fs.existsSync(dir)) {
+    for (const f of fs.readdirSync(dir)) {
+      if (f.startsWith('mouth-') && f.endsWith('.json')) {
+        const j = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
+        MOUTH[j.slug] = j;
+      }
+    }
+  }
+}
 const MARK_PATH = path.resolve(HERE, '../../../content/assets/altraware-mark.png');
 const MARK = fs.existsSync(MARK_PATH) ? `data:image/png;base64,${fs.readFileSync(MARK_PATH).toString('base64')}` : null;
 
@@ -362,21 +376,24 @@ export function light(spec, scene, t, images, track) {
     return at;
   };
   const spanOf = (i) => (hooks ? Math.round(hooks[i] * 60) : spf);
-  // Talking: a two-syllable pulse, damped at both ends of the scene so she does not
-  // start mid-word on the cut frame. `scene.talk === false` keeps her mouth shut.
-  const talkAmt = (() => {
-    if (scene.talk === false) return 0;
-    const span = Math.max(1, spanOf(idx));
-    const env = Math.min(1, t / 12) * Math.min(1, (span - t) / 14);
-    const w = 0.5 + 0.5 * Math.sin((t / 60) * Math.PI * 2 * 2.7);
-    const w2 = 0.5 + 0.5 * Math.sin((t / 60) * Math.PI * 2 * 1.3 + 1.9);
-    return clamp(env * (0.45 + 0.4 * w + 0.15 * w2)) * (scene.talkGain ?? 1);
-  })();
   const g0 = startOf(idx);
   const total = Math.max(1, startOf(spec.scenes.length - 1) + spanOf(spec.scenes.length - 1));
   const cp = easeInOut(clamp((g0 + t) / total));
   const zoom = 1 + (scene.zoom ?? 0.030) * cp;
   const riseY = 0;
+
+  // Talking: the mouth follows the ACTUAL audio, not a made-up pulse. The envelope of
+  // the mix is baked at 60 fps next to the spec, so the lips land on the syllables she
+  // is really saying. A generated pulse is what made it look badly dubbed.
+  const talkAmt = (() => {
+    if (scene.talk === false) return 0;
+    const g = spec.mouthTrack && MOUTH[spec.mouthTrack];
+    if (!g) return 0;
+    const f = Math.round(g0 + t);
+    const i = Math.max(0, Math.min(g.frames - 1, f));
+    const v = g.mouth[i] ?? 0;
+    return clamp(v) * (scene.talkGain ?? 1);
+  })();
   let out = roomBack(t, {tone, streak: scene.streak !== false});
 
   const c = scene.cast;
