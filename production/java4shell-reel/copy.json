@@ -1,0 +1,116 @@
+{
+  "keyword": "PATCH",
+  "note": "One trending tech observation: Java4Shell, CVE-2026-114938, disclosed 17 Nov 2026. Every number on screen is from the public advisory and the Calif write-up. Swanglish first. No product claims, no client data.",
+  "takes": [
+    {
+      "id": "hook",
+      "pose": "wave",
+      "sw": [
+        "Herufi 65. Ndio zote.",
+        "Zinaweza kuchukua server."
+      ],
+      "en": [
+        "Sixty-five characters. That is all.",
+        "Enough to take your server."
+      ],
+      "gesture": [
+        {
+          "kind": "wave",
+          "at": 0.08,
+          "len": 58
+        }
+      ],
+      "say": "Herufi sitini na tano. Ndio zote. Zinaweza kuchukua server yako."
+    },
+    {
+      "id": "found",
+      "pose": "desk",
+      "sw": [
+        "AI ilipata kwa saa moja.",
+        "Exploit: saa mbili, chini ya $200."
+      ],
+      "en": [
+        "AI found it in about an hour.",
+        "Exploit two more hours, under $200."
+      ],
+      "gesture": [],
+      "say": "AI ilipata kwa saa moja. Exploit kwa saa mbili, chini ya dollar mia mbili."
+    },
+    {
+      "id": "bug",
+      "pose": "point",
+      "sw": [
+        "Base64 yenye '=' pasipofaa.",
+        "Bytes 62 nje ya buffer ya 50."
+      ],
+      "en": [
+        "Base64 with a stray '='.",
+        "62 bytes past a 50-byte buffer."
+      ],
+      "gesture": [
+        {
+          "kind": "point",
+          "at": 0.14,
+          "len": 92
+        }
+      ],
+      "say": "Base64 yenye sawa pasipofaa. Decoder inaandika bytes sitini na mbili nje ya buffer."
+    },
+    {
+      "id": "apps",
+      "pose": "cheer",
+      "sw": [
+        "Keycloak, Jira, Confluence,",
+        "Jenkins: code kabla ya login."
+      ],
+      "en": [
+        "Keycloak, Jira, Confluence, Jenkins.",
+        "Code execution before login."
+      ],
+      "gesture": [],
+      "say": "Keycloak, Jira, Confluence, Jenkins. Code kabla ya login."
+    },
+    {
+      "id": "patch",
+      "pose": "ok",
+      "sw": [
+        "Patch: Novemba 17.",
+        "Update, au zima intrinsics."
+      ],
+      "en": [
+        "Patched on 17 November.",
+        "Update, or disable the intrinsic."
+      ],
+      "gesture": [],
+      "say": "Oracle alitoa patch Novemba kumi na saba. Update, au zima Base64 intrinsics."
+    },
+    {
+      "id": "action",
+      "pose": "pray",
+      "sw": [
+        "Bado huja-update?",
+        "Hii ni leo, si kesho."
+      ],
+      "en": [
+        "Not updated yet?",
+        "This is today, not tomorrow."
+      ],
+      "gesture": [],
+      "say": "Bado huja-update? Hii ni leo, si kesho."
+    },
+    {
+      "id": "cta",
+      "pose": "peace",
+      "sw": [
+        "Comment PATCH,",
+        "nikutumie checklist."
+      ],
+      "en": [
+        "Comment PATCH,",
+        "and I will send the checklist."
+      ],
+      "gesture": [],
+      "say": "Comment PATCH. Nikutumie checklist."
+    }
+  ]
+}

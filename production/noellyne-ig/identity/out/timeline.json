@@ -1,0 +1,27 @@
+{
+  "fps": 30,
+  "frames": 494,
+  "seconds": 16.47,
+  "spans": [
+    {
+      "id": "hook",
+      "start": 8,
+      "end": 109
+    },
+    {
+      "id": "name",
+      "start": 117,
+      "end": 244
+    },
+    {
+      "id": "promise",
+      "start": 253,
+      "end": 377
+    },
+    {
+      "id": "cta",
+      "start": 386,
+      "end": 462
+    }
+  ]
+}

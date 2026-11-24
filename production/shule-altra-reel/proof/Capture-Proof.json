@@ -1,0 +1,129 @@
+{
+  "commit": "27fef99db11f512f1431e3a5716ed588e8514e11",
+  "mode": "Isolated local demo, no cloud",
+  "scope": "Only record-free in-app UI crops; class and stream switched with normal controls. No live account or service accessed.",
+  "sample": {
+    "class": "Form 2",
+    "stream": "A",
+    "day": "Monday",
+    "period": "Period 1",
+    "time": "08:00–08:40",
+    "subject": "Biology",
+    "locallyCreated": true,
+    "downloaded": true
+  },
+  "art": {
+    "selectors": {
+      "file": "selectors.png",
+      "sha256": "486afe3fa2da232b615a4655017f9023b7bb49663281d5661a60fcd863ac6fe9",
+      "source": "Local Shule Altra demo",
+      "clip": {
+        "x": 303,
+        "y": 275,
+        "width": 315,
+        "height": 81
+      },
+      "shows": "Actual Class and Stream selectors on Form 2 / A"
+    },
+    "appTitle": {
+      "file": "appTitle.png",
+      "sha256": "025e30a19223c699593305478e4a5abafcbd0b035258d3428b0682ad600f438c",
+      "source": "Local Shule Altra demo",
+      "clip": {
+        "width": 529,
+        "height": 32
+      },
+      "shows": "School timetable title"
+    },
+    "attendance": {
+      "file": "attendance.png",
+      "sha256": "d7f2a06a1c44b7acaa88b7c577a542f429fcb067b05b664f3e284de9347cba69",
+      "source": "Local Shule Altra demo",
+      "clip": {
+        "width": 247,
+        "height": 41
+      },
+      "shows": "Attendance navigation item only"
+    },
+    "academics": {
+      "file": "academics.png",
+      "sha256": "37a3a81ef60f91c1f6aa7c0d054756f85f0cdefd08bcf744c6c0fa6d79b59d61",
+      "source": "Local Shule Altra demo",
+      "clip": {
+        "width": 247,
+        "height": 41
+      },
+      "shows": "Academics navigation item only"
+    },
+    "finance": {
+      "file": "finance.png",
+      "sha256": "442e928d2d54ce118528845882fcc8385c2178bba1c154c588f73805bf957a94",
+      "source": "Local Shule Altra demo",
+      "clip": {
+        "width": 247,
+        "height": 41
+      },
+      "shows": "Finance navigation item only"
+    },
+    "brand": {
+      "file": "brand.png",
+      "sha256": "b8ef0f854d26aa67d47009b8371910c25d3d1816d1f579a13a0c23f1d044e493",
+      "source": "Local Shule Altra demo",
+      "clip": {
+        "width": 44,
+        "height": 44
+      },
+      "shows": "Shule Altra brand mark only"
+    },
+    "week": {
+      "file": "week.png",
+      "sha256": "09a788ce1ede4996a63cab5d0fd17debb198e34491adfa6c78864769b251c8f0",
+      "source": "Local Shule Altra demo",
+      "clip": {
+        "width": 1086,
+        "height": 48
+      },
+      "shows": "Time and weekday column titles. No row data."
+    },
+    "monday": {
+      "file": "monday.png",
+      "sha256": "6347c53044d95fcdab49611ae30ea0b7de3638d4122b31ad83084d579981fd0d",
+      "source": "Local Shule Altra demo",
+      "clip": {
+        "width": 290.265625,
+        "height": 48
+      },
+      "shows": "Monday column heading"
+    },
+    "time": {
+      "file": "time.png",
+      "sha256": "d1852a765b36b408aa718fda2d39983d268124297efc360bca00d3065e998f61",
+      "source": "Local Shule Altra demo",
+      "clip": {
+        "width": 184.84375,
+        "height": 81
+      },
+      "shows": "Period 1 and its 08:00–08:40 range"
+    },
+    "subject": {
+      "file": "subject.png",
+      "sha256": "7ce85cd2747730cfe9e5857ff5cd1068c4e0dd8a396df90c8d6cfbb3d1134640",
+      "source": "Local Shule Altra demo",
+      "clip": {
+        "width": 258.265625,
+        "height": 20
+      },
+      "shows": "Biology subject only; no teacher or room"
+    },
+    "download": {
+      "file": "download.png",
+      "sha256": "1cfde71e92688fdd525b5e8565be0d1fdf22048bca7d3219b08bae738c387727",
+      "source": "Local Shule Altra demo",
+      "clip": {
+        "width": 245,
+        "height": 40
+      },
+      "shows": "Download saved timetable control"
+    }
+  }
+}

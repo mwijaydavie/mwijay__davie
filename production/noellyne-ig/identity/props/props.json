@@ -1,0 +1,17 @@
+{
+  "laptop": {
+    "file": "laptop.png",
+    "w": 1013,
+    "h": 639
+  },
+  "mug": {
+    "file": "mug.png",
+    "w": 659,
+    "h": 646
+  },
+  "plant": {
+    "file": "plant.png",
+    "w": 440,
+    "h": 670
+  }
+}

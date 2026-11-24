@@ -1,0 +1,43 @@
+{
+  "fps": 60,
+  "frames": 1873,
+  "seconds": 31.22,
+  "spans": [
+    {
+      "id": "hook",
+      "start": 9,
+      "end": 273
+    },
+    {
+      "id": "gap",
+      "start": 298,
+      "end": 533
+    },
+    {
+      "id": "auth",
+      "start": 556,
+      "end": 767
+    },
+    {
+      "id": "empty",
+      "start": 790,
+      "end": 1054
+    },
+    {
+      "id": "offline",
+      "start": 1077,
+      "end": 1341
+    },
+    {
+      "id": "receipt",
+      "start": 1364,
+      "end": 1592
+    },
+    {
+      "id": "cta",
+      "start": 1615,
+      "end": 1795
+    }
+  ],
+  "keyword": "SHIP"
+}

@@ -1,0 +1,69 @@
+{
+  "project": "Shule Altra",
+  "url": "https://shule-direct-pro.vercel.app/printables/timetable.pdf",
+  "commit": "27fef99db11f512f1431e3a5716ed588e8514e11",
+  "sourceSha256": "20bcc08e869e8dfce2bf45edc97048aa0f960772c07e2ab8cd13b3580782138f",
+  "redactions": 80,
+  "art": {
+    "pdfTitle": {
+      "file": "pdfTitle.png",
+      "sha256": "0aeb3be218304130466a6458bbf5cc7b2ec0ff4db67cad19e1d78f49f20422cf",
+      "source": "Pinned public sample PDF",
+      "clip": [
+        545.0,
+        28.0,
+        710.0,
+        52.0
+      ],
+      "size": [
+        413,
+        60
+      ],
+      "shows": "Actual PDF title only"
+    },
+    "pdfWeek": {
+      "file": "pdfWeek.png",
+      "sha256": "c03faa180cd3414e7816c511c597f4a0f9a1e8b727867cbede4e2a9101888e61",
+      "source": "Pinned public sample PDF",
+      "clip": [
+        38.0,
+        112.0,
+        804.0,
+        490.0
+      ],
+      "size": [
+        1915,
+        945
+      ],
+      "shows": "Form 2, Stream A and weekly schedule with staff and rooms removed"
+    },
+    "pdfMonday": {
+      "file": "pdfMonday.png",
+      "sha256": "1f07d99727947035ff9ab885edb1b3d3f0dbdf64ebb1bfbdfc544555c81c4d85",
+      "source": "Pinned public sample PDF",
+      "clip": [
+        38.0,
+        138.0,
+        275.0,
+        202.0
+      ],
+      "size": [
+        593,
+        160
+      ],
+      "shows": "Exact Monday first-period excerpt, redacted below the subject"
+    }
+  },
+  "localDownload": {
+    "sha256": "08ab6fcd6722d19303541c852fa601982d839b8348fd4e6e71935c9e1c3eae59",
+    "pages": 1,
+    "verified": [
+      "Biology",
+      "08:00",
+      "Form 2"
+    ],
+    "exportedIn": "Isolated local demo only"
+  },
+  "evidence": "Read-only deployed sample title and first-period text match the pinned sample; exact deployed bytes not compared. This is distinct from the separately verified local PDF download.",
+  "omitted": "No school contact details, seal, reference, sign-off, teachers, rooms, learner records or original PDFs in the kit."
+}
