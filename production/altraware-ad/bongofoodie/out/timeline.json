@@ -1,0 +1,38 @@
+{
+  "fps": 60,
+  "frames": 3186,
+  "seconds": 53.1,
+  "spans": [
+    {
+      "id": "hook",
+      "start": 10,
+      "end": 188
+    },
+    {
+      "id": "problem",
+      "start": 221,
+      "end": 767
+    },
+    {
+      "id": "menu",
+      "start": 797,
+      "end": 1488
+    },
+    {
+      "id": "brains",
+      "start": 1518,
+      "end": 2081
+    },
+    {
+      "id": "pitch",
+      "start": 2111,
+      "end": 2598
+    },
+    {
+      "id": "cta",
+      "start": 2628,
+      "end": 3096
+    }
+  ],
+  "keyword": "APP"
+}
