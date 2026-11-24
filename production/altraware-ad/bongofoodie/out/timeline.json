@@ -1,37 +1,37 @@
 {
   "fps": 60,
-  "frames": 3186,
-  "seconds": 53.1,
+  "frames": 4676,
+  "seconds": 77.93,
   "spans": [
     {
       "id": "hook",
       "start": 10,
-      "end": 188
+      "end": 382
     },
     {
       "id": "problem",
-      "start": 221,
-      "end": 767
+      "start": 415,
+      "end": 1147
     },
     {
       "id": "menu",
-      "start": 797,
-      "end": 1488
+      "start": 1177,
+      "end": 2216
     },
     {
       "id": "brains",
-      "start": 1518,
-      "end": 2081
+      "start": 2246,
+      "end": 3148
     },
     {
       "id": "pitch",
-      "start": 2111,
-      "end": 2598
+      "start": 3178,
+      "end": 3862
     },
     {
       "id": "cta",
-      "start": 2628,
-      "end": 3096
+      "start": 3892,
+      "end": 4586
     }
   ],
   "keyword": "APP"
