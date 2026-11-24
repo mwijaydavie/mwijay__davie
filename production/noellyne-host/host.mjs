@@ -32,54 +32,11 @@ export async function loadFonts() {
   }
 }
 
-/**
- * Masked AI mouth plates. The raw plates are full face crops whose dark
- * backdrop bleeds past her silhouette (visible halo + a hard edge on her
- * chest). Cutting everything outside an ellipse fitted to the lips keeps
- * exactly the replacement mouth and nothing else — her real teeth, her real
- * lighting — with the surrounding skin feathered into the base pose.
- * Ellipses measured plate-pixel-by-plate-pixel on this rig build; poses not
- * listed fall back to the kit viseme ladder.
- */
-const AI_MOUTH_ELLIPSE = {
-  wave:     { cx: 122, cy: 116, rx: 72, ry: 44, feather: 0.30 },
-  point:    { cx: 122, cy: 115, rx: 72, ry: 44, feather: 0.30 },
-  ok:       { cx: 122, cy: 106, rx: 70, ry: 40, feather: 0.30 },
-  thumbsup: { cx: 107, cy: 97,  rx: 68, ry: 34, feather: 0.30 },
-};
-function maskedPlate(img, { cx, cy, rx, ry, feather }) {
-  const cv = createCanvas(img.width, img.height);
-  const c = cv.getContext("2d");
-  c.drawImage(img, 0, 0);
-  c.globalCompositeOperation = "destination-in";
-  c.save();
-  c.translate(cx, cy); c.scale(rx, ry);
-  const g = c.createRadialGradient(0, 0, 0, 0, 0, 1);
-  g.addColorStop(0, "rgba(0,0,0,1)");
-  g.addColorStop(Math.max(0, 1 - feather), "rgba(0,0,0,1)");
-  g.addColorStop(1, "rgba(0,0,0,0)");
-  c.fillStyle = g;
-  c.fillRect(-1, -1, 2, 2);
-  c.restore();
-  // give callers a drawImage-able canvas; fall back to raw draw if null
-  return cv;
-}
-
 export async function loadHost() {
   const rig = JSON.parse(fs.readFileSync(path.join(ASSETS, "host-rig.json"), "utf8"));
   const layers = {};
   await Promise.all(rig.files.map(async ({ file }) => { layers[file] = await loadImage(path.join(ASSETS, file)); }));
   const mark = await loadImage(path.join(ASSETS, "altraware.png"));
-  // build masked AI plates for the poses we trust (see AI_MOUTH_ELLIPSE)
-  for (const [poseName, p] of Object.entries(rig.poses)) {
-    const ell = AI_MOUTH_ELLIPSE[poseName];
-    if (!ell || !p.ai) continue;
-    for (const lv of Object.keys(p.ai)) {
-      const v = p.ai[lv];
-      const plate = layers[v.file];
-      if (plate) v.mask = maskedPlate(plate, ell);
-    }
-  }
   return { rig, layers, mark };
 }
 
@@ -148,19 +105,16 @@ export function performerDraw(c, host, fps) {
      *
      * Two sources, in order of preference:
      *
-     *   1. `p.ai` — AI renders of THIS pose with only the mouth changed. They are
-     *      her real mouth, her real lighting, her real teeth, at three openness
-     *      levels. This is what replaced the kit patches after the kit patch
-     *      painted a grin on her chin: the kit's eight "visemes" are all one
-     *      painted smile with no teeth, so pasting one onto a pose reads as a
-     *      sticker. A model render at three levels does not.
+     * Two sources were tried on this rig:
      *
-     *   2. `p.mouth` — the original kit patches, kept for the poses that do not
-     *      have AI levels yet.
+     *   1. `p.ai` — AI renders of THIS pose with the mouth changed. Aligned,
+     *      but pasting any of them (raw or elliptically masked) read as a
+     *      pasted sticker to the owner ("mouth imekua kama unusual"). Not
+     *      used for this build.
      *
-     * The level is chosen by openness, not blended: these are complete
-     * replacements for the lip area, so partial alpha would leave the closed
-     * mouth showing through.
+     *   2. `p.mouth` — the original 8 kit visemes. Same painterly family as
+     *      each base face. The ladder (aperture-ranked) is what the renderer
+     *      uses; selection is gamma-boosted so speech articulates.
      */
     /**
      * `mouth: false` means "draw no mouth plate at all" — the caller is going to
@@ -181,26 +135,18 @@ export function performerDraw(c, host, fps) {
       inner(c, f);
     } else if (bare) {
       // caller stamps the plate
-    } else if (p.ai && p.ai.open && p.ai.open.mask) {
-      // Masked AI plate: her real mouth at three openness levels, with the
-      // backdrop gone. Level by openness: she idles on the closed plate.
-      const lv = !voicing ? "closed" : openness < 0.38 ? "closed" : openness < 0.62 ? "mid" : "open";
-      const v = p.ai[lv] || p.ai.open;
-      if (v && v.mask) {
-        c.save();
-        c.drawImage(v.mask, v.cx - v.w / 2, v.cy - v.h / 2);
-        c.restore();
-      }
     } else if (voicing && p.mouth) {
       // Kit patches ranked by actual aperture (verified side-by-side on wave):
       // A,F closed smiles; G,B,C small-to-medium toothy smiles; H wide;
       // D,E fully open. An earlier guess (A,G,C,H,D,E,B,F) mapped openness
       // 0.9+ onto F — a closed smile — so she read as silent while talking.
       const LADDER = ["A", "F", "G", "B", "C", "H", "D", "E"];
-      // gentler gamma: 0.3 openness -> C, 0.5 -> H, 0.7+ -> D/E, so she
-      // visibly articulates on ordinary phrases instead of idling on A..C
+      // Aperture boost: median voiced openness (~0.5) lands on H (wide
+      // toothy), peaks on D/E (open cavity, teeth) — visible articulation
+      // without leaving the natural kit family. gamma 0.7 was fine; 0.75 is
+      // the least that survives at reel distance.
       const idx = Math.min(LADDER.length - 1,
-        Math.max(0, Math.round(Math.pow(openness, 0.7) * (LADDER.length - 1))));
+        Math.max(0, Math.round(Math.pow(openness, 0.75) * (LADDER.length - 1))));
       const patch = p.mouth[LADDER[idx]];
       if (patch) {
         c.save();

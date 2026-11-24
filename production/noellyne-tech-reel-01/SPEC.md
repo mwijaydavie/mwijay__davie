@@ -1,4 +1,4 @@
-# Noellyne — Tech Bila Hype · EP.1 v2: MAANDISHI HAYASOMEKI
+# Noellyne — Tech Bila Hype · EP.1 v4: MAANDISHI? HAYASOMEKI.
 
 Reference: `google_drive/From Klickpin.com- 924363892282992611-pin-id-924363892282992611.mp4`
 (720×1280, 30 fps, 19.11 s, Pinterest re-pin of a motion-design studio's self-promo).
@@ -14,7 +14,7 @@ piece for kinetic captions in this repo. (The owner re-sent the same six referen
 | Cloned (motion-faithful) | Ours (additions) |
 |---|---|
 | Word-by-word slam-in of display serif lines | All copy (Kiswahili, proofed, VO-read) |
-| Pill banner pop-in over a "hero" subject | Noellyne rig plates (wave/present/one/ok/point/thumbsup) + breathing + blinks + real visemes |
+| Pill banner pop-in over a "hero" subject | Noellyne rig plates (wave/phone/desk/ok/point/thumbsup) + breathing + blinks + real visemes |
 | Halftone dot grid atmosphere | Altraware tokens (cream #FBF7EF, sand #F4E3C4, violet #5B3FB5, ink #1D2A33, gold #F2C66D), Fraunces/Inter/JetBrains Mono |
 | Starburst corner spikes on violet beats | Six Kiswahili VO takes (scratch TTS) + measured mouth track |
 | Hard cuts + cream flash between beats | End-card with Altraware logo draw + `altra.tanzaniareach.com` typeout |
@@ -25,13 +25,26 @@ illustration, the Nike/McDonald's imagery, the studio wordmark. None of those ap
 get redrawn, or get traced. Motion and layout only. Sources of those assets are unknown;
 Pinterest/Klickpin re-pins are not a licence.
 
+## Revision history
+
+- **v1** — rejected by owner: hands clipped at frame edges, no voice, weak copy.
+- **v2** — hands visible, Kiswahili TTS, voice-led timeline, kit viseme mouth (aperture
+  re-mapped after measuring the real kit). Mouth read as a fixed smile — "haiongei".
+- **v3** — masked AI mouth plates (elliptical destination-in masks over the dark-backdrop
+  plates so her face didn't show a hard edge). She actually talked, but the owner rejected
+  the whole delivery: the mouth looked **"kama unusual"** — not natural.
+- **v4** — masked AI plates **removed from the code path entirely** (`host.mjs`). Mouth =
+  kit visemes only, aperture ladder A,F,G,B,C,H,D,E with gamma **0.75**. Poses swapped for
+  takes whose kit patches actually open with teeth: `problem` present→**phone**, `rule1`
+  one→**desk**. Hook title renamed to owner's pick: **"MAANDISHI? HAYASOMEKI."**
+
 ## Timeline (measured from the takes, 60 fps, 2276 frames = 37.93 s)
 
 | # | span | seconds | beat | pose |
 |---|---|---|---|---|
-| 1 | 10–351 | 0.17–5.85 | hook — pill, "MAANDISHI / HAYASOMEKI.", kicker "UNALISOMA?" | wave |
-| 2 | 384–826 | 6.40–13.77 | problem — ink slab, typed "KWA NINI?", wall of 9 bars + red slashes | present |
-| 3 | 856–1142 | 14.27–19.03 | rule 1 — "NENO MOJA." / "KUBWA.", gold stamp WEBSITE | one |
+| 1 | 10–351 | 0.17–5.85 | hook — pill, "MAANDISHI?" / "HAYASOMEKI.", kicker "UNALISOMA?" | wave |
+| 2 | 384–826 | 6.40–13.77 | problem — ink slab, typed "KWA NINI?", wall of 9 bars + red slashes | phone |
+| 3 | 856–1142 | 14.27–19.03 | rule 1 — "NENO MOJA." / "KUBWA.", gold stamp WEBSITE | desk |
 | 4 | 1169–1493 | 19.48–24.88 | rule 2 — "RANGI / MBILI / TU.", VIOLET/CREAM swatches | ok |
 | 5 | 1523–1873 | 25.38–31.22 | rule 3 — violet field, starbursts, card "UNATAKA WEBSITE?" | point |
 | 6 | 1903–2186 | 31.72–36.43 | outro — logo wipe, "HIYO NDIYO." / "FUATA HIYO.", domain typeout | thumbsup |
@@ -53,28 +66,28 @@ not on the hook's own cut-in).
 
 ## Pose placement (safe box, ≥ 24 px margins)
 
-| beat | w (px) | cx | left | right | bottomY |
-|---|---|---|---|---|---|
-| hook (wave) | 660 | 540 | 210 | 870 | 1912 |
-| problem (present) | 460 | 810 | 580 | 1040 | 1904 |
-| rule1 (one) | 510 | 795 | 540 | 1050 | 1904 |
-| rule2 (ok) | 490 | 810 | 565 | 1055 | 1904 |
-| rule3 (point) | 470 | 820 | 585 | 1055 | 1904 |
-| cta (thumbsup) | 660 | 560 | 230 | 890 | 1914 |
+| beat | pose | w (px) | cx | left | right | bottomY |
+|---|---|---|---|---|---|---|
+| hook | wave | 660 | 540 | 210 | 870 | 1912 |
+| problem | phone | 520 | 795 | 535 | 1055 | 1904 |
+| rule1 | desk | 580 | 760 | 470 | 1050 | 1904 |
+| rule2 | ok | 560 | 775 | 495 | 1055 | 1904 |
+| rule3 | point | 530 | 780 | 515 | 1045 | 1904 |
+| cta | thumbsup | 720 | 560 | 200 | 920 | 1914 |
 
-## Calibration log (this is why v1 "haikuwa na hands")
+## Calibration log
 
 - `wave`, `point`: hand layers are real rig layers — they rotate at the wrist (STYLES).
 - Kit viseme aperture ladder re-measured by compositing all 8 patches per face:
-  **A,F closed · G,B,C smile-teeth · H wide · D,E open** (host.mjs `LADDER` corrected,
-  selection now gamma 0.7 so median voiced openness ≈ H, peaks = D/E).
-- AI plates (wave/point/ok/thumbsup) re-enabled **after** fitting per-plate elliptical
-  masks in host.mjs (`AI_MOUTH_ELLIPSE`, destination-in radial gradient, feather 0.30).
-  Raw plates were rejected in v2 — the dark backdrop bled past her silhouette and ended
-  in a hard edge on her chest. Levels: <0.38 closed · <0.62 mid · ≥0.62 open (idle = closed).
-- `peace` rig metadata is misaligned for this build (kit patch lands on her neck;
-  AI ellipse unmeasured) → rule 2 uses **ok** instead. `cheer`/`pray`/`desk`/`phone`:
-  plates exist but mouth ellipses are uncalibrated — they fall back to the kit ladder.
+  **A,F closed · G,B,C smile-teeth · H wide · D,E open** (host.mjs `LADDER`, gamma **0.75**
+  in v4 — was 0.7 in v2/v3 so median voiced openness lands on H, peaks reach D/E).
+- **AI masked plates: rejected in v3, removed in v4.** They talked, but the elliptical
+  backdrop mask read as "unusual" to the owner. `host.mjs` no longer contains the ellipse
+  constant or the masked-plate path. Do not re-enable without the owner's explicit go-ahead.
+- `peace` rig metadata is misaligned for this build (kit patch lands on her neck) →
+  rule 2 uses **ok**. `cheer`/`pray`/`hold`: usable in principle, uncalibrated — kit fallback.
+- `present`/`one` kit patches are near-identical low-aperture smiles in the source art —
+  that is why rule1/problem were moved to `desk`/`phone` in v4 (real open-mouth patches with teeth).
 - pose-eye lids (`{pose}-blink.png`) are used as scheduled blinks at start+44/+160/+276.
 
 ## Numbers used from the reference (measured by eye at 10 fps probe sheets)
@@ -89,9 +102,13 @@ not on the hook's own cut-in).
 
 - Deterministic (frame-driven). 2276 frames @60 fps; timeline.json measured from the
   takes — re-recording a take shifts picture automatically (mix.py → lipsync.py → render.mjs).
-- Full-res stills at every beat (`proof/v3-*.png`) checked for: safe-box margins,
-  no text overflow (fitSize), type never over her silhouette, mouth open with teeth on
-  voiced peaks (AI plates on wave/point/ok/thumbsup; gamma kit visemes on one/present),
+- Full-res stills at every beat (`proof/v4-*.png`) checked for: safe-box margins,
+  no text overflow (fitSize), type never over her silhouette, hands visible and in-frame,
   blink timing, badge vs starburst collision (KANUNI 03 moved right).
-- Encode: H.264 High, 1080×1920, 60 fps CFR, yuv420p, AAC 48 kHz stereo, ≈ 3.4 Mbps, faststart.
+- Mouth motion tuned to owner feedback across three rejections: v2 (fixed smile, too subtle)
+  → v3 (masked AI, owner: "unusual") → v4 (kit-only, gamma 0.75, phone/desk poses for real
+  aperture). Amplitude is limited by the source art for ok/point/thumbsup; the mouth does
+  swap patches across voiced frames and teeth show on phone/desk/ok/point/thumbsup peaks.
+- Encode: H.264 High, 1080×1920, 60 fps CFR, yuv420p, AAC 48 kHz stereo, ≈ 3.8 Mbps,
+  17.9 MB, faststart.
 - Frames are not committed (rebuild from `render.mjs`); mp4 + mix.wav are.

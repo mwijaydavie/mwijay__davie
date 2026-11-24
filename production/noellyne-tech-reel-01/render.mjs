@@ -1,5 +1,5 @@
 /**
- * Noellyne — Tech Bila Hype · EP.1 v2 "MAANDISHI HAYASOMEKI"
+ * Noellyne — Tech Bila Hype · EP.1 v2 "MAANDISHI? HAYASOMEKI"
  * Motion technique cloned (motion-faithful) from the approved reference;
  * every character, word, asset and claim on screen is ours. See SPEC.md.
  *
@@ -176,9 +176,9 @@ function hook(c, f, span, HOST, draw) {
   if (f < span.start + 6) { c.fillStyle = `rgba(0,0,0,${1 - (f - span.start) / 6})`; c.fillRect(0, 0, W, H); }
   const s = span.start;
   pill(c, 80, 132, "TECH BILA HYPE — EP.1", { f, start: s + 6, size: 25 });
-  const s1 = fitSize("MAANDISHI", 158, 880, "LimsSerif", false, 747);
+  const s1 = fitSize("MAANDISHI?", 150, 880, "LimsSerif", false, 747);
   const s2 = fitSize("HAYASOMEKI.", 158, 880, "LimsSerif", false, 747);
-  wordSlam(c, "MAANDISHI", 80, 372, s1, { family: "LimsSerif", color: INK, weight: 747, f, start: s + 30, rise: 54 });
+  wordSlam(c, "MAANDISHI?", 80, 372, s1, { family: "LimsSerif", color: INK, weight: 747, f, start: s + 30, rise: 54 });
   wordSlam(c, "HAYASOMEKI.", 80, 540, s2, { family: "LimsSerif", color: VIOLET, weight: 747, f, start: s + 42, rise: 54 });
   if (f >= s + 96) mono(c, "UNALISOMA?", 80, 640, 28, ASH, easeOut(s + 96, s + 114, f), 5);
   her(c, HOST, draw, f, span, "wave", { cx: 540, w: 660, enter: "rise" });
@@ -202,7 +202,7 @@ function problem(c, f, span) {
     const start = s + 40 + i * 10;
     const p = easeOut(start, start + 22, f);
     const y = wallY + i * step;
-    c.globalAlpha = 0.28 + p * 0.35;
+    c.globalAlpha = 0.36 + p * 0.40;
     rect(c, 96, y + (1 - p) * 30, Math.min(wpx, 620), barH, 15, "#33506b");
     c.globalAlpha = 1;
   }
@@ -233,7 +233,7 @@ function rule1(c, f, span) {
   // gold stamp, left column
   if (f >= s + 92) {
     const p = pop(s + 92, s + 110, f);
-    c.save(); c.translate(330, 1160); c.rotate(-0.105); c.scale(lerp(1.6, 1, p), lerp(1.6, 1, p)); c.globalAlpha = clamp(p * 1.4);
+    c.save(); c.translate(300, 1090); c.rotate(-0.105); c.scale(lerp(1.6, 1, p), lerp(1.6, 1, p)); c.globalAlpha = clamp(p * 1.4);
     rect(c, -235, -92, 470, 184, 26, GOLD);
     strokeRR(c, -235, -92, 470, 184, 26, "#a67c1f", 4);
     text(c, "WEBSITE", 0, 34, 96, { family: "LimsSerif", color: INK, weight: 747, align: "center" });
@@ -253,7 +253,7 @@ function rule2(c, f, span) {
   // dichromatic swatch dots — left column
   swatch(c, 205, 1220, 88, VIOLET, "VIOLET", f, s + 76, true);
   swatch(c, 465, 1220, 88, PAPER, "CREAM", f, s + 108, false);
-  mono(c, "violet kwa hatua · cream kupumzika", 80, 1520, 22, "#6d5426", easeOut(s + 128, s + 144, f), 2);
+  mono(c, "violet kwa hatua · cream kupumzika", 80, 1520, 19, "#6d5426", easeOut(s + 128, s + 144, f), 1);
 }
 
 function rule3(c, f, span) {
@@ -277,7 +277,7 @@ function rule3(c, f, span) {
     if (Math.floor(f / 18) % 2 === 0) text(c, "?", -tw / 2 + tw + 46, 24, 96, { family: "LimsSerif", color: GOLD, weight: 747, align: "center" });
     c.restore(); c.globalAlpha = 1;
   }
-  mono(c, "swali jema huwasimamisha.", 80, 1418, 26, "#e7defc", easeOut(s + 96, s + 112, f), 2);
+  mono(c, "swali jema huwasimamisha.", 80, 1424, 24, "#e7defc", easeOut(s + 96, s + 112, f), 1);
 }
 
 function cta(c, f, span, HOST, draw) {
@@ -299,7 +299,7 @@ function cta(c, f, span, HOST, draw) {
   mono(c, "Tips fupi. Bila hype.", 84, 884, 27, INK, easeOut(s + 122, s + 138, f), 2);
   const dstart = s + 148, dchars = Math.floor(clamp((f - dstart) / 2.4) * "altra.tanzaniareach.com".length);
   mono(c, "altra.tanzaniareach.com".slice(0, dchars) + (cursorOn(f) ? "▌" : ""), 84, 950, 28, VIOLET, 1, 2);
-  her(c, HOST, draw, f, span, "thumbsup", { cx: 560, w: 660, enter: "rise", bottomY: H - 6 });
+  her(c, HOST, draw, f, span, "thumbsup", { cx: 560, w: 720, enter: "rise", bottomY: H - 6 });
   if (f >= T - 12) { c.fillStyle = `rgba(0,0,0,${clamp((f - (T - 12)) / 12)})`; c.fillRect(0, 0, W, H); }
 }
 
@@ -308,11 +308,11 @@ const SCENES = { hook, problem, rule1, rule2, rule3, cta };
 // pose + placement per beat — all fully inside the safe box (x - w/2 >= 24, x + w/2 <= W - 24)
 const HER = {
   hook:    { pose: "wave",     cx: 540, w: 660 },
-  problem: { pose: "present",  cx: 810, w: 460, bottomY: H - 16 },
-  rule1:   { pose: "one",      cx: 795, w: 510, bottomY: H - 16 },
-  rule2:   { pose: "ok",       cx: 810, w: 490, bottomY: H - 16 },
-  rule3:   { pose: "point",    cx: 820, w: 470, bottomY: H - 16 },
-  cta:     { pose: "thumbsup", cx: 560, w: 660 },
+  problem: { pose: "phone",    cx: 795, w: 520, bottomY: H - 16 },
+  rule1:   { pose: "desk",     cx: 760, w: 580, bottomY: H - 16 },
+  rule2:   { pose: "ok",       cx: 775, w: 560, bottomY: H - 16 },
+  rule3:   { pose: "point",    cx: 780, w: 530, bottomY: H - 16 },
+  cta:     { pose: "thumbsup", cx: 560, w: 720 },
 };
 
 function drawFrame(ctx, HOST, draw, f) {

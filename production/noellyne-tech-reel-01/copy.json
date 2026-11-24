@@ -24,7 +24,7 @@
     },
     {
       "id": "problem",
-      "pose": "present",
+      "pose": "phone",
       "sw": [
         "Kila siku unaona captions ndefu.",
         "Mistari midogo, hakuna anayesoma."
@@ -44,7 +44,7 @@
     },
     {
       "id": "rule1",
-      "pose": "one",
+      "pose": "desk",
       "sw": [
         "Kanuni ya kwanza:",
         "neno moja. Kubwa."
