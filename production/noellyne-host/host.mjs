@@ -46,6 +46,37 @@ export const smooth = (a, b, f) => { const q = clamp((f - a) / (b - a)); return 
 export const bump = (f, c, w) => 1 - smooth(0, w, Math.abs(f - c));
 export const lerp = (a, b, p) => a + (b - a) * p;
 
+/**
+ * Mouth plates, feathered and slightly enlarged (2026-11-24, owner feedback
+ * "mouthhh"): the flat rectangle of the kit patch read as a pasted sticker
+ * on her face. Each patch is drawn once into a cache canvas, scaled 1.12
+ * about its own centre, then feathered with an elliptical destination-in
+ * gradient so the patch melts into the surrounding face instead of
+ * ending in a hard edge. Kit visemes only — no AI mouths.
+ */
+const mouthMaskCache = new Map();
+function featheredMouth(patch, src) {
+  const cached = mouthMaskCache.get(patch.file);
+  if (cached) return cached;
+  const k = 1.12, m = 10;
+  const dw = Math.ceil(src.width * k), dh = Math.ceil(src.height * k);
+  const cv = createCanvas(dw + m * 2, dh + m * 2);
+  const t = cv.getContext("2d");
+  t.drawImage(src, m, m, dw, dh);
+  t.globalCompositeOperation = "destination-in";
+  t.translate(cv.width / 2, cv.height / 2);
+  t.scale(1, 0.74);
+  const g = t.createRadialGradient(0, 0, Math.min(dw, dh) * 0.18, 0, 0, dw / 2 + m);
+  g.addColorStop(0, "rgba(255,255,255,1)");
+  g.addColorStop(0.62, "rgba(255,255,255,0.94)");
+  g.addColorStop(1, "rgba(255,255,255,0)");
+  t.fillStyle = g;
+  t.beginPath(); t.arc(0, 0, dw / 2 + m, 0, Math.PI * 2); t.fill();
+  const anchor = { canvas: cv, dw, dh, m };
+  mouthMaskCache.set(patch.file, anchor);
+  return anchor;
+}
+
 // Gesture profiles, kept identical in feel to the approved Altraware performer.
 const STYLES = {
   wave:    { len: 62, move: (u) => [14 * Math.sin(u * 5.1 * Math.PI), -13 * Math.sin(u * Math.PI), -2.4 * Math.sin(u * 3.1)] },
@@ -149,8 +180,12 @@ export function performerDraw(c, host, fps) {
         Math.max(0, Math.round(Math.pow(openness, 0.75) * (LADDER.length - 1))));
       const patch = p.mouth[LADDER[idx]];
       if (patch) {
+        const src = layers[patch.file];
+        const fm = featheredMouth(patch, src);
+        // keep the patch's centre on the rig's anchor while scaling 1.12x
+        const cxp = patch.x + src.width / 2, cyp = patch.y + src.height / 2;
         c.save();
-        c.drawImage(layers[patch.file], patch.x, patch.y);
+        c.drawImage(fm.canvas, cxp - fm.dw / 2 - fm.m, cyp - fm.dh / 2 - fm.m);
         c.restore();
       }
     }

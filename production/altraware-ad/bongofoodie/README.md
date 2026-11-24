@@ -30,18 +30,29 @@ wa kweli, si picha ya kawaida ya stock.
 | hook | cheer | pill "TANGAZO — ALTRAWARE × BONGOFOODIE" · "APP NA" / "WEBSITE" · kicker "kwa biashara yako — Tanzania." | Karibu Tech Bila Hype. Leo ni tangazo — fupi, zito. |
 | problem | phone | "BIASHARA YAKO INAKAAJE?" · wall ya notifications (call/WhatsApp/orders zinapotea) · red stamp "ORDER + PESA = ZINAPOTEA" | Biashara nyingi Tanzania… Hakuna anayeona menu mtandaoni. |
 | menu | point | "1 · MENU MTANDAONI" · "MENU YAKO" / "ONLINE." · chips za bei (Nyama Choma 13,500 · Chipsi Mayai 5,500) · phone mock yenye menu ya kweli (bob animation) · bongofoodie.vercel.app | BongoFoodie — app na website tuliyoujenga… |
-| brains | ok | "2 · NYUMA YA PAZIA" · DEMO dashboard cards (redrawn, values exact) · Chef AI Atelier chat (redrawn, verbatim) · her "ok" pose | Nyuma ya pazia: orders zinaingia moja kwa moja… |
-| pitch | desk | orange field + white starburst · "ALTRAWARE — TUNAJENGA" · "APP YAKO." / "WEBSITE YAKO." · gold stamp "TUNAWEZA." · chips APP ✓ WEBSITE ✓ CHEF AI ✓ · "biashara yoyote Tanzania." | Tunachoweza kufanya kwa biashara yako… |
-| cta | thumbsup | Altraware mark × BongoFoodie lockup (real, keyed PNG) · "TECH BILA HYPE — TANGAZO" · "ANZA LEO." · typewriter altra.tanzaniareach.com · "comment APP" · bongofoodie.vercel.app | Biashara yako inahitaji app au website? … Altraware — tunatengeneza. |
+| brains | one | "2 · NYUMA YA PAZIA" · DEMO dashboard cards (redrawn, values exact) · Chef AI Atelier chat (redrawn, verbatim) · her "one" pose (index finger — "hiyo hapa") | Nyuma ya pazia: orders zinaingia moja kwa moja… |
+| pitch | present | orange field + white starburst · "ALTRAWARE — TUNAJENGA" · "APP YAKO." / "WEBSITE YAKO." · gold stamp "TUNAWEZA." · chips APP ✓ WEBSITE ✓ CHEF AI ✓ · "biashara yoyote Tanzania." | Tunachoweza kufanya kwa biashara yako… |
+| cta | wave | Altraware mark × BongoFoodie lockup (real, keyed PNG) · "TECH BILA HYPE — TANGAZO" · "ANZA LEO." · typewriter altra.tanzaniareach.com · "comment APP" · bongofoodie.vercel.app | Biashara yako inahitaji app au website? … Altraware — tunatengeneza. |
 
 **Kiufundi:**
 
 - Voice-led: `mix.py` inapima takes → `out/timeline.json` (3186 frames / 53.10 s); mouth kutoka
   `lipsync.py` kwenye mix.wav halisi (**60.6 % voiced frames**); poses kupitia rig (gamma 0.75 ladder).
 - Poses: hook cheer (w640 cx540) · problem phone (w470 cx800) · menu point (w400 cx268) ·
-  brains ok (w390 cx806) · pitch desk (w440 cx820) · cta thumbsup (w700 cx540) — safe box.
+  brains one (w390 cx806) · pitch present (w440 cx820) · cta wave (w700 cx540) — safe box,
+  na **poses zimebadilishwa kwa mzunguko** (ok→one, desk→present, thumbsup→wave) ili kuepuka marudio.
+- **Foreground café counter** (`production/noellyne-host/counter.mjs`): canvas-drawn — slab,
+  beadboard, brand inlay, brass rail, kick plate — mbele ya Noellyne kila beat, inaficha
+  "hana legs / sharp ends" cut; props asili per beat (chalkboard WA special pub, receipts,
+  LEO: NYAMA CHOMA, espresso cups, TUNAWEZA chips, ASANTE/KARIBU board); dark beats zinatumia
+  theme ya espresso (gold inlay), light beats walnut.
+- **Mouth plates** sasa zime-feather elliptically (`host.mjs` → `featheredMouth()`,
+  cache `mouthMaskCache`) na anchored kwenye (421, 452) kwenye **kila pose** — anchor ilikuwa
+  imefanya offsets vibaya kwenye poses 9 (ok/peace/pray/cheer/phone/desk/thumbsup/…);
+  normalized kwenye `host-rig.json` baada ya scan ya template matching. Kit visemes zime-wrap,
+  hazijatengenezwa upya — rule ya kit mouth art inasimama.
 - Encode: H.264 High, 1080×1920, 60 fps CFR, yuv420p, AAC 48 kHz stereo, faststart,
-  ≈ 1.0 Mbps v / 191 kbps a, 7.9 MB, 53.10 s. Decode check: `ffmpeg -v error -f null -` safi.
+  6.4 MB, 53.10 s. Decode check: `ffmpeg -v error -f null -` safi.
 - QA: `proof/qa-tangazo-beats.jpg` (grid ya beats) + `proof/still-*.png` (frames halisi za mp4).
 
 **Rebuild:**

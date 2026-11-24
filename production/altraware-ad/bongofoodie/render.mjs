@@ -19,6 +19,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { createCanvas, loadImage } from "@napi-rs/canvas";
 import { loadFonts, loadHost, performerDraw, FONTS } from "../../noellyne-host/host.mjs";
+import { renderCounter } from "../../noellyne-host/counter.mjs";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..", "..", "..");
 const HERE = path.join(ROOT, "production/altraware-ad/bongofoodie");
@@ -315,7 +316,7 @@ function brains(c, f, span, HOST, draw) {
     c.restore(); c.globalAlpha = 1;
   }
   if (f >= s + 160) mono(c, "order moja inasubiri jikoni.", 64, 1588, 20, TAN, easeOut(s + 160, s + 176, f), 1);
-  her(c, HOST, draw, f, span, "ok", { cx: 806, w: 390, bottomY: H - 14, enter: "fade" });
+  her(c, HOST, draw, f, span, "one", { cx: 806, w: 390, bottomY: H - 14, enter: "fade" });
 }
 
 function pitch(c, f, span, HOST, draw) {
@@ -347,7 +348,7 @@ function pitch(c, f, span, HOST, draw) {
     c.restore(); c.globalAlpha = 1;
   }
   if (f >= s + 128) mono(c, "biashara yoyote Tanzania.", 64, 1470, 24, CREAM, easeOut(s + 128, s + 144, f), 2);
-  her(c, HOST, draw, f, span, "desk", { cx: 820, w: 440, bottomY: H - 16, enter: "fade" });
+  her(c, HOST, draw, f, span, "present", { cx: 820, w: 440, bottomY: H - 16, enter: "fade" });
 }
 
 function cta(c, f, span, HOST, draw, IMAGES) {
@@ -380,8 +381,8 @@ function cta(c, f, span, HOST, draw, IMAGES) {
   mono(c, dtext.slice(0, dchars) + (cursorOn(f) && dchars < dtext.length ? "▌" : ""), 70, 780, 32, ORANGE_DEEP, 1, 2);
   if (f >= s + 128) mono(c, "comment APP — nitakutumia ujumbe.", 70, 852, 24, INK, easeOut(s + 128, s + 144, f), 2);
   if (f >= s + 136) mono(c, "bongofoodie.vercel.app — mfano halisi.", 70, 906, 21, ASH, easeOut(s + 136, s + 152, f), 1);
-  her(c, HOST, draw, f, span, "thumbsup", { cx: 540, w: 700, enter: "rise", bottomY: H - 6 });
-  if (f >= T - 12) { c.fillStyle = `rgba(0,0,0,${clamp((f - (T - 12)) / 12)})`; c.fillRect(0, 0, W, H); }
+  her(c, HOST, draw, f, span, "wave", { cx: 540, w: 700, enter: "rise", bottomY: H - 6 });
+  // final fade now lives in drawFrame (after the counter), so the whole set dims together
 }
 
 const SCENES = { hook, problem, menu, brains, pitch, cta };
@@ -390,12 +391,15 @@ function drawFrame(ctx, HOST, draw, IMAGES, f) {
   const span = [...tl.spans].reverse().find((s) => f >= s.start - 4) || tl.spans[0];
   const scene = SCENES[span.id];
   scene(ctx, f, span, HOST, draw, IMAGES);
+  // the set's furniture — drawn over her, hiding the cutout edge
+  if (IMAGES.counters[span.id]) ctx.drawImage(IMAGES.counters[span.id], 0, 0);
   // flash on every cut: 6-frame cream wash
   const cut = tl.spans.find((s) => f >= s.start && f < s.start + 6);
   if (cut && cut.start > 100) {
     ctx.fillStyle = `rgba(251,247,239,${0.85 * (1 - (f - cut.start) / 6)})`;
     ctx.fillRect(0, 0, W, H);
   }
+  if (f >= T - 12) { ctx.fillStyle = `rgba(0,0,0,${clamp((f - (T - 12)) / 12)})`; ctx.fillRect(0, 0, W, H); }
 }
 
 (async () => {
@@ -405,6 +409,15 @@ function drawFrame(ctx, HOST, draw, IMAGES, f) {
   const IMAGES = {
     menuScreen: await loadImage(path.join(A, "menu-screen.png")),
     lockup: await loadImage(path.join(A, "lockup-keyed.png")),
+    // one original counter per beat — same furniture system, different props
+    counters: {
+      hook: renderCounter("walnut", [{ kind: "plant" }, { kind: "chalk", lines: ["TANGAZO", "BONGOFOODIE"] }]),
+      problem: renderCounter("espresso", [{ kind: "receipts" }]),
+      menu: renderCounter("walnut", [{ kind: "chalk", lines: ["LEO:", "NYAMA CHOMA"], x: 560 }]),
+      brains: renderCounter("espresso", [{ kind: "cups", x: -400 }]),
+      pitch: renderCounter("walnut", [{ kind: "swatches" }]),
+      cta: renderCounter("walnut", [{ kind: "chalk", lines: ["ASANTE!", "KARIBU!"], x: -44 }]),
+    },
   };
   const cv = createCanvas(W, H);
   const ctx = cv.getContext("2d");
