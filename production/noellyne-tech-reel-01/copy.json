@@ -1,0 +1,122 @@
+{
+  "keyword": "HYPE",
+  "note": "Tech Bila Hype EP.1 redo. v1 was rejected (hands clipped at frame edge, no voice, copy). Same reference-motion approach as v1 (pin 924363892282992611), same violet/cream/ink system, but: full-figure poses with hands visible and fully inside the safe box, Kiswahili VO (voice-18, scratch Kiswahili TTS for review — owner records his own read for the final), lip-synced mouth, tighter copy. copy.json is the record of the exact words spoken.",
+  "takes": [
+    {
+      "id": "hook",
+      "pose": "wave",
+      "sw": [
+        "Karibu Tech Bila Hype.",
+        "Kipindi cha kwanza:",
+        "maandishi hayasomeki."
+      ],
+      "en": [
+        "Welcome to Tech Bila Hype. Episode one: the text is unreadable."
+      ],
+      "gesture": [
+        {
+          "kind": "wave",
+          "at": 0.08,
+          "len": 62
+        }
+      ],
+      "say": "Karibu Tech Bila Hype. Kipindi cha kwanza: maandishi hayasomeki."
+    },
+    {
+      "id": "problem",
+      "pose": "phone",
+      "sw": [
+        "Kila siku unaona captions ndefu.",
+        "Mistari midogo, hakuna anayesoma."
+      ],
+      "en": [
+        "Every day you see long captions.",
+        "Small lines, nobody reads."
+      ],
+      "gesture": [
+        {
+          "kind": "present",
+          "at": 0.35,
+          "len": 88
+        }
+      ],
+      "say": "Kila siku unaona captions ndefu. Ukweli ni rahisi: mistari midogo, hakuna anayesoma."
+    },
+    {
+      "id": "rule1",
+      "pose": "desk",
+      "sw": [
+        "Kanuni ya kwanza:",
+        "neno moja. Kubwa."
+      ],
+      "en": [
+        "Rule one: one word. Big."
+      ],
+      "gesture": [
+        {
+          "kind": "accent",
+          "at": 0.45,
+          "len": 42
+        }
+      ],
+      "say": "Kanuni ya kwanza: neno moja. Kubwa."
+    },
+    {
+      "id": "rule2",
+      "pose": "ok",
+      "sw": [
+        "Kanuni ya pili:",
+        "rangi mbili tu. Nyingine zote ni kelele."
+      ],
+      "en": [
+        "Rule two: only two colors. Everything else is noise."
+      ],
+      "gesture": [
+        {
+          "kind": "accent",
+          "at": 0.3,
+          "len": 42
+        }
+      ],
+      "say": "Kanuni ya pili: rangi mbili tu. Nyingine zote ni kelele."
+    },
+    {
+      "id": "rule3",
+      "pose": "point",
+      "sw": [
+        "Kanuni ya tatu:",
+        "anza na swali. Swali huwasimamisha."
+      ],
+      "en": [
+        "Rule three: start with a question. A question stops them."
+      ],
+      "gesture": [
+        {
+          "kind": "point",
+          "at": 0.3,
+          "len": 96
+        }
+      ],
+      "say": "Kanuni ya tatu: anza na swali. Swali huwasimamisha."
+    },
+    {
+      "id": "cta",
+      "pose": "thumbsup",
+      "sw": [
+        "Hiyo ndiyo.",
+        "Tips fupi, bila hype. Altraware."
+      ],
+      "en": [
+        "That's it. Short tips, no hype. Altraware."
+      ],
+      "gesture": [
+        {
+          "kind": "accent",
+          "at": 0.1,
+          "len": 42
+        }
+      ],
+      "say": "Hiyo ndiyo. Tips fupi, bila hype. Altraware."
+    }
+  ]
+}

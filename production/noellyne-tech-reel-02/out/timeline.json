@@ -1,0 +1,38 @@
+{
+  "fps": 60,
+  "frames": 3024,
+  "seconds": 50.4,
+  "spans": [
+    {
+      "id": "hook",
+      "start": 10,
+      "end": 348
+    },
+    {
+      "id": "problem",
+      "start": 381,
+      "end": 844
+    },
+    {
+      "id": "rule1",
+      "start": 874,
+      "end": 1450
+    },
+    {
+      "id": "rule2",
+      "start": 1477,
+      "end": 1952
+    },
+    {
+      "id": "rule3",
+      "start": 1982,
+      "end": 2371
+    },
+    {
+      "id": "cta",
+      "start": 2401,
+      "end": 2934
+    }
+  ],
+  "keyword": "BURE"
+}

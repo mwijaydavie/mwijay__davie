@@ -1,0 +1,120 @@
+{
+  "keyword": "APP",
+  "note": "Tech Bila Hype — TANGAZO: Altraware × BongoFoodie (2026-11-18). A sponsored tangazo for Altraware's software service (apps + websites for Tanzanian businesses), using BongoFoodie as the live proof — not a BongoFoodie-only ad, not a tech-bro ad. Same rig and motion grammar as EP.1/EP.2 (voice-led cut, kit visemes, safe-box poses); new copy around what Altraware makes. Kiswahili VO, scratch TTS for review — the owner records his own read for the final (copy.json is the record of the exact words). The screenshot exports under assets/ are the owner's own product (bongofoodie.vercel.app, DEMO admin view); dashboard figures on screen match the demo screenshot exactly and are labelled DEMO in the picture.",
+  "takes": [
+    {
+      "id": "hook",
+      "pose": "cheer",
+      "sw": [
+        "Karibu Tech Bila Hype.",
+        "Leo ni tangazo — fupi, zito."
+      ],
+      "en": [
+        "Welcome to Tech Bila Hype. Today is an ad — short, but heavy."
+      ],
+      "gesture": [
+        {
+          "kind": "accent",
+          "at": 0.18,
+          "len": 42
+        }
+      ],
+      "say": "Karibu Tech Bila Hype. Leo ni tangazo — fupi, zito."
+    },
+    {
+      "id": "problem",
+      "pose": "phone",
+      "sw": [
+        "Biashara nyingi Tanzania: chakula kizuri, huduma nzuri —",
+        "lakini orders zinapotea kwenye simu, WhatsApp na makaratasi."
+      ],
+      "en": [
+        "Many businesses in Tanzania: good food, good service — but orders disappear into calls, WhatsApp and paper."
+      ],
+      "gesture": [
+        {
+          "kind": "present",
+          "at": 0.32,
+          "len": 88
+        }
+      ],
+      "say": "Biashara nyingi Tanzania: chakula kizuri, huduma nzuri — lakini orders zinapotea kwenye simu, WhatsApp na makaratasi. Hakuna anayeona menu mtandaoni."
+    },
+    {
+      "id": "menu",
+      "pose": "point",
+      "sw": [
+        "BongoFoodie — app na website tuliyoujenga.",
+        "Menu mtandaoni, bei wazi. Nyama Choma TSh 13,500. Chipsi Mayai TSh 5,500. Order moja kwa moja kutoka sofa — mpaka jikoni."
+      ],
+      "en": [
+        "BongoFoodie — the app and website we built. The menu online, prices clear. Nyama Choma at 13,500. Chipsi Mayai at 5,500. Order straight from the sofa — to the kitchen."
+      ],
+      "gesture": [
+        {
+          "kind": "point",
+          "at": 0.28,
+          "len": 96
+        }
+      ],
+      "say": "BongoFoodie — app na website tuliyoujenga. Menu mtandaoni, bei wazi. Nyama Choma TSh 13,500. Chipsi Mayai TSh 5,500. Order moja kwa moja kutoka sofa — mpaka jikoni."
+    },
+    {
+      "id": "brains",
+      "pose": "ok",
+      "sw": [
+        "Nyuma ya pazia: orders zinaingia moja kwa moja.",
+        "Leo: TSh 92,500, maorder matatu, moja inasubiri jikoni. Na Chef AI anajibu wateja papo hapo."
+      ],
+      "en": [
+        "Behind the curtain: orders come in automatically. Today: 92,500 shillings, three orders, one waiting in the kitchen. And Chef AI answers customers instantly."
+      ],
+      "gesture": [
+        {
+          "kind": "accent",
+          "at": 0.3,
+          "len": 42
+        }
+      ],
+      "say": "Nyuma ya pazia: orders zinaingia moja kwa moja. Leo: TSh 92,500, maorder matatu, moja inasubiri jikoni. Na Chef AI anajibu wateja papo hapo."
+    },
+    {
+      "id": "pitch",
+      "pose": "desk",
+      "sw": [
+        "Tunachoweza kufanya kwa biashara yako:",
+        "app yako, website yako, menu ya digital, Chef AI yako mwenyewe — mwanzo hadi mwisho. Altraware."
+      ],
+      "en": [
+        "What we can do for your business: your app, your website, your digital menu, your own Chef AI — start to finish. Altraware."
+      ],
+      "gesture": [
+        {
+          "kind": "accent",
+          "at": 0.42,
+          "len": 42
+        }
+      ],
+      "say": "Tunachoweza kufanya kwa biashara yako: app yako, website yako, menu ya digital, Chef AI yako mwenyewe — mwanzo hadi mwisho. Altraware."
+    },
+    {
+      "id": "cta",
+      "pose": "thumbsup",
+      "sw": [
+        "Biashara yako inahitaji app au website?",
+        "altra.tanzaniareach.com — au comment APP. Altraware — tunatengeneza."
+      ],
+      "en": [
+        "Does your business need an app or a website? altra.tanzaniareach.com — or comment APP. Altraware — we build."
+      ],
+      "gesture": [
+        {
+          "kind": "accent",
+          "at": 0.1,
+          "len": 42
+        }
+      ],
+      "say": "Biashara yako inahitaji app au website? altra.tanzaniareach.com — au comment APP, nitakutumia ujumbe. Altraware — tunatengeneza."
+    }
+  ]
+}

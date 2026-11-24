@@ -1,0 +1,120 @@
+{
+  "keyword": "BURE",
+  "note": "Tech Bila Hype EP.2. Companion to EP.1: same rig, same motion grammar, voice-led cut, Kiswahili VO (scratch TTS for review - owner records his own read for the final; copy.json is the record of the exact words). POV: apps you are paying for that you could start for free - the three beats point at the free guide (Tech Bila Hype PDF, 12 real tools). copy.json is the record of the exact words spoken.",
+  "takes": [
+    {
+      "id": "hook",
+      "pose": "wave",
+      "sw": [
+        "Karibu Tech Bila Hype.",
+        "Kipindi cha pili: tools za bure."
+      ],
+      "en": [
+        "Welcome to Tech Bila Hype. Episode two: free tools."
+      ],
+      "gesture": [
+        {
+          "kind": "wave",
+          "at": 0.08,
+          "len": 62
+        }
+      ],
+      "say": "Karibu Tech Bila Hype. Kipindi cha pili: tools za bure."
+    },
+    {
+      "id": "problem",
+      "pose": "phone",
+      "sw": [
+        "Kila mwezi unalipa apps",
+        "unazoweza kupata bure. Hakuna anayekwambia."
+      ],
+      "en": [
+        "Every month you pay for apps you could get free. Nobody tells you."
+      ],
+      "gesture": [
+        {
+          "kind": "present",
+          "at": 0.35,
+          "len": 88
+        }
+      ],
+      "say": "Kila mwezi unalipa apps unazoweza kupata bure. Hakuna anayekwambia - kila mtu anauza tu."
+    },
+    {
+      "id": "rule1",
+      "pose": "desk",
+      "sw": [
+        "Kanuni ya kwanza: ikiwa kuna free tier,",
+        "anza nayo. Docs, Drive, Meet."
+      ],
+      "en": [
+        "Rule one: if there is a free tier, start with it. Docs, Drive, Meet."
+      ],
+      "gesture": [
+        {
+          "kind": "accent",
+          "at": 0.45,
+          "len": 42
+        }
+      ],
+      "say": "Kanuni ya kwanza: ikiwa kuna free tier, anza nayo. Docs, Drive, Meet - zote za bure."
+    },
+    {
+      "id": "rule2",
+      "pose": "ok",
+      "sw": [
+        "Kanuni ya pili: Canva na CapCut.",
+        "Design na video - free tier inatosha."
+      ],
+      "en": [
+        "Rule two: Canva and CapCut. Design and video - the free tier is enough."
+      ],
+      "gesture": [
+        {
+          "kind": "accent",
+          "at": 0.3,
+          "len": 42
+        }
+      ],
+      "say": "Kanuni ya pili: Canva na CapCut. Design na video - free tier inatosha kuanzia."
+    },
+    {
+      "id": "rule3",
+      "pose": "point",
+      "sw": [
+        "Kanuni ya tatu: jaribu free kwanza.",
+        "Ukiona haitoshi, ndipo ulipe."
+      ],
+      "en": [
+        "Rule three: try free first. Only pay once it proves not enough."
+      ],
+      "gesture": [
+        {
+          "kind": "point",
+          "at": 0.3,
+          "len": 96
+        }
+      ],
+      "say": "Kanuni ya tatu: jaribu free kwanza. Ukiona haitoshi, ndipo ulipe."
+    },
+    {
+      "id": "cta",
+      "pose": "thumbsup",
+      "sw": [
+        "Hiyo ndiyo.",
+        "Comment PDF - nitakutumia mwongozo wa tools 12 za bure. Altraware."
+      ],
+      "en": [
+        "That is it. Comment PDF - I will send you the free guide to 12 tools. Altraware."
+      ],
+      "gesture": [
+        {
+          "kind": "accent",
+          "at": 0.1,
+          "len": 42
+        }
+      ],
+      "say": "Hiyo ndiyo. Zaidi: comment PDF, nitakutumia mwongozo wa tools 12 za bure. Altraware."
+    }
+  ]
+}
