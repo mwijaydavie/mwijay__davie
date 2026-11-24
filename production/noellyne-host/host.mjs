@@ -147,7 +147,11 @@ export function performerDraw(c, host, fps) {
         c.restore();
       }
     } else if (voicing && p.mouth) {
-      const LADDER = ["A", "G", "C", "H", "D", "E", "B", "F"];
+      // Kit patches ranked by actual aperture (verified side-by-side on wave):
+      // A,F closed smiles; G,B,C small-to-medium toothy smiles; H wide;
+      // D,E fully open. An earlier guess (A,G,C,H,D,E,B,F) mapped openness
+      // 0.9+ onto F — a closed smile — so she read as silent while talking.
+      const LADDER = ["A", "F", "G", "B", "C", "H", "D", "E"];
       const idx = Math.min(LADDER.length - 1,
         Math.max(0, Math.round(openness * (LADDER.length - 1))));
       const patch = p.mouth[LADDER[idx]];

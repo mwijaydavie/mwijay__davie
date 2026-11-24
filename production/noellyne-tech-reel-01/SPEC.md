@@ -1,10 +1,11 @@
-# Noellyne — Tech Bila Hype · EP.1: MAANDISHI HAYASOMEKI
+# Noellyne — Tech Bila Hype · EP.1 v2: MAANDISHI HAYASOMEKI
 
 Reference: `google_drive/From Klickpin.com- 924363892282992611-pin-id-924363892282992611.mp4`
 (720×1280, 30 fps, 19.11 s, Pinterest re-pin of a motion-design studio's self-promo).
 Chosen because its palette (violet + cream + ink, halftone grids, starburst corner spikes,
 big serif display type) is our Altraware palette, and its motion grammar is the missing
-piece for kinetic captions in this repo.
+piece for kinetic captions in this repo. (The owner re-sent the same six reference links on
+2026-11-24; they are the same pins already on disk — nothing new to clone from.)
 
 ## Fidelity
 
@@ -12,11 +13,11 @@ piece for kinetic captions in this repo.
 
 | Cloned (motion-faithful) | Ours (additions) |
 |---|---|
-| Word-by-word slam-in of display serif lines | All copy (Kiswahili, proofed) |
-| Pill banner pop-in over a "hero" subject | Noellyne rig plates (present/wave/point/thumbsup) + breathing + blinks |
+| Word-by-word slam-in of display serif lines | All copy (Kiswahili, proofed, VO-read) |
+| Pill banner pop-in over a "hero" subject | Noellyne rig plates (wave/present/one/ok/point/thumbsup) + breathing + blinks + real visemes |
 | Halftone dot grid atmosphere | Altraware tokens (cream #FBF7EF, sand #F4E3C4, violet #5B3FB5, ink #1D2A33, gold #F2C66D), Fraunces/Inter/JetBrains Mono |
-| Starburst corner spikes on violet beats | SFX-only audio (no music, no VO — there is no cleared track or recorded take for this script) |
-| Hard cuts + white flash between beats | End-card with Altraware logo draw + `altra.tanzaniareach.com` typeout |
+| Starburst corner spikes on violet beats | Six Kiswahili VO takes (scratch TTS) + measured mouth track |
+| Hard cuts + cream flash between beats | End-card with Altraware logo draw + `altra.tanzaniareach.com` typeout |
 | "KANUNI 01/02/03" mono section labels | The actual three caption rules (Kifungu 1: neno moja kubwa · 2: rangi mbili · 3: anza na swali) |
 
 **Not cloned:** the reference's 3D brain, the 3D eyeball, the retro TV, the slipping-man
@@ -24,24 +25,53 @@ illustration, the Nike/McDonald's imagery, the studio wordmark. None of those ap
 get redrawn, or get traced. Motion and layout only. Sources of those assets are unknown;
 Pinterest/Klickpin re-pins are not a licence.
 
-## Beat map (60 fps, 1080×1920, T = 1320 frames = 22.0 s)
+## Timeline (measured from the takes, 60 fps, 2276 frames = 37.93 s)
 
-| Beat | Frames | Seconds | On screen | Technique cloned |
+| # | span | seconds | beat | pose |
 |---|---|---|---|---|
-| B1 hook | 0–131 | 0:00.0–0:02.2 | Cream + halftone; Noellyne (present) rises; violet pill "TECH BILA HYPE — EP.1"; Fraunces "MAANDISHI / HAYASOMEKI." | pill pop + slam-in lines + spring rise (ref 0:00–0:02.7) |
-| B2 problem | 132–341 | 0:02.2–0:05.7 | Ink slab; mono "KWA NINI?" types; wall of 9 unreadable caption lines rises staggered; red ✗ slashes; mono "watu hawasomi mistari ndogo ndogo." | list-climb + stamp-slash (ref 0:02.7–0:06 "SOME BRANDS" grid → replaced by type wall) |
-| flash | 334–341 | — | White flash + whip | card-swap flash (ref 0:06 cut) |
-| B3 rule 1 | 342–563 | 0:05.7–0:09.4 | Cream; mono "KANUNI 01"; Fraunces italic violet "NENO MOJA." → ink "KUBWA."; gold stamp "WEBSITE" −6°; violet underline grows | stamp + slam pair (ref 0:06–0:09.5 "stick in your mind?") |
-| B4 rule 2 | 564–785 | 0:09.4–0:13.1 | Sand; mono "KANUNI 02"; Fraunces "RANGI / MBILI / TU." word-stagger; two swatch dots (VIOLET / CREAM) spring in; Noellyne (point) slides in; mono kicker | word-stagger + dichromatic swatches (ref 0:09.5–0:13 "Motion Design" words + eye close-up → simplified) |
-| B5 rule 3 | 786–1007 | 0:13.1–0:16.8 | Violet; white starbursts 2 corners; mono "KANUNI 03"; Fraunces italic cream "ANZA NA / SWALI."; cream card slam "UNATAKA WEBSITE?" with blink; Noellyne (thumbsup) rises; mono kicker | slam pair + card pop on saturated field (ref 0:13–0:15.5 "Motion brings" → rebuilt as violet beat) |
-| B6 outro | 1008–1320 | 0:16.8–0:22.0 | Cream; Noellyne (wave) right; logo stroke draws itself; mono "TECH BILA HYPE · EP.1"; Fraunces "HIYO NDIYO." + italic violet "UFUATE."; mono "Tips fupi. Bila hype."; typeout "altra.tanzaniareach.com▌"; chime; 6-frame cut to black | logo draw + typeout + resolve (ref 0:15.5–0:19 "Feelings to your Story" TV era, replaced by brand end-card) |
+| 1 | 10–351 | 0.17–5.85 | hook — pill, "MAANDISHI / HAYASOMEKI.", kicker "UNALISOMA?" | wave |
+| 2 | 384–826 | 6.40–13.77 | problem — ink slab, typed "KWA NINI?", wall of 9 bars + red slashes | present |
+| 3 | 856–1142 | 14.27–19.03 | rule 1 — "NENO MOJA." / "KUBWA.", gold stamp WEBSITE | one |
+| 4 | 1169–1493 | 19.48–24.88 | rule 2 — "RANGI / MBILI / TU.", VIOLET/CREAM swatches | ok |
+| 5 | 1523–1873 | 25.38–31.22 | rule 3 — violet field, starbursts, card "UNATAKA WEBSITE?" | point |
+| 6 | 1903–2186 | 31.72–36.43 | outro — logo wipe, "HIYO NDIYO." / "FUATA HIYO.", domain typeout | thumbsup |
+| — | 2186–2276 | 36.43–37.93 | hold + 12-frame fade to black | — |
 
-## SFX only (48 kHz stereo, synthesized — no licensed music in this repo)
+Lead-in 10 frames (0.17 s black) → 6-frame cream flash on every cut (`f ≥ span.start`,
+not on the hook's own cut-in).
 
-pop @ f16 · thump @ f40, f52 · tick @ f138 · wall rise (soft ticks f172–f264) · stamp/✗ @ f262 ·
-whoosh @ f335 · thump @ f372, f410 · stamp @ f444 · tick @ f566 · pop @ f652, f700 · pop + whoosh
-@ f816, f830 · pop (card) @ f866 · pop @ f898 · whoosh @ f1008 · draw-sweep @ f1045 · tick @ f1090 ·
-cursor ticks f1176–f1215 · chime @ f1216.
+## Audio
+
+- Voice: 6 Kiswahili takes (Ms. voice-18, `add_voice('sw')` + `generate_speech`),
+  scratch review take — **owner to record the final read** (copy.json is the script of record; EN sidecar included). Takes:
+  5.68 / 7.36 / 4.76 / 5.40 / 5.84 / 4.72 s.
+- Bed: 62 Hz + 93 Hz + 124 Hz, slow 2-cycle swell, ≈ −26 dB under the voice.
+- One soft tick per scene change (2.4/3.1 kHz, exp decay). No risers, no whooshes, no music.
+- Loudness: tanh-soft clip → RMS −15.5 dBFS, peak 0.85.
+- Mouth: `lipsync.py` (300–1200 Hz vowel band vs 150–3000 Hz full band, per-utterance
+  normalisation) → `out/mouth.json`; 56.9 % of frames voiced (letter ≠ X, openness > 0.06).
+
+## Pose placement (safe box, ≥ 24 px margins)
+
+| beat | w (px) | cx | left | right | bottomY |
+|---|---|---|---|---|---|
+| hook (wave) | 660 | 540 | 210 | 870 | 1912 |
+| problem (present) | 460 | 810 | 580 | 1040 | 1904 |
+| rule1 (one) | 510 | 795 | 540 | 1050 | 1904 |
+| rule2 (ok) | 490 | 810 | 565 | 1055 | 1904 |
+| rule3 (point) | 470 | 820 | 585 | 1055 | 1904 |
+| cta (thumbsup) | 660 | 560 | 230 | 890 | 1914 |
+
+## Calibration log (this is why v1 "haikuwa na hands")
+
+- `wave`, `point`: hand layers are real rig layers — they rotate at the wrist (STYLES).
+- Kit viseme aperture ladder re-measured by compositing all 8 patches per face:
+  **A,F closed · G,B,C smile-teeth · H wide · D,E open** (host.mjs `LADDER` corrected).
+- `peace` rig metadata is misaligned for this build (kit patch lands on her neck;
+  AI plate carries a dark halo past the silhouette) → rule 2 uses **ok** instead.
+- `cheer`: kit patch lands on her chest (face lives higher in canvas) — unused.
+- AI mouth plates rejected everywhere on this rig (hard rectangular edge on her chest).
+- pose-eye lids (`{pose}-blink.png`) are used as scheduled blinks at start+44/+160/+276.
 
 ## Numbers used from the reference (measured by eye at 10 fps probe sheets)
 
@@ -53,9 +83,10 @@ cursor ticks f1176–f1215 · chime @ f1216.
 
 ## Verification
 
-Clone vs reference comparison is qualitative (our assets differ by definition): stills at
-every beat boundary were grouped into sheets and checked for layout, safe-box and pacing.
-Two real defects were caught and fixed: (1) the B1 display lines overflowed the right edge —
-fixed with `fitSize()`; (2) `measure()` was called without a context — replaced by an
-internal scratch context. Code path is deterministic (frame-driven); `out/` holds the
-encode and `mix.wav`; stills in `proof/`; frames are not committed (rebuild from `render.mjs`).
+- Deterministic (frame-driven). 2276 frames @60 fps; timeline.json measured from the
+  takes — re-recording a take shifts picture automatically (mix.py → lipsync.py → render.mjs).
+- Full-res stills at every beat (`proof/v2-*.png`) checked for: safe-box margins,
+  no text overflow (fitSize), type never over her silhouette, mouth open on peaks
+  (visemes D/E visible), blink timing, badge vs starburst collision (KANUNI 03 moved right).
+- Encode: H.264 High, 1080×1920, 60 fps CFR, yuv420p, AAC 48 kHz stereo, ≈ 3.4 Mbps, faststart.
+- Frames are not committed (rebuild from `render.mjs`); mp4 + mix.wav are.

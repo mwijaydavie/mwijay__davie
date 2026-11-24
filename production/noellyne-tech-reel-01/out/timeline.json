@@ -1,0 +1,38 @@
+{
+  "fps": 60,
+  "frames": 2276,
+  "seconds": 37.93,
+  "spans": [
+    {
+      "id": "hook",
+      "start": 10,
+      "end": 351
+    },
+    {
+      "id": "problem",
+      "start": 384,
+      "end": 826
+    },
+    {
+      "id": "rule1",
+      "start": 856,
+      "end": 1142
+    },
+    {
+      "id": "rule2",
+      "start": 1169,
+      "end": 1493
+    },
+    {
+      "id": "rule3",
+      "start": 1523,
+      "end": 1873
+    },
+    {
+      "id": "cta",
+      "start": 1903,
+      "end": 2186
+    }
+  ],
+  "keyword": "HYPE"
+}
