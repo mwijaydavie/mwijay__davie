@@ -66,11 +66,15 @@ not on the hook's own cut-in).
 
 - `wave`, `point`: hand layers are real rig layers — they rotate at the wrist (STYLES).
 - Kit viseme aperture ladder re-measured by compositing all 8 patches per face:
-  **A,F closed · G,B,C smile-teeth · H wide · D,E open** (host.mjs `LADDER` corrected).
+  **A,F closed · G,B,C smile-teeth · H wide · D,E open** (host.mjs `LADDER` corrected,
+  selection now gamma 0.7 so median voiced openness ≈ H, peaks = D/E).
+- AI plates (wave/point/ok/thumbsup) re-enabled **after** fitting per-plate elliptical
+  masks in host.mjs (`AI_MOUTH_ELLIPSE`, destination-in radial gradient, feather 0.30).
+  Raw plates were rejected in v2 — the dark backdrop bled past her silhouette and ended
+  in a hard edge on her chest. Levels: <0.38 closed · <0.62 mid · ≥0.62 open (idle = closed).
 - `peace` rig metadata is misaligned for this build (kit patch lands on her neck;
-  AI plate carries a dark halo past the silhouette) → rule 2 uses **ok** instead.
-- `cheer`: kit patch lands on her chest (face lives higher in canvas) — unused.
-- AI mouth plates rejected everywhere on this rig (hard rectangular edge on her chest).
+  AI ellipse unmeasured) → rule 2 uses **ok** instead. `cheer`/`pray`/`desk`/`phone`:
+  plates exist but mouth ellipses are uncalibrated — they fall back to the kit ladder.
 - pose-eye lids (`{pose}-blink.png`) are used as scheduled blinks at start+44/+160/+276.
 
 ## Numbers used from the reference (measured by eye at 10 fps probe sheets)
@@ -85,8 +89,9 @@ not on the hook's own cut-in).
 
 - Deterministic (frame-driven). 2276 frames @60 fps; timeline.json measured from the
   takes — re-recording a take shifts picture automatically (mix.py → lipsync.py → render.mjs).
-- Full-res stills at every beat (`proof/v2-*.png`) checked for: safe-box margins,
-  no text overflow (fitSize), type never over her silhouette, mouth open on peaks
-  (visemes D/E visible), blink timing, badge vs starburst collision (KANUNI 03 moved right).
+- Full-res stills at every beat (`proof/v3-*.png`) checked for: safe-box margins,
+  no text overflow (fitSize), type never over her silhouette, mouth open with teeth on
+  voiced peaks (AI plates on wave/point/ok/thumbsup; gamma kit visemes on one/present),
+  blink timing, badge vs starburst collision (KANUNI 03 moved right).
 - Encode: H.264 High, 1080×1920, 60 fps CFR, yuv420p, AAC 48 kHz stereo, ≈ 3.4 Mbps, faststart.
 - Frames are not committed (rebuild from `render.mjs`); mp4 + mix.wav are.

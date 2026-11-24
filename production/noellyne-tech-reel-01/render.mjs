@@ -334,12 +334,6 @@ function drawFrame(ctx, HOST, draw, f) {
 (async () => {
   fs.mkdirSync(FRAMES, { recursive: true });
   const HOST = await loadHost();
-  // The AI mouth plates are NOT calibrated to this rig build: on wave they
-  // replaced the mouth correctly but their dark backdrop bled past her
-  // silhouette and ended in a hard rectangle on her chest. The kit patches
-  // are aligned on wave/point/one/present/thumbsup/ok (visually verified),
-  // so drop the ai path and let performerDraw use the kit visemes.
-  for (const p of Object.values(HOST.rig.poses)) delete p.ai;
   await loadFonts();
   const cv = createCanvas(W, H);
   const ctx = cv.getContext("2d");
